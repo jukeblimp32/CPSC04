@@ -2,7 +2,7 @@
 //  SecondViewController.swift
 //  Ocha
 //
-//  Created by Taylor, Scott A on 10/28/16.
+//  Created by Talkov, Leah C on 10/28/16.
 //  Copyright © 2016 CPSC04. All rights reserved.
 //
 
