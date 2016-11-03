@@ -83,8 +83,8 @@
 				7C854E541DC400AD00E02883 /* Main.storyboard */,
 				7C854E571DC400AD00E02883 /* Assets.xcassets */,
 				7C854E591DC400AD00E02883 /* LaunchScreen.storyboard */,
-				7C89D4E81DC993C200326666 /* GoogleService-Info.plist */,
 				7C854E5C1DC400AD00E02883 /* Info.plist */,
+				7C89D4E81DC993C200326666 /* GoogleService-Info.plist */,
 				7C89D4E51DC97F8B00326666 /* Ocha-Bridging-Header.h */,
 			);
 			path = Ocha;
