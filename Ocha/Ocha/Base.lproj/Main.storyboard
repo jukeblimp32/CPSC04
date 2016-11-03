@@ -172,6 +172,36 @@
             </objects>
             <point key="canvasLocation" x="229.59999999999999" y="-102.09895052473765"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="0UZ-Eb-eM1">
+            <objects>
+                <viewController id="IXQ-E4-QTX" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rWt-5I-Aup"/>
+                        <viewControllerLayoutGuide type="bottom" id="ld1-bD-uBw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7sW-JD-ZXk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Wk-xz-OlU">
+                                <rect key="frame" x="149" y="155" width="102" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Wk-xz-OlU" firstAttribute="centerX" secondItem="7sW-JD-ZXk" secondAttribute="centerX" id="erp-gc-6wS"/>
+                            <constraint firstItem="3Wk-xz-OlU" firstAttribute="centerY" secondItem="7sW-JD-ZXk" secondAttribute="centerY" id="v2x-J6-zMp"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eHw-3Z-6tA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="173.59999999999999" y="647.22638680659679"/>
+        </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
@@ -195,7 +225,7 @@
         <scene sceneID="vqW-mP-dA4">
             <objects>
                 <navigationController id="F4C-pT-xWf" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wtz-cY-KyJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wtz-cY-KyJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -291,6 +321,7 @@
                         <outlet property="appTitle" destination="4Q1-ZS-a0e" id="qa6-pf-be3"/>
                         <outlet property="passWord" destination="bCS-Vx-NVV" id="cTs-Tg-gHa"/>
                         <outlet property="userName" destination="RpK-iu-BW5" id="gtl-1l-0Sw"/>
+                        <segue destination="IXQ-E4-QTX" kind="presentation" identifier="HomeViewSegue" id="ljq-ZE-a6V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g54-ev-4gK" userLabel="First Responder" sceneMemberID="firstResponder"/>

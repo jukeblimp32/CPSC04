@@ -13,6 +13,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
+    var databaseRef: FIRDatabaseReference!
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -39,6 +40,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentification?.idToken)!, accessToken: (authentification?.accessToken)!)
         FIRAuth.auth()?.signIn(with: credential){ (user, error) in
             print("User signed into Firebase")
+            
+            self.databaseRef = FIRDatabase.database().reference()
+            
+            self.databaseRef.child("user_profiles").child(user!.uid).observeSingleEvent(of: .value, with: {(snapshot) in
+                let snapshot = snapshot.value as? NSDictionary
+                
+                if(snapshot == nil)
+                {
+                    self.databaseRef.child("user_profiles").child(user!.uid).child("name").setValue(user?.displayName)
+                    self.databaseRef.child("user_profiles").child(user!.uid).child("email").setValue(user?.email)
+                    
+                }
+                
+                    //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+                    //self.window?.rootViewController?.performSegue(withIdentifier: "HomeViewSegue", sender: self)
+            })
         }
     }
     
