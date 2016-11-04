@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		155C36B81DC4205A00154B12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155C36B71DC4205A00154B12 /* ViewController.swift */; };
+		15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E571DCC0E0B003F7812 /* StudentHomePage.swift */; };
+		15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E591DCC0F1E003F7812 /* AdminHomePage.swift */; };
+		15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */; };
 		77FC09C91BEAD1A78A8AD80C /* Pods_Ocha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E85B77C9845080382DC0D46 /* Pods_Ocha.framework */; };
 		7C854E4F1DC400AD00E02883 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C854E4E1DC400AD00E02883 /* AppDelegate.swift */; };
 		7C854E511DC400AD00E02883 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C854E501DC400AD00E02883 /* FirstViewController.swift */; };
@@ -20,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		155C36B71DC4205A00154B12 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		15635E571DCC0E0B003F7812 /* StudentHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHomePage.swift; sourceTree = "<group>"; };
+		15635E591DCC0F1E003F7812 /* AdminHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomePage.swift; sourceTree = "<group>"; };
+		15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordHomePage.swift; sourceTree = "<group>"; };
 		3E85B77C9845080382DC0D46 /* Pods_Ocha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ocha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.debug.xcconfig"; sourceTree = "<group>"; };
 		7C854E4B1DC400AD00E02883 /* Ocha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ocha.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +83,9 @@
 			children = (
 				7C89D4E41DC9782F00326666 /* Ocha.entitlements */,
 				7C854E4E1DC400AD00E02883 /* AppDelegate.swift */,
+				15635E571DCC0E0B003F7812 /* StudentHomePage.swift */,
+				15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */,
+				15635E591DCC0F1E003F7812 /* AdminHomePage.swift */,
 				7C854E501DC400AD00E02883 /* FirstViewController.swift */,
 				155C36B71DC4205A00154B12 /* ViewController.swift */,
 				7C854E521DC400AD00E02883 /* SecondViewController.swift */,
@@ -257,9 +266,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C854E531DC400AD00E02883 /* SecondViewController.swift in Sources */,
+				15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */,
+				15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */,
 				7C854E4F1DC400AD00E02883 /* AppDelegate.swift in Sources */,
 				155C36B81DC4205A00154B12 /* ViewController.swift in Sources */,
 				7C854E511DC400AD00E02883 /* FirstViewController.swift in Sources */,
+				15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
