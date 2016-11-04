@@ -27,11 +27,18 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         // Do any additional setup after loading the view, typically from a nib.
         GIDSignIn.sharedInstance().uiDelegate = self
         
+        // Create actual Facebook button
         let fbloginButton = FBSDKLoginButton()
         view.addSubview(fbloginButton)
-        fbloginButton.frame = CGRect(x: 94, y: 400, width: 203, height: 50)
+        fbloginButton.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (55/100), width: (view.frame.width) / 2, height: 50)
         fbloginButton.delegate = self
         fbloginButton.readPermissions = ["email"]
+        
+        //add google sign in button
+        let googleButton = GIDSignInButton()
+        googleButton.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (65/100), width: view.frame.width / 2, height: 50)
+        view.addSubview(googleButton)
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
@@ -49,6 +56,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     
     func showEmailAddress(){
         let accessToken = FBSDKAccessToken.current()
+        
+        
         guard let accessTokenString = accessToken?.tokenString else {return}
         let credentials = FIRFacebookAuthProvider.credential(withAccessToken: (accessTokenString))
         FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
@@ -65,8 +74,13 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
                 print("Failed to start graph request:", err ?? "")
                 return
             }
-            print(result ?? "")
+            
+            //access individual values
+            //print(result ?? "")
+            //let data:[String:AnyObject] = result as! [String : AnyObject]
+            //print(data["name"]!)
         }
+
     }
     
     
