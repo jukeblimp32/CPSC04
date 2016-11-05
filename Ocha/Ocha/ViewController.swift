@@ -52,6 +52,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         }
         showEmailAddress()
         print("Successfully logged in with Facebook...")
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentHomePage") as UIViewController
+        self.present(viewController, animated: true, completion: nil)
     }
     
     func showEmailAddress(){

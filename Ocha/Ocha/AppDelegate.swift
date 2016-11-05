@@ -66,7 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 
                     //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
                     //self.window?.rootViewController?.performSegue(withIdentifier: "HomeViewSegue", sender: self)
-            })
+                let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "StudentHomePage") as UIViewController
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                self.window?.rootViewController = initialViewControlleripad
+                self.window?.makeKeyAndVisible()            })
         }
     }
     
