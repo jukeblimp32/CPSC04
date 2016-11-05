@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FirstViewController: UIViewController, UIPickerViewDataSource,
 UIPickerViewDelegate {
@@ -36,19 +37,53 @@ UIPickerViewDelegate {
     
     
     @IBAction func submitInfo(_ sender: UIButton) {
+        //MARK: send these to database
         
+        var firstNameVar = firstName.text
+        var lastNameVar = lastName.text
+        var userNameVar = userName.text
+        var passWord1Var = passWord1.text
+        var passWord2Var = passWord2.text
+        var emailVar = email.text
+        var email2Var = email2.text
         
-       //MARK: send these to database
-        
-       var firstNameVar = firstName.text
-       var lastNameVar = lastName.text
-       var userNameVar = userName.text
-       var passWord1Var = passWord1.text
-       var passWord2Var = passWord2.text
-       var emailVar = email.text
-       var email2Var = email2.text
-        
-       titleLabel.text = firstNameVar
+        // Only if emails are the same and passwords are same
+        if email.text == email2.text && passWord1.text == passWord2.text
+        {
+            guard let email = email2.text, let password = passWord2.text, let name = firstName.text else{
+                print("Form is not valid")
+                return
+            }
+            // Create user in Firebase
+            FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user:FIRUser?, error) in
+                if error != nil{
+                    print(error)
+                    return
+                }
+                
+                guard let uid = user?.uid else {
+                    return
+                }
+                //FIRAuth.auth()?.currentUser?.sendEmailVerification(completion: nil)
+                // Created user
+                let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+                let usersReference = dataRef.child("users").child(uid)
+                var fullname = name + " " + self.lastName.text!
+                let values = ["name": fullname, "email": email]
+                usersReference.updateChildValues(values, withCompletionBlock: { (err, dataRef) in
+                    if err != nil{
+                        print(err)
+                        return
+                    }
+                    print("Saved user successfully")
+                })
+            })
+            
+        }
+        else{
+            print("Check to make sure your email and password were typed correctly")
+        }
+        titleLabel.text = firstNameVar
         
     }
     

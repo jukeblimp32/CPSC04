@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -958,7 +960,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username or Email:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVw-ba-bBa">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVw-ba-bBa">
                                 <rect key="frame" x="45" y="182" width="112" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -972,7 +974,6 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="submitUserInfo:" destination="fcs-9k-Ynp" eventType="touchUpInside" id="4OY-DH-euX"/>
-                                    <segue destination="rb6-co-bby" kind="show" id="iwl-Ay-Uqh"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OCHA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Q1-ZS-a0e">
@@ -982,14 +983,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4D-bY-BTp">
+                                <rect key="frame" x="80" y="323" width="249" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="T4D-bY-BTp" secondAttribute="height" multiplier="2:1" id="woG-Gi-GQk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.95241576433181763" green="0.12377241998910904" blue="0.16257092356681824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="T4D-bY-BTp" secondAttribute="trailing" constant="20" id="lb1-yY-HXt"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="OCHA" id="T6N-Mv-y2i"/>
                     <connections>
                         <outlet property="appTitle" destination="4Q1-ZS-a0e" id="qa6-pf-be3"/>
+                        <outlet property="email" destination="RpK-iu-BW5" id="ynk-OI-dPB"/>
+                        <outlet property="errorOutput" destination="T4D-bY-BTp" id="jBR-qE-CRj"/>
                         <outlet property="passWord" destination="bCS-Vx-NVV" id="cTs-Tg-gHa"/>
-                        <outlet property="userName" destination="RpK-iu-BW5" id="gtl-1l-0Sw"/>
                         <segue destination="IXQ-E4-QTX" kind="presentation" identifier="HomeViewSegue" id="ljq-ZE-a6V"/>
                     </connections>
                 </viewController>

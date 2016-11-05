@@ -17,9 +17,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     
     @IBOutlet var appTitle: UILabel!
     
-    @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var email: UITextField!
     
     @IBOutlet weak var passWord: UITextField!
+    @IBOutlet weak var errorOutput: UILabel!
     
     
     override func viewDidLoad() {
@@ -53,6 +54,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         showEmailAddress()
         print("Successfully logged in with Facebook...")
         let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentHomePage") as UIViewController
+        self.dismiss(animated: true, completion: nil)
         self.present(viewController, animated: true, completion: nil)
     }
     
@@ -70,12 +72,29 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
             print("Successfully logged in with our user: ", user ?? "")
         })
         
+        
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start{(connection, result, err) in
             
             if err != nil{
                 print("Failed to start graph request:", err ?? "")
                 return
             }
+            
+            guard let uid = FIRAuth.auth()?.currentUser?.uid else {
+                return
+            }
+            let data:[String:AnyObject] = result as! [String : AnyObject]
+            let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+            let usersReference = dataRef.child("users").child(uid)
+            let values = ["name": data["name"], "email": data["email"]]
+            usersReference.updateChildValues(values, withCompletionBlock: { (err, dataRef) in
+                if err != nil{
+                    print(err)
+                    return
+                }
+                print("Saved user successfully")
+            })
+
             
             //access individual values
             //print(result ?? "")
@@ -91,12 +110,34 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         
         
         //MARK: Send these to database
-        var userNameVar = userName.text
+        var userNameVar = email.text
         
         var passWordVar = passWord.text
+        handleLogin()
+        //var alert = UIAlertController(title: "Could not login", message: "Your password or email are incorrect", preferredStyle: UIAlertControllerStyle.alert)
+        //alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        //alert.show(self, sender: self)
+        //errorOutput.text = "Incorrect Email or Password"
         
-        appTitle.text = userNameVar
-        
+    }
+    
+    func handleLogin() {
+        guard let email = email.text, let password = passWord.text else{
+            print("Form is not valid")
+            return
+        }
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+            if error != nil {
+                print(error)
+                //self.errorOutput.text = "Incorrect Email or Password"
+                return
+            }
+            
+            // Signed in
+            let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentHomePage") as UIViewController
+            self.dismiss(animated: true, completion: nil)
+            self.present(viewController, animated: true, completion: nil)
+        })
     }
     
     
