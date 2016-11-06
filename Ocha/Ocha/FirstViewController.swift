@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FirstViewController: UIViewController, UIPickerViewDataSource,
 UIPickerViewDelegate {
@@ -36,19 +37,89 @@ UIPickerViewDelegate {
     
     
     @IBAction func submitInfo(_ sender: UIButton) {
+        //MARK: send these to database
         
+        var firstNameVar = firstName.text
+        var lastNameVar = lastName.text
+        var userNameVar = userName.text
+        var passWord1Var = passWord1.text
+        var passWord2Var = passWord2.text
+        var emailVar = email.text
+        var email2Var = email2.text
         
-       //MARK: send these to database
+        // Only if emails are the same and passwords are same
+        if email.text == email2.text && passWord1.text == passWord2.text
+        {
+            guard let email = email2.text, let password = passWord2.text, let name = firstName.text else{
+                print("Form is not valid")
+                return
+            }
+            // Create user in Firebase
+            FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user:FIRUser?, error) in
+                if error != nil{
+                    print(error)
+                    return
+                }
+                
+                guard let uid = user?.uid else {
+                    return
+                }
+                
+                // Send verification email
+                self.sendEmailVer()
+                
+                // Store created user in the database
+                let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+                let usersReference = dataRef.child("users").child(uid)
+                var fullname = name + " " + self.lastName.text!
+                let values = ["name": fullname, "email": email]
+                usersReference.updateChildValues(values, withCompletionBlock: { (err, dataRef) in
+                    if err != nil{
+                        print(err)
+                        return
+                    }
+                    print("Saved user successfully")
+                })
+            })
+            
+        }
+        else{
+            let alertVC = UIAlertController(title: "Error", message: "Check that your email and password were typed correctly", preferredStyle: .alert)
+            
+            // Send email twice, just in case
+            let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
+            alertVC.addAction(alertActionOkay)
+            self.present(alertVC, animated: true, completion: nil)
+        }
+        //titleLabel.text = firstNameVar
         
-       var firstNameVar = firstName.text
-       var lastNameVar = lastName.text
-       var userNameVar = userName.text
-       var passWord1Var = passWord1.text
-       var passWord2Var = passWord2.text
-       var emailVar = email.text
-       var email2Var = email2.text
-        
-       titleLabel.text = firstNameVar
+    }
+    
+    func sendEmailVer(){
+        // Send verification email
+        if let user = FIRAuth.auth()?.currentUser {
+            if !user.isEmailVerified{
+                // Setup alert
+                let alertVC = UIAlertController(title: "Email Sent", message: "Check your email to verify your account and then login. If using zagmail, check your spam folder", preferredStyle: .alert)
+                
+                // Send email twice, just in case
+                let alertActionResend = UIAlertAction(title: "Resend", style: .default) {
+                    (_) in
+                    user.sendEmailVerification(completion: nil)
+                }
+                let alertActionOkay = UIAlertAction(title: "Okay", style: .default) {
+                    (_) in
+                    user.sendEmailVerification(completion: nil)
+                }
+                
+                alertVC.addAction(alertActionResend)
+                alertVC.addAction(alertActionOkay)
+                self.present(alertVC, animated: true, completion: nil)
+            } else {
+                print ("Email verified. Signing in...")
+            }
+        }
+
         
     }
     

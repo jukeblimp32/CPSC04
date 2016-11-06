@@ -54,13 +54,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             
             self.databaseRef = FIRDatabase.database().reference()
             
-            self.databaseRef.child("user_profiles").child(user!.uid).observeSingleEvent(of: .value, with: {(snapshot) in
+            self.databaseRef.child("users").child(user!.uid).observeSingleEvent(of: .value, with: {(snapshot) in
                 let snapshot = snapshot.value as? NSDictionary
                 
                 if(snapshot == nil)
                 {
-                    self.databaseRef.child("user_profiles").child(user!.uid).child("name").setValue(user?.displayName)
-                    self.databaseRef.child("user_profiles").child(user!.uid).child("email").setValue(user?.email)
+                    self.databaseRef.child("users").child(user!.uid).child("name").setValue(user?.displayName)
+                    self.databaseRef.child("users").child(user!.uid).child("email").setValue(user?.email)
                     
                 }
                 
