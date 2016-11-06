@@ -64,8 +64,11 @@ UIPickerViewDelegate {
                 guard let uid = user?.uid else {
                     return
                 }
-                //FIRAuth.auth()?.currentUser?.sendEmailVerification(completion: nil)
-                // Created user
+                
+                // Send verification email
+                self.sendEmailVer()
+                
+                // Store created user in the database
                 let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
                 let usersReference = dataRef.child("users").child(uid)
                 var fullname = name + " " + self.lastName.text!
@@ -81,9 +84,42 @@ UIPickerViewDelegate {
             
         }
         else{
-            print("Check to make sure your email and password were typed correctly")
+            let alertVC = UIAlertController(title: "Error", message: "Check that your email and password were typed correctly", preferredStyle: .alert)
+            
+            // Send email twice, just in case
+            let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
+            alertVC.addAction(alertActionOkay)
+            self.present(alertVC, animated: true, completion: nil)
         }
-        titleLabel.text = firstNameVar
+        //titleLabel.text = firstNameVar
+        
+    }
+    
+    func sendEmailVer(){
+        // Send verification email
+        if let user = FIRAuth.auth()?.currentUser {
+            if !user.isEmailVerified{
+                // Setup alert
+                let alertVC = UIAlertController(title: "Email Sent", message: "Check your email to verify your account and then login. If using zagmail, check your spam folder", preferredStyle: .alert)
+                
+                // Send email twice, just in case
+                let alertActionResend = UIAlertAction(title: "Resend", style: .default) {
+                    (_) in
+                    user.sendEmailVerification(completion: nil)
+                }
+                let alertActionOkay = UIAlertAction(title: "Okay", style: .default) {
+                    (_) in
+                    user.sendEmailVerification(completion: nil)
+                }
+                
+                alertVC.addAction(alertActionResend)
+                alertVC.addAction(alertActionOkay)
+                self.present(alertVC, animated: true, completion: nil)
+            } else {
+                print ("Email verified. Signing in...")
+            }
+        }
+
         
     }
     
