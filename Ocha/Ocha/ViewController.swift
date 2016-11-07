@@ -53,7 +53,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         }
         fbLogin()
         print("Successfully logged in with Facebook...")
-        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentHomePage") as UIViewController
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
         self.dismiss(animated: true, completion: nil)
         self.present(viewController, animated: true, completion: nil)
     }
@@ -142,7 +142,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
             // Signed in
             if let user = FIRAuth.auth()?.currentUser {
                 if user.isEmailVerified{
-                    let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentHomePage") as UIViewController
+                    let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
                     self.dismiss(animated: true, completion: nil)
                     self.present(viewController, animated: true, completion: nil)
                 }

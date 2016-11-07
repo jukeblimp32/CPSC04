@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		150359291DCFF719005AD597 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150359281DCFF719005AD597 /* AccountInfo.swift */; };
+		1503592B1DD000DE005AD597 /* EditAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1503592A1DD000DE005AD597 /* EditAccountInfo.swift */; };
 		155C36B81DC4205A00154B12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155C36B71DC4205A00154B12 /* ViewController.swift */; };
 		15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E571DCC0E0B003F7812 /* StudentHomePage.swift */; };
 		15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E591DCC0F1E003F7812 /* AdminHomePage.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		150359281DCFF719005AD597 /* AccountInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
+		1503592A1DD000DE005AD597 /* EditAccountInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountInfo.swift; sourceTree = "<group>"; };
 		155C36B71DC4205A00154B12 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		15635E571DCC0E0B003F7812 /* StudentHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHomePage.swift; sourceTree = "<group>"; };
 		15635E591DCC0F1E003F7812 /* AdminHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomePage.swift; sourceTree = "<group>"; };
@@ -85,11 +89,13 @@
 				7C854E4E1DC400AD00E02883 /* AppDelegate.swift */,
 				15635E571DCC0E0B003F7812 /* StudentHomePage.swift */,
 				15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */,
+				150359281DCFF719005AD597 /* AccountInfo.swift */,
 				15635E591DCC0F1E003F7812 /* AdminHomePage.swift */,
 				7C854E501DC400AD00E02883 /* FirstViewController.swift */,
 				155C36B71DC4205A00154B12 /* ViewController.swift */,
 				7C854E521DC400AD00E02883 /* SecondViewController.swift */,
 				7C854E541DC400AD00E02883 /* Main.storyboard */,
+				1503592A1DD000DE005AD597 /* EditAccountInfo.swift */,
 				7C854E571DC400AD00E02883 /* Assets.xcassets */,
 				7C854E591DC400AD00E02883 /* LaunchScreen.storyboard */,
 				7C854E5C1DC400AD00E02883 /* Info.plist */,
@@ -270,6 +276,8 @@
 				15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */,
 				7C854E4F1DC400AD00E02883 /* AppDelegate.swift in Sources */,
 				155C36B81DC4205A00154B12 /* ViewController.swift in Sources */,
+				150359291DCFF719005AD597 /* AccountInfo.swift in Sources */,
+				1503592B1DD000DE005AD597 /* EditAccountInfo.swift in Sources */,
 				7C854E511DC400AD00E02883 /* FirstViewController.swift in Sources */,
 				15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */,
 			);
