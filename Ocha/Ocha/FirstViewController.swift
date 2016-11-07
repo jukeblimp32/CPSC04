@@ -72,7 +72,8 @@ UIPickerViewDelegate {
                 let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
                 let usersReference = dataRef.child("users").child(uid)
                 var fullname = name + " " + self.lastName.text!
-                let values = ["name": fullname, "email": email]
+                let type = self.pickerData[self.userPicker.selectedRow(inComponent: 0)]
+                let values = ["name": fullname, "email": email, "type" : type]
                 usersReference.updateChildValues(values, withCompletionBlock: { (err, dataRef) in
                     if err != nil{
                         print(err)

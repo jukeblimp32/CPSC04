@@ -25,6 +25,10 @@ class EditAccountInfo: UIViewController {
     
     @IBOutlet var password2nd: UITextField!
     
+    @IBOutlet var newPassword1st: UITextField!
+    
+    @IBOutlet var newPassword2nd: UITextField!
+    
     @IBOutlet var newEmail1st: UITextField!
     
     @IBOutlet var newEmail2nd: UITextField!
@@ -40,6 +44,33 @@ class EditAccountInfo: UIViewController {
     }
     
     
+    func sendEmailVer(){
+        // Send verification email
+        if let user = FIRAuth.auth()?.currentUser {
+            if !user.isEmailVerified{
+                // Setup alert
+                let alertVC = UIAlertController(title: "Email Sent", message: "Check your email to verify your account and then login. If using zagmail, check your spam folder", preferredStyle: .alert)
+                
+                // Send email twice, just in case
+                let alertActionResend = UIAlertAction(title: "Resend", style: .default) {
+                    (_) in
+                    user.sendEmailVerification(completion: nil)
+                }
+                let alertActionOkay = UIAlertAction(title: "Okay", style: .default) {
+                    (_) in
+                    user.sendEmailVerification(completion: nil)
+                }
+                
+                alertVC.addAction(alertActionResend)
+                alertVC.addAction(alertActionOkay)
+                self.present(alertVC, animated: true, completion: nil)
+            } else {
+                print ("Email verified. Signing in...")
+            }
+        }
+        
+        
+    }
     
     @IBAction func submitInfo(_ sender: Any) {
         
@@ -50,7 +81,7 @@ class EditAccountInfo: UIViewController {
             alertEmail.addAction(alertActionOkay)
             self.present(alertEmail, animated: true, completion: nil)
         }
-        else if (password1st.text != password2nd.text) {
+        else if ((password1st.text != password2nd.text) || (newPassword1st.text != newPassword2nd.text)) {
             let alertPassword = UIAlertController(title: "Non-Matching Passwords", message: "Passwords do not match", preferredStyle: .alert)
             let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
             alertPassword.addAction(alertActionOkay)
@@ -71,28 +102,29 @@ class EditAccountInfo: UIViewController {
                     self.present(alertPassword, animated: true, completion: nil)
                 } else {
                     let currentUser = FIRAuth.auth()?.currentUser
-                    
                     currentUser?.updateEmail(self.newEmail1st.text!) { error in
                         if let error = error {
                             print(error)
                             
                         } else {
+                            self.sendEmailVer()
                             // Email updated.
-                            currentUser?.updatePassword(self.password1st.text!) { error in
-                                if let error = error {
+                            if self.newPassword1st.text != "" {
+                                currentUser?.updatePassword(self.password1st.text!) { error in
+                                    if let error = error {
                                     
-                                } else {
-                                    // Password updated.
-                                    let alertConfirm = UIAlertController(title: "Changes Saved", message: "Your changes have been saved", preferredStyle: .alert)
-                                    let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
-                                    alertConfirm.addAction(alertActionOkay)
-                                    self.present(alertConfirm, animated: true, completion: nil)
-                                    
+                                    } else {
+                                    // Password updated
+                                    }
                                 }
                             }
+                        }
+                        let alertConfirm = UIAlertController(title: "Changes Saved", message: "Your changes have been saved. If you inputted a new email, you will get an email to verify your new address. ", preferredStyle: .alert)
+                        let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
+                        alertConfirm.addAction(alertActionOkay)
+                        self.present(alertConfirm, animated: true, completion: nil)
+                    }
                 }
-            }
-            }
         
                 
             }
@@ -100,6 +132,7 @@ class EditAccountInfo: UIViewController {
             
             
         }
+        
         
         
     }

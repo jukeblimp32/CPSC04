@@ -53,7 +53,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         }
         fbLogin()
         print("Successfully logged in with Facebook...")
-        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "SelectType") as UIViewController
         self.dismiss(animated: true, completion: nil)
         self.present(viewController, animated: true, completion: nil)
     }
@@ -142,9 +142,27 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
             // Signed in
             if let user = FIRAuth.auth()?.currentUser {
                 if user.isEmailVerified{
-                    let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
-                    self.dismiss(animated: true, completion: nil)
-                    self.present(viewController, animated: true, completion: nil)
+                    let uid = FIRAuth.auth()?.currentUser?.uid
+                    FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+                        if let dictionary = snapshot.value as? [String: AnyObject] {
+                            if dictionary["type"]as? String  == "Admin" {
+                                let viewController = self.storyboard!.instantiateViewController(withIdentifier: "AdminTabController") as UIViewController
+                                self.dismiss(animated: true, completion: nil)
+                                self.present(viewController, animated: true, completion: nil)
+                            }
+                            else if dictionary["type"] as? String == "Landlord" {
+                                let viewController = self.storyboard!.instantiateViewController(withIdentifier: "LandlordTabController") as UIViewController
+                                self.dismiss(animated: true, completion: nil)
+                                self.present(viewController, animated: true, completion: nil)
+                            }
+                            else {
+                                let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
+                                self.dismiss(animated: true, completion: nil)
+                                self.present(viewController, animated: true, completion: nil)
+                            }
+                        }
+                    }, withCancel: nil)
+
                 }
                 else {
                     let alertVC = UIAlertController(title: "Verify Email", message: "Your email has not yet been verified. Check your email for verification or register an account", preferredStyle: .alert)
@@ -154,7 +172,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
                 }
 
             }
-            })
+        })
     }
     
     

@@ -28,9 +28,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Back"/>
-                                <connections>
-                                    <segue destination="fcs-9k-Ynp" kind="show" id="3BG-2W-pWV"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M0t-4I-N1X">
                                 <rect key="frame" x="171" y="130" width="188" height="30"/>
@@ -137,6 +134,7 @@
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="submitInfo:" destination="9pv-A4-QxB" eventType="touchUpInside" id="qCx-bv-9qT"/>
+                                    <segue destination="fcs-9k-Ynp" kind="show" id="S1x-z8-sw7"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create An Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGk-AE-1cu">
@@ -147,7 +145,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hj1-wE-SA4">
-                                <rect key="frame" x="16" y="505" width="343" height="53"/>
+                                <rect key="frame" x="16" y="505" width="343" height="67"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="dataSource" destination="9pv-A4-QxB" id="KHY-5n-hcA"/>
@@ -261,7 +259,7 @@
         <!--Welcome-->
         <scene sceneID="0UZ-Eb-eM1">
             <objects>
-                <viewController title="Welcome" id="IXQ-E4-QTX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectType" title="Welcome" id="IXQ-E4-QTX" customClass="UserType" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rWt-5I-Aup"/>
                         <viewControllerLayoutGuide type="bottom" id="ld1-bD-uBw"/>
@@ -270,18 +268,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Wk-xz-OlU">
-                                <rect key="frame" x="149" y="155" width="102" height="45"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IwQ-3J-VIQ">
+                                <rect key="frame" x="104" y="260" width="176" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <state key="normal" title="Student"/>
+                                <connections>
+                                    <action selector="studentType:" destination="IXQ-E4-QTX" eventType="touchUpInside" id="dvH-Ze-XYt"/>
+                                    <segue destination="rb6-co-bby" kind="show" id="gAK-Sh-VSh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4Y-vw-pdP">
+                                <rect key="frame" x="104" y="342" width="167" height="121"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <state key="normal" title="Landlord"/>
+                                <connections>
+                                    <action selector="landlordType:" destination="IXQ-E4-QTX" eventType="touchUpInside" id="qWZ-Ns-imR"/>
+                                    <segue destination="hZv-XK-l9m" kind="show" id="4aP-mT-u57"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What type of User are you?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Wk-xz-OlU">
+                                <rect key="frame" x="29" y="153" width="327" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="3Wk-xz-OlU" firstAttribute="centerX" secondItem="7sW-JD-ZXk" secondAttribute="centerX" id="erp-gc-6wS"/>
-                            <constraint firstItem="3Wk-xz-OlU" firstAttribute="centerY" secondItem="7sW-JD-ZXk" secondAttribute="centerY" id="v2x-J6-zMp"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHw-3Z-6tA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -316,24 +331,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xx-fA-bJI">
-                                <rect key="frame" x="16" y="580" width="88" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Landlord"/>
-                                <connections>
-                                    <segue destination="hZv-XK-l9m" kind="show" id="gXL-VH-zXb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47Z-B1-xSC">
-                                <rect key="frame" x="292" y="578" width="67" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Admin"/>
-                                <connections>
-                                    <segue destination="kF9-Vd-QLh" kind="show" id="9fu-lg-nYw"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="8ns-bW-3Ck">
                                 <rect key="frame" x="0.0" y="100" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -742,6 +739,8 @@
                         <outlet property="lastName" destination="95q-Y0-znQ" id="zaX-mt-HZz"/>
                         <outlet property="newEmail1st" destination="lyT-AF-KGt" id="I8a-Ld-jKC"/>
                         <outlet property="newEmail2nd" destination="SJP-Lt-fji" id="BIX-eT-ykb"/>
+                        <outlet property="newPassword1st" destination="ayx-gP-hTU" id="BYV-B4-63M"/>
+                        <outlet property="newPassword2nd" destination="kg1-ZO-FNG" id="1ek-LM-Igb"/>
                         <outlet property="password1st" destination="2N8-jD-i2T" id="2Qf-JO-FfM"/>
                         <outlet property="password2nd" destination="iwR-5u-OCn" id="wGm-3e-RZp"/>
                     </connections>
@@ -753,7 +752,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="2Bu-qH-KtQ">
             <objects>
-                <tabBarController id="hZv-XK-l9m" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="LandlordTabController" id="hZv-XK-l9m" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="EoZ-3M-Okd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1037,7 +1036,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="T91-8Y-eEe">
             <objects>
-                <tabBarController id="kF9-Vd-QLh" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="AdminTabController" id="kF9-Vd-QLh" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="xoD-vX-m22">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1286,7 +1285,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Wgi-Vy-FKQ"/>
-        <segue reference="oCQ-wj-jnh"/>
+        <segue reference="S1x-z8-sw7"/>
         <segue reference="PBE-6q-73a"/>
     </inferredMetricsTieBreakers>
 </document>

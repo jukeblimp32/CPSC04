@@ -31,8 +31,13 @@ class AccountInfo: UIViewController {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 var myString: String = (dictionary["name"] as? String)!
                 var myStringArr = myString.components(separatedBy: " ")
-                self.self.firstName.text = myStringArr[0]
-                self.self.lastName.text = myStringArr[1]
+                if myStringArr.count == 1 {
+                    self.self.firstName.text = myStringArr[0]
+                }
+                else {
+                    self.self.firstName.text = myStringArr[0]
+                    self.self.lastName.text = myStringArr[1]
+                }
                 self.self.emailLabel.text  = dictionary["email"] as? String
             }
             
