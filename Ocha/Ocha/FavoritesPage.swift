@@ -1,31 +1,20 @@
 //
-//  AdminHomePage.swift
+//  FavoritesPage.swift
 //  Ocha
 //
-//  Created by Talkov, Leah C on 11/3/16.
+//  Created by Talkov, Leah C on 11/11/16.
 //  Copyright © 2016 CPSC04. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class AdminHomePage: UIViewController {
-    
-    @IBOutlet var manageListings: UIButton!
-    
-    @IBOutlet var approveListings: UIButton!
-    
-    @IBOutlet var manageUsers: UIButton!
-    
-    @IBOutlet var approveReviews: UIButton!
-    
+class FavoritesPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
     
     @IBAction func logout(_ sender: Any) {
         if FIRAuth.auth() != nil {
@@ -51,8 +40,9 @@ class AdminHomePage: UIViewController {
         let initialViewController = UIStoryboard(name: "Main", bundle:nil).instantiateInitialViewController()! as UIViewController
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         appDelegate.window?.rootViewController = initialViewController
-    }
 
+    }
+    
     
     
     override func didReceiveMemoryWarning() {
@@ -62,4 +52,3 @@ class AdminHomePage: UIViewController {
     
     
 }
-

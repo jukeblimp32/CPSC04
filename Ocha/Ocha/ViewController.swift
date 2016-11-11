@@ -25,6 +25,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         GIDSignIn.sharedInstance().uiDelegate = self
         
@@ -40,6 +41,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         googleButton.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (65/100), width: view.frame.width / 2, height: 50)
         view.addSubview(googleButton)
         GIDSignIn.sharedInstance().uiDelegate = self
+        
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
@@ -125,6 +127,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     }
     
     func handleLogin() {
+        
+        print("here")
         guard let email = email.text, let password = passWord.text else{
             print("Form is not valid")
             return
@@ -138,6 +142,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
                 self.present(alertVC, animated: true, completion: nil)
                 return
             }
+            print("now signed in")
             
             // Signed in
             if let user = FIRAuth.auth()?.currentUser {

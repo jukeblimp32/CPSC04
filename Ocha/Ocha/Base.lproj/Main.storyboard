@@ -172,10 +172,10 @@
             </objects>
             <point key="canvasLocation" x="229.59999999999999" y="-102.09895052473765"/>
         </scene>
-        <!--View Controller-->
+        <!--Approve Reviews-->
         <scene sceneID="BGe-KT-l22">
             <objects>
-                <viewController id="7Jq-gX-oGC" sceneMemberID="viewController">
+                <viewController id="7Jq-gX-oGC" customClass="ApproveReviews" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eN4-rb-X8F"/>
                         <viewControllerLayoutGuide type="bottom" id="xod-Jr-wHl"/>
@@ -191,6 +191,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CON-Qa-DlH">
+                                <rect key="frame" x="16" y="30" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="7Jq-gX-oGC" eventType="touchUpInside" id="NvL-Rb-HIb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -200,10 +208,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="-102.09895052473765"/>
         </scene>
-        <!--View Controller-->
+        <!--Approve Listings-->
         <scene sceneID="21w-EV-0M4">
             <objects>
-                <viewController id="zvu-vV-1XR" sceneMemberID="viewController">
+                <viewController id="zvu-vV-1XR" customClass="ApproveListings" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SRF-oA-PJK"/>
                         <viewControllerLayoutGuide type="bottom" id="WOj-i4-tF3"/>
@@ -219,6 +227,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8D-Qn-Qhm">
+                                <rect key="frame" x="16" y="30" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="zvu-vV-1XR" eventType="touchUpInside" id="opk-DC-Ihd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -228,10 +244,10 @@
             </objects>
             <point key="canvasLocation" x="1964" y="-102.09895052473765"/>
         </scene>
-        <!--View Controller-->
+        <!--Manage Listings-->
         <scene sceneID="91e-il-PdX">
             <objects>
-                <viewController id="8s5-rO-fsl" sceneMemberID="viewController">
+                <viewController id="8s5-rO-fsl" customClass="ManageListings" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oy9-ee-MW7"/>
                         <viewControllerLayoutGuide type="bottom" id="lSL-rK-H6f"/>
@@ -247,6 +263,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFz-Oa-LTV">
+                                <rect key="frame" x="16" y="30" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="8s5-rO-fsl" eventType="touchUpInside" id="eMK-9R-J8l"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -306,7 +330,7 @@
         <!--Navigation Controller-->
         <scene sceneID="vqW-mP-dA4">
             <objects>
-                <navigationController id="F4C-pT-xWf" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="F4C-pT-xWf" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wtz-cY-KyJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -442,6 +466,14 @@
                                 <rect key="frame" x="0.0" y="424" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nX8-KT-biq">
+                                <rect key="frame" x="16" y="30" width="53" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="QCf-5V-MRh" eventType="touchUpInside" id="9vT-BE-9g9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -515,6 +547,14 @@
                                 <state key="normal" title="Edit Account Info/Change Password"/>
                                 <connections>
                                     <segue destination="Ta4-Vl-Wkv" kind="show" id="WVz-RK-l4F"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxd-mn-ecg">
+                                <rect key="frame" x="16" y="30" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="9Ee-cg-krq" eventType="touchUpInside" id="atB-5X-3dw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -887,6 +927,14 @@
                                     <color key="titleColor" red="0.70027121113989632" green="0.12725812470090156" blue="0.17255987101283168" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgc-lY-aRg">
+                                <rect key="frame" x="16" y="30" width="54" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="zwc-Pp-jTc" eventType="touchUpInside" id="amp-ja-ZMF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -896,10 +944,10 @@
             </objects>
             <point key="canvasLocation" x="-618.39999999999998" y="-887.40629685157433"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Student Tab Controller-->
         <scene sceneID="hoL-2D-lrv">
             <objects>
-                <tabBarController storyboardIdentifier="StudentTabController" id="rb6-co-bby" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="StudentTabController" id="rb6-co-bby" customClass="StudentTabController" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="vQt-if-O1L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -960,6 +1008,14 @@
                                     <segue destination="zvu-vV-1XR" kind="push" id="ocz-KM-UxZ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Fb-lG-zjG">
+                                <rect key="frame" x="16" y="30" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="NPd-AZ-Sqp" eventType="touchUpInside" id="taR-py-r1X"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -973,12 +1029,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xAK-14-RTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="-887"/>
+            <point key="canvasLocation" x="1076" y="-887.40629685157433"/>
         </scene>
-        <!--View Controller-->
+        <!--Manage Users-->
         <scene sceneID="1w7-wJ-UQe">
             <objects>
-                <viewController id="y2W-Aw-mgr" sceneMemberID="viewController">
+                <viewController id="y2W-Aw-mgr" customClass="ManageUsers" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MGS-FP-nSB"/>
                         <viewControllerLayoutGuide type="bottom" id="8ex-y2-hhf"/>
@@ -994,6 +1050,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gT6-lD-C8o">
+                                <rect key="frame" x="16" y="30" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="y2W-Aw-mgr" eventType="touchUpInside" id="2Im-uR-6oS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1006,7 +1070,7 @@
         <!--Notifications-->
         <scene sceneID="Ztg-zI-gJQ">
             <objects>
-                <viewController id="zL4-Yo-bWl" sceneMemberID="viewController">
+                <viewController id="zL4-Yo-bWl" customClass="AdminNotifications" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j7T-B6-0ZC"/>
                         <viewControllerLayoutGuide type="bottom" id="cdN-0t-58h"/>
@@ -1022,6 +1086,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3E-LZ-8ov">
+                                <rect key="frame" x="16" y="30" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="zL4-Yo-bWl" eventType="touchUpInside" id="EwK-MI-l97"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1055,7 +1127,7 @@
         <!--Login-->
         <scene sceneID="cpr-HB-qeT">
             <objects>
-                <viewController title="Login" id="fcs-9k-Ynp" customClass="ViewController" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" title="Login" id="fcs-9k-Ynp" customClass="ViewController" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iDW-Xw-Pan"/>
                         <viewControllerLayoutGuide type="bottom" id="OFw-iQ-84S"/>
@@ -1148,7 +1220,7 @@
         <!--Favorites-->
         <scene sceneID="hvr-4g-F6r">
             <objects>
-                <viewController title="Favorites" id="Sca-TD-1CH" sceneMemberID="viewController">
+                <viewController title="Favorites" id="Sca-TD-1CH" customClass="FavoritesPage" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aHh-Jb-Zj6"/>
                         <viewControllerLayoutGuide type="bottom" id="o6e-0A-02K"/>
@@ -1196,6 +1268,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4y-Be-5FG">
+                                <rect key="frame" x="12" y="48" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="Sca-TD-1CH" eventType="touchUpInside" id="csY-FS-l2H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1208,7 +1288,7 @@
         <!--Search and Filter-->
         <scene sceneID="mqA-xA-O0H">
             <objects>
-                <viewController title="Search and Filter" id="lG6-Rt-5SS" sceneMemberID="viewController">
+                <viewController title="Search and Filter" id="lG6-Rt-5SS" customClass="SearchAndFilter" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oha-K4-p8A"/>
                         <viewControllerLayoutGuide type="bottom" id="RpF-Py-8Eb"/>
@@ -1224,6 +1304,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5e-EK-Kh2">
+                                <rect key="frame" x="4" y="27" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="lG6-Rt-5SS" eventType="touchUpInside" id="nMW-Ef-y1p"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1236,10 +1324,10 @@
         <!--Account Info-->
         <scene sceneID="Zms-HC-DC4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bCL-hc-hQe" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="bCL-hc-hQe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account Info" image="second" id="i4J-ew-EKB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iYM-9U-RUU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYM-9U-RUU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1255,10 +1343,10 @@
         <!--HomePage-->
         <scene sceneID="pJ7-Js-2zR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pcc-rx-e2J" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Pcc-rx-e2J" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="HomePage" image="first" id="fYD-0k-Szd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o73-Pz-GaW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o73-Pz-GaW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1284,8 +1372,8 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wgi-Vy-FKQ"/>
-        <segue reference="S1x-z8-sw7"/>
-        <segue reference="PBE-6q-73a"/>
+        <segue reference="oCQ-wj-jnh"/>
+        <segue reference="Stp-Lh-4v1"/>
+        <segue reference="1J7-WH-3MP"/>
     </inferredMetricsTieBreakers>
 </document>

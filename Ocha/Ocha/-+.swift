@@ -1,5 +1,5 @@
 //
-//  AdminHomePage.swift
+//  StudentHomePage.swift
 //  Ocha
 //
 //  Created by Talkov, Leah C on 11/3/16.
@@ -9,16 +9,7 @@
 import UIKit
 import Firebase
 
-class AdminHomePage: UIViewController {
-    
-    @IBOutlet var manageListings: UIButton!
-    
-    @IBOutlet var approveListings: UIButton!
-    
-    @IBOutlet var manageUsers: UIButton!
-    
-    @IBOutlet var approveReviews: UIButton!
-    
+class StudentHomePage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,19 +17,16 @@ class AdminHomePage: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    
     @IBAction func logout(_ sender: Any) {
         if FIRAuth.auth() != nil {
             
             do {
                 try FIRAuth.auth()?.signOut()
-                
                 print("the user is logged out")
             } catch let error as NSError {
                 print(error.localizedDescription)
                 print("the current user id is \(FIRAuth.auth()?.currentUser?.uid)")
             }
-            
             do {
                 try GIDSignIn.sharedInstance().signOut()
                 print("Google signed out")
@@ -46,14 +34,14 @@ class AdminHomePage: UIViewController {
                 print(error.localizedDescription)
                 print("Error logging out of google")
             }
-            
+    
         }
+        
+        
         let initialViewController = UIStoryboard(name: "Main", bundle:nil).instantiateInitialViewController()! as UIViewController
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         appDelegate.window?.rootViewController = initialViewController
     }
-
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -62,4 +50,3 @@ class AdminHomePage: UIViewController {
     
     
 }
-

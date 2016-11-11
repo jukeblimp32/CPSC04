@@ -11,9 +11,19 @@
 		1503592B1DD000DE005AD597 /* EditAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1503592A1DD000DE005AD597 /* EditAccountInfo.swift */; };
 		1503592D1DD03518005AD597 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1503592C1DD03518005AD597 /* UserType.swift */; };
 		155C36B81DC4205A00154B12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155C36B71DC4205A00154B12 /* ViewController.swift */; };
-		15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E571DCC0E0B003F7812 /* StudentHomePage.swift */; };
+		15635E581DCC0E0B003F7812 /* -+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E571DCC0E0B003F7812 /* -+.swift */; };
 		15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E591DCC0F1E003F7812 /* AdminHomePage.swift */; };
 		15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */; };
+		15A5EEC11DD6752100F1D8A1 /* StudentTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC01DD6752000F1D8A1 /* StudentTabController.swift */; };
+		15A5EEC31DD67A2500F1D8A1 /* LandlordTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC21DD67A2500F1D8A1 /* LandlordTabController.swift */; };
+		15A5EEC51DD67A2F00F1D8A1 /* AdminTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC41DD67A2F00F1D8A1 /* AdminTabController.swift */; };
+		15A5EEC71DD6846900F1D8A1 /* ApproveReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC61DD6846900F1D8A1 /* ApproveReviews.swift */; };
+		15A5EEC91DD6849800F1D8A1 /* ApproveListings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC81DD6849800F1D8A1 /* ApproveListings.swift */; };
+		15A5EECB1DD684AF00F1D8A1 /* ManageUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EECA1DD684AF00F1D8A1 /* ManageUsers.swift */; };
+		15A5EECD1DD684C200F1D8A1 /* ManageListings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EECC1DD684C200F1D8A1 /* ManageListings.swift */; };
+		15A5EECF1DD684ED00F1D8A1 /* AdminNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EECE1DD684ED00F1D8A1 /* AdminNotifications.swift */; };
+		15A5EED11DD6855A00F1D8A1 /* SearchAndFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EED01DD6855A00F1D8A1 /* SearchAndFilter.swift */; };
+		15A5EED31DD6857600F1D8A1 /* FavoritesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */; };
 		77FC09C91BEAD1A78A8AD80C /* Pods_Ocha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E85B77C9845080382DC0D46 /* Pods_Ocha.framework */; };
 		7C854E4F1DC400AD00E02883 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C854E4E1DC400AD00E02883 /* AppDelegate.swift */; };
 		7C854E511DC400AD00E02883 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C854E501DC400AD00E02883 /* FirstViewController.swift */; };
@@ -29,9 +39,19 @@
 		1503592A1DD000DE005AD597 /* EditAccountInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountInfo.swift; sourceTree = "<group>"; };
 		1503592C1DD03518005AD597 /* UserType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
 		155C36B71DC4205A00154B12 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		15635E571DCC0E0B003F7812 /* StudentHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHomePage.swift; sourceTree = "<group>"; };
+		15635E571DCC0E0B003F7812 /* -+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "-+.swift"; sourceTree = "<group>"; };
 		15635E591DCC0F1E003F7812 /* AdminHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomePage.swift; sourceTree = "<group>"; };
 		15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordHomePage.swift; sourceTree = "<group>"; };
+		15A5EEC01DD6752000F1D8A1 /* StudentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTabController.swift; sourceTree = "<group>"; };
+		15A5EEC21DD67A2500F1D8A1 /* LandlordTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordTabController.swift; sourceTree = "<group>"; };
+		15A5EEC41DD67A2F00F1D8A1 /* AdminTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminTabController.swift; sourceTree = "<group>"; };
+		15A5EEC61DD6846900F1D8A1 /* ApproveReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveReviews.swift; sourceTree = "<group>"; };
+		15A5EEC81DD6849800F1D8A1 /* ApproveListings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveListings.swift; sourceTree = "<group>"; };
+		15A5EECA1DD684AF00F1D8A1 /* ManageUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageUsers.swift; sourceTree = "<group>"; };
+		15A5EECC1DD684C200F1D8A1 /* ManageListings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageListings.swift; sourceTree = "<group>"; };
+		15A5EECE1DD684ED00F1D8A1 /* AdminNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminNotifications.swift; sourceTree = "<group>"; };
+		15A5EED01DD6855A00F1D8A1 /* SearchAndFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAndFilter.swift; sourceTree = "<group>"; };
+		15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesPage.swift; sourceTree = "<group>"; };
 		3E85B77C9845080382DC0D46 /* Pods_Ocha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ocha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.debug.xcconfig"; sourceTree = "<group>"; };
 		7C854E4B1DC400AD00E02883 /* Ocha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ocha.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,15 +110,25 @@
 				7C89D4E41DC9782F00326666 /* Ocha.entitlements */,
 				1503592C1DD03518005AD597 /* UserType.swift */,
 				7C854E4E1DC400AD00E02883 /* AppDelegate.swift */,
-				15635E571DCC0E0B003F7812 /* StudentHomePage.swift */,
+				15A5EEC21DD67A2500F1D8A1 /* LandlordTabController.swift */,
+				15635E571DCC0E0B003F7812 /* -+.swift */,
 				15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */,
+				15A5EEC41DD67A2F00F1D8A1 /* AdminTabController.swift */,
 				150359281DCFF719005AD597 /* AccountInfo.swift */,
 				15635E591DCC0F1E003F7812 /* AdminHomePage.swift */,
 				7C854E501DC400AD00E02883 /* FirstViewController.swift */,
 				155C36B71DC4205A00154B12 /* ViewController.swift */,
 				7C854E521DC400AD00E02883 /* SecondViewController.swift */,
-				7C854E541DC400AD00E02883 /* Main.storyboard */,
+				15A5EEC61DD6846900F1D8A1 /* ApproveReviews.swift */,
+				15A5EEC01DD6752000F1D8A1 /* StudentTabController.swift */,
+				15A5EECC1DD684C200F1D8A1 /* ManageListings.swift */,
+				15A5EEC81DD6849800F1D8A1 /* ApproveListings.swift */,
+				15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */,
 				1503592A1DD000DE005AD597 /* EditAccountInfo.swift */,
+				15A5EECA1DD684AF00F1D8A1 /* ManageUsers.swift */,
+				15A5EED01DD6855A00F1D8A1 /* SearchAndFilter.swift */,
+				15A5EECE1DD684ED00F1D8A1 /* AdminNotifications.swift */,
+				7C854E541DC400AD00E02883 /* Main.storyboard */,
 				7C854E571DC400AD00E02883 /* Assets.xcassets */,
 				7C854E591DC400AD00E02883 /* LaunchScreen.storyboard */,
 				7C854E5C1DC400AD00E02883 /* Info.plist */,
@@ -275,12 +305,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C854E531DC400AD00E02883 /* SecondViewController.swift in Sources */,
-				15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */,
+				15A5EEC31DD67A2500F1D8A1 /* LandlordTabController.swift in Sources */,
+				15635E581DCC0E0B003F7812 /* -+.swift in Sources */,
+				15A5EECD1DD684C200F1D8A1 /* ManageListings.swift in Sources */,
 				15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */,
 				7C854E4F1DC400AD00E02883 /* AppDelegate.swift in Sources */,
+				15A5EED31DD6857600F1D8A1 /* FavoritesPage.swift in Sources */,
 				155C36B81DC4205A00154B12 /* ViewController.swift in Sources */,
+				15A5EEC91DD6849800F1D8A1 /* ApproveListings.swift in Sources */,
+				15A5EED11DD6855A00F1D8A1 /* SearchAndFilter.swift in Sources */,
+				15A5EECF1DD684ED00F1D8A1 /* AdminNotifications.swift in Sources */,
+				15A5EECB1DD684AF00F1D8A1 /* ManageUsers.swift in Sources */,
 				150359291DCFF719005AD597 /* AccountInfo.swift in Sources */,
 				1503592D1DD03518005AD597 /* UserType.swift in Sources */,
+				15A5EEC51DD67A2F00F1D8A1 /* AdminTabController.swift in Sources */,
+				15A5EEC71DD6846900F1D8A1 /* ApproveReviews.swift in Sources */,
+				15A5EEC11DD6752100F1D8A1 /* StudentTabController.swift in Sources */,
 				1503592B1DD000DE005AD597 /* EditAccountInfo.swift in Sources */,
 				7C854E511DC400AD00E02883 /* FirstViewController.swift in Sources */,
 				15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */,

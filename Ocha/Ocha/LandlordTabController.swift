@@ -1,22 +1,19 @@
 //
-//  StudentHomePage.swift
+//  LandlordTabController.swift
 //  Ocha
 //
-//  Created by Talkov, Leah C on 11/3/16.
+//  Created by Talkov, Leah C on 11/11/16.
 //  Copyright © 2016 CPSC04. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
-class StudentHomePage: UIViewController {
+class LandlordTabController: UITabBarController {
     
-    override func viewDidLoad() {
+    func viewDidAppear() {
         super.viewDidLoad()
-        self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
