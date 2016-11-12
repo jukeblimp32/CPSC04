@@ -9,8 +9,7 @@
 import UIKit
 import Firebase
 
-class FirstViewController: UIViewController, UIPickerViewDataSource,
-UIPickerViewDelegate {
+class FirstViewController: UIViewController{
     
     //MARK: Outlet vars
     @IBOutlet weak var titleLabel: UILabel!
@@ -21,17 +20,51 @@ UIPickerViewDelegate {
     @IBOutlet weak var passWord2: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var email2: UITextField!
-    @IBOutlet var userPicker: UIPickerView!
+    var userType: Int!
     
-    var pickerData: [String] = [String]()
-    var typeOfUser = ""
+    
+    @IBOutlet var userTypes: [UIButton]!
+    
+    //@IBOutlet var userPicker: UIPickerView!
+    
+    //var pickerData: [String] = [String]()
+    //var typeOfUser = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        for button in userTypes {
+            button.backgroundColor = UIColor.white
+        }
+        userType = 1
+
         // Do any additional setup after loading the view, typically from a nib.
+        /*
         userPicker.dataSource = self
         userPicker.delegate = self
         pickerData = ["Student", "Landlord"]
+ */
+    }
+
+    
+    
+    @IBAction func backToMain(_ sender: Any) {
+        let initialViewController = UIStoryboard(name: "Main", bundle:nil).instantiateInitialViewController()! as UIViewController
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        appDelegate.window?.rootViewController = initialViewController
+    }
+    
+    @IBAction func chooseUser(_ sender: UIButton) {
+        for button in userTypes {
+            if button == sender {
+                userType = button.tag
+                button.backgroundColor = UIColor.white
+                button.titleLabel?.textColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1)
+            }
+            else {
+                button.backgroundColor = UIColor(colorLiteralRed: 0.8, green: 0.8, blue: 0.8, alpha: 0.2)
+                button.titleLabel?.textColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.2)
+            }
+        }
     }
 
     
@@ -72,7 +105,13 @@ UIPickerViewDelegate {
                 let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
                 let usersReference = dataRef.child("users").child(uid)
                 var fullname = name + " " + self.lastName.text!
-                let type = self.pickerData[self.userPicker.selectedRow(inComponent: 0)]
+                var type = ""
+                if self.userType == 1 {
+                    type = "Student"
+                }
+                else {
+                    type = "Landlord"
+                }
                 let values = ["name": fullname, "email": email, "type" : type]
                 usersReference.updateChildValues(values, withCompletionBlock: { (err, dataRef) in
                     if err != nil{
@@ -123,7 +162,7 @@ UIPickerViewDelegate {
 
         
     }
-    
+    /*
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -150,7 +189,7 @@ UIPickerViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+*/
 
 
 }
