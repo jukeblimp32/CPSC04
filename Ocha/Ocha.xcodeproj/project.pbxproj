@@ -11,7 +11,7 @@
 		1503592B1DD000DE005AD597 /* EditAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1503592A1DD000DE005AD597 /* EditAccountInfo.swift */; };
 		1503592D1DD03518005AD597 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1503592C1DD03518005AD597 /* UserType.swift */; };
 		155C36B81DC4205A00154B12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155C36B71DC4205A00154B12 /* ViewController.swift */; };
-		15635E581DCC0E0B003F7812 /* -+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E571DCC0E0B003F7812 /* -+.swift */; };
+		15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E571DCC0E0B003F7812 /* StudentHomePage.swift */; };
 		15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E591DCC0F1E003F7812 /* AdminHomePage.swift */; };
 		15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */; };
 		15A5EEC11DD6752100F1D8A1 /* StudentTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC01DD6752000F1D8A1 /* StudentTabController.swift */; };
@@ -39,7 +39,7 @@
 		1503592A1DD000DE005AD597 /* EditAccountInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountInfo.swift; sourceTree = "<group>"; };
 		1503592C1DD03518005AD597 /* UserType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
 		155C36B71DC4205A00154B12 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		15635E571DCC0E0B003F7812 /* -+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "-+.swift"; sourceTree = "<group>"; };
+		15635E571DCC0E0B003F7812 /* StudentHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHomePage.swift; sourceTree = "<group>"; };
 		15635E591DCC0F1E003F7812 /* AdminHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomePage.swift; sourceTree = "<group>"; };
 		15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordHomePage.swift; sourceTree = "<group>"; };
 		15A5EEC01DD6752000F1D8A1 /* StudentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTabController.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 				1503592C1DD03518005AD597 /* UserType.swift */,
 				7C854E4E1DC400AD00E02883 /* AppDelegate.swift */,
 				15A5EEC21DD67A2500F1D8A1 /* LandlordTabController.swift */,
-				15635E571DCC0E0B003F7812 /* -+.swift */,
+				15635E571DCC0E0B003F7812 /* StudentHomePage.swift */,
 				15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */,
 				15A5EEC41DD67A2F00F1D8A1 /* AdminTabController.swift */,
 				150359281DCFF719005AD597 /* AccountInfo.swift */,
@@ -306,7 +306,7 @@
 			files = (
 				7C854E531DC400AD00E02883 /* SecondViewController.swift in Sources */,
 				15A5EEC31DD67A2500F1D8A1 /* LandlordTabController.swift in Sources */,
-				15635E581DCC0E0B003F7812 /* -+.swift in Sources */,
+				15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */,
 				15A5EECD1DD684C200F1D8A1 /* ManageListings.swift in Sources */,
 				15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */,
 				7C854E4F1DC400AD00E02883 /* AppDelegate.swift in Sources */,
