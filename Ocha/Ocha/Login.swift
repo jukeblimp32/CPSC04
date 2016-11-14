@@ -14,13 +14,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     
     
     
-    
-    @IBOutlet var appTitle: UILabel!
-    
-    @IBOutlet weak var email: UITextField!
-    
-    @IBOutlet weak var passWord: UITextField!
-    @IBOutlet weak var errorOutput: UILabel!
+    let emailTextField = UITextField()
+    let passwordTextField = UITextField()
     
     
     override func viewDidLoad() {
@@ -32,20 +27,86 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         // Create actual Facebook button
         let fbloginButton = FBSDKLoginButton()
         view.addSubview(fbloginButton)
-        fbloginButton.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (55/100), width: (view.frame.width) / 2, height: 50)
+        fbloginButton.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (60/100), width: (view.frame.width) / 2, height: 50)
         fbloginButton.delegate = self
         fbloginButton.readPermissions = ["email"]
         
         //add google sign in button
         let googleButton = GIDSignInButton()
-        googleButton.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (65/100), width: view.frame.width / 2, height: 50)
+        googleButton.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (70/100), width: view.frame.width / 2, height: 50)
         view.addSubview(googleButton)
         GIDSignIn.sharedInstance().uiDelegate = self
         
+        //add title
+        let appTitle = UILabel()
+        appTitle.text = "OCHA"
+        appTitle.font = UIFont(name: appTitle.font.fontName, size: 33)
+        appTitle.textColor = UIColor.white
+        appTitle.frame = CGRect(x: (view.frame.width) / 3, y: (view.frame.height) * (2/100), width: view.frame.width / 2, height: 200)
+        view.addSubview(appTitle)
+        
+        //add email label
+        let emailLabel = UILabel()
+        emailLabel.text = "Email:"
+        emailLabel.font = UIFont(name: appTitle.font.fontName, size: 17)
+        emailLabel.textColor = UIColor.white
+        emailLabel.frame = CGRect(x: (view.frame.width) / 7, y: (view.frame.height) * (30/100), width: view.frame.width / 6, height: 15)
+        view.addSubview(emailLabel)
+        
+        //add password label
+        let passwordLabel = UILabel()
+        passwordLabel.text = "Password:"
+        passwordLabel.font = UIFont(name: appTitle.font.fontName, size: 17)
+        passwordLabel.textColor = UIColor.white
+        passwordLabel.frame = CGRect(x: (view.frame.width) / 7, y: (view.frame.height) * (40/100), width: view.frame.width / 3, height: 15)
+        view.addSubview(passwordLabel)
+        
+        
+        //add email textfield
+        emailTextField.frame = CGRect(x: (view.frame.width) / 2.4, y: (view.frame.height) * (30/100), width: view.frame.width / 2, height: 25)
+        view.addSubview(emailTextField)
+        emailTextField.borderStyle = UITextBorderStyle.roundedRect
+        emailTextField.backgroundColor = UIColor.white
+        
+        //add password textfield
+        passwordTextField.frame = CGRect(x: (view.frame.width) / 2.4, y: (view.frame.height) * (40/100), width: view.frame.width / 2, height: 25)
+        view.addSubview(passwordTextField)
+        passwordTextField.borderStyle = UITextBorderStyle.roundedRect
+        passwordTextField.backgroundColor = UIColor.white
+        passwordTextField.isSecureTextEntry = true
+        
+        
+        //add login button
+        let loginButton = UIButton()
+        loginButton.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (50/100), width: view.frame.width / 2, height: 50)
+        loginButton.setTitle("Login", for: UIControlState.normal)
+        loginButton.titleLabel?.font = UIFont(name: appTitle.font.fontName, size: 20)
+        loginButton.titleLabel?.textColor = UIColor.white
+        loginButton.addTarget(self, action: #selector(ViewController.submitUserInfo(_:)), for: UIControlEvents.touchUpInside)
+        view.addSubview(loginButton)
+        self.view.addSubview(loginButton)
+        
+        
+         //add create account button
+        let createAccountButton = UIButton()
+        createAccountButton.frame = CGRect(x: (view.frame.width) / 6, y: (view.frame.height) * (85/100), width: view.frame.width * (3/4), height: 50)
+        createAccountButton.setTitle("Create An Account", for: UIControlState.normal)
+        createAccountButton.titleLabel?.font = UIFont(name: appTitle.font.fontName, size: 20)
+        createAccountButton.titleLabel?.textColor = UIColor.white
+        createAccountButton.addTarget(self, action: #selector(ViewController.goToCreateAccount(_:)), for: UIControlEvents.touchUpInside)
+        view.addSubview(createAccountButton)
+        self.view.addSubview(createAccountButton)
     }
-    
+ 
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("Did log out of Facebook")
+    }
+    
+    func goToCreateAccount(_ sender : UIButton) {
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "CreateAccount") as UIViewController
+        self.dismiss(animated: true, completion: nil)
+        self.present(viewController, animated: true, completion: nil)
+        
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
@@ -111,25 +172,16 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     
     @IBAction func submitUserInfo(_ sender: UIButton) {
         
-        
-        //MARK: Send these to database
-        var userNameVar = email.text
-        
-        var passWordVar = passWord.text
-        
         // Login with email and password
         handleLogin()
-        //var alert = UIAlertController(title: "Could not login", message: "Your password or email are incorrect", preferredStyle: UIAlertControllerStyle.alert)
-        //alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        //alert.show(self, sender: self)
-        //errorOutput.text = "Incorrect Email or Password"
+
         
     }
     
     func handleLogin() {
         
         print("here")
-        guard let email = email.text, let password = passWord.text else{
+        guard let email = emailTextField.text, let password = passwordTextField.text else{
             print("Form is not valid")
             return
         }
