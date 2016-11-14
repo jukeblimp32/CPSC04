@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 class StudentHomePage: UIViewController {
     
@@ -34,6 +35,8 @@ class StudentHomePage: UIViewController {
                 print(error.localizedDescription)
                 print("Error logging out of google")
             }
+            FBSDKLoginManager().logOut()
+            print("Facebook signed out")
     
         }
         

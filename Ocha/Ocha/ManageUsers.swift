@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 class ManageUsers: UIViewController {
     
@@ -35,6 +36,9 @@ class ManageUsers: UIViewController {
                 print(error.localizedDescription)
                 print("Error logging out of google")
             }
+            FBSDKLoginManager().logOut()
+            print("Facebook signed out")
+
             
         }
         let initialViewController = UIStoryboard(name: "Main", bundle:nil).instantiateInitialViewController()! as UIViewController

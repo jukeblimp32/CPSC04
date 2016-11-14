@@ -114,11 +114,9 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
             print(error)
             return
         }
+        
+        
         fbLogin()
-        print("Successfully logged in with Facebook...")
-        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "SelectType") as UIViewController
-        self.dismiss(animated: true, completion: nil)
-        self.present(viewController, animated: true, completion: nil)
     }
     
     func fbLogin(){
@@ -132,38 +130,70 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
                 return
             }
             print("Successfully logged in with our user: ", user ?? "")
-        })
         
-        
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start{(connection, result, err) in
+            // Get the proper info from Facebook
+            FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start{(connection, result, err) in
             
-            if err != nil{
-                print("Failed to start graph request:", err ?? "")
-                return
-            }
-            
-            guard let uid = FIRAuth.auth()?.currentUser?.uid else {
-                return
-            }
-            
-            // Add new user to Firebase database
-            let data:[String:AnyObject] = result as! [String : AnyObject]
-            let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
-            let usersReference = dataRef.child("users").child(uid)
-            let values = ["name": data["name"], "email": data["email"]]
-            usersReference.updateChildValues(values, withCompletionBlock: { (err, dataRef) in
                 if err != nil{
-                    print(err)
+                    print("Failed to start graph request:", err ?? "")
                     return
                 }
-                print("Saved user successfully")
-            })
-
             
-            //access individual values
-            //print(result ?? "")
-            //let data:[String:AnyObject] = result as! [String : AnyObject]
-            //print(data["name"]!)
+                guard let uid = FIRAuth.auth()?.currentUser?.uid else {
+                    return
+                }
+            
+                // Get a reference to the Firebase database
+                let data:[String:AnyObject] = result as! [String : AnyObject]
+                let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+                let usersReference = dataRef.child("users").child(uid)
+            
+           
+                // See if an instance of the user already exists
+                usersReference.observeSingleEvent(of: .value, with: {(snapshot) in
+                    let snapshot = snapshot.value as? NSDictionary
+                    // Only add user if this is first login
+                    if(snapshot == nil)
+                    {
+                        let values = ["name": data["name"], "email": data["email"]]
+                        usersReference.updateChildValues(values, withCompletionBlock: { (err, dataRef) in
+                            if err != nil{
+                                print(err)
+                                return
+                            }
+                            print("Saved user successfully")
+                        })
+                        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "SelectType") as UIViewController
+                        self.dismiss(animated: true, completion: nil)
+                        self.present(viewController, animated: true, completion: nil)
+                    }
+                    else
+                    {
+                        self.goToHomePage(snapshot: snapshot!)
+                    }
+                })
+                print("Successfully logged in with Facebook...")
+            }
+        })
+
+    }
+    
+    func goToHomePage(snapshot: NSDictionary)
+    {
+        if snapshot["type"]as? String  == "Admin" {
+            let viewController = self.storyboard!.instantiateViewController(withIdentifier: "AdminTabController") as UIViewController
+            self.dismiss(animated: true, completion: nil)
+            self.present(viewController, animated: true, completion: nil)
+        }
+        else if snapshot["type"] as? String == "Landlord" {
+            let viewController = self.storyboard!.instantiateViewController(withIdentifier: "LandlordTabController") as UIViewController
+            self.dismiss(animated: true, completion: nil)
+            self.present(viewController, animated: true, completion: nil)
+        }
+        else {
+            let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
+            self.dismiss(animated: true, completion: nil)
+            self.present(viewController, animated: true, completion: nil)
         }
 
     }

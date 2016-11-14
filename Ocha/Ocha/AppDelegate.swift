@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FBSDKCoreKit
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -21,13 +22,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Override point for customization after application launch.
         FIRApp.configure()
         
-        
+        // Logout of existing Firebase user to avoid conflicts
+        do {
+            try FIRAuth.auth()?.signOut()
+            
+            print("the user is logged out")
+        } catch let error as NSError {
+            print(error.localizedDescription)
+            print("the current user id is \(FIRAuth.auth()?.currentUser?.uid)")
+        }
+
         //Google Signin
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
         //Facebook Signin
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        // Logout of existing user
+        FBSDKLoginManager().logOut()
+
         return true
     }
     
@@ -48,27 +61,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             return
         }
         print("User signed into Google")
+        
+        // Login to Firebase with Google credentials
         let authentification = user.authentication
         let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentification?.idToken)!, accessToken: (authentification?.accessToken)!)
         FIRAuth.auth()?.signIn(with: credential){ (user, error) in
             print("User signed into Firebase")
             
+            // Get reference to database.
             self.databaseRef = FIRDatabase.database().reference()
             
             self.databaseRef.child("users").child(user!.uid).observeSingleEvent(of: .value, with: {(snapshot) in
                 let snapshot = snapshot.value as? NSDictionary
                 
+                // Only add to database if the user hasn't already been created.
                 if(snapshot == nil)
                 {
                     self.databaseRef.child("users").child(user!.uid).child("name").setValue(user?.displayName)
                     self.databaseRef.child("users").child(user!.uid).child("email").setValue(user?.email)
                     
+                    // Go to select type if this is the first time logging in with Google
+                    let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "SelectType") as UIViewController
+                    self.window = UIWindow(frame: UIScreen.main.bounds)
+                    self.window?.rootViewController = initialViewControlleripad
+                    self.window?.makeKeyAndVisible()
+                    return
+                    
                 }
                 
-                    //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-                    //self.window?.rootViewController?.performSegue(withIdentifier: "HomeViewSegue", sender: self)
+                // Go to correct homepage if the user exists
                 let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "SelectType") as UIViewController
+                var initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
+                
+                // Choose the correct home screen based off of the type name from Firebase database
+                if snapshot?["type"]as? String  == "Admin" {
+                    initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "AdminTabController") as UIViewController
+                }
+                else if snapshot?["type"] as? String == "Landlord" {
+                    initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "LandlordTabController") as UIViewController
+                }
+                else {
+                    initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
+                }
+        
                 self.window = UIWindow(frame: UIScreen.main.bounds)
                 self.window?.rootViewController = initialViewControlleripad
                 self.window?.makeKeyAndVisible()            })
