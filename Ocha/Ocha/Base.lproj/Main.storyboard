@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="F4C-pT-xWf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="F4C-pT-xWf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -177,7 +177,6 @@
                                 </state>
                                 <connections>
                                     <action selector="submitInfo:" destination="9pv-A4-QxB" eventType="touchUpInside" id="qCx-bv-9qT"/>
-                                    <segue destination="fcs-9k-Ynp" kind="show" id="S1x-z8-sw7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -360,7 +359,7 @@
         <scene sceneID="vqW-mP-dA4">
             <objects>
                 <navigationController navigationBarHidden="YES" id="F4C-pT-xWf" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wtz-cY-KyJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wtz-cY-KyJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1368,7 +1367,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="bCL-hc-hQe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account Info" image="second" id="i4J-ew-EKB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYM-9U-RUU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iYM-9U-RUU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1387,7 +1386,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Pcc-rx-e2J" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="HomePage" image="first" id="fYD-0k-Szd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o73-Pz-GaW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o73-Pz-GaW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1413,7 +1412,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S1x-z8-sw7"/>
         <segue reference="Stp-Lh-4v1"/>
         <segue reference="1J7-WH-3MP"/>
     </inferredMetricsTieBreakers>
