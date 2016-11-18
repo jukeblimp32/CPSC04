@@ -16,6 +16,7 @@ class StudentHomePage: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
+        self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
     }
     
     @IBAction func logout(_ sender: Any) {

@@ -24,6 +24,7 @@ class AdminHomePage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
+        self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         // Do any additional setup after loading the view, typically from a nib.
     }
     
