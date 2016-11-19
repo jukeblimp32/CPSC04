@@ -32,6 +32,7 @@
 		7C854E581DC400AD00E02883 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C854E571DC400AD00E02883 /* Assets.xcassets */; };
 		7C854E5B1DC400AD00E02883 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C854E591DC400AD00E02883 /* LaunchScreen.storyboard */; };
 		7C89D4E91DC993C200326666 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C89D4E81DC993C200326666 /* GoogleService-Info.plist */; };
+		7C99E85A1DDFCEF000C7CE03 /* ListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		7C89D4E41DC9782F00326666 /* Ocha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ocha.entitlements; sourceTree = "<group>"; };
 		7C89D4E51DC97F8B00326666 /* Ocha-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ocha-Bridging-Header.h"; sourceTree = "<group>"; };
 		7C89D4E81DC993C200326666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingTableViewCell.swift; sourceTree = "<group>"; };
 		D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +136,7 @@
 				7C854E5C1DC400AD00E02883 /* Info.plist */,
 				7C89D4E81DC993C200326666 /* GoogleService-Info.plist */,
 				7C89D4E51DC97F8B00326666 /* Ocha-Bridging-Header.h */,
+				7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */,
 			);
 			path = Ocha;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				15A5EEC71DD6846900F1D8A1 /* ApproveReviews.swift in Sources */,
 				15A5EEC11DD6752100F1D8A1 /* StudentTabController.swift in Sources */,
 				1503592B1DD000DE005AD597 /* EditAccountInfo.swift in Sources */,
+				7C99E85A1DDFCEF000C7CE03 /* ListingTableViewCell.swift in Sources */,
 				7C854E511DC400AD00E02883 /* CreateAccount.swift in Sources */,
 				15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */,
 			);
