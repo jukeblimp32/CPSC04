@@ -230,7 +230,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="166"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Qi-T7-78P" id="h9g-Xz-AkJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="165.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="165"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="1b3-bj-l7Z">
@@ -301,10 +301,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="HomePage" image="Hompage" id="PDf-Qg-PyN"/>
+<<<<<<< HEAD
+                    <tabBarItem key="tabBarItem" title="Homepage" image="Hompage" selectedImage="Hompage" id="PDf-Qg-PyN">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.0039215686274509803" green="0.3411764705882353" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+=======
+                    <tabBarItem key="tabBarItem" title="HomePage" image="first" id="PDf-Qg-PyN"/>
                     <connections>
                         <outlet property="propertiesList" destination="t1A-LS-86Y" id="Saq-ee-eBU"/>
                     </connections>
+>>>>>>> 706aafbb4c2f3354afb78e9568e02dc67142c6ca
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IDu-Ot-OWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -771,7 +781,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="HomePage" image="Hompage" id="QDf-LQ-UP1"/>
+                    <tabBarItem key="tabBarItem" title="HomePage" image="Hompage" selectedImage="Hompage" id="QDf-LQ-UP1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SVW-qf-jKv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1089,7 +1099,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="bCL-hc-hQe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account Info" image="Account Info" id="i4J-ew-EKB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYM-9U-RUU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iYM-9U-RUU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1133,7 +1143,7 @@
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Stp-Lh-4v1"/>
         <segue reference="1J7-WH-3MP"/>
+        <segue reference="Stp-Lh-4v1"/>
     </inferredMetricsTieBreakers>
 </document>

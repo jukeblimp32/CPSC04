@@ -36,7 +36,7 @@ class FirstViewController: UIViewController{
         viewTitle.text = "Create An Account"
         viewTitle.font = UIFont(name: viewTitle.font.fontName, size: 20)
         viewTitle.textColor = UIColor.white
-        viewTitle.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (13/100), width: view.frame.width * (3/4), height: 20)
+        viewTitle.frame = CGRect(x: (view.frame.width) * (27.5/100), y: (view.frame.height) * (13/100), width: view.frame.width * (45/100), height: 20)
         view.addSubview(viewTitle)
   
         //First name label
@@ -97,7 +97,7 @@ class FirstViewController: UIViewController{
         
         //Type of User label
         let userTypeLabel = UILabel()
-        userTypeLabel.text = "Type Of User:"
+        userTypeLabel.text = "Select Type Of User:"
         userTypeLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         userTypeLabel.textColor = UIColor.white
         userTypeLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (69/100), width: view.frame.width / 2, height: 15)
@@ -142,9 +142,6 @@ class FirstViewController: UIViewController{
         email2.backgroundColor = UIColor.white
         
         
-
-
-        
         //Landlord button
         landlordUserButton.frame = CGRect(x: (view.frame.width) / 2, y: (view.frame.height) * (75/100), width: view.frame.width * (1/3), height: 50)
         landlordUserButton.setTitle("Landlord", for: UIControlState.normal)
@@ -152,6 +149,7 @@ class FirstViewController: UIViewController{
         landlordUserButton.backgroundColor = UIColor(colorLiteralRed: 0.8, green: 0.8, blue: 0.8, alpha: 0.2)
         landlordUserButton.setTitleColor(UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.2), for: .normal)
         landlordUserButton.addTarget(self, action: #selector(FirstViewController.chooseUser(_:)), for: UIControlEvents.touchUpInside)
+        landlordUserButton.layer.cornerRadius = 4
         view.addSubview(landlordUserButton)
         self.view.addSubview(landlordUserButton)
         
@@ -162,25 +160,30 @@ class FirstViewController: UIViewController{
         studentUserButton.backgroundColor = UIColor.white
         studentUserButton.setTitleColor(UIColor.black, for: .normal)
         studentUserButton.addTarget(self, action: #selector(FirstViewController.chooseUser(_:)), for: UIControlEvents.touchUpInside)
+        studentUserButton.layer.cornerRadius = 4
         view.addSubview(studentUserButton)
         self.view.addSubview(studentUserButton)
         
         //Submit button
         let submitButton = UIButton()
-        submitButton.frame = CGRect(x: (view.frame.width) / 2, y: (view.frame.height) * (90/100), width: view.frame.width * (1/2), height: 20)
+        submitButton.frame = CGRect(x: (view.frame.width) * (2/3), y: (view.frame.height) * (90/100), width: view.frame.width * (1/4), height: 30)
         submitButton.setTitle("Submit", for: UIControlState.normal)
         submitButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
         submitButton.titleLabel?.textColor = UIColor.white
         submitButton.addTarget(self, action: #selector(FirstViewController.submitInfo(_:)), for: UIControlEvents.touchUpInside)
+        submitButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
+        submitButton.layer.cornerRadius = 4
         view.addSubview(submitButton)
         self.view.addSubview(submitButton)
 
         //Back button
         let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (5/100), width: view.frame.width / 5 , height: 25)
+        toHomePageButton.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (5/100), width: view.frame.width / 5 , height: 30)
         toHomePageButton.setTitle("Back", for: UIControlState.normal)
         toHomePageButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
         toHomePageButton.titleLabel?.textColor = UIColor.white
+        toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
+        toHomePageButton.layer.cornerRadius = 4
         toHomePageButton.addTarget(self, action: #selector(FirstViewController.backToMain(_:)), for: UIControlEvents.touchUpInside)
         view.addSubview(toHomePageButton)
         self.view.addSubview(toHomePageButton)

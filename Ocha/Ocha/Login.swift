@@ -20,6 +20,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UITabBar.appearance().tintColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         
         // Do any additional setup after loading the view, typically from a nib.
         GIDSignIn.sharedInstance().uiDelegate = self
@@ -42,7 +43,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         appTitle.text = "OCHA"
         appTitle.font = UIFont(name: appTitle.font.fontName, size: 33)
         appTitle.textColor = UIColor.white
-        appTitle.frame = CGRect(x: (view.frame.width) / 3, y: (view.frame.height) * (2/100), width: view.frame.width / 2, height: 200)
+        appTitle.frame = CGRect(x: (view.frame.width) * (3/8), y: (view.frame.height) * (2/100), width: view.frame.width / 4, height: 200)
         view.addSubview(appTitle)
         
         //add email label
@@ -78,22 +79,26 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         
         //add login button
         let loginButton = UIButton()
-        loginButton.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (50/100), width: view.frame.width / 2, height: 50)
+        loginButton.frame = CGRect(x: (view.frame.width) * (3/8), y: (view.frame.height) * (50/100), width: view.frame.width / 4, height: 40)
         loginButton.setTitle("Login", for: UIControlState.normal)
         loginButton.titleLabel?.font = UIFont(name: appTitle.font.fontName, size: 20)
-        loginButton.titleLabel?.textColor = UIColor.white
+        loginButton.setTitleColor(UIColor.white, for: .normal)
         loginButton.addTarget(self, action: #selector(ViewController.submitUserInfo(_:)), for: UIControlEvents.touchUpInside)
+        loginButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
+        loginButton.layer.cornerRadius = 4
         view.addSubview(loginButton)
         self.view.addSubview(loginButton)
         
         
          //add create account button
         let createAccountButton = UIButton()
-        createAccountButton.frame = CGRect(x: (view.frame.width) / 6, y: (view.frame.height) * (85/100), width: view.frame.width * (3/4), height: 50)
+        createAccountButton.frame = CGRect(x: (view.frame.width) * (3/16), y: (view.frame.height) * (85/100), width: view.frame.width * (5/8), height: 40)
         createAccountButton.setTitle("Create An Account", for: UIControlState.normal)
         createAccountButton.titleLabel?.font = UIFont(name: appTitle.font.fontName, size: 20)
-        createAccountButton.titleLabel?.textColor = UIColor.white
+        createAccountButton.setTitleColor(UIColor.white, for: .normal)
         createAccountButton.addTarget(self, action: #selector(ViewController.goToCreateAccount(_:)), for: UIControlEvents.touchUpInside)
+        createAccountButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
+        createAccountButton.layer.cornerRadius = 4
         view.addSubview(createAccountButton)
         self.view.addSubview(createAccountButton)
     }

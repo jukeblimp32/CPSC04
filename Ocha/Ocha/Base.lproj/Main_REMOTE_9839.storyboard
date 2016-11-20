@@ -230,7 +230,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="166"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Qi-T7-78P" id="h9g-Xz-AkJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="165.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="165"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="1b3-bj-l7Z">
@@ -301,7 +301,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="HomePage" image="Hompage" id="PDf-Qg-PyN"/>
+                    <tabBarItem key="tabBarItem" title="HomePage" image="first" id="PDf-Qg-PyN"/>
                     <connections>
                         <outlet property="propertiesList" destination="t1A-LS-86Y" id="Saq-ee-eBU"/>
                     </connections>
@@ -771,7 +771,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="HomePage" image="Hompage" id="QDf-LQ-UP1"/>
+                    <tabBarItem key="tabBarItem" title="HomePage" image="second" id="QDf-LQ-UP1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SVW-qf-jKv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1041,7 +1041,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="PyS-7a-WoM"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="first" id="PyS-7a-WoM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSp-HI-MKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1077,7 +1077,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="QUY-FT-fhP"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="second" id="QUY-FT-fhP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lqg-Hg-wxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1087,9 +1087,9 @@
         <scene sceneID="Zms-HC-DC4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="bCL-hc-hQe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Account Info" image="Account Info" id="i4J-ew-EKB"/>
+                    <tabBarItem key="tabBarItem" title="Account Info" image="second" id="i4J-ew-EKB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYM-9U-RUU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iYM-9U-RUU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1106,7 +1106,7 @@
         <scene sceneID="pJ7-Js-2zR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Pcc-rx-e2J" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="HomePage" image="Hompage" id="fYD-0k-Szd"/>
+                    <tabBarItem key="tabBarItem" title="HomePage" image="first" id="fYD-0k-Szd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o73-Pz-GaW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1123,14 +1123,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Account Info" width="30" height="30"/>
-        <image name="Hompage" width="30" height="30"/>
         <image name="Image" width="298" height="223"/>
         <image name="Image-4" width="160" height="90"/>
         <image name="Image-5" width="138" height="91"/>
         <image name="Image-6" width="129" height="97"/>
         <image name="Image-7" width="97" height="129"/>
         <image name="first" width="30" height="30"/>
+        <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Stp-Lh-4v1"/>
