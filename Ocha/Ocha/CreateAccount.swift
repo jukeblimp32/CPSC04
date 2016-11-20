@@ -294,15 +294,6 @@ class FirstViewController: UIViewController{
                     }
                     print("Saved user successfully")
                 })
-                let viewController = self.storyboard!.instantiateViewController(withIdentifier: "Login") as UIViewController
-                
-                // Delay so that the presentation won't collide with the email alert
-                let when = DispatchTime.now() + 3
-                DispatchQueue.main.asyncAfter(deadline: when){
-                    // your code with delay
-                    self.dismiss(animated: true, completion: nil)
-                    self.present(viewController, animated: true, completion: nil)
-                }
                 return
             })
             
@@ -324,6 +315,12 @@ class FirstViewController: UIViewController{
         self.present(viewController, animated: true, completion: nil)
     }
     
+    func transitionToLogin(){
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "Login") as UIViewController
+        self.dismiss(animated: true, completion: nil)
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
     func sendEmailVer(){
         // Send verification email
         if let user = FIRAuth.auth()?.currentUser {
@@ -336,8 +333,14 @@ class FirstViewController: UIViewController{
                 let alertActionResend = UIAlertAction(title: "Resend", style: .default) {
                     (_) in
                     user.sendEmailVerification(completion: nil)
+                    // Go back to login
+                    self.transitionToLogin()
                 }
-                let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
+                let alertActionOkay = UIAlertAction(title: "Okay", style: .default){
+                    (_) in
+                    // Go back to login
+                    self.transitionToLogin()
+                }
                 alertVC.addAction(alertActionResend)
                 alertVC.addAction(alertActionOkay)
                 self.present(alertVC, animated: true, completion: nil)
