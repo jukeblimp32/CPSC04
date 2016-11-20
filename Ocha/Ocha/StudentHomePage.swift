@@ -13,6 +13,7 @@ import FBSDKLoginKit
 class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: Properties
     @IBOutlet weak var propertiesList: UITableView!
+    let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     var listings = [Listing]()
     
     override func viewDidLoad() {
@@ -21,11 +22,64 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
-        
         loadListingViews()
+        propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (80/100))
+        propertiesList.delegate = self
+        propertiesList.dataSource = self
     }
     
-    func loadListingViews() {
+    func loadListingViews(){
+    
+        //create NSURL
+        let getRequestURL = NSURL(string: getProperties)
+        
+        //creating NSMutableURLRequest
+        let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
+        
+        //setting the method to GET
+        getRequest.httpMethod = "GET"
+        
+        //task to be sent to the GET request
+        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest){
+            data,response,error in
+            
+            if error != nil{
+                print("error is \(error)")
+                return;
+            }
+            do{
+                //converting response to a NSDictionary
+                var propertyJSON : NSDictionary!
+                propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                //getting the JSON array teams from the response
+                let properties: NSArray = propertyJSON["properties"] as! NSArray
+                
+                //looping through all the json objects in the array properties
+                for i in 0 ..< properties.count{
+                    //getting the data at each index
+                    let propIdValue = properties[i] as? NSDictionary
+                    let propertyID = propIdValue?["property_id"] as! String
+                    let addressValue = properties[i] as? NSDictionary
+                    let address = addressValue?["address"] as! String
+                    let milesValue = properties[i] as? NSDictionary
+                    let milesToGu = milesValue?["miles_to_gu"] as! Int
+                    let rentValue = properties[i] as? NSDictionary
+                    let rentPerMonth = rentValue?["rent_per_month"] as! Int
+                    let roomsValue = properties[i] as? NSDictionary
+                    let roomNumber = roomsValue?["number_of_rooms"] as! Int
+                    
+                    let listing = Listing(propertyID: propertyID, address: address, milesToGU: Float(milesToGu), numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+                    self.listings.append(listing)
+
+                }
+                
+            }catch{
+                print(error)
+            }
+        }
+        getTask.resume()
+        /*
         let photo1 = UIImage(named: "Image-1")
         let listing1 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo1)
         let listing2 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: nil)
@@ -39,6 +93,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         let listing6 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo6)
         
         listings += [listing1, listing2, listing3, listing4, listing5, listing6]
+ */
     }
     
     
@@ -83,17 +138,21 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "ListingTableViewCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
+        let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
         
         let listing = listings[indexPath.row]
         
         cell.propertyAddress.text = listing.address
-        cell.propertyDistance.text = Str(listing.milesToGU)
-        cell.propertyRent.text = listing.monthRent
-        cell.propertyRooms.text = listing.numberOfRooms
+        cell.propertyDistance.text = String(listing.milesToGU)
+        cell.propertyRent.text = String(listing.monthRent)
+        cell.propertyRooms.text = String(listing.numberOfRooms)
         cell.propertyImage.image = listing.houseImage
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.propertiesList.frame.height / 4.0
     }
     
 

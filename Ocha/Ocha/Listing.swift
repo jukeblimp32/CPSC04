@@ -25,6 +25,9 @@ class Listing {
         if houseImage == nil {
             self.houseImage = UIImage(named: "default")
         }
+        else {
+            self.houseImage = houseImage
+        }
     }
     
 }
