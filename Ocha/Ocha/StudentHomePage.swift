@@ -13,6 +13,7 @@ import FBSDKLoginKit
 class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: Properties
     @IBOutlet weak var propertiesList: UITableView!
+    var listings = [Listing]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,27 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
+        
+        loadListingViews()
     }
+    
+    func loadListingViews() {
+        let photo1 = UIImage(named: "Image-1")
+        let listing1 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo1)
+        let listing2 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: nil)
+        let photo3 = UIImage(named: "Image-2")
+        let listing3 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo3)
+        let photo4 = UIImage(named: "Image-3")
+        let listing4 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo4)
+        let photo5 = UIImage(named: "Image-4")
+        let listing5 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo5)
+        let photo6 = UIImage(named: "Image-5")
+        let listing6 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo6)
+        
+        listings += [listing1, listing2, listing3, listing4, listing5, listing6]
+    }
+    
+    
     
     @IBAction func logout(_ sender: Any) {
         if FIRAuth.auth() != nil {
@@ -56,13 +77,26 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return listings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return ListingTableViewCell()
+        
+        let cellIdentifier = "ListingTableViewCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
+        
+        let listing = listings[indexPath.row]
+        
+        cell.propertyAddress.text = listing.address
+        cell.propertyDistance.text = Str(listing.milesToGU)
+        cell.propertyRent.text = listing.monthRent
+        cell.propertyRooms.text = listing.numberOfRooms
+        cell.propertyImage.image = listing.houseImage
+        
+        return cell
     }
     
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: NSIndexPath) {
         
     }

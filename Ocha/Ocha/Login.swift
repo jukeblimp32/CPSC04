@@ -16,6 +16,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
+    //let getProperties = "http://147.222.165.203/myWebService/api/DisplayProperties.php/parse"
     
     
     override func viewDidLoad() {
@@ -102,6 +103,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         createAccountButton.layer.cornerRadius = 4
         view.addSubview(createAccountButton)
         self.view.addSubview(createAccountButton)
+        
     }
  
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
