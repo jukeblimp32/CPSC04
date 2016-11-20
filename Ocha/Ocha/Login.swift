@@ -44,7 +44,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         appTitle.text = "OCHA"
         appTitle.font = UIFont(name: appTitle.font.fontName, size: 33)
         appTitle.textColor = UIColor.white
-        appTitle.frame = CGRect(x: (view.frame.width) * (3/8), y: (view.frame.height) * (2/100), width: view.frame.width / 4, height: 200)
+        appTitle.textAlignment = .center
+        appTitle.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (2/100), width: view.frame.width * (80/100), height: 200)
         view.addSubview(appTitle)
         
         //add email label
@@ -282,8 +283,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
 
 
 extension UIViewController {
+    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     

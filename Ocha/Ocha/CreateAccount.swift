@@ -27,6 +27,8 @@ class FirstViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+        
         userType = 1
         
         userTypes = [studentUserButton, landlordUserButton]
@@ -36,8 +38,10 @@ class FirstViewController: UIViewController{
         viewTitle.text = "Create An Account"
         viewTitle.font = UIFont(name: viewTitle.font.fontName, size: 20)
         viewTitle.textColor = UIColor.white
-        viewTitle.frame = CGRect(x: (view.frame.width) * (27.5/100), y: (view.frame.height) * (13/100), width: view.frame.width * (45/100), height: 20)
+        viewTitle.textAlignment = .center
+        viewTitle.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (13/100), width: view.frame.width * (80/100), height: 20)
         view.addSubview(viewTitle)
+        
   
         //First name label
         let firstNameLabel = UILabel()
