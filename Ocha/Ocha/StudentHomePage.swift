@@ -26,6 +26,9 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (80/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
+        DispatchQueue.main.async {
+            self.propertiesList.reloadData()
+        }
     }
     
     func loadListingViews(){
@@ -156,7 +159,16 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
 
+    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: NSIndexPath) {
+        let listing = listings[indexPath.row]
+        self.dismiss(animated: true, completion: nil)
+        self.present(viewController, animated: true, completion: nil)
+        
+        
+        
+        
         
     }
     
