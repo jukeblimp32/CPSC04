@@ -28,9 +28,15 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (80/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
+<<<<<<< HEAD
+        DispatchQueue.main.async {
+            self.propertiesList.reloadData()
+        }
+=======
         propertiesList.reloadData()
 
         //}
+>>>>>>> b25a386bd209522421bb8b5ab54a604715dfbace
     }
     
     func loadListingViews(){
