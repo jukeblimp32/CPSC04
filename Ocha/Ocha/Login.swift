@@ -16,7 +16,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
-    //let getProperties = "http://147.222.165.203/myWebService/api/DisplayProperties.php/parse"
     
     
     override func viewDidLoad() {

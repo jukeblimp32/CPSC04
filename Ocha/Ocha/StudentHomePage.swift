@@ -23,9 +23,14 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         // Do any additional setup after loading the view, typically from a nib.
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         loadListingViews()
+        
+        // Initialize our table
         propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (80/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
+        propertiesList.reloadData()
+
+        //}
     }
     
     func loadListingViews(){
@@ -56,23 +61,30 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                 let properties: NSArray = propertyJSON["properties"] as! NSArray
                 
                 //looping through all the json objects in the array properties
-                for i in 0 ..< properties.count{
-                    //getting the data at each index
-                    let propIdValue = properties[i] as? NSDictionary
-                    let propertyID = propIdValue?["property_id"] as! String
-                    let addressValue = properties[i] as? NSDictionary
-                    let address = addressValue?["address"] as! String
-                    let milesValue = properties[i] as? NSDictionary
-                    let milesToGu = milesValue?["miles_to_gu"] as! Int
-                    let rentValue = properties[i] as? NSDictionary
-                    let rentPerMonth = rentValue?["rent_per_month"] as! Int
-                    let roomsValue = properties[i] as? NSDictionary
-                    let roomNumber = roomsValue?["number_of_rooms"] as! Int
+                DispatchQueue.main.async(execute: {
+                    for i in 0 ..< properties.count{
+                        //getting the data at each index
+                        let propIdValue = properties[i] as? NSDictionary
+                        let propertyID = propIdValue?["property_id"] as! String
+                        let addressValue = properties[i] as? NSDictionary
+                        let address = addressValue?["address"] as! String
+                        let milesValue = properties[i] as? NSDictionary
+                        let milesToGu = milesValue?["miles_to_gu"] as! Int
+                        let rentValue = properties[i] as? NSDictionary
+                        let rentPerMonth = rentValue?["rent_per_month"] as! Int
+                        let roomsValue = properties[i] as? NSDictionary
+                        let roomNumber = roomsValue?["number_of_rooms"] as! Int
                     
-                    let listing = Listing(propertyID: propertyID, address: address, milesToGU: Float(milesToGu), numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
-                    self.listings.append(listing)
+                        let listing = Listing(propertyID: propertyID, address: address, milesToGU: Float(milesToGu), numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+                        self.listings.append(listing)
+                        
+                        // Update our table
+                        DispatchQueue.main.async(execute: {
+                            self.propertiesList.reloadData()
+                        })
+                    }
 
-                }
+                })
                 
             }catch{
                 print(error)
