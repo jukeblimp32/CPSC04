@@ -10,7 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import Firebase
 
-class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate {
+class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, UITextFieldDelegate {
     
     
     
@@ -70,6 +70,9 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         view.addSubview(emailTextField)
         emailTextField.borderStyle = UITextBorderStyle.roundedRect
         emailTextField.backgroundColor = UIColor.white
+        // Add these lines to dismiss the keyboard by clicking done
+        emailTextField.returnKeyType = UIReturnKeyType.done
+        self.emailTextField.delegate = self
         
         //add password textfield
         passwordTextField.frame = CGRect(x: (view.frame.width) / 2.4, y: (view.frame.height) * (40/100), width: view.frame.width / 2, height: 25)
@@ -77,6 +80,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         passwordTextField.borderStyle = UITextBorderStyle.roundedRect
         passwordTextField.backgroundColor = UIColor.white
         passwordTextField.isSecureTextEntry = true
+        passwordTextField.returnKeyType = UIReturnKeyType.done
+        self.passwordTextField.delegate = self
         
         
         //add login button
@@ -275,6 +280,13 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Called when 'return' key is pressed
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed.
+    {
+        textField.resignFirstResponder()
+        return true
     }
     
     

@@ -168,8 +168,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: NSIndexPath) {
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Hey")
     }
     
 }

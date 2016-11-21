@@ -10,8 +10,7 @@ import UIKit
 import Firebase
 
 class UserType: UIViewController {
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

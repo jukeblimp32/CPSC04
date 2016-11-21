@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class FirstViewController: UIViewController{
+class FirstViewController: UIViewController, UITextFieldDelegate{
     
     //MARK: Outlet vars
     let firstName = UITextField()
@@ -20,6 +20,9 @@ class FirstViewController: UIViewController{
     let email = UITextField()
     let email2 = UITextField()
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    
     let studentUserButton = UIButton()
     let landlordUserButton = UIButton()
     var userType: Int!
@@ -28,6 +31,8 @@ class FirstViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 400)
+        //view.addSubview(scrollView)
         
         userType = 1
         
@@ -40,8 +45,7 @@ class FirstViewController: UIViewController{
         viewTitle.textColor = UIColor.white
         viewTitle.textAlignment = .center
         viewTitle.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (13/100), width: view.frame.width * (80/100), height: 20)
-        view.addSubview(viewTitle)
-        
+        scrollView.addSubview(viewTitle)
   
         //First name label
         let firstNameLabel = UILabel()
@@ -49,7 +53,7 @@ class FirstViewController: UIViewController{
         firstNameLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         firstNameLabel.textColor = UIColor.white
         firstNameLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (20/100), width: view.frame.width / 2, height: 15)
-        view.addSubview(firstNameLabel)
+        scrollView.addSubview(firstNameLabel)
         
         //Last name label
         let lastNameLabel = UILabel()
@@ -57,7 +61,7 @@ class FirstViewController: UIViewController{
         lastNameLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         lastNameLabel.textColor = UIColor.white
         lastNameLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (27/100), width: view.frame.width / 2, height: 15)
-        view.addSubview(lastNameLabel)
+        scrollView.addSubview(lastNameLabel)
         
         //Username label
         let usernameLabel = UILabel()
@@ -65,7 +69,7 @@ class FirstViewController: UIViewController{
         usernameLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         usernameLabel.textColor = UIColor.white
         usernameLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (34/100), width: view.frame.width / 2, height: 15)
-        view.addSubview(usernameLabel)
+        scrollView.addSubview(usernameLabel)
         
         //Password label
         let passwordLabel = UILabel()
@@ -73,7 +77,7 @@ class FirstViewController: UIViewController{
         passwordLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         passwordLabel.textColor = UIColor.white
         passwordLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (41/100), width: view.frame.width / 2, height: 15)
-        view.addSubview(passwordLabel)
+        scrollView.addSubview(passwordLabel)
         
         //Confirm Password Label
         let confirmPasswordLabel = UILabel()
@@ -81,7 +85,7 @@ class FirstViewController: UIViewController{
         confirmPasswordLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         confirmPasswordLabel.textColor = UIColor.white
         confirmPasswordLabel.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (48/100), width: view.frame.width / 2, height: 15)
-        view.addSubview(confirmPasswordLabel)
+        scrollView.addSubview(confirmPasswordLabel)
         
         //Email Label
         let emailLabel = UILabel()
@@ -89,7 +93,7 @@ class FirstViewController: UIViewController{
         emailLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         emailLabel.textColor = UIColor.white
         emailLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (55/100), width: view.frame.width / 2, height: 15)
-        view.addSubview(emailLabel)
+        scrollView.addSubview(emailLabel)
         
         //Confirm email label
         let confirmEmailLabel = UILabel()
@@ -97,7 +101,7 @@ class FirstViewController: UIViewController{
         confirmEmailLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         confirmEmailLabel.textColor = UIColor.white
         confirmEmailLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (62/100), width: view.frame.width / 2, height: 15)
-        view.addSubview(confirmEmailLabel)
+        scrollView.addSubview(confirmEmailLabel)
         
         //Type of User label
         let userTypeLabel = UILabel()
@@ -105,45 +109,54 @@ class FirstViewController: UIViewController{
         userTypeLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         userTypeLabel.textColor = UIColor.white
         userTypeLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (69/100), width: view.frame.width / 2, height: 15)
-        view.addSubview(userTypeLabel)
+        scrollView.addSubview(userTypeLabel)
         
         //
         firstName.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (20/100), width: view.frame.width * 0.4, height: 25)
-        view.addSubview(firstName)
+        scrollView.addSubview(firstName)
         firstName.borderStyle = UITextBorderStyle.roundedRect
         firstName.backgroundColor = UIColor.white
+        self.firstName.delegate = self
         
         lastName.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (27/100), width: view.frame.width * 0.4, height: 25)
-        view.addSubview(lastName)
+        scrollView.addSubview(lastName)
         lastName.borderStyle = UITextBorderStyle.roundedRect
         lastName.backgroundColor = UIColor.white
+        self.lastName.delegate = self
         
         userName.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (34/100), width: view.frame.width * 0.4, height: 25)
-        view.addSubview(userName)
+        scrollView.addSubview(userName)
         userName.borderStyle = UITextBorderStyle.roundedRect
         userName.backgroundColor = UIColor.white
+        self.userName.delegate = self
         
         passWord1.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (41/100), width: view.frame.width * 0.4, height: 25)
-        view.addSubview(passWord1)
+        scrollView.addSubview(passWord1)
         passWord1.borderStyle = UITextBorderStyle.roundedRect
         passWord1.backgroundColor = UIColor.white
         passWord1.isSecureTextEntry = true
+        self.passWord1.delegate = self
         
         passWord2.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (48/100), width: view.frame.width * 0.4, height: 25)
-        view.addSubview(passWord2)
+        scrollView.addSubview(passWord2)
         passWord2.borderStyle = UITextBorderStyle.roundedRect
         passWord2.backgroundColor = UIColor.white
         passWord2.isSecureTextEntry = true
+        self.passWord2.delegate = self
         
         email.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (55/100), width: view.frame.width * 0.4, height: 25)
-        view.addSubview(email)
+        scrollView.addSubview(email)
         email.borderStyle = UITextBorderStyle.roundedRect
         email.backgroundColor = UIColor.white
+        self.email.delegate = self
         
         email2.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (62/100), width: view.frame.width * 0.4, height: 25)
-        view.addSubview(email2)
+        scrollView.addSubview(email2)
         email2.borderStyle = UITextBorderStyle.roundedRect
         email2.backgroundColor = UIColor.white
+        // Make the final field have a done button rather than return
+        email2.returnKeyType = UIReturnKeyType.done
+        self.email2.delegate = self
         
         
         //Landlord button
@@ -154,8 +167,8 @@ class FirstViewController: UIViewController{
         landlordUserButton.setTitleColor(UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.2), for: .normal)
         landlordUserButton.addTarget(self, action: #selector(FirstViewController.chooseUser(_:)), for: UIControlEvents.touchUpInside)
         landlordUserButton.layer.cornerRadius = 4
-        view.addSubview(landlordUserButton)
-        self.view.addSubview(landlordUserButton)
+        scrollView.addSubview(landlordUserButton)
+        self.scrollView.addSubview(landlordUserButton)
         
         //Student button
         studentUserButton.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (75/100), width: view.frame.width * (1/3), height: 50)
@@ -163,10 +176,11 @@ class FirstViewController: UIViewController{
         studentUserButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
         studentUserButton.backgroundColor = UIColor.white
         studentUserButton.setTitleColor(UIColor.black, for: .normal)
+        studentUserButton.tag = 1
         studentUserButton.addTarget(self, action: #selector(FirstViewController.chooseUser(_:)), for: UIControlEvents.touchUpInside)
         studentUserButton.layer.cornerRadius = 4
-        view.addSubview(studentUserButton)
-        self.view.addSubview(studentUserButton)
+        scrollView.addSubview(studentUserButton)
+        self.scrollView.addSubview(studentUserButton)
         
         //Submit button
         let submitButton = UIButton()
@@ -177,8 +191,8 @@ class FirstViewController: UIViewController{
         submitButton.addTarget(self, action: #selector(FirstViewController.submitInfo(_:)), for: UIControlEvents.touchUpInside)
         submitButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
         submitButton.layer.cornerRadius = 4
-        view.addSubview(submitButton)
-        self.view.addSubview(submitButton)
+        scrollView.addSubview(submitButton)
+        self.scrollView.addSubview(submitButton)
 
         //Back button
         let toHomePageButton = UIButton()
@@ -189,16 +203,15 @@ class FirstViewController: UIViewController{
         toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
         toHomePageButton.layer.cornerRadius = 4
         toHomePageButton.addTarget(self, action: #selector(FirstViewController.backToMain(_:)), for: UIControlEvents.touchUpInside)
-        view.addSubview(toHomePageButton)
-        self.view.addSubview(toHomePageButton)
+        scrollView.addSubview(toHomePageButton)
+        self.scrollView.addSubview(toHomePageButton)
+        
+        view.addSubview(scrollView)
+        
     }
 
     
-    
-    
-    
-    
-    
+
     @IBAction func backToMain(_ sender: Any) {
         let initialViewController = UIStoryboard(name: "Main", bundle:nil).instantiateInitialViewController()! as UIViewController
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
@@ -358,6 +371,14 @@ class FirstViewController: UIViewController{
 
         
     }
+    
+    // Called when 'return' key is pressed
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed.
+    {
+        textField.resignFirstResponder()
+        return true
+    }
+
     
    
     /*
