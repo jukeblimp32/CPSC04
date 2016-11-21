@@ -163,18 +163,46 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndex indexPath: IndexPath) -> CGFloat {
         return self.propertiesList.frame.height / 4.0
     }
     
+    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowDetail" {
+            let destinationViewController = segue.destination as! ListingPage
+            
+            // Get the cell that generated this segue.
+            if let selectedListingCell = sender as? ListingTableViewCell {
+                let indexPath = propertiesList.indexPath(for: selectedListingCell)!
+                let listing = listings[indexPath.row]
+                destinationViewController.image.image = listing.houseImage
+                destinationViewController.address.text = listing.address
+                destinationViewController.rent.text = String(listing.monthRent)
+                destinationViewController.rooms.text = String(listing.numberOfRooms)
+                destinationViewController.distance.text = String(listing.milesToGU)
+                
+                
+            }
+        }
 
+    }
     
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: NSIndexPath) {
+        /*
         let listing = listings[indexPath.row]
-        self.dismiss(animated: true, completion: nil)
-        self.present(viewController, animated: true, completion: nil)
-        
+        if let subjectCell = tableView.cellForRow(at: indexPath as IndexPath), let destinationViewController = navigationController?.storyboard?.instantiateViewController(withIdentifier: "ListingPage") as? ListingPage{
+            //This is a bonus, I will be showing at destionation controller the same text of the cell from where it comes...
+            destinationViewController.address.text = listing.address
+            destinationViewController.distance.text = String(listing.milesToGU)
+            destinationViewController.rooms.text = String(listing.numberOfRooms)
+            destinationViewController.rent.text = String(listing.monthRent)
+            destinationViewController.image.image = listing.houseImage
+            //Then just push the controller into the view hierarchy
+            navigationController?.pushViewController(destinationViewController, animated: true)
+ 
+        }
+        */
         
         
         

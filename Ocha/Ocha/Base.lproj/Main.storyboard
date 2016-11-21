@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="F4C-pT-xWf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="F4C-pT-xWf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -187,7 +187,7 @@
         <scene sceneID="vqW-mP-dA4">
             <objects>
                 <navigationController navigationBarHidden="YES" id="F4C-pT-xWf" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wtz-cY-KyJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wtz-cY-KyJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -294,6 +294,7 @@
                                             <outlet property="propertyImage" destination="1b3-bj-l7Z" id="5Sb-dl-Rft"/>
                                             <outlet property="propertyRent" destination="gc1-YJ-hAc" id="dyr-Xi-sJS"/>
                                             <outlet property="propertyRooms" destination="FPK-Tt-DML" id="DVJ-u7-pL0"/>
+                                            <segue destination="DJ1-t6-UnO" kind="show" identifier="showDetail" id="mGU-VO-kNL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -302,13 +303,14 @@
                         <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="HomePage" image="Hompage" id="PDf-Qg-PyN"/>
+                    <navigationItem key="navigationItem" id="jUc-VH-sD2"/>
                     <connections>
                         <outlet property="propertiesList" destination="t1A-LS-86Y" id="Saq-ee-eBU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IDu-Ot-OWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1463.2" y="-887.40629685157433"/>
+            <point key="canvasLocation" x="-1527" y="-724"/>
         </scene>
         <!--Account Info-->
         <scene sceneID="B9s-90-4wM">
@@ -787,7 +789,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="QCf-5V-MRh" kind="relationship" relationship="viewControllers" id="oR2-ua-VKh"/>
+                        <segue destination="6Y5-qP-uwG" kind="relationship" relationship="viewControllers" id="ugn-SR-Nbg"/>
                         <segue destination="lG6-Rt-5SS" kind="relationship" relationship="viewControllers" id="Umh-Yu-SI5"/>
                         <segue destination="Sca-TD-1CH" kind="relationship" relationship="viewControllers" id="vfk-D5-Y5t"/>
                         <segue destination="bCL-hc-hQe" kind="relationship" relationship="viewControllers" id="Stp-Lh-4v1"/>
@@ -796,6 +798,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0S6-Lm-fYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2439" y="-1331"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="y0k-9g-oVp">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="6Y5-qP-uwG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" selectedImage="Hompage" id="2oW-k8-QXp"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZNO-dB-cfU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QCf-5V-MRh" kind="relationship" relationship="rootViewController" id="tdz-VX-gJN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="non-Vp-TlO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1526" y="-1411"/>
         </scene>
         <!--Admin Homepage-->
         <scene sceneID="tWv-Po-6CJ">
@@ -1176,7 +1195,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="bCL-hc-hQe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account Info" image="Account Info" id="i4J-ew-EKB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYM-9U-RUU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iYM-9U-RUU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
