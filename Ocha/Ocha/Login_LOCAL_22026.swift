@@ -83,17 +83,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         passwordLabel.frame = CGRect(x: (view.frame.width) / 7, y: (view.frame.height) * (40/100), width: view.frame.width / 3, height: 15)
         view.addSubview(passwordLabel)
         
-        //add password label
-        let orLabel = UILabel()
-        orLabel.text = "OR"
-        orLabel.textAlignment = .center
-        orLabel.adjustsFontSizeToFitWidth = true
-        orLabel.minimumScaleFactor = 0.5
-        orLabel.textColor = UIColor.white
-        orLabel.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (70/100), width: view.frame.width / 2, height: 15)
-        view.addSubview(orLabel)
-
-        
         
         //add email textfield
         emailTextField.frame = CGRect(x: (view.frame.width) / 2.4, y: (view.frame.height) * (30/100), width: view.frame.width / 2, height: 25)
@@ -131,9 +120,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         let createAccountButton = UIButton()
         createAccountButton.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (60/100), width: view.frame.width * (60/100), height: 40)
         createAccountButton.setTitle("Create An Account", for: UIControlState.normal)
-        // Dynamically change size of font to fit screen
-        createAccountButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        createAccountButton.titleLabel?.minimumScaleFactor=0.5
+        createAccountButton.titleLabel?.font = UIFont(name: appTitle.font.fontName, size: 20)
         createAccountButton.setTitleColor(UIColor.white, for: .normal)
         createAccountButton.addTarget(self, action: #selector(ViewController.goToCreateAccount(_:)), for: UIControlEvents.touchUpInside)
         createAccountButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
