@@ -29,18 +29,16 @@ class AdminHomePage: UIViewController {
     }
     
     
-    @IBAction func logout(_ sender: Any) {
+    func logout(_ sender : UIButton) {
         if FIRAuth.auth() != nil {
             
             do {
                 try FIRAuth.auth()?.signOut()
-                
                 print("the user is logged out")
             } catch let error as NSError {
                 print(error.localizedDescription)
                 print("the current user id is \(FIRAuth.auth()?.currentUser?.uid)")
             }
-            
             do {
                 try GIDSignIn.sharedInstance().signOut()
                 print("Google signed out")
@@ -50,9 +48,10 @@ class AdminHomePage: UIViewController {
             }
             FBSDKLoginManager().logOut()
             print("Facebook signed out")
-
             
         }
+        
+        
         let initialViewController = UIStoryboard(name: "Main", bundle:nil).instantiateInitialViewController()! as UIViewController
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         appDelegate.window?.rootViewController = initialViewController

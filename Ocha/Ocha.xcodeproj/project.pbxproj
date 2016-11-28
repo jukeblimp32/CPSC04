@@ -16,6 +16,7 @@
 		15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E571DCC0E0B003F7812 /* StudentHomePage.swift */; };
 		15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E591DCC0F1E003F7812 /* AdminHomePage.swift */; };
 		15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */; };
+		15A0392E1DECDD9900FD2101 /* CreateListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A0392D1DECDD9900FD2101 /* CreateListing.swift */; };
 		15A5EEC11DD6752100F1D8A1 /* StudentTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC01DD6752000F1D8A1 /* StudentTabController.swift */; };
 		15A5EEC31DD67A2500F1D8A1 /* LandlordTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC21DD67A2500F1D8A1 /* LandlordTabController.swift */; };
 		15A5EEC51DD67A2F00F1D8A1 /* AdminTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC41DD67A2F00F1D8A1 /* AdminTabController.swift */; };
@@ -47,6 +48,7 @@
 		15635E571DCC0E0B003F7812 /* StudentHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHomePage.swift; sourceTree = "<group>"; };
 		15635E591DCC0F1E003F7812 /* AdminHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomePage.swift; sourceTree = "<group>"; };
 		15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordHomePage.swift; sourceTree = "<group>"; };
+		15A0392D1DECDD9900FD2101 /* CreateListing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateListing.swift; sourceTree = "<group>"; };
 		15A5EEC01DD6752000F1D8A1 /* StudentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTabController.swift; sourceTree = "<group>"; };
 		15A5EEC21DD67A2500F1D8A1 /* LandlordTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordTabController.swift; sourceTree = "<group>"; };
 		15A5EEC41DD67A2F00F1D8A1 /* AdminTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminTabController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				151930371DE25D1900858B8A /* ListingPage.swift */,
 				7C854E4E1DC400AD00E02883 /* AppDelegate.swift */,
 				15A5EEC21DD67A2500F1D8A1 /* LandlordTabController.swift */,
+				15A0392D1DECDD9900FD2101 /* CreateListing.swift */,
 				15635E571DCC0E0B003F7812 /* StudentHomePage.swift */,
 				15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */,
 				15A5EEC41DD67A2F00F1D8A1 /* AdminTabController.swift */,
@@ -135,14 +138,14 @@
 				15A5EECA1DD684AF00F1D8A1 /* ManageUsers.swift */,
 				15A5EED01DD6855A00F1D8A1 /* SearchAndFilter.swift */,
 				15A5EECE1DD684ED00F1D8A1 /* AdminNotifications.swift */,
-				7C854E541DC400AD00E02883 /* Main.storyboard */,
 				154C50B21DE23C1400F39D67 /* Listing.swift */,
+				7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */,
+				7C854E541DC400AD00E02883 /* Main.storyboard */,
 				7C854E571DC400AD00E02883 /* Assets.xcassets */,
 				7C854E591DC400AD00E02883 /* LaunchScreen.storyboard */,
 				7C854E5C1DC400AD00E02883 /* Info.plist */,
 				7C89D4E81DC993C200326666 /* GoogleService-Info.plist */,
 				7C89D4E51DC97F8B00326666 /* Ocha-Bridging-Header.h */,
-				7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */,
 			);
 			path = Ocha;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				15A5EEC71DD6846900F1D8A1 /* ApproveReviews.swift in Sources */,
 				15A5EEC11DD6752100F1D8A1 /* StudentTabController.swift in Sources */,
 				1503592B1DD000DE005AD597 /* EditAccountInfo.swift in Sources */,
+				15A0392E1DECDD9900FD2101 /* CreateListing.swift in Sources */,
 				7C99E85A1DDFCEF000C7CE03 /* ListingTableViewCell.swift in Sources */,
 				7C854E511DC400AD00E02883 /* CreateAccount.swift in Sources */,
 				15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */,
