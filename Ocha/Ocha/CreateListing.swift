@@ -14,17 +14,22 @@ class CreateListing: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var scrollView: UIScrollView!
     
-    let firstName = UITextField()
-    let lastName = UITextField()
-    let userName = UITextField()
-    let passWord1 = UITextField()
-    let passWord2 = UITextField()
-    let email = UITextField()
-    let email2 = UITextField()
+    let address = UITextField()
+    let rentPerMonth = UITextField()
+    let deposit = UITextField()
+    let tenantNumber = UITextField()
+    let bedroomNumber = UITextField()
+    let bathroomNumber = UITextField()
+    let milesToGU = UITextField()
+    let dateAvailable = UITextField()
+    let leaseLength = UITextField()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.hideKeyboardWhenTappedAround()
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 400)
         // Do any additional setup after loading the view, typically from a nib.
         
         //View title
@@ -38,118 +43,145 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(viewTitle)
         
         
-        //First name label
-        let firstNameLabel = UILabel()
-        firstNameLabel.text = "First Name:"
-        firstNameLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        firstNameLabel.textColor = UIColor.white
-        firstNameLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (20/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(firstNameLabel)
+        //address label
+        let addressLabel = UILabel()
+        addressLabel.text = "Address:"
+        addressLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
+        addressLabel.textColor = UIColor.white
+        addressLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (20/100), width: view.frame.width / 2, height: 15)
+        scrollView.addSubview(addressLabel)
         
-        //Last name label
-        let lastNameLabel = UILabel()
-        lastNameLabel.text = "Last Name:"
-        lastNameLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        lastNameLabel.textColor = UIColor.white
-        lastNameLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (27/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(lastNameLabel)
+        //rent label
+        let rentLabel = UILabel()
+        rentLabel.text = "Monthly Rent:"
+        rentLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
+        rentLabel.textColor = UIColor.white
+        rentLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (27/100), width: view.frame.width / 2, height: 15)
+        scrollView.addSubview(rentLabel)
         
-        //Username label
-        let usernameLabel = UILabel()
-        usernameLabel.text = "Username:"
-        usernameLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        usernameLabel.textColor = UIColor.white
-        usernameLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (34/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(usernameLabel)
+        //deposit label
+        let depositLabel = UILabel()
+        depositLabel.text = "Deposit:"
+        depositLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
+        depositLabel.textColor = UIColor.white
+        depositLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (34/100), width: view.frame.width / 2, height: 15)
+        scrollView.addSubview(depositLabel)
         
-        //Password label
-        let passwordLabel = UILabel()
-        passwordLabel.text = "Password:"
-        passwordLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        passwordLabel.textColor = UIColor.white
-        passwordLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (41/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(passwordLabel)
+        //tenant label
+        let tenantLabel = UILabel()
+        tenantLabel.text = "Number of Tenants:"
+        tenantLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
+        tenantLabel.textColor = UIColor.white
+        tenantLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (41/100), width: view.frame.width / 2, height: 15)
+        scrollView.addSubview(tenantLabel)
         
-        //Confirm Password Label
-        let confirmPasswordLabel = UILabel()
-        confirmPasswordLabel.text = "Confirm Password:"
-        confirmPasswordLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        confirmPasswordLabel.textColor = UIColor.white
-        confirmPasswordLabel.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (48/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(confirmPasswordLabel)
+        //bedroom Label
+        let bedroomLabel = UILabel()
+        bedroomLabel.text = "Number of Bedrooms:"
+        bedroomLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
+        bedroomLabel.textColor = UIColor.white
+        bedroomLabel.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (48/100), width: view.frame.width / 2, height: 15)
+        scrollView.addSubview(bedroomLabel)
         
-        //Email Label
-        let emailLabel = UILabel()
-        emailLabel.text = "Email:"
-        emailLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        emailLabel.textColor = UIColor.white
-        emailLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (55/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(emailLabel)
+        //bathroom Label
+        let bathroomLabel = UILabel()
+        bathroomLabel.text = "Number of Bathrooms:"
+        bathroomLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
+        bathroomLabel.textColor = UIColor.white
+        bathroomLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (55/100), width: view.frame.width / 2, height: 15)
+        scrollView.addSubview(bathroomLabel)
         
-        //Confirm email label
-        let confirmEmailLabel = UILabel()
-        confirmEmailLabel.text = "Confirm Email:"
-        confirmEmailLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        confirmEmailLabel.textColor = UIColor.white
-        confirmEmailLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (62/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(confirmEmailLabel)
+        //miles to GU
+        let milesToGULabel = UILabel()
+        milesToGULabel.text = "Miles to GU:"
+        milesToGULabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
+        milesToGULabel.textColor = UIColor.white
+        milesToGULabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (62/100), width: view.frame.width / 2, height: 15)
+        scrollView.addSubview(milesToGULabel)
         
-        //Type of User label
-        let userTypeLabel = UILabel()
-        userTypeLabel.text = "Select Type Of User:"
-        userTypeLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        userTypeLabel.textColor = UIColor.white
-        userTypeLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (69/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(userTypeLabel)
+        //date available label
+        let dateLabel = UILabel()
+        dateLabel.text = "Date Available:"
+        dateLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
+        dateLabel.textColor = UIColor.white
+        dateLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (69/100), width: view.frame.width / 2, height: 15)
+        scrollView.addSubview(dateLabel)
         
-        //
-        firstName.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (20/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(firstName)
-        firstName.borderStyle = UITextBorderStyle.roundedRect
-        firstName.backgroundColor = UIColor.white
-        self.firstName.delegate = self
-        
-        lastName.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (27/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(lastName)
-        lastName.borderStyle = UITextBorderStyle.roundedRect
-        lastName.backgroundColor = UIColor.white
-        self.lastName.delegate = self
-        
-        userName.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (34/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(userName)
-        userName.borderStyle = UITextBorderStyle.roundedRect
-        userName.backgroundColor = UIColor.white
-        self.userName.delegate = self
-        
-        passWord1.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (41/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(passWord1)
-        passWord1.borderStyle = UITextBorderStyle.roundedRect
-        passWord1.backgroundColor = UIColor.white
-        passWord1.isSecureTextEntry = true
-        self.passWord1.delegate = self
-        
-        passWord2.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (48/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(passWord2)
-        passWord2.borderStyle = UITextBorderStyle.roundedRect
-        passWord2.backgroundColor = UIColor.white
-        passWord2.isSecureTextEntry = true
-        self.passWord2.delegate = self
-        
-        email.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (55/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(email)
-        email.borderStyle = UITextBorderStyle.roundedRect
-        email.backgroundColor = UIColor.white
-        self.email.delegate = self
-        
-        email2.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (62/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(email2)
-        email2.borderStyle = UITextBorderStyle.roundedRect
-        email2.backgroundColor = UIColor.white
-        // Make the final field have a done button rather than return
-        email2.returnKeyType = UIReturnKeyType.done
-        self.email2.delegate = self
+        //lease length label
+        let leaseLengthLabel = UILabel()
+        leaseLengthLabel.text = "Lease Length:"
+        leaseLengthLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
+        leaseLengthLabel.textColor = UIColor.white
+        leaseLengthLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (76/100), width: view.frame.width / 2, height: 15)
+        scrollView.addSubview(leaseLengthLabel)
         
 
+        //address textfield
+        address.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (20/100), width: view.frame.width * 0.4, height: 25)
+        scrollView.addSubview(address)
+        address.borderStyle = UITextBorderStyle.roundedRect
+        address.backgroundColor = UIColor.white
+        self.address.delegate = self
+        
+        //rent textfield
+        rentPerMonth.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (27/100), width: view.frame.width * 0.4, height: 25)
+        scrollView.addSubview(rentPerMonth)
+        rentPerMonth.borderStyle = UITextBorderStyle.roundedRect
+        rentPerMonth.backgroundColor = UIColor.white
+        self.rentPerMonth.delegate = self
+        
+        //deposit textfield
+        deposit.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (34/100), width: view.frame.width * 0.4, height: 25)
+        scrollView.addSubview(deposit)
+        deposit.borderStyle = UITextBorderStyle.roundedRect
+        deposit.backgroundColor = UIColor.white
+        self.deposit.delegate = self
+        
+        //tenant textfield
+        tenantNumber.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (41/100), width: view.frame.width * 0.4, height: 25)
+        scrollView.addSubview(tenantNumber)
+        tenantNumber.borderStyle = UITextBorderStyle.roundedRect
+        tenantNumber.backgroundColor = UIColor.white
+        tenantNumber.isSecureTextEntry = true
+        self.tenantNumber.delegate = self
+        
+        //bedroom textfield
+        bedroomNumber.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (48/100), width: view.frame.width * 0.4, height: 25)
+        scrollView.addSubview(bedroomNumber)
+        bedroomNumber.borderStyle = UITextBorderStyle.roundedRect
+        bedroomNumber.backgroundColor = UIColor.white
+        bedroomNumber.isSecureTextEntry = true
+        self.bedroomNumber.delegate = self
+        
+        //bathroom textfield
+        bathroomNumber.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (55/100), width: view.frame.width * 0.4, height: 25)
+        scrollView.addSubview(bathroomNumber)
+        bathroomNumber.borderStyle = UITextBorderStyle.roundedRect
+        bathroomNumber.backgroundColor = UIColor.white
+        self.bathroomNumber.delegate = self
+        
+        
+        milesToGU.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (62/100), width: view.frame.width * 0.4, height: 25)
+        scrollView.addSubview(milesToGU)
+        milesToGU.borderStyle = UITextBorderStyle.roundedRect
+        milesToGU.backgroundColor = UIColor.white
+        self.milesToGU.delegate = self
+        
+        dateAvailable.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (69/100), width: view.frame.width * 0.4, height: 25)
+        scrollView.addSubview(dateAvailable)
+        dateAvailable.borderStyle = UITextBorderStyle.roundedRect
+        dateAvailable.backgroundColor = UIColor.white
+        self.dateAvailable.delegate = self
+        
+        leaseLength.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (76/100), width: view.frame.width * 0.4, height: 25)
+        scrollView.addSubview(leaseLength)
+        leaseLength.borderStyle = UITextBorderStyle.roundedRect
+        leaseLength.backgroundColor = UIColor.white
+        // Make the final field have a done button rather than return
+        leaseLength.returnKeyType = UIReturnKeyType.done
+        self.leaseLength.delegate = self
+        
+    
         
         //Submit button
         let submitButton = UIButton()
@@ -157,7 +189,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         submitButton.setTitle("Submit", for: UIControlState.normal)
         submitButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
         submitButton.titleLabel?.textColor = UIColor.white
-        submitButton.addTarget(self, action: #selector(FirstViewController.submitInfo(_:)), for: UIControlEvents.touchUpInside)
+        submitButton.addTarget(self, action: #selector(CreateListing.submitListingInfo(_:)), for: UIControlEvents.touchUpInside)
         submitButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
         submitButton.layer.cornerRadius = 4
         scrollView.addSubview(submitButton)
@@ -178,7 +210,23 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         
         view.addSubview(scrollView)
         
+        
     }
+    
+    
+    //OVER HERE ELMA :)
+    func submitListingInfo(_ sender : UIButton) {
+        //address.text
+        //rentPerMonth.text
+        //deposit.text
+        //tenantNumber.text
+        //bedroomNumber.text
+        //bathroomNumber.text
+        //milesToGU.text
+        //dateAvailable.text
+        //leaseLength.text
+    }
+    
     
     func logout(_ sender : UIButton) {
         if FIRAuth.auth() != nil {
