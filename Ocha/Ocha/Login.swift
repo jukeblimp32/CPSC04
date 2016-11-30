@@ -64,7 +64,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         emailLabel.text = "Email:"
         emailLabel.font = UIFont(name: appTitle.font.fontName, size: 17)
         emailLabel.textColor = UIColor.white
-        emailLabel.frame = CGRect(x: (view.frame.width) / 7, y: (view.frame.height) * (30/100), width: view.frame.width / 6, height: 15)
+        emailLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (27/100), width: view.frame.width / 6, height: 15)
         view.addSubview(emailLabel)
         
         //add password label
@@ -72,10 +72,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         passwordLabel.text = "Password:"
         passwordLabel.font = UIFont(name: appTitle.font.fontName, size: 17)
         passwordLabel.textColor = UIColor.white
-        passwordLabel.frame = CGRect(x: (view.frame.width) / 7, y: (view.frame.height) * (40/100), width: view.frame.width / 3, height: 15)
+        passwordLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (37/100), width: view.frame.width / 3, height: 15)
         view.addSubview(passwordLabel)
         
-        //add password label
+        //add OR label
         let orLabel = UILabel()
         orLabel.text = "OR"
         orLabel.textAlignment = .center
@@ -88,7 +88,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         
         
         //add email textfield
-        emailTextField.frame = CGRect(x: (view.frame.width) / 2.4, y: (view.frame.height) * (30/100), width: view.frame.width / 2, height: 25)
+        emailTextField.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (30/100), width: view.frame.width * (60/100), height: 25)
         view.addSubview(emailTextField)
         emailTextField.borderStyle = UITextBorderStyle.roundedRect
         emailTextField.backgroundColor = UIColor.white
@@ -97,7 +97,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         self.emailTextField.delegate = self
         
         //add password textfield
-        passwordTextField.frame = CGRect(x: (view.frame.width) / 2.4, y: (view.frame.height) * (40/100), width: view.frame.width / 2, height: 25)
+        passwordTextField.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (40/100), width: view.frame.width * (60/100), height: 25)
         view.addSubview(passwordTextField)
         passwordTextField.borderStyle = UITextBorderStyle.roundedRect
         passwordTextField.backgroundColor = UIColor.white

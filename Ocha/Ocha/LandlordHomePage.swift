@@ -84,13 +84,13 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let addressValue = properties[i] as? NSDictionary
                         let address = addressValue?["address"] as! String
                         let milesValue = properties[i] as? NSDictionary
-                        let milesToGu = milesValue?["miles_to_gu"] as! Int
+                        let milesToGu = milesValue?["miles_to_gu"] as! String
                         let rentValue = properties[i] as? NSDictionary
-                        let rentPerMonth = rentValue?["rent_per_month"] as! Int
+                        let rentPerMonth = rentValue?["rent_per_month"] as! String
                         let roomsValue = properties[i] as? NSDictionary
-                        let roomNumber = roomsValue?["number_of_rooms"] as! Int
+                        let roomNumber = roomsValue?["number_of_rooms"] as! String
                         
-                        let listing = Listing(propertyID: propertyID, address: address, milesToGU: Float(milesToGu), numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+                        let listing = Listing(propertyID: propertyID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
                         self.listings.append(listing)
                         
                         // Update our table

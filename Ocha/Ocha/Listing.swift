@@ -9,14 +9,14 @@ import UIKit
 
 class Listing {
     var address: String
-    var numberOfRooms: Int
-    var monthRent: Int
+    var numberOfRooms: String
+    var monthRent: String
     var propertyID: String
-    var milesToGU: Float
+    var milesToGU: String
     var houseImage: UIImage?
 
     
-    init(propertyID: String, address: String, milesToGU: Float, numberOfRooms: Int, monthRent: Int, houseImage : UIImage?) {
+    init(propertyID: String, address: String, milesToGU: String, numberOfRooms: String, monthRent: String, houseImage : UIImage?) {
         self.address = address
         self.milesToGU = milesToGU
         self.propertyID = propertyID
