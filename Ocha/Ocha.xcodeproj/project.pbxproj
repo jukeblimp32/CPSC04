@@ -17,6 +17,11 @@
 		15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E591DCC0F1E003F7812 /* AdminHomePage.swift */; };
 		15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */; };
 		15A0392E1DECDD9900FD2101 /* CreateListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A0392D1DECDD9900FD2101 /* CreateListing.swift */; };
+		15A039361DECEBCE00FD2101 /* OchaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A039351DECEBCE00FD2101 /* OchaTests.swift */; };
+		15A039411DECEEA400FD2101 /* LoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A039401DECEEA400FD2101 /* LoginTest.swift */; };
+		15A039431DECF11800FD2101 /* StudentHomePageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A039421DECF11800FD2101 /* StudentHomePageTest.swift */; };
+		15A0394B1DED098D00FD2101 /* OchaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A0394A1DED098D00FD2101 /* OchaUITests.swift */; };
+		15A039531DED09A800FD2101 /* LoginUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A039521DED09A800FD2101 /* LoginUITest.swift */; };
 		15A5EEC11DD6752100F1D8A1 /* StudentTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC01DD6752000F1D8A1 /* StudentTabController.swift */; };
 		15A5EEC31DD67A2500F1D8A1 /* LandlordTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC21DD67A2500F1D8A1 /* LandlordTabController.swift */; };
 		15A5EEC51DD67A2F00F1D8A1 /* AdminTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC41DD67A2F00F1D8A1 /* AdminTabController.swift */; };
@@ -38,6 +43,23 @@
 		7C99E85A1DDFCEF000C7CE03 /* ListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		15A039381DECEBCE00FD2101 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C854E431DC400AD00E02883 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7C854E4A1DC400AD00E02883;
+			remoteInfo = Ocha;
+		};
+		15A0394D1DED098D00FD2101 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C854E431DC400AD00E02883 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7C854E4A1DC400AD00E02883;
+			remoteInfo = Ocha;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		150359281DCFF719005AD597 /* AccountInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		1503592A1DD000DE005AD597 /* EditAccountInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountInfo.swift; sourceTree = "<group>"; };
@@ -49,6 +71,15 @@
 		15635E591DCC0F1E003F7812 /* AdminHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomePage.swift; sourceTree = "<group>"; };
 		15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordHomePage.swift; sourceTree = "<group>"; };
 		15A0392D1DECDD9900FD2101 /* CreateListing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateListing.swift; sourceTree = "<group>"; };
+		15A039331DECEBCD00FD2101 /* OchaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OchaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15A039351DECEBCE00FD2101 /* OchaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OchaTests.swift; sourceTree = "<group>"; };
+		15A039371DECEBCE00FD2101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15A039401DECEEA400FD2101 /* LoginTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTest.swift; sourceTree = "<group>"; };
+		15A039421DECF11800FD2101 /* StudentHomePageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHomePageTest.swift; sourceTree = "<group>"; };
+		15A039481DED098C00FD2101 /* OchaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OchaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15A0394A1DED098D00FD2101 /* OchaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OchaUITests.swift; sourceTree = "<group>"; };
+		15A0394C1DED098D00FD2101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15A039521DED09A800FD2101 /* LoginUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUITest.swift; sourceTree = "<group>"; };
 		15A5EEC01DD6752000F1D8A1 /* StudentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTabController.swift; sourceTree = "<group>"; };
 		15A5EEC21DD67A2500F1D8A1 /* LandlordTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordTabController.swift; sourceTree = "<group>"; };
 		15A5EEC41DD67A2F00F1D8A1 /* AdminTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminTabController.swift; sourceTree = "<group>"; };
@@ -69,10 +100,6 @@
 		7C854E571DC400AD00E02883 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C854E5A1DC400AD00E02883 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C854E5C1DC400AD00E02883 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7C854E651DC400AD00E02883 /* OchaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OchaTests.swift; sourceTree = "<group>"; };
-		7C854E671DC400AD00E02883 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7C854E701DC400AD00E02883 /* OchaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OchaUITests.swift; sourceTree = "<group>"; };
-		7C854E721DC400AD00E02883 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C89D4E41DC9782F00326666 /* Ocha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ocha.entitlements; sourceTree = "<group>"; };
 		7C89D4E51DC97F8B00326666 /* Ocha-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ocha-Bridging-Header.h"; sourceTree = "<group>"; };
 		7C89D4E81DC993C200326666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -81,6 +108,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		15A039301DECEBCD00FD2101 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A039451DED098C00FD2101 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7C854E481DC400AD00E02883 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -92,12 +133,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15A039341DECEBCE00FD2101 /* OchaTests */ = {
+			isa = PBXGroup;
+			children = (
+				15A039351DECEBCE00FD2101 /* OchaTests.swift */,
+				15A039371DECEBCE00FD2101 /* Info.plist */,
+				15A039401DECEEA400FD2101 /* LoginTest.swift */,
+				15A039421DECF11800FD2101 /* StudentHomePageTest.swift */,
+			);
+			path = OchaTests;
+			sourceTree = "<group>";
+		};
+		15A039491DED098C00FD2101 /* OchaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				15A0394A1DED098D00FD2101 /* OchaUITests.swift */,
+				15A039521DED09A800FD2101 /* LoginUITest.swift */,
+				15A0394C1DED098D00FD2101 /* Info.plist */,
+			);
+			path = OchaUITests;
+			sourceTree = "<group>";
+		};
 		7C854E421DC400AD00E02883 = {
 			isa = PBXGroup;
 			children = (
 				7C854E4D1DC400AD00E02883 /* Ocha */,
-				7C854E641DC400AD00E02883 /* OchaTests */,
-				7C854E6F1DC400AD00E02883 /* OchaUITests */,
+				15A039341DECEBCE00FD2101 /* OchaTests */,
+				15A039491DED098C00FD2101 /* OchaUITests */,
 				7C854E4C1DC400AD00E02883 /* Products */,
 				A7E8886066EE2B9CC47C4C3D /* Pods */,
 				C7AED9CF7539A70DE2B3ECE5 /* Frameworks */,
@@ -108,6 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				7C854E4B1DC400AD00E02883 /* Ocha.app */,
+				15A039331DECEBCD00FD2101 /* OchaTests.xctest */,
+				15A039481DED098C00FD2101 /* OchaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,24 +214,6 @@
 			path = Ocha;
 			sourceTree = "<group>";
 		};
-		7C854E641DC400AD00E02883 /* OchaTests */ = {
-			isa = PBXGroup;
-			children = (
-				7C854E651DC400AD00E02883 /* OchaTests.swift */,
-				7C854E671DC400AD00E02883 /* Info.plist */,
-			);
-			path = OchaTests;
-			sourceTree = "<group>";
-		};
-		7C854E6F1DC400AD00E02883 /* OchaUITests */ = {
-			isa = PBXGroup;
-			children = (
-				7C854E701DC400AD00E02883 /* OchaUITests.swift */,
-				7C854E721DC400AD00E02883 /* Info.plist */,
-			);
-			path = OchaUITests;
-			sourceTree = "<group>";
-		};
 		A7E8886066EE2B9CC47C4C3D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +234,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		15A039321DECEBCD00FD2101 /* OchaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15A0393A1DECEBCE00FD2101 /* Build configuration list for PBXNativeTarget "OchaTests" */;
+			buildPhases = (
+				15A0392F1DECEBCD00FD2101 /* Sources */,
+				15A039301DECEBCD00FD2101 /* Frameworks */,
+				15A039311DECEBCD00FD2101 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15A039391DECEBCE00FD2101 /* PBXTargetDependency */,
+			);
+			name = OchaTests;
+			productName = OchaTests;
+			productReference = 15A039331DECEBCD00FD2101 /* OchaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		15A039471DED098C00FD2101 /* OchaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15A0394F1DED098D00FD2101 /* Build configuration list for PBXNativeTarget "OchaUITests" */;
+			buildPhases = (
+				15A039441DED098C00FD2101 /* Sources */,
+				15A039451DED098C00FD2101 /* Frameworks */,
+				15A039461DED098C00FD2101 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15A0394E1DED098D00FD2101 /* PBXTargetDependency */,
+			);
+			name = OchaUITests;
+			productName = OchaUITests;
+			productReference = 15A039481DED098C00FD2101 /* OchaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		7C854E4A1DC400AD00E02883 /* Ocha */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C854E751DC400AD00E02883 /* Build configuration list for PBXNativeTarget "Ocha" */;
@@ -221,6 +303,16 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = CPSC04;
 				TargetAttributes = {
+					15A039321DECEBCD00FD2101 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7C854E4A1DC400AD00E02883;
+					};
+					15A039471DED098C00FD2101 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7C854E4A1DC400AD00E02883;
+					};
 					7C854E4A1DC400AD00E02883 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 5923KCHPM2;
@@ -248,11 +340,27 @@
 			projectRoot = "";
 			targets = (
 				7C854E4A1DC400AD00E02883 /* Ocha */,
+				15A039321DECEBCD00FD2101 /* OchaTests */,
+				15A039471DED098C00FD2101 /* OchaUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		15A039311DECEBCD00FD2101 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A039461DED098C00FD2101 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7C854E491DC400AD00E02883 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -315,6 +423,25 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		15A0392F1DECEBCD00FD2101 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A039361DECEBCE00FD2101 /* OchaTests.swift in Sources */,
+				15A039411DECEEA400FD2101 /* LoginTest.swift in Sources */,
+				15A039431DECF11800FD2101 /* StudentHomePageTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15A039441DED098C00FD2101 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A0394B1DED098D00FD2101 /* OchaUITests.swift in Sources */,
+				15A039531DED09A800FD2101 /* LoginUITest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7C854E471DC400AD00E02883 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -348,6 +475,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		15A039391DECEBCE00FD2101 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7C854E4A1DC400AD00E02883 /* Ocha */;
+			targetProxy = 15A039381DECEBCE00FD2101 /* PBXContainerItemProxy */;
+		};
+		15A0394E1DED098D00FD2101 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7C854E4A1DC400AD00E02883 /* Ocha */;
+			targetProxy = 15A0394D1DED098D00FD2101 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		7C854E541DC400AD00E02883 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -368,6 +508,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		15A0393B1DECEBCE00FD2101 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = OchaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CPSC04.OchaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ocha.app/Ocha";
+			};
+			name = Debug;
+		};
+		15A0393C1DECEBCE00FD2101 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = OchaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CPSC04.OchaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ocha.app/Ocha";
+			};
+			name = Release;
+		};
+		15A039501DED098D00FD2101 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = OchaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CPSC04.OchaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Ocha;
+			};
+			name = Debug;
+		};
+		15A039511DED098D00FD2101 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = OchaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CPSC04.OchaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Ocha;
+			};
+			name = Release;
+		};
 		7C854E731DC400AD00E02883 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -503,6 +697,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		15A0393A1DECEBCE00FD2101 /* Build configuration list for PBXNativeTarget "OchaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A0393B1DECEBCE00FD2101 /* Debug */,
+				15A0393C1DECEBCE00FD2101 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		15A0394F1DED098D00FD2101 /* Build configuration list for PBXNativeTarget "OchaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A039501DED098D00FD2101 /* Debug */,
+				15A039511DED098D00FD2101 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		7C854E461DC400AD00E02883 /* Build configuration list for PBXProject "Ocha" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

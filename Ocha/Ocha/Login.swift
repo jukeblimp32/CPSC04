@@ -59,14 +59,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         appTitle.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (2/100), width: view.frame.width * (80/100), height: 200)
         view.addSubview(appTitle)
         
-        let orTitle = UILabel()
-        orTitle.text = "OR"
-        orTitle.font = UIFont(name: appTitle.font.fontName, size: 20)
-        orTitle.textColor = UIColor.white
-        orTitle.textAlignment = .center
-        orTitle.frame = CGRect(x: (view.frame.width) * (40/100), y: (view.frame.height) * (70/100), width: view.frame.width * (20/100), height: 20)
-        view.addSubview(orTitle)
-        
         //add email label
         let emailLabel = UILabel()
         emailLabel.text = "Email:"
@@ -112,7 +104,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         passwordTextField.isSecureTextEntry = true
         passwordTextField.returnKeyType = UIReturnKeyType.done
         self.passwordTextField.delegate = self
-        
         
         //add login button
         let loginButton = UIButton()
@@ -220,7 +211,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
                 print("Successfully logged in with Facebook...")
             }
         })
-
     }
     
     func goToHomePage(snapshot: NSDictionary)
