@@ -595,7 +595,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Create Listing" id="fwO-sI-cSL"/>
+                    <tabBarItem key="tabBarItem" title="Create Listing" image="CreateListing" selectedImage="CreateListing" id="fwO-sI-cSL"/>
                     <connections>
                         <outlet property="scrollView" destination="SRI-ar-1XF" id="Iu3-f0-r9x"/>
                     </connections>
@@ -1134,6 +1134,7 @@
     </scenes>
     <resources>
         <image name="Account Info" width="30" height="30"/>
+        <image name="CreateListing" width="45" height="45"/>
         <image name="Hompage" width="30" height="30"/>
         <image name="Image" width="298" height="223"/>
         <image name="Image-6" width="129" height="97"/>
