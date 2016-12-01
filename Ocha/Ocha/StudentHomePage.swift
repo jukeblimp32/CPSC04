@@ -14,6 +14,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: Properties
     @IBOutlet weak var propertiesList: UITableView!
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
+    let propertyDetails = "http://147.222.165.203/MyWebService/api/PropertyDetails.php"
     var listings = [Listing]()
     
     override func viewDidLoad() {
