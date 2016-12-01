@@ -14,6 +14,8 @@ class CreateListing: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var scrollView: UIScrollView!
     
+    let URL_SAVE_PROPERTY = "http://147.222.165.203/MyWebService/api/CreateProperty.php"
+    
     let address = UITextField()
     let rentPerMonth = UITextField()
     let deposit = UITextField()
@@ -23,7 +25,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
     let milesToGU = UITextField()
     let dateAvailable = UITextField()
     let leaseLength = UITextField()
-    
+    //var firstName = " "
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -142,7 +144,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(tenantNumber)
         tenantNumber.borderStyle = UITextBorderStyle.roundedRect
         tenantNumber.backgroundColor = UIColor.white
-        tenantNumber.isSecureTextEntry = true
+        //tenantNumber.isSecureTextEntry = true
         self.tenantNumber.delegate = self
         
         //bedroom textfield
@@ -150,7 +152,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(bedroomNumber)
         bedroomNumber.borderStyle = UITextBorderStyle.roundedRect
         bedroomNumber.backgroundColor = UIColor.white
-        bedroomNumber.isSecureTextEntry = true
+        //bedroomNumber.isSecureTextEntry = true
         self.bedroomNumber.delegate = self
         
         //bathroom textfield
@@ -171,6 +173,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(dateAvailable)
         dateAvailable.borderStyle = UITextBorderStyle.roundedRect
         dateAvailable.backgroundColor = UIColor.white
+        dateAvailable.placeholder = "MM-DD-YYY"
         self.dateAvailable.delegate = self
         
         leaseLength.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (76/100), width: view.frame.width * 0.4, height: 25)
@@ -216,15 +219,82 @@ class CreateListing: UIViewController, UITextFieldDelegate {
     
     //OVER HERE ELMA :)
     func submitListingInfo(_ sender : UIButton) {
-        //address.text
-        //rentPerMonth.text
-        //deposit.text
-        //tenantNumber.text
-        //bedroomNumber.text
-        //bathroomNumber.text
-        //milesToGU.text
-        //dateAvailable.text
-        //leaseLength.text
+        /*
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                var myString: String = (dictionary["name"] as? String)!
+                var myStringArr = myString.components(separatedBy: " ")
+                    self.firstName = myStringArr[0]
+            }
+            
+            }, withCancel: nil)
+        */
+        //created NSURL
+        let saveRequestURL = NSURL(string: URL_SAVE_PROPERTY)
+        
+        //creating NSMutableURLRequest
+        let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+        
+        //setting method to POST
+        saveRequest.httpMethod = "POST"
+        
+        //getting values from text fields
+        let propertyID = "apartment123"
+        //let landlordID = self.firstName
+        let landlordID = "elma"
+        let propertyAddress = address.text
+        let monthlyRent = rentPerMonth.text
+        let propertyDeposit = deposit.text
+        let totalTenants = tenantNumber.text
+        let numberOfRooms = bedroomNumber.text
+        let numberOfBathrooms = bathroomNumber.text
+        let availableDate = dateAvailable.text
+        let milesToGu = milesToGU.text
+        let lease = leaseLength.text
+        
+        
+        
+        
+        //post parameter
+        //concatenating keys and values from text field
+        let postParameters="property_id="+propertyID+"&landlord_id="+landlordID+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
+        
+        //adding parameters to request body
+        saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+        
+        //task to send to post request
+        let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+            data,response, error in
+            if error != nil{
+                print("error is \(error)")
+                return;
+            }
+            do{
+                //converting response to NSDictioanry
+                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                if let parseJSON = myJSON{
+                    var msg:String!
+                    msg = parseJSON["message"]as! String?
+                    print(msg)
+                }
+            }catch{
+                print(error)
+            }
+        }
+        saveTask.resume()
+        print (propertyID)
+        print (landlordID)
+        print (propertyAddress)
+        print (monthlyRent)
+        print (propertyDeposit)
+        print (totalTenants)
+        print (numberOfRooms)
+        print (numberOfBathrooms)
+        print (availableDate)
+        print (milesToGu)
+        print (lease)
     }
     
     

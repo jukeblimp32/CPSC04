@@ -667,6 +667,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ocha/Ocha.entitlements;
 				DEVELOPMENT_TEAM = 5923KCHPM2;
 				INFOPLIST_FILE = Ocha/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CPSC04.Ocha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -686,6 +687,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ocha/Ocha.entitlements;
 				DEVELOPMENT_TEAM = 5923KCHPM2;
 				INFOPLIST_FILE = Ocha/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CPSC04.Ocha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -704,6 +706,7 @@
 				15A0393C1DECEBCE00FD2101 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		15A0394F1DED098D00FD2101 /* Build configuration list for PBXNativeTarget "OchaUITests" */ = {
 			isa = XCConfigurationList;
@@ -712,6 +715,7 @@
 				15A039511DED098D00FD2101 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7C854E461DC400AD00E02883 /* Build configuration list for PBXProject "Ocha" */ = {
 			isa = XCConfigurationList;
