@@ -15,6 +15,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var propertiesList: UITableView!
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     var listings = [Listing]()
+    var valueTopass : String!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +27,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         loadListingViews()
         
         // Initialize our table
-        propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (80/100))
+        propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (90/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
         propertiesList.reloadData()
@@ -35,16 +37,15 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         let viewTitle = UILabel()
         
         let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 30)
+        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 20)
         toHomePageButton.setTitle("Logout", for: UIControlState.normal)
-        toHomePageButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
+        toHomePageButton.titleLabel?.adjustsFontSizeToFitWidth = true
         toHomePageButton.titleLabel?.textColor = UIColor.white
         toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
         toHomePageButton.layer.cornerRadius = 4
         toHomePageButton.addTarget(self, action: #selector(StudentHomePage.logout(_:)), for: UIControlEvents.touchUpInside)
         view.addSubview(toHomePageButton)
-        
-        
+
     }
     
     func loadListingViews(){
@@ -181,9 +182,15 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         return self.propertiesList.frame.height / 4.0
     }
     
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Hey")
+        
+        let indexPath = tableView.indexPathForSelectedRow!
+        let currentCell = tableView.cellForRow(at: indexPath)! as! ListingTableViewCell
+        valueTopass = currentCell.propertyAddress.text
+        
     }
+ 
+    
     
 }

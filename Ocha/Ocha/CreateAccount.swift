@@ -233,7 +233,6 @@ class FirstViewController: UIViewController, UITextFieldDelegate{
     }
 
     
-    
     @IBAction func submitInfo(_ sender: UIButton) {
         //MARK: send these to database
         

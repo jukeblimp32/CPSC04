@@ -23,6 +23,7 @@ class ListingTableViewCell: UITableViewCell {
         propertyAddress.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyAddress.textColor = UIColor.black
         propertyAddress.frame = CGRect(x: (self.frame.width) * (5/100) , y: (self.frame.height) * (10/100), width: self.frame.width * (90/100) , height: 15)
+        propertyAddress.adjustsFontSizeToFitWidth = true
         self.addSubview(propertyAddress)
         
         propertyImage.frame = CGRect(x: (self.frame.width) * (5/100) , y: (self.frame.height) * (20/100), width: self.frame.width * (35/100) , height: self.frame.height * (75/100))
@@ -48,6 +49,7 @@ class ListingTableViewCell: UITableViewCell {
         rentLabel.text = "Rent per Month:"
         rentLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
         rentLabel.textColor = UIColor.black
+        rentLabel.adjustsFontSizeToFitWidth = true
         rentLabel.frame = CGRect(x: (self.frame.width) * (45/100), y: (self.frame.height) * (40/100), width: self.frame.width * (35/100), height: 15)
         self.addSubview(rentLabel)
         
