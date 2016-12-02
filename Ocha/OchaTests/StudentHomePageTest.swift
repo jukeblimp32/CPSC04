@@ -42,11 +42,12 @@ class StudentHomePageTest: XCTestCase {
         }
     }
     
-    
     func testEnsureDatabaseTablesAreNotNull() {
         
-       // testHomePage.loadListingViews()
-        //let x = testHomePage.listings.count
-        //XCTAssertFalse(0 == x)
+        testHomePage.loadListingViews()
+        //If the count is 0, then database filling failed and no
+        //listings were added
+        let x = testHomePage.listings.count
+        XCTAssertFalse(0 == x)
     }
 }

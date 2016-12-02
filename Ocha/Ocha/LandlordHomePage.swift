@@ -23,10 +23,9 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
-        //loadListingViews()
         
         // Initialize our table
-        propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (80/100))
+        propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (90/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
         propertiesList.reloadData()
@@ -47,6 +46,20 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if  segue.identifier == "showDetailLandlord",
+            let destination = segue.destination as? ListingPage,
+            let blogIndex = propertiesList.indexPathForSelectedRow?.row
+        {
+            destination.address.text = listings[blogIndex].address
+            destination.rent.text = listings[blogIndex].monthRent
+            destination.distance.text = listings[blogIndex].milesToGU
+            destination.rooms.text = listings[blogIndex].numberOfRooms
+            destination.image.image = listings[blogIndex].houseImage
+        }
+    }
+    
     
     func loadListingViews(){
         

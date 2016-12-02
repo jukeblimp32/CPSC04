@@ -50,7 +50,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         addressLabel.text = "Address:"
         addressLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         addressLabel.textColor = UIColor.white
-        addressLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (20/100), width: view.frame.width / 2, height: 15)
+        addressLabel.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (20/100), width: view.frame.width / 2, height: 15)
         scrollView.addSubview(addressLabel)
         
         //rent label
@@ -58,7 +58,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         rentLabel.text = "Monthly Rent:"
         rentLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         rentLabel.textColor = UIColor.white
-        rentLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (27/100), width: view.frame.width / 2, height: 15)
+        rentLabel.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (27/100), width: view.frame.width / 2, height: 15)
         scrollView.addSubview(rentLabel)
         
         //deposit label
@@ -66,7 +66,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         depositLabel.text = "Deposit:"
         depositLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         depositLabel.textColor = UIColor.white
-        depositLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (34/100), width: view.frame.width / 2, height: 15)
+        depositLabel.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (34/100), width: view.frame.width / 2, height: 15)
         scrollView.addSubview(depositLabel)
         
         //tenant label
@@ -74,23 +74,27 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         tenantLabel.text = "Number of Tenants:"
         tenantLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         tenantLabel.textColor = UIColor.white
-        tenantLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (41/100), width: view.frame.width / 2, height: 15)
+        tenantLabel.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (41/100), width: view.frame.width / 2, height: 15)
         scrollView.addSubview(tenantLabel)
         
         //bedroom Label
         let bedroomLabel = UILabel()
         bedroomLabel.text = "Number of Bedrooms:"
+        bedroomLabel.adjustsFontSizeToFitWidth = true
+        bedroomLabel.minimumScaleFactor = 0.5
         bedroomLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         bedroomLabel.textColor = UIColor.white
-        bedroomLabel.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (48/100), width: view.frame.width / 2, height: 15)
+        bedroomLabel.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (48/100), width: view.frame.width / 2, height: 15)
         scrollView.addSubview(bedroomLabel)
         
         //bathroom Label
         let bathroomLabel = UILabel()
         bathroomLabel.text = "Number of Bathrooms:"
+        bathroomLabel.adjustsFontSizeToFitWidth = true
+        bathroomLabel.minimumScaleFactor = 0.5
         bathroomLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         bathroomLabel.textColor = UIColor.white
-        bathroomLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (55/100), width: view.frame.width / 2, height: 15)
+        bathroomLabel.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (55/100), width: view.frame.width / 2, height: 15)
         scrollView.addSubview(bathroomLabel)
         
         //miles to GU
@@ -98,7 +102,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         milesToGULabel.text = "Miles to GU:"
         milesToGULabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         milesToGULabel.textColor = UIColor.white
-        milesToGULabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (62/100), width: view.frame.width / 2, height: 15)
+        milesToGULabel.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (62/100), width: view.frame.width / 2, height: 15)
         scrollView.addSubview(milesToGULabel)
         
         //date available label
@@ -106,7 +110,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         dateLabel.text = "Date Available:"
         dateLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         dateLabel.textColor = UIColor.white
-        dateLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (69/100), width: view.frame.width / 2, height: 15)
+        dateLabel.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (69/100), width: view.frame.width / 2, height: 15)
         scrollView.addSubview(dateLabel)
         
         //lease length label
@@ -114,7 +118,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         leaseLengthLabel.text = "Lease Length:"
         leaseLengthLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
         leaseLengthLabel.textColor = UIColor.white
-        leaseLengthLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (76/100), width: view.frame.width / 2, height: 15)
+        leaseLengthLabel.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (76/100), width: view.frame.width / 2, height: 15)
         scrollView.addSubview(leaseLengthLabel)
         
 
@@ -201,7 +205,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         
         //logout button
         let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 30)
+        toHomePageButton.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 30)
         toHomePageButton.setTitle("Logout", for: UIControlState.normal)
         toHomePageButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
         toHomePageButton.titleLabel?.textColor = UIColor.white
