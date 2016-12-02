@@ -240,7 +240,11 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         saveRequest.httpMethod = "POST"
         
         //getting values from text fields
+<<<<<<< HEAD
         let propertyID = "apartment123"
+=======
+        let propertyID = "apartment321"
+>>>>>>> 113fbcb6cb0e741b820d7401f8f4150e929957f3
         //let landlordID = self.firstName
         let landlordID = "elma"
         let propertyAddress = address.text
@@ -253,7 +257,17 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         let milesToGu = milesToGU.text
         let lease = leaseLength.text
         
+<<<<<<< HEAD
         
+=======
+        if propertyAddress == "" || monthlyRent == "" || propertyDeposit == "" || totalTenants == "" || numberOfRooms == "" || numberOfBathrooms == "" || availableDate == "" || milesToGu == "" || lease == ""
+        {
+            let alert = UIAlertController(title: "Empty Fields", message:"Make sure you have entered information for all fields", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .default))
+            self.present(alert, animated: true){}
+            
+        }
+>>>>>>> 113fbcb6cb0e741b820d7401f8f4150e929957f3
         
         
         //post parameter
@@ -279,6 +293,12 @@ class CreateListing: UIViewController, UITextFieldDelegate {
                     msg = parseJSON["message"]as! String?
                     print(msg)
                 }
+<<<<<<< HEAD
+=======
+                let alert = UIAlertController(title: "Property Added!", message:"Property will be sent for review before being published", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                self.present(alert, animated: true){}
+>>>>>>> 113fbcb6cb0e741b820d7401f8f4150e929957f3
             }catch{
                 print(error)
             }

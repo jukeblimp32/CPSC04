@@ -19,6 +19,7 @@ class ListingTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let screenSize: CGRect = UIScreen.main.bounds
         
         propertyAddress.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyAddress.textColor = UIColor.black
@@ -64,9 +65,8 @@ class ListingTableViewCell: UITableViewCell {
         distanceLabel.text = "Miles to GU:"
         distanceLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
         distanceLabel.textColor = UIColor.black
-        distanceLabel.frame = CGRect(x: (self.frame.width) * (45/100), y: (self.frame.height) * (80/100), width: self.frame.width * (35/100), height: 15)
+        distanceLabel.frame = CGRect(x: (screenSize.width) * (55/100), y: (self.frame.height) * (70/100) , width: screenSize.width * (25/100), height: 15)
         self.addSubview(distanceLabel)
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
