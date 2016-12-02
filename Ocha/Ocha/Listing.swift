@@ -11,12 +11,12 @@ class Listing {
     var address: String
     var numberOfRooms: String
     var monthRent: String
-    var propertyID: String
+    var propertyID: Int
     var milesToGU: String
     var houseImage: UIImage?
 
     
-    init(propertyID: String, address: String, milesToGU: String, numberOfRooms: String, monthRent: String, houseImage : UIImage?) {
+    init(propertyID: Int, address: String, milesToGU: String, numberOfRooms: String, monthRent: String, houseImage : UIImage?) {
         self.address = address
         self.milesToGU = milesToGU
         self.propertyID = propertyID

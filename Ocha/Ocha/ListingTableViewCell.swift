@@ -19,7 +19,7 @@ class ListingTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        let screenSize: CGRect = UIScreen.main.bounds
+        let screenSize = UIScreen.main.bounds
         
         propertyAddress.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyAddress.textColor = UIColor.black
@@ -79,5 +79,6 @@ class ListingTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 
 }

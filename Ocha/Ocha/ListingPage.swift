@@ -10,20 +10,65 @@ import UIKit
 
 class ListingPage: UIViewController {
     
-    @IBOutlet var image: UIImageView!
+    var image = UIImageView()
     
-    @IBOutlet var address: UILabel!
+    var address = UILabel()
     
-    @IBOutlet var distance: UILabel!
+    var distance = UILabel()
     
-    @IBOutlet var rooms: UILabel!
+    var rooms = UILabel()
     
-    @IBOutlet var rent: UILabel!
+    var rent = UILabel()
     
     @IBOutlet weak var toHomePageButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        address.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (15/100), width: view.frame.width * (90/100) , height: 30)
+        address.font = UIFont(name: address.font.fontName, size: 20)
+        address.textColor = UIColor.white
+        view.addSubview(address)
+        
+        image.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (25/100), width: view.frame.width * (50/100) , height: (view.frame.height * 25/100))
+        view.addSubview(image)
+        
+        distance.frame = CGRect(x: (view.frame.width) * (80/100), y: (view.frame.height) * (75/100), width: view.frame.width * (45/100) , height: 30)
+        distance.font = UIFont(name: address.font.fontName, size: 20)
+        distance.textColor = UIColor.white
+        view.addSubview(distance)
+        
+        rooms.frame = CGRect(x: (view.frame.width) * (80/100), y: (view.frame.height) * (65/100), width: view.frame.width * (45/100) , height: 30)
+        rooms.font = UIFont(name: address.font.fontName, size: 20)
+        rooms.textColor = UIColor.white
+        view.addSubview(rooms)
+        
+        rent.frame = CGRect(x: (view.frame.width) * (80/100), y: (view.frame.height) * (55/100), width: view.frame.width * (45/100) , height: 30)
+        rent.font = UIFont(name: address.font.fontName, size: 20)
+        rent.textColor = UIColor.white
+        view.addSubview(rent)
+        
+        let distanceLabel = UILabel()
+        distanceLabel.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (75/100), width: view.frame.width * (60/100) , height: 30)
+        distanceLabel.font = UIFont(name: address.font.fontName, size: 20)
+        distanceLabel.text = "Distance:"
+        distanceLabel.textColor = UIColor.white
+        view.addSubview(distanceLabel)
+        
+        
+        let roomLabel = UILabel()
+        roomLabel.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (65/100), width: view.frame.width * (60/100) , height: 30)
+        roomLabel.font = UIFont(name: address.font.fontName, size: 20)
+        roomLabel.text = "Number of Rooms:"
+        roomLabel.textColor = UIColor.white
+        view.addSubview(roomLabel)
+        
+        let rentLabel = UILabel()
+        rentLabel.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (55/100), width: view.frame.width * (60/100) , height: 30)
+        rentLabel.text = "Rent per Month:"
+        rentLabel.font = UIFont(name: address.font.fontName, size: 20)
+        rentLabel.textColor = UIColor.white
+        view.addSubview(rentLabel)
         
         toHomePageButton.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (5/100), width: view.frame.width / 5 , height: 30)
         toHomePageButton.setTitle("Back", for: UIControlState.normal)

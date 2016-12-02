@@ -173,7 +173,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(dateAvailable)
         dateAvailable.borderStyle = UITextBorderStyle.roundedRect
         dateAvailable.backgroundColor = UIColor.white
-        dateAvailable.placeholder = "MM-DD-YYY"
+        dateAvailable.placeholder = "MM-DD-YYYY"
         self.dateAvailable.delegate = self
         
         leaseLength.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (76/100), width: view.frame.width * 0.4, height: 25)

@@ -80,7 +80,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                     for i in 0 ..< properties.count{
                         //getting the data at each index
                         let propIdValue = properties[i] as? NSDictionary
-                        let propertyID = propIdValue?["property_id"] as! String
+                        let propertyID = propIdValue?["property_id"] as! Int
                         let addressValue = properties[i] as? NSDictionary
                         let address = addressValue?["address"] as! String
                         let milesValue = properties[i] as? NSDictionary
