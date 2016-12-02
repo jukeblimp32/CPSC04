@@ -31,10 +31,10 @@ class ListingPage: UIViewController {
         toHomePageButton.titleLabel?.textColor = UIColor.white
         toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
         toHomePageButton.layer.cornerRadius = 4
+        view.addSubview(toHomePageButton)
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-
     
     
     override func didReceiveMemoryWarning() {
