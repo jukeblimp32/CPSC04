@@ -240,7 +240,10 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         saveRequest.httpMethod = "POST"
         
         //getting values from text fields
-
+<<<<<<< HEAD
+=======
+        let propertyID = "apartment321"
+>>>>>>> 03177fdf9d7e81d238cc83e7fe18249c55753741
         //let landlordID = self.firstName
         let landlordID = "elma"
         let propertyAddress = address.text
@@ -294,6 +297,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
             }
         }
         saveTask.resume()
+<<<<<<< HEAD
         print (landlordID)
         print (propertyAddress)
         print (monthlyRent)
@@ -304,6 +308,9 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         print (availableDate)
         print (milesToGu)
         print (lease)
+=======
+
+>>>>>>> 03177fdf9d7e81d238cc83e7fe18249c55753741
     }
     
     
