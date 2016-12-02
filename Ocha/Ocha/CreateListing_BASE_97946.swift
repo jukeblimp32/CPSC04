@@ -240,10 +240,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         saveRequest.httpMethod = "POST"
         
         //getting values from text fields
-<<<<<<< HEAD
-=======
-        let propertyID = "apartment321"
->>>>>>> 03177fdf9d7e81d238cc83e7fe18249c55753741
+        let propertyID = "apartment123"
         //let landlordID = self.firstName
         let landlordID = "elma"
         let propertyAddress = address.text
@@ -257,18 +254,11 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         let lease = leaseLength.text
         
         
-        if propertyAddress == "" || monthlyRent == "" || propertyDeposit == "" || totalTenants == "" || numberOfRooms == "" || numberOfBathrooms == "" || availableDate == "" || milesToGu == "" || lease == ""
-        {
-            let alert = UIAlertController(title: "Empty Fields", message:"Make sure you have entered information for all fields", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .default))
-            self.present(alert, animated: true){}
-            
-        }
         
         
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="landlord_id="+landlordID+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
+        let postParameters="property_id="+propertyID+"&landlord_id="+landlordID+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
         
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
@@ -289,15 +279,12 @@ class CreateListing: UIViewController, UITextFieldDelegate {
                     msg = parseJSON["message"]as! String?
                     print(msg)
                 }
-                let alert = UIAlertController(title: "Property Added!", message:"Property will be sent for review before being published", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Okay", style: .default))
-                self.present(alert, animated: true){}
             }catch{
                 print(error)
             }
         }
         saveTask.resume()
-<<<<<<< HEAD
+        print (propertyID)
         print (landlordID)
         print (propertyAddress)
         print (monthlyRent)
@@ -308,9 +295,6 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         print (availableDate)
         print (milesToGu)
         print (lease)
-=======
-
->>>>>>> 03177fdf9d7e81d238cc83e7fe18249c55753741
     }
     
     
