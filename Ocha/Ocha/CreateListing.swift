@@ -240,7 +240,6 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         saveRequest.httpMethod = "POST"
         
         //getting values from text fields
-        let propertyID = "apartment123"
         //let landlordID = self.firstName
         let landlordID = "elma"
         let propertyAddress = address.text
@@ -258,7 +257,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="property_id="+propertyID+"&landlord_id="+landlordID+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
+        let postParameters="landlord_id="+landlordID+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
         
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
@@ -284,7 +283,6 @@ class CreateListing: UIViewController, UITextFieldDelegate {
             }
         }
         saveTask.resume()
-        print (propertyID)
         print (landlordID)
         print (propertyAddress)
         print (monthlyRent)
