@@ -196,7 +196,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate{
 
         //Back button
         let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (5/100), width: view.frame.width / 5 , height: 30)
+        toHomePageButton.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (5/100), width: view.frame.width / 5 , height: 20)
         toHomePageButton.setTitle("Back", for: UIControlState.normal)
         toHomePageButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
         toHomePageButton.titleLabel?.textColor = UIColor.white

@@ -1,29 +1,21 @@
 //
-//  LoginTest.swift
+//  FavoritePageTest.swift
 //  Ocha
 //
-//  Created by Talkov, Leah C on 11/28/16.
+//  Created by Talkov, Leah C on 12/2/16.
 //  Copyright © 2016 CPSC04. All rights reserved.
 //
 
 import XCTest
-import Firebase
 @testable import Ocha
 
-class LoginTest: XCTestCase {
+class FavoritePageTest: XCTestCase {
     
-    var testLoginPage = ViewController()
-    var viewController : ViewController!
+    var favoritePageTest : FavoritesPage!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        let storyboard = UIStoryboard(name : "Main", bundle: Bundle.main)
-        let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController
-        viewController = navigationController.topViewController as! ViewController
-        UIApplication.shared.keyWindow!.rootViewController = viewController
-        XCTAssertNotNil(navigationController.view)
-        XCTAssertNotNil(viewController.view)
     }
     
     override func tearDown() {
@@ -44,16 +36,11 @@ class LoginTest: XCTestCase {
     }
     
     /*
-    func testEnsureUserInputsCredentials() {
-        let username = "staylor8@zagmail.gonzaga.edu"
-        let password = " "
-        XCTAssertFalse(user.loginByEmail(username, password), "Cannot login if no password")
+    func testAllFavoritedPropertyIDsInDatabase() {
+        favoriteHelperClass.favIDs = ["pid1", "pid2", "pid3"]
+        XCTAssertTrue(favoriteHelperClass.checkPropertyIDs())
+        
     }
  */
-    
-    
-    
-
-
     
 }

@@ -195,27 +195,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Account Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ets-uH-7Xh">
-                                <rect key="frame" x="106" y="80" width="188" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDG-c4-GWn">
-                                <rect key="frame" x="20" y="190" width="93" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VU0-cy-mzZ">
-                                <rect key="frame" x="20" y="250" width="93" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dC-Uq-ZLJ">
                                 <rect key="frame" x="121" y="190" width="181" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -234,23 +213,18 @@
                                 <attributedString key="attributedText"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPp-Y0-t05">
-                                <rect key="frame" x="52" y="310" width="61" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLZ-7s-ilq">
-                                <rect key="frame" x="75" y="514" width="250" height="30"/>
+                                <rect key="frame" x="44" y="532" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Edit Account Info/Change Password"/>
+                                <state key="normal" title="Edit Account Info/Change Password">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <segue destination="Ta4-Vl-Wkv" kind="show" id="WVz-RK-l4F"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Lrc-vZ-mVt"/>
                     <connections>
@@ -481,10 +455,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="-2261"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--tabBarController-->
         <scene sceneID="2Bu-qH-KtQ">
             <objects>
-                <tabBarController storyboardIdentifier="LandlordTabController" id="hZv-XK-l9m" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="LandlordTabController" title="tabBarController" id="hZv-XK-l9m" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="EoZ-3M-Okd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -597,7 +571,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="6Y5-qP-uwG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" selectedImage="Hompage" id="2oW-k8-QXp"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZNO-dB-cfU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZNO-dB-cfU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -801,25 +775,18 @@
                                 <rect key="frame" x="16" y="366" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="455 Deception Ave, Spokane WA, 99202" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA6-9a-N5j">
                                 <rect key="frame" x="16" y="114" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ard-w1-UPz">
-                                <rect key="frame" x="143" y="72" width="88" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="PyS-7a-WoM"/>
                 </viewController>
@@ -838,16 +805,7 @@
                     <view key="view" contentMode="scaleToFill" id="sZS-r7-uSI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search and Filter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oed-Lk-0hx">
-                                <rect key="frame" x="107" y="80" width="161" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="QUY-FT-fhP"/>
                 </viewController>
@@ -895,7 +853,7 @@
                 <navigationController navigationBarHidden="YES" id="9U8-jT-oXb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="lY8-gG-zhb"/>
                     <navigationItem key="navigationItem" id="3Xi-pU-xsL"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MTk-qs-JsG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MTk-qs-JsG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -913,7 +871,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="bCL-hc-hQe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account Info" image="Account Info" id="i4J-ew-EKB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iYM-9U-RUU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYM-9U-RUU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -932,7 +890,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Pcc-rx-e2J" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="HomePage" image="Hompage" id="fYD-0k-Szd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o73-Pz-GaW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o73-Pz-GaW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -989,9 +947,9 @@
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Stp-Lh-4v1"/>
-        <segue reference="1J7-WH-3MP"/>
+        <segue reference="TcA-uI-b7v"/>
         <segue reference="zMR-U7-FzE"/>
         <segue reference="p9u-uk-oOO"/>
+        <segue reference="PBE-6q-73a"/>
     </inferredMetricsTieBreakers>
 </document>

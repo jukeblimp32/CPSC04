@@ -18,9 +18,16 @@ class SearchAndFilter: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let viewTitle = UILabel()
+        viewTitle.text = "Search and Filter"
+        viewTitle.font = UIFont(name: viewTitle.font.fontName, size: 20)
+        viewTitle.textColor = UIColor.white
+        viewTitle.textAlignment = .center
+        viewTitle.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: 30)
+        view.addSubview(viewTitle)
+        
         
         let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 30)
+        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 20)
         toHomePageButton.setTitle("Logout", for: UIControlState.normal)
         toHomePageButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
         toHomePageButton.titleLabel?.textColor = UIColor.white

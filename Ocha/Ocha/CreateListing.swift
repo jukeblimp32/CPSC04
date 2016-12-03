@@ -14,6 +14,8 @@ class CreateListing: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var scrollView: UIScrollView!
     
+    
+    
     let URL_SAVE_PROPERTY = "http://147.222.165.203/MyWebService/api/CreateProperty.php"
     
     let address = UITextField()
@@ -188,7 +190,6 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         leaseLength.returnKeyType = UIReturnKeyType.done
         self.leaseLength.delegate = self
         
-    
         
         //Submit button
         let submitButton = UIButton()
@@ -205,7 +206,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         
         //logout button
         let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 30)
+        toHomePageButton.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 20)
         toHomePageButton.setTitle("Logout", for: UIControlState.normal)
         toHomePageButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
         toHomePageButton.titleLabel?.textColor = UIColor.white
@@ -265,49 +266,52 @@ class CreateListing: UIViewController, UITextFieldDelegate {
             self.present(alert, animated: true){}
             
         }
+        else {
         
+            //post parameter
+            //concatenating keys and values from text field
+            let postParameters="landlord_id="+landlordID+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
         
-        //post parameter
-        //concatenating keys and values from text field
-        let postParameters="landlord_id="+landlordID+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
+            //adding parameters to request body
+            saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
         
-        //adding parameters to request body
-        saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
-        
-        //task to send to post request
-        let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
-            data,response, error in
-            if error != nil{
-                print("error is \(error)")
-                return;
-            }
-            do{
-                //converting response to NSDictioanry
-                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-                
-                if let parseJSON = myJSON{
-                    var msg:String!
-                    msg = parseJSON["message"]as! String?
-                    print(msg)
+            //task to send to post request
+            let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+                data,response, error in
+                if error != nil{
+                    print("error is \(error)")
+                    return;
                 }
-                let alert = UIAlertController(title: "Property Added!", message:"Property will be sent for review before being published", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Okay", style: .default))
-                self.present(alert, animated: true){}
-            }catch{
-                print(error)
+                do{
+                    //converting response to NSDictioanry
+                    let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                    if let parseJSON = myJSON{
+                        var msg:String!
+                        msg = parseJSON["message"]as! String?
+                        print(msg)
+                    }
+                    let alert = UIAlertController(title: "Property Added!", message:"Property will be sent for review before being published", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                    self.present(alert, animated: true){}
+                }catch{
+                    print(error)
+                }
             }
+            saveTask.resume()
+            sleep(2)
+            tabBarController?.selectedIndex = 0
+            address.text = ""
+            rentPerMonth.text = ""
+            deposit.text = ""
+            tenantNumber.text = ""
+            bedroomNumber.text = ""
+            bathroomNumber.text = ""
+            milesToGU.text = ""
+            dateAvailable.text = ""
+            leaseLength.text = ""
+
         }
-        saveTask.resume()
-        print (landlordID)
-        print (propertyAddress)
-        print (monthlyRent)
-        print (propertyDeposit)
-        print (totalTenants)
-        print (numberOfRooms)
-        print (numberOfBathrooms)
-        print (availableDate)
-        print (milesToGu)
-        print (lease)
     }
     
     

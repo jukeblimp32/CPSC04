@@ -1,27 +1,18 @@
 //
-//  StudentHomePageTest.swift
+//  SearchAndFilterTest.swift
 //  Ocha
 //
-//  Created by Talkov, Leah C on 11/28/16.
+//  Created by Talkov, Leah C on 12/2/16.
 //  Copyright © 2016 CPSC04. All rights reserved.
 //
 
 import XCTest
-@testable import Ocha
 
-class StudentHomePageTest: XCTestCase {
-    
-    var testHomePage : StudentHomePage!
+class SearchAndFilterTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        
-        let storyboard = UIStoryboard(name : "Main", bundle: Bundle(for: self.classForCoder))
-        testHomePage = storyboard.instantiateViewController(withIdentifier: "StudentHomePage") as! StudentHomePage
-        testHomePage.loadView()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        XCTAssertNotNil(testHomePage)
-
     }
     
     override func tearDown() {
@@ -30,7 +21,6 @@ class StudentHomePageTest: XCTestCase {
     }
     
     func testExample() {
-        XCTAssert(true)
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
@@ -42,15 +32,14 @@ class StudentHomePageTest: XCTestCase {
         }
     }
     
-    func testEnsureDatabaseTablesAreNotNull() {
-        
-        testHomePage.loadListingViews()
-        //If the count is 0, then database filling failed and no
-        //listings were added
-        let x = testHomePage.listings.count
-        XCTAssertFalse(0 == x)
+    func testQueriesLoadCorrectListings() {
+        let queries = ["3 miles", "500 rent"]
+        let listings = searchQueries.findListings(queries)
+        for list in listings {
+            for query in queries {
+                XCTAssertTrue(list.contains(query), "The desired query is not in this listing")
+            }
+        }
     }
-    
-    
     
 }

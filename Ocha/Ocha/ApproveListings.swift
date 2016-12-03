@@ -19,7 +19,7 @@ class ApproveListings: UIViewController {
         let viewTitle = UILabel()
         
         let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 30)
+        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 20)
         toHomePageButton.setTitle("Logout", for: UIControlState.normal)
         toHomePageButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
         toHomePageButton.titleLabel?.textColor = UIColor.white
