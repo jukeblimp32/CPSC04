@@ -17,6 +17,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     let propertyDetails = "http://147.222.165.203/MyWebService/api/PropertyDetails.php"
     var listings = [Listing]()
     var valueTopass : String!
+    var user =  User()
     
     
     override func viewDidLoad() {

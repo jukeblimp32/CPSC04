@@ -44,6 +44,7 @@
 		7C854E5B1DC400AD00E02883 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C854E591DC400AD00E02883 /* LaunchScreen.storyboard */; };
 		7C89D4E91DC993C200326666 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C89D4E81DC993C200326666 /* GoogleService-Info.plist */; };
 		7C99E85A1DDFCEF000C7CE03 /* ListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */; };
+		7C9D4B441E2D9DED000F26EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9D4B431E2D9DED000F26EF /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		7C89D4E51DC97F8B00326666 /* Ocha-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ocha-Bridging-Header.h"; sourceTree = "<group>"; };
 		7C89D4E81DC993C200326666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingTableViewCell.swift; sourceTree = "<group>"; };
+		7C9D4B431E2D9DED000F26EF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,6 +221,7 @@
 				7C854E5C1DC400AD00E02883 /* Info.plist */,
 				7C89D4E81DC993C200326666 /* GoogleService-Info.plist */,
 				7C89D4E51DC97F8B00326666 /* Ocha-Bridging-Header.h */,
+				7C9D4B431E2D9DED000F26EF /* User.swift */,
 			);
 			path = Ocha;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				7C854E531DC400AD00E02883 /* SecondViewController.swift in Sources */,
 				15A5EEC31DD67A2500F1D8A1 /* LandlordTabController.swift in Sources */,
 				15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */,
+				7C9D4B441E2D9DED000F26EF /* User.swift in Sources */,
 				15A5EECD1DD684C200F1D8A1 /* ManageListings.swift in Sources */,
 				15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */,
 				7C854E4F1DC400AD00E02883 /* AppDelegate.swift in Sources */,

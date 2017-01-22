@@ -9,6 +9,7 @@
 import UIKit
 
 class LandlordTabController: UITabBarController {
+    var user = User()
     
     func viewDidAppear() {
         super.viewDidLoad()

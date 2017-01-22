@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
     var databaseRef: FIRDatabaseReference!
+    var user = User()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -61,53 +62,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             return
         }
         print("User signed into Google")
+        self.user.googleSignIn(user: user)
+        let when = DispatchTime.now() + 3 // change 2 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: when) {
         
-        // Login to Firebase with Google credentials
-        let authentification = user.authentication
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentification?.idToken)!, accessToken: (authentification?.accessToken)!)
-        FIRAuth.auth()?.signIn(with: credential){ (user, error) in
-            print("User signed into Firebase")
-            
-            // Get reference to database.
-            self.databaseRef = FIRDatabase.database().reference()
-            
-            self.databaseRef.child("users").child(user!.uid).observeSingleEvent(of: .value, with: {(snapshot) in
-                let snapshot = snapshot.value as? NSDictionary
-                
-                // Only add to database if the user hasn't already been created.
-                if(snapshot == nil)
-                {
-                    self.databaseRef.child("users").child(user!.uid).child("name").setValue(user?.displayName)
-                    self.databaseRef.child("users").child(user!.uid).child("email").setValue(user?.email)
-                    
-                    // Go to select type if this is the first time logging in with Google
-                    let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "SelectType") as UIViewController
-                    self.window = UIWindow(frame: UIScreen.main.bounds)
-                    self.window?.rootViewController = initialViewControlleripad
-                    self.window?.makeKeyAndVisible()
-                    return
-                    
-                }
-                
+            if (self.user.getType() == "")
+            {
+                let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "SelectType") as UIViewController
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                self.window?.rootViewController = initialViewControlleripad
+                self.window?.makeKeyAndVisible()
+                return
+            }
+            else
+            {
                 // Go to correct homepage if the user exists
                 let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 var initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
                 
                 // Choose the correct home screen based off of the type name from Firebase database
-                if snapshot?["type"]as? String  == "Admin" {
+                if self.user.getType()  == "Admin" {
                     initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "AdminTabController") as UIViewController
                 }
-                else if snapshot?["type"] as? String == "Landlord" {
+                else if self.user.getType() == "Landlord" {
                     initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "LandlordTabController") as UIViewController
+                    //initialViewControlleripad.user = self.user
                 }
                 else {
                     initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
                 }
-        
+                print(self.user.getName())
                 self.window = UIWindow(frame: UIScreen.main.bounds)
                 self.window?.rootViewController = initialViewControlleripad
-                self.window?.makeKeyAndVisible()            })
+                self.window?.makeKeyAndVisible()
+                return
+            }
         }
     }
     
