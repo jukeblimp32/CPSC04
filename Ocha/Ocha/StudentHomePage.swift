@@ -101,6 +101,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         //getting the data at each index
                         let propIdValue = properties[i] as? NSDictionary
                         let propertyID = propIdValue?["property_id"] as! Int
+                        let landlordIdValue = properties[i] as? NSDictionary
+                        let landlordID = landlordIdValue?["landlord_id"] as! String
                         let addressValue = properties[i] as? NSDictionary
                         let address = addressValue?["address"] as! String
                         let milesValue = properties[i] as? NSDictionary
@@ -109,8 +111,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let rentPerMonth = rentValue?["rent_per_month"] as! String
                         let roomsValue = properties[i] as? NSDictionary
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
-                    
-                        let listing = Listing(propertyID: propertyID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+                        
+                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
                         self.listings.append(listing)
                         
                         // Update our table
