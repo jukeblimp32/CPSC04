@@ -15,7 +15,6 @@ class Listing {
     var milesToGU: String
     var houseImage: UIImage?
 
-    
     init(propertyID: Int, address: String, milesToGU: String, numberOfRooms: String, monthRent: String, houseImage : UIImage?) {
         self.address = address
         self.milesToGU = milesToGU

@@ -69,8 +69,6 @@ class EditAccountInfo: UIViewController {
                 print ("Email verified. Signing in...")
             }
         }
-        
-        
     }
     
     @IBAction func submitInfo(_ sender: Any) {

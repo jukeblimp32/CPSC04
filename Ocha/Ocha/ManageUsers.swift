@@ -27,7 +27,6 @@ class ManageUsers: UIViewController {
         toHomePageButton.layer.cornerRadius = 4
         toHomePageButton.addTarget(self, action: #selector(ManageUsers.logout(_:)), for: UIControlEvents.touchUpInside)
         view.addSubview(toHomePageButton)
-
     }
 
     func logout(_ sender : UIButton) {
