@@ -26,12 +26,10 @@ class AdminNotifications: UIViewController {
         toHomePageButton.layer.cornerRadius = 4
         toHomePageButton.addTarget(self, action: #selector(AdminNotifications.logout(_:)), for: UIControlEvents.touchUpInside)
         view.addSubview(toHomePageButton)
-
     }
     
     func logout(_ sender : UIButton) {
         if FIRAuth.auth() != nil {
-            
             do {
                 try FIRAuth.auth()?.signOut()
                 print("the user is logged out")
@@ -48,9 +46,7 @@ class AdminNotifications: UIViewController {
             }
             FBSDKLoginManager().logOut()
             print("Facebook signed out")
-            
         }
-        
         
         let initialViewController = UIStoryboard(name: "Main", bundle:nil).instantiateInitialViewController()! as UIViewController
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)

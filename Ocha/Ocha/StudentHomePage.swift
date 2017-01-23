@@ -54,51 +54,62 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         propertiesList.reloadData()
     }
     
+    
+    /*
+     When a listing cell is clicked on the homepage, this function
+     sends the cell information and saves them as variables in 
+     the class ListingPage. The listing page will then show 
+     information that corresponds to the selected cell.
+    */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if  segue.identifier == "showDetail",
+        //If the segue from any table cell to listingPage is clicked
+        if segue.identifier == "showDetail",
+            //Sets the page to be loaded as ListingPage
             let destination = segue.destination as? ListingPage,
-            let blogIndex = propertiesList.indexPathForSelectedRow?.row
+            //Gets the selected cell index
+            let cellIndex = propertiesList.indexPathForSelectedRow?.row
         {
-            destination.address.text = listings[blogIndex].address
-            destination.rent.text = listings[blogIndex].monthRent
-            destination.distance.text = listings[blogIndex].milesToGU
-            destination.rooms.text = listings[blogIndex].numberOfRooms
-            destination.image.image = listings[blogIndex].houseImage
+            //Setting the variables in the listing class to the cell info
+            destination.address.text = listings[cellIndex].address
+            destination.rent.text = listings[cellIndex].monthRent
+            destination.distance.text = listings[cellIndex].milesToGU
+            destination.rooms.text = listings[cellIndex].numberOfRooms
+            destination.image.image = listings[cellIndex].houseImage
         }
     }
     
-    
+    /*
+     This function loads the the listings from the database
+     onto cells that contain summary info for each listing. The
+     cells are displayed in a scrollable view on the student homepage.
+     */
     func loadListingViews(){
-    
         //create NSURL
         let getRequestURL = NSURL(string: getProperties)
-        
         //creating NSMutableURLRequest
         let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
-        
         //setting the method to GET
         getRequest.httpMethod = "GET"
-        
         //task to be sent to the GET request
-        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest){
-            data,response,error in
-            
-            if error != nil{
+        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest) {
+            data, response,error in
+            //If there is an error in connecting with the database, print error
+            if error != nil {
                 print("error is \(error)")
                 return;
             }
-            do{
-                //converting response to a NSDictionary
+            do {
+                //converting response to dictionary
                 var propertyJSON : NSDictionary!
                 propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                 
-                //getting the JSON array teams from the response
+                //Getting the properties in an array
                 let properties: NSArray = propertyJSON["properties"] as! NSArray
                 
-                //looping through all the json objects in the array properties
+                //looping through all the objects in the array
                 DispatchQueue.main.async(execute: {
                     for i in 0 ..< properties.count{
-                        //getting the data at each index
+                        //Getting data from each listing and saving to vars
                         let propIdValue = properties[i] as? NSDictionary
                         let propertyID = propIdValue?["property_id"] as! Int
                         let landlordIdValue = properties[i] as? NSDictionary
@@ -112,65 +123,60 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let roomsValue = properties[i] as? NSDictionary
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
                         
+<<<<<<< HEAD
                         let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+=======
+                        //Create a new listing object with the current listing info
+                        let listing = Listing(propertyID: propertyID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+                        //Append this to list of listings
+>>>>>>> 387e1b4f9565c56f57f813c6a7c34729320a0c4c
                         self.listings.append(listing)
                         
-                        // Update our table
+                        //Update the tableview in student homepage to show the listing cells
                         DispatchQueue.main.async(execute: {
                             self.propertiesList.reloadData()
                         })
                     }
-
                 })
-                
-            }catch{
+            }
+            catch {
                 print(error)
             }
         }
         getTask.resume()
-        /*
-        let photo1 = UIImage(named: "Image-1")
-        let listing1 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo1)
-        let listing2 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: nil)
-        let photo3 = UIImage(named: "Image-2")
-        let listing3 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo3)
-        let photo4 = UIImage(named: "Image-3")
-        let listing4 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo4)
-        let photo5 = UIImage(named: "Image-4")
-        let listing5 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo5)
-        let photo6 = UIImage(named: "Image-5")
-        let listing6 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo6)
-        
-        listings += [listing1, listing2, listing3, listing4, listing5, listing6]
- */
     }
     
-    
-    
+    /*
+     Logs a user out of the app if they press the logout button, and 
+     returns them to the homepage.
+     */
     func logout(_ sender : UIButton) {
+        //Checks the credentials of the current user in firebase
         if FIRAuth.auth() != nil {
-            
+            //Tries to log the user out of firebase
             do {
                 try FIRAuth.auth()?.signOut()
                 print("the user is logged out")
+            //If unsuccessful, prints out the error and the current user ID
             } catch let error as NSError {
                 print(error.localizedDescription)
                 print("the current user id is \(FIRAuth.auth()?.currentUser?.uid)")
             }
+            //Tries to log the user out of Google
             do {
                 try GIDSignIn.sharedInstance().signOut()
                 print("Google signed out")
+            //If unsuccessful, prints out the error
             } catch let error as NSError {
                 print(error.localizedDescription)
                 print("Error logging out of google")
             }
+            //Logs out the user out of facebook
             FBSDKLoginManager().logOut()
             print("Facebook signed out")
-    
         }
-        
-        
-        let initialViewController = UIStoryboard(name: "Main", bundle:nil).instantiateInitialViewController()! as UIViewController
+        //Instantiates the login page as the root
+        let initialViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()! as UIViewController
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         appDelegate.window?.rootViewController = initialViewController
     }

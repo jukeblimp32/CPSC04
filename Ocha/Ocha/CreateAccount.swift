@@ -32,7 +32,6 @@ class FirstViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 400)
-        //view.addSubview(scrollView)
         
         userType = 1
         
@@ -207,7 +206,6 @@ class FirstViewController: UIViewController, UITextFieldDelegate{
         self.scrollView.addSubview(toHomePageButton)
         
         view.addSubview(scrollView)
-        
     }
 
     
@@ -377,37 +375,6 @@ class FirstViewController: UIViewController, UITextFieldDelegate{
         textField.resignFirstResponder()
         return true
     }
-
-    
-   
-    /*
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    // The number of rows of data
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
-                    forComponent component: Int) -> String! {
-        return pickerData[row]
-        
-    }
-    
-    // Catpure the picker view selection
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        typeOfUser = pickerData[row]
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-*/
 
 
 }

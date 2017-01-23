@@ -10,67 +10,65 @@ import UIKit
 import Firebase
 import FBSDKLoginKit
 
-class SearchAndFilter: UIViewController {
+class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    @IBOutlet weak var bedroomNum: UILabel!
+    
+    @IBOutlet weak var stepper: UIStepper!
+    
+    @IBOutlet weak var distanceLabel: UILabel!
+    
+    @IBOutlet weak var pickerMin: UIPickerView!
+    
+    @IBOutlet weak var pickerMax: UIPickerView!
+    
+    @IBOutlet weak var slider: UISlider!
+    
+    var pickerData = ["200", "300", "400", "500", "600", "700", "800", "900", "1000", "1100", "1200",
+    "1300", "1400", "1500", "1600", "1700", "1800", "1900", "2000", "2100", "2200", "2300", "2400", "2500", "2600",
+    "2700", "2800", "2900", "3000"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
+        stepper.wraps = true
+        stepper.autorepeat = true
+        stepper.maximumValue = 10
         // Do any additional setup after loading the view, typically from a nib.
-        
-        let viewTitle = UILabel()
-        viewTitle.text = "Search and Filter"
-        viewTitle.font = UIFont(name: viewTitle.font.fontName, size: 20)
-        viewTitle.textColor = UIColor.white
-        viewTitle.textAlignment = .center
-        viewTitle.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: 30)
-        view.addSubview(viewTitle)
-        
-        
-        let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 20)
-        toHomePageButton.setTitle("Logout", for: UIControlState.normal)
-        toHomePageButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
-        toHomePageButton.titleLabel?.textColor = UIColor.white
-        toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
-        toHomePageButton.layer.cornerRadius = 4
-        toHomePageButton.addTarget(self, action: #selector(SearchAndFilter.logout(_:)), for: UIControlEvents.touchUpInside)
-        view.addSubview(toHomePageButton)
-
+        pickerMin.delegate = self
+        pickerMin.dataSource = self
+        pickerMax.delegate = self
+        pickerMax.dataSource = self
+    }
+    
+    @IBAction func changeRoomNum(_ sender: UIStepper) {
+        bedroomNum.text = Int(sender.value).description
     }
     
 
-    func logout(_ sender : UIButton) {
-        if FIRAuth.auth() != nil {
-            
-            do {
-                try FIRAuth.auth()?.signOut()
-                print("the user is logged out")
-            } catch let error as NSError {
-                print(error.localizedDescription)
-                print("the current user id is \(FIRAuth.auth()?.currentUser?.uid)")
-            }
-            do {
-                try GIDSignIn.sharedInstance().signOut()
-                print("Google signed out")
-            } catch let error as NSError {
-                print(error.localizedDescription)
-                print("Error logging out of google")
-            }
-            FBSDKLoginManager().logOut()
-            print("Facebook signed out")
-            
-        }
-        
-        
-        let initialViewController = UIStoryboard(name: "Main", bundle:nil).instantiateInitialViewController()! as UIViewController
-        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-        appDelegate.window?.rootViewController = initialViewController
+    @IBAction func sliderChanged(_ sender: UISlider) {
+
+        self.distanceLabel.text = "Under " + String(format: "%.1f", self.slider.value) + " miles"
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     
 }
