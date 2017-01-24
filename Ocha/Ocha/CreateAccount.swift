@@ -9,206 +9,28 @@
 import UIKit
 import Firebase
 
-class FirstViewController: UIViewController, UITextFieldDelegate{
+class CreateAccount: UITableViewController, UITextFieldDelegate{
     
     //MARK: Outlet vars
-    let firstName = UITextField()
-    let lastName = UITextField()
-    let userName = UITextField()
-    let passWord1 = UITextField()
-    let passWord2 = UITextField()
-    let email = UITextField()
-    let email2 = UITextField()
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var firstName: UITextField!
     
+    @IBOutlet weak var lastName: UITextField!
     
-    let studentUserButton = UIButton()
-    let landlordUserButton = UIButton()
-    var userType: Int!
-    var userTypes: Array<UIButton> = []
-
+    @IBOutlet weak var password1: UITextField!
+    
+    @IBOutlet weak var password2: UITextField!
+    
+    @IBOutlet weak var email: UITextField!
+    
+    @IBOutlet weak var email2: UITextField!
+    
+    @IBOutlet weak var usertype: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 400)
-        
-        userType = 1
-        
-        userTypes = [studentUserButton, landlordUserButton]
-        
-        //View title
-        let viewTitle = UILabel()
-        viewTitle.text = "Create An Account"
-        viewTitle.font = UIFont(name: viewTitle.font.fontName, size: 20)
-        viewTitle.textColor = UIColor.white
-        viewTitle.textAlignment = .center
-        viewTitle.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (13/100), width: view.frame.width * (80/100), height: 20)
-        scrollView.addSubview(viewTitle)
-  
-        //First name label
-        let firstNameLabel = UILabel()
-        firstNameLabel.text = "First Name:"
-        firstNameLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        firstNameLabel.textColor = UIColor.white
-        firstNameLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (20/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(firstNameLabel)
-        
-        //Last name label
-        let lastNameLabel = UILabel()
-        lastNameLabel.text = "Last Name:"
-        lastNameLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        lastNameLabel.textColor = UIColor.white
-        lastNameLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (27/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(lastNameLabel)
-        
-        //Username label
-        let usernameLabel = UILabel()
-        usernameLabel.text = "Username:"
-        usernameLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        usernameLabel.textColor = UIColor.white
-        usernameLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (34/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(usernameLabel)
-        
-        //Password label
-        let passwordLabel = UILabel()
-        passwordLabel.text = "Password:"
-        passwordLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        passwordLabel.textColor = UIColor.white
-        passwordLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (41/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(passwordLabel)
-        
-        //Confirm Password Label
-        let confirmPasswordLabel = UILabel()
-        confirmPasswordLabel.text = "Confirm Password:"
-        confirmPasswordLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        confirmPasswordLabel.textColor = UIColor.white
-        confirmPasswordLabel.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (48/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(confirmPasswordLabel)
-        
-        //Email Label
-        let emailLabel = UILabel()
-        emailLabel.text = "Email:"
-        emailLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        emailLabel.textColor = UIColor.white
-        emailLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (55/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(emailLabel)
-        
-        //Confirm email label
-        let confirmEmailLabel = UILabel()
-        confirmEmailLabel.text = "Confirm Email:"
-        confirmEmailLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        confirmEmailLabel.textColor = UIColor.white
-        confirmEmailLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (62/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(confirmEmailLabel)
-        
-        //Type of User label
-        let userTypeLabel = UILabel()
-        userTypeLabel.text = "Select Type Of User:"
-        userTypeLabel.font = UIFont(name: viewTitle.font.fontName, size: 15)
-        userTypeLabel.textColor = UIColor.white
-        userTypeLabel.frame = CGRect(x: (view.frame.width) / 8, y: (view.frame.height) * (69/100), width: view.frame.width / 2, height: 15)
-        scrollView.addSubview(userTypeLabel)
-        
-        //
-        firstName.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (20/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(firstName)
-        firstName.borderStyle = UITextBorderStyle.roundedRect
-        firstName.backgroundColor = UIColor.white
-        self.firstName.delegate = self
-        
-        lastName.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (27/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(lastName)
-        lastName.borderStyle = UITextBorderStyle.roundedRect
-        lastName.backgroundColor = UIColor.white
-        self.lastName.delegate = self
-        
-        userName.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (34/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(userName)
-        userName.borderStyle = UITextBorderStyle.roundedRect
-        userName.backgroundColor = UIColor.white
-        self.userName.delegate = self
-        
-        passWord1.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (41/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(passWord1)
-        passWord1.borderStyle = UITextBorderStyle.roundedRect
-        passWord1.backgroundColor = UIColor.white
-        passWord1.isSecureTextEntry = true
-        self.passWord1.delegate = self
-        
-        passWord2.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (48/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(passWord2)
-        passWord2.borderStyle = UITextBorderStyle.roundedRect
-        passWord2.backgroundColor = UIColor.white
-        passWord2.isSecureTextEntry = true
-        self.passWord2.delegate = self
-        
-        email.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (55/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(email)
-        email.borderStyle = UITextBorderStyle.roundedRect
-        email.backgroundColor = UIColor.white
-        self.email.delegate = self
-        
-        email2.frame = CGRect(x: (view.frame.width) / 1.8, y: (view.frame.height) * (62/100), width: view.frame.width * 0.4, height: 25)
-        scrollView.addSubview(email2)
-        email2.borderStyle = UITextBorderStyle.roundedRect
-        email2.backgroundColor = UIColor.white
-        // Make the final field have a done button rather than return
-        email2.returnKeyType = UIReturnKeyType.done
-        self.email2.delegate = self
-        
-        
-        //Landlord button
-        landlordUserButton.frame = CGRect(x: (view.frame.width) / 2, y: (view.frame.height) * (75/100), width: view.frame.width * (1/3), height: 50)
-        landlordUserButton.setTitle("Landlord", for: UIControlState.normal)
-        landlordUserButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
-        landlordUserButton.backgroundColor = UIColor(colorLiteralRed: 0.8, green: 0.8, blue: 0.8, alpha: 0.2)
-        landlordUserButton.setTitleColor(UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.2), for: .normal)
-        landlordUserButton.addTarget(self, action: #selector(FirstViewController.chooseUser(_:)), for: UIControlEvents.touchUpInside)
-        landlordUserButton.layer.cornerRadius = 4
-        scrollView.addSubview(landlordUserButton)
-        self.scrollView.addSubview(landlordUserButton)
-        
-        //Student button
-        studentUserButton.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (75/100), width: view.frame.width * (1/3), height: 50)
-        studentUserButton.setTitle("Student", for: UIControlState.normal)
-        studentUserButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
-        studentUserButton.backgroundColor = UIColor.white
-        studentUserButton.setTitleColor(UIColor.black, for: .normal)
-        studentUserButton.tag = 1
-        studentUserButton.addTarget(self, action: #selector(FirstViewController.chooseUser(_:)), for: UIControlEvents.touchUpInside)
-        studentUserButton.layer.cornerRadius = 4
-        scrollView.addSubview(studentUserButton)
-        self.scrollView.addSubview(studentUserButton)
-        
-        //Submit button
-        let submitButton = UIButton()
-        submitButton.frame = CGRect(x: (view.frame.width) * (2/3), y: (view.frame.height) * (90/100), width: view.frame.width * (1/4), height: 30)
-        submitButton.setTitle("Submit", for: UIControlState.normal)
-        submitButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
-        submitButton.titleLabel?.textColor = UIColor.white
-        submitButton.addTarget(self, action: #selector(FirstViewController.submitInfo(_:)), for: UIControlEvents.touchUpInside)
-        submitButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
-        submitButton.layer.cornerRadius = 4
-        scrollView.addSubview(submitButton)
-        self.scrollView.addSubview(submitButton)
-
-        //Back button
-        let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (5/100), width: view.frame.width / 5 , height: 20)
-        toHomePageButton.setTitle("Back", for: UIControlState.normal)
-        toHomePageButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
-        toHomePageButton.titleLabel?.textColor = UIColor.white
-        toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
-        toHomePageButton.layer.cornerRadius = 4
-        toHomePageButton.addTarget(self, action: #selector(FirstViewController.backToMain(_:)), for: UIControlEvents.touchUpInside)
-        scrollView.addSubview(toHomePageButton)
-        self.scrollView.addSubview(toHomePageButton)
-        
-        view.addSubview(scrollView)
     }
-
-    
 
     @IBAction func backToMain(_ sender: Any) {
         let initialViewController = UIStoryboard(name: "Main", bundle:nil).instantiateInitialViewController()! as UIViewController
@@ -216,38 +38,21 @@ class FirstViewController: UIViewController, UITextFieldDelegate{
         appDelegate.window?.rootViewController = initialViewController
     }
     
-    @IBAction func chooseUser(_ sender: UIButton) {
-        for button in userTypes {
-            if button == sender {
-                userType = button.tag
-                button.backgroundColor = UIColor.white
-                button.setTitleColor(UIColor.black, for: .normal)
-            }
-            else {
-                button.backgroundColor = UIColor(colorLiteralRed: 0.8, green: 0.8, blue: 0.8, alpha: 0.2)
-                button.titleLabel?.textColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.2)
-            }
-        }
-    }
-
-    
-    @IBAction func submitInfo(_ sender: UIButton) {
-        //MARK: send these to database
-        
+    @IBAction func submitInfo(_ sender: Any) {
         // Only if emails are the same and passwords are same
-        if email.text == email2.text && passWord1.text == passWord2.text
+        if email.text == email2.text && password1.text == password2.text
         {
-            guard let email = email2.text, let password = passWord2.text, let name = firstName.text else{
+            guard let email = email2.text, let password = password2.text, let name = firstName.text else{
                 print("Form is not valid")
                 return
             }
             
-            if firstName.text == "" || lastName.text == "" || userName.text == ""
+            if firstName.text == "" || lastName.text == ""
             {
                 let alert = UIAlertController(title: "Empty Fields", message:"Make sure you have entered information for all fields", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: .default))
                 self.present(alert, animated: true){}
-
+                
             }
             // Create user in Firebase
             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user:FIRUser?, error) in
@@ -297,7 +102,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate{
                 let usersReference = dataRef.child("users").child(uid)
                 var fullname = name + " " + self.lastName.text!
                 var type = ""
-                if self.userType == 1 {
+                if self.usertype.selectedSegmentIndex == 0 {
                     type = "Student"
                 }
                 else {
@@ -323,14 +128,8 @@ class FirstViewController: UIViewController, UITextFieldDelegate{
             alertVC.addAction(alertActionOkay)
             self.present(alertVC, animated: true, completion: nil)
         }
-        
     }
     
-    func backToLogin(_ sender : UIButton) {
-        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "Login") as UIViewController
-        self.dismiss(animated: true, completion: nil)
-        self.present(viewController, animated: true, completion: nil)
-    }
     
     func transitionToLogin(){
         let viewController = self.storyboard!.instantiateViewController(withIdentifier: "Login") as UIViewController
