@@ -112,6 +112,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         //Getting data from each listing and saving to vars
                         let propIdValue = properties[i] as? NSDictionary
                         let propertyID = propIdValue?["property_id"] as! Int
+                        let landlordIdValue = properties[i] as? NSDictionary
+                        let landlordID = landlordIdValue?["landlord_id"] as! String
                         let addressValue = properties[i] as? NSDictionary
                         let address = addressValue?["address"] as! String
                         let milesValue = properties[i] as? NSDictionary
@@ -121,9 +123,13 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let roomsValue = properties[i] as? NSDictionary
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
                         
+<<<<<<< HEAD
+                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+=======
                         //Create a new listing object with the current listing info
                         let listing = Listing(propertyID: propertyID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
                         //Append this to list of listings
+>>>>>>> 387e1b4f9565c56f57f813c6a7c34729320a0c4c
                         self.listings.append(listing)
                         
                         //Update the tableview in student homepage to show the listing cells

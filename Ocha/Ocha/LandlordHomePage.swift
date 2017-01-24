@@ -95,6 +95,8 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         //getting the data at each index
                         let propIdValue = properties[i] as? NSDictionary
                         let propertyID = propIdValue?["property_id"] as! Int
+                        let landlordIdValue = properties[i] as? NSDictionary
+                        let landlordID = landlordIdValue?["landlord_id"] as! String
                         let addressValue = properties[i] as? NSDictionary
                         let address = addressValue?["address"] as! String
                         let milesValue = properties[i] as? NSDictionary
@@ -104,7 +106,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let roomsValue = properties[i] as? NSDictionary
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
                         
-                        let listing = Listing(propertyID: propertyID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
                         self.listings.append(listing)
                         
                         // Update our table
@@ -179,22 +181,36 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        /*
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        var listingCount: Int = 0
+        
+        if(listings[value(forKey: landlordID)] == listings[landlordID: uid]){
+            listingCount += 1
+        }
+        
+        return listingCount
+ */
         return listings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
         
         let cellIdentifier = "ListingTableViewCell"
         let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
         
+        
         let listing = listings[indexPath.row]
         
-        cell.propertyAddress.text = listing.address
-        cell.propertyDistance.text = String(listing.milesToGU)
-        cell.propertyRent.text = String(listing.monthRent)
-        cell.propertyRooms.text = String(listing.numberOfRooms)
-        cell.propertyImage.image = listing.houseImage
-        
+        if(listing.landlordID == uid){
+            cell.propertyAddress.text = listing.address
+            cell.propertyDistance.text = String(listing.milesToGU)
+            cell.propertyRent.text = String(listing.monthRent)
+            cell.propertyRooms.text = String(listing.numberOfRooms)
+            cell.propertyImage.image = listing.houseImage
+        }
         return cell
     }
     

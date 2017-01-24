@@ -16,8 +16,12 @@ class Listing {
     var milesToGU: String
     var houseImage: UIImage?
 
+<<<<<<< HEAD
     
     init(propertyID: Int, landlordID: String, address: String, milesToGU: String, numberOfRooms: String, monthRent: String, houseImage : UIImage?) {
+=======
+    init(propertyID: Int, address: String, milesToGU: String, numberOfRooms: String, monthRent: String, houseImage : UIImage?) {
+>>>>>>> 387e1b4f9565c56f57f813c6a7c34729320a0c4c
         self.address = address
         self.milesToGU = milesToGU
         self.propertyID = propertyID
