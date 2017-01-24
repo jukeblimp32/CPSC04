@@ -10,6 +10,7 @@ import UIKit
 
 class ListingPage: UIViewController {
     
+    
     var image = UIImageView()
     
     var address = UILabel()
@@ -25,6 +26,8 @@ class ListingPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       // addressText = address.text!
+        //rentText = rent.text!
         address.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (15/100), width: view.frame.width * (90/100) , height: 30)
         address.font = UIFont(name: address.font.fontName, size: 20)
         address.textColor = UIColor.white
@@ -79,6 +82,26 @@ class ListingPage: UIViewController {
         view.addSubview(toHomePageButton)
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //If the segue from any table cell to listingPage is clicked
+        if segue.identifier == "EditListing",
+            //Sets the page to be loaded as ListingPage
+            let destination = segue.destination as? EditListing
+            //Gets the selected cell index
+            //Setting the variables in the listing class to the cell info 
+        {
+            destination.address = address.text!
+            destination.rent = rent.text!
+            destination.bedroomNum = rooms.text!
+            destination.distance = distance.text!
+            destination.image = image.image!
+        }
+    }
+  
+    
+
+
     
     
     
