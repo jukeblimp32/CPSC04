@@ -180,16 +180,17 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /*
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        var listingCount: Int = 0
         
-        if(listings[value(forKey: landlordID)] == listings[landlordID: uid]){
-            listingCount += 1
-        }
+       // let uid = FIRAuth.auth()?.currentUser?.uid
+        //var listingCount: Int = 0
         
-        return listingCount
- */
+        //if(listings[Listing]){
+          //  listingCount += 1
+       // }
+         //println(listings[landlordID])
+        
+        //return listingCount
+ 
         return listings.count
     }
     
@@ -210,6 +211,14 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             cell.propertyRooms.text = String(listing.numberOfRooms)
             cell.propertyImage.image = listing.houseImage
         }
+        print("HERE")
+        
+       // var myAnswer = self.listings[];
+       // print (myAnswer)
+        //if let value = listings[0]{
+        //    print(value)
+       // }
+        
         return cell
     }
     

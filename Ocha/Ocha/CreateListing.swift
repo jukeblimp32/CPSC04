@@ -17,6 +17,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
     
     
     let URL_SAVE_PROPERTY = "http://147.222.165.203/MyWebService/api/CreateProperty.php"
+    let propertyDetails = "http://147.222.165.203/MyWebService/api/PropertyDetails.php"
     
     let address = UITextField()
     let rentPerMonth = UITextField()
@@ -246,8 +247,9 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         
         //getting values from text fields
 
+        let uid = FIRAuth.auth()?.currentUser?.uid
         //let landlordID = self.firstName
-        let landlordID = "elma"
+        let landlordID = uid
         let propertyAddress = address.text
         let monthlyRent = rentPerMonth.text
         let propertyDeposit = deposit.text
@@ -270,7 +272,8 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         
             //post parameter
             //concatenating keys and values from text field
-            let postParameters="landlord_id="+landlordID+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
+            //let llid = "landlord_id="+landlordID!
+            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
         
             //adding parameters to request body
             saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
@@ -298,6 +301,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
                     print(error)
                 }
             }
+            
             saveTask.resume()
             sleep(2)
             tabBarController?.selectedIndex = 0
@@ -312,8 +316,9 @@ class CreateListing: UIViewController, UITextFieldDelegate {
             leaseLength.text = ""
 
         }
+        
+        
     }
-    
     
     func logout(_ sender : UIButton) {
         if FIRAuth.auth() != nil {
