@@ -267,12 +267,7 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
         //getting values from text fields
 
         let uid = FIRAuth.auth()?.currentUser?.uid
-        //let landlordID = self.firstName
-<<<<<<< HEAD
-=======
-        let uid = FIRAuth.auth()?.currentUser?.uid
 
->>>>>>> d5477f3c3a1ff11c8fd023d93df7d09838348315
         let landlordID = uid
         let propertyAddress = address.text
         let monthlyRent = rentPerMonth.text
@@ -296,15 +291,11 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
         
             //post parameter
             //concatenating keys and values from text field
-<<<<<<< HEAD
-            //let llid = "landlord_id="+landlordID!
-            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
-=======
+
             let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
             
             // Upload Image
             self.uploadImage(address: propertyAddress!)
->>>>>>> d5477f3c3a1ff11c8fd023d93df7d09838348315
         
             //adding parameters to request body
             saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
@@ -351,8 +342,6 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
         
     }
     
-<<<<<<< HEAD
-=======
     private func uploadImage(address : String)
     {
         // Firebase images. First create a unique id number.
@@ -424,8 +413,6 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
         dismiss(animated: true, completion:nil)
     }
     
-    
->>>>>>> d5477f3c3a1ff11c8fd023d93df7d09838348315
     func logout(_ sender : UIButton) {
         if FIRAuth.auth() != nil {
             
