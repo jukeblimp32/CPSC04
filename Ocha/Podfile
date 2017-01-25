@@ -9,6 +9,7 @@ target 'Ocha' do
   pod 'Firebase'
   pod 'FirebaseAuth'
   pod 'FirebaseDatabase'
+  pod 'Firebase/Storage'
   pod 'GoogleSignIn'
   pod 'FBSDKCoreKit'
   pod 'FBSDKShareKit'

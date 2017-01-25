@@ -10,11 +10,22 @@ import UIKit
 import Firebase
 import FBSDKLoginKit
 
-class CreateListing: UIViewController, UITextFieldDelegate {
+class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet var scrollView: UIScrollView!
     
-    
+    /*lazy var uploadImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "default")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        
+       // imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        imageView.isUserInteractionEnabled = true
+        
+        return imageView
+    }() */
+
     
     let URL_SAVE_PROPERTY = "http://147.222.165.203/MyWebService/api/CreateProperty.php"
     
@@ -27,6 +38,7 @@ class CreateListing: UIViewController, UITextFieldDelegate {
     let milesToGU = UITextField()
     let dateAvailable = UITextField()
     let leaseLength = UITextField()
+    let uploadImageView = UIImageView()
     //var firstName = " "
     override func viewDidLoad() {
         
@@ -190,6 +202,13 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         leaseLength.returnKeyType = UIReturnKeyType.done
         self.leaseLength.delegate = self
         
+        uploadImageView.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (90/100), width: view.frame.width * 0.4, height: 25)
+        uploadImageView.image = UIImage(named: "default")
+        uploadImageView.contentMode = .scaleAspectFill
+        uploadImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
+        uploadImageView.isUserInteractionEnabled = true
+        scrollView.addSubview(uploadImageView)
+        
         
         //Submit button
         let submitButton = UIButton()
@@ -247,7 +266,9 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         //getting values from text fields
 
         //let landlordID = self.firstName
-        let landlordID = "elma"
+        let uid = FIRAuth.auth()?.currentUser?.uid
+
+        let landlordID = uid
         let propertyAddress = address.text
         let monthlyRent = rentPerMonth.text
         let propertyDeposit = deposit.text
@@ -270,7 +291,10 @@ class CreateListing: UIViewController, UITextFieldDelegate {
         
             //post parameter
             //concatenating keys and values from text field
-            let postParameters="landlord_id="+landlordID+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
+            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
+            
+            // Upload Image
+            self.uploadImage(address: propertyAddress!)
         
             //adding parameters to request body
             saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
@@ -312,6 +336,77 @@ class CreateListing: UIViewController, UITextFieldDelegate {
             leaseLength.text = ""
 
         }
+    }
+    
+    private func uploadImage(address : String)
+    {
+        // Firebase images. First create a unique id number.
+        let imageName = NSUUID().uuidString
+        let storageRef = FIRStorage.storage().reference().child("Listing Images").child("\(imageName).png")
+        if let uploadData = UIImagePNGRepresentation(self.uploadImageView.image!)
+        {
+            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                print(metadata)
+                // Set values
+                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                    let values = ["address": address, "image1": uploadImageUrl]
+                    
+                    // After uploading image to storage, add to property photos database
+                    let fireData = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+                    /**********************************************************
+                     * Need to swap out with property id
+                     ***********************************************************/
+                    let listingsReference = fireData.child("listings").child("89")
+                    listingsReference.updateChildValues(values, withCompletionBlock: {
+                        (err, ref) in
+                        if err != nil {
+                            print(err)
+                            return
+                        }
+                        
+                    })
+                    
+                }
+                
+                
+            })
+            
+        }
+
+    }
+    
+    func handleSelectListingImage()
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        var selectedImageFromPicker: UIImage?
+        
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage{
+            selectedImageFromPicker = editedImage
+        }
+        else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage{
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker{
+            uploadImageView.image = selectedImage
+        }
+        dismiss(animated:true, completion:nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("Cancelled picker")
+        dismiss(animated: true, completion:nil)
     }
     
     

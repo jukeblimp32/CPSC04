@@ -123,13 +123,12 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let roomsValue = properties[i] as? NSDictionary
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
                         
-<<<<<<< HEAD
+
                         let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
-=======
-                        //Create a new listing object with the current listing info
-                        let listing = Listing(propertyID: propertyID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+
+
                         //Append this to list of listings
->>>>>>> 387e1b4f9565c56f57f813c6a7c34729320a0c4c
+
                         self.listings.append(listing)
                         
                         //Update the tableview in student homepage to show the listing cells

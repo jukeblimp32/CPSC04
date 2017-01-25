@@ -97,7 +97,7 @@
 		15A5EED01DD6855A00F1D8A1 /* SearchAndFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAndFilter.swift; sourceTree = "<group>"; };
 		15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesPage.swift; sourceTree = "<group>"; };
 		3E85B77C9845080382DC0D46 /* Pods_Ocha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ocha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.debug.xcconfig"; sourceTree = "<group>"; };
+		52E3FF2C00B97A7DB8DC3C7B /* Pods-Ocha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.release.xcconfig"; sourceTree = "<group>"; };
 		7C854E4B1DC400AD00E02883 /* Ocha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ocha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C854E4E1DC400AD00E02883 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C854E501DC400AD00E02883 /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		7C89D4E51DC97F8B00326666 /* Ocha-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ocha-Bridging-Header.h"; sourceTree = "<group>"; };
 		7C89D4E81DC993C200326666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingTableViewCell.swift; sourceTree = "<group>"; };
-		D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.release.xcconfig"; sourceTree = "<group>"; };
+		9E0779C18BEFFFDCBE19F451 /* Pods-Ocha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,8 +226,8 @@
 		A7E8886066EE2B9CC47C4C3D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */,
-				D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */,
+				9E0779C18BEFFFDCBE19F451 /* Pods-Ocha.debug.xcconfig */,
+				52E3FF2C00B97A7DB8DC3C7B /* Pods-Ocha.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -411,7 +411,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E35952F26705AC32D8FE0AF2 /* [CP] Copy Pods Resources */ = {
@@ -522,7 +522,6 @@
 /* Begin XCBuildConfiguration section */
 		15A0393B1DECEBCE00FD2101 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = OchaTests/Info.plist;
@@ -536,7 +535,6 @@
 		};
 		15A0393C1DECEBCE00FD2101 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = OchaTests/Info.plist;
@@ -550,7 +548,6 @@
 		};
 		15A039501DED098D00FD2101 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = OchaUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -563,7 +560,6 @@
 		};
 		15A039511DED098D00FD2101 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = OchaUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -671,7 +667,7 @@
 		};
 		7C854E761DC400AD00E02883 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */;
+			baseConfigurationReference = 9E0779C18BEFFFDCBE19F451 /* Pods-Ocha.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -691,7 +687,7 @@
 		};
 		7C854E771DC400AD00E02883 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */;
+			baseConfigurationReference = 52E3FF2C00B97A7DB8DC3C7B /* Pods-Ocha.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
