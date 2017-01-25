@@ -13,6 +13,7 @@
 		150E9DBF1DF2405800915C2C /* CreateListingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E9DBE1DF2405800915C2C /* CreateListingTest.swift */; };
 		150E9DC11DF2436600915C2C /* FavoritePageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E9DC01DF2436600915C2C /* FavoritePageTest.swift */; };
 		150E9DC31DF2498A00915C2C /* SearchAndFilterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E9DC21DF2498A00915C2C /* SearchAndFilterTest.swift */; };
+		1516D1521E36BDFF009FBCB3 /* EditListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516D1511E36BDFF009FBCB3 /* EditListing.swift */; };
 		151930381DE25D1900858B8A /* ListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151930371DE25D1900858B8A /* ListingPage.swift */; };
 		154C50B31DE23C1400F39D67 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154C50B21DE23C1400F39D67 /* Listing.swift */; };
 		155C36B81DC4205A00154B12 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155C36B71DC4205A00154B12 /* Login.swift */; };
@@ -70,6 +71,7 @@
 		150E9DBE1DF2405800915C2C /* CreateListingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateListingTest.swift; sourceTree = "<group>"; };
 		150E9DC01DF2436600915C2C /* FavoritePageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritePageTest.swift; sourceTree = "<group>"; };
 		150E9DC21DF2498A00915C2C /* SearchAndFilterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAndFilterTest.swift; sourceTree = "<group>"; };
+		1516D1511E36BDFF009FBCB3 /* EditListing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListing.swift; sourceTree = "<group>"; };
 		151930371DE25D1900858B8A /* ListingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingPage.swift; sourceTree = "<group>"; };
 		154C50B21DE23C1400F39D67 /* Listing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		155C36B71DC4205A00154B12 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -97,7 +99,7 @@
 		15A5EED01DD6855A00F1D8A1 /* SearchAndFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAndFilter.swift; sourceTree = "<group>"; };
 		15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesPage.swift; sourceTree = "<group>"; };
 		3E85B77C9845080382DC0D46 /* Pods_Ocha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ocha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.debug.xcconfig"; sourceTree = "<group>"; };
+		52E3FF2C00B97A7DB8DC3C7B /* Pods-Ocha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.release.xcconfig"; sourceTree = "<group>"; };
 		7C854E4B1DC400AD00E02883 /* Ocha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ocha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C854E4E1DC400AD00E02883 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C854E501DC400AD00E02883 /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
@@ -110,7 +112,7 @@
 		7C89D4E51DC97F8B00326666 /* Ocha-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ocha-Bridging-Header.h"; sourceTree = "<group>"; };
 		7C89D4E81DC993C200326666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingTableViewCell.swift; sourceTree = "<group>"; };
-		D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.release.xcconfig"; sourceTree = "<group>"; };
+		9E0779C18BEFFFDCBE19F451 /* Pods-Ocha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 				15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */,
 				1503592A1DD000DE005AD597 /* EditAccountInfo.swift */,
 				15A5EECA1DD684AF00F1D8A1 /* ManageUsers.swift */,
+				1516D1511E36BDFF009FBCB3 /* EditListing.swift */,
 				15A5EED01DD6855A00F1D8A1 /* SearchAndFilter.swift */,
 				15A5EECE1DD684ED00F1D8A1 /* AdminNotifications.swift */,
 				154C50B21DE23C1400F39D67 /* Listing.swift */,
@@ -226,8 +229,8 @@
 		A7E8886066EE2B9CC47C4C3D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */,
-				D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */,
+				9E0779C18BEFFFDCBE19F451 /* Pods-Ocha.debug.xcconfig */,
+				52E3FF2C00B97A7DB8DC3C7B /* Pods-Ocha.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -411,7 +414,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E35952F26705AC32D8FE0AF2 /* [CP] Copy Pods Resources */ = {
@@ -467,6 +470,7 @@
 				15A5EED31DD6857600F1D8A1 /* FavoritesPage.swift in Sources */,
 				155C36B81DC4205A00154B12 /* Login.swift in Sources */,
 				15A5EEC91DD6849800F1D8A1 /* ApproveListings.swift in Sources */,
+				1516D1521E36BDFF009FBCB3 /* EditListing.swift in Sources */,
 				151930381DE25D1900858B8A /* ListingPage.swift in Sources */,
 				15A5EED11DD6855A00F1D8A1 /* SearchAndFilter.swift in Sources */,
 				15A5EECF1DD684ED00F1D8A1 /* AdminNotifications.swift in Sources */,
@@ -522,7 +526,6 @@
 /* Begin XCBuildConfiguration section */
 		15A0393B1DECEBCE00FD2101 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = OchaTests/Info.plist;
@@ -536,7 +539,6 @@
 		};
 		15A0393C1DECEBCE00FD2101 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = OchaTests/Info.plist;
@@ -550,7 +552,6 @@
 		};
 		15A039501DED098D00FD2101 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = OchaUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -563,7 +564,6 @@
 		};
 		15A039511DED098D00FD2101 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = OchaUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -671,7 +671,7 @@
 		};
 		7C854E761DC400AD00E02883 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 734755122140E1ADC7D7486D /* Pods-Ocha.debug.xcconfig */;
+			baseConfigurationReference = 9E0779C18BEFFFDCBE19F451 /* Pods-Ocha.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -691,7 +691,7 @@
 		};
 		7C854E771DC400AD00E02883 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3AECAF0DF52D4BE8855CBD4 /* Pods-Ocha.release.xcconfig */;
+			baseConfigurationReference = 52E3FF2C00B97A7DB8DC3C7B /* Pods-Ocha.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
