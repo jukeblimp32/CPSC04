@@ -62,6 +62,16 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         return pickerData[row]
     }
     
+    @IBAction func clearFilters(_ sender: Any) {
+    }
+    
+    
+    //ELMA HEREEEEE
+    @IBAction func applyFilters(_ sender: Any) {
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
