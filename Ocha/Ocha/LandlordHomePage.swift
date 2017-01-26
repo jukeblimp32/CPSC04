@@ -52,12 +52,12 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             let destination = segue.destination as? ListingPage,
             let blogIndex = propertiesList.indexPathForSelectedRow?.row
         {
-           // destination.addressText = listings[blogIndex].address
             destination.address.text = listings[blogIndex].address
             destination.rent.text = listings[blogIndex].monthRent
             destination.distance.text = listings[blogIndex].milesToGU
             destination.rooms.text = listings[blogIndex].numberOfRooms
             destination.image.image = listings[blogIndex].houseImage
+            destination.propertyID = listings[blogIndex].propertyID
         }
     }
     

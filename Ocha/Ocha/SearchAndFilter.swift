@@ -24,7 +24,12 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
     
     @IBOutlet weak var slider: UISlider!
     
-    var pickerData = ["200", "300", "400", "500", "600", "700", "800", "900", "1000", "1100", "1200",
+    @IBOutlet weak var propTypeSelect: UISegmentedControl!
+    
+    @IBOutlet weak var petSelect: UISegmentedControl!
+    
+    
+    var pickerData = ["Any", "200", "300", "400", "500", "600", "700", "800", "900", "1000", "1100", "1200",
     "1300", "1400", "1500", "1600", "1700", "1800", "1900", "2000", "2100", "2200", "2300", "2400", "2500", "2600", "2700", "2800", "2900", "3000"]
     
     override func viewDidLoad() {
@@ -41,12 +46,16 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
     }
     
     @IBAction func changeRoomNum(_ sender: UIStepper) {
-        bedroomNum.text = Int(sender.value).description
+        if Int(sender.value).description == "0" {
+            self.bedroomNum.text = "Any"
+        }
+        else {
+            self.bedroomNum.text = Int(sender.value).description
+        }
     }
     
 
     @IBAction func sliderChanged(_ sender: UISlider) {
-
         self.distanceLabel.text = "Under " + String(format: "%.1f", self.slider.value) + " miles"
     }
     
@@ -62,12 +71,39 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         return pickerData[row]
     }
     
+    @IBAction func clearFilters(_ sender: Any) {
+        pickerMin.selectRow(0, inComponent: 0, animated: true)
+        pickerMax.selectRow(0, inComponent: 0, animated: true)
+        self.distanceLabel.text = "Under 10.0 miles"
+        slider.value = 10
+        stepper.value = 0
+        self.bedroomNum.text = "Any"
+        propTypeSelect.selectedSegmentIndex = 0
+        petSelect.selectedSegmentIndex = 0
+    }
+    
+    @IBAction func applyFilters(_ sender: Any) {
+        var minPriceFilter = pickerData[pickerMin.selectedRow(inComponent: 0)]
+        var maxPriceFilter = pickerData[pickerMax.selectedRow(inComponent: 0)]
+        var bedroomFilter = bedroomNum.text
+        var distanceFilter = distanceLabel.text
+        var propertyFilter = propTypeSelect.titleForSegment(at: propTypeSelect.selectedSegmentIndex)
+        var petFilter = petSelect.titleForSegment(at: petSelect.selectedSegmentIndex)
+        
+        print (minPriceFilter)
+        print (maxPriceFilter)
+        print (bedroomFilter)
+        print (distanceFilter)
+        print(propertyFilter)
+        print (petFilter)
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
     
     
 }
