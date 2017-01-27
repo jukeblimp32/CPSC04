@@ -35,7 +35,9 @@
 #endif
 
 #ifndef GTM_DECLARE_GENERICS
-  #if __has_feature(objc_generics)
+  #if __has_feature(objc_generics) \
+    && ((!TARGET_OS_IPHONE && defined(MAC_OS_X_VERSION_10_11) && MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_11) \
+      || (TARGET_OS_IPHONE && defined(__IPHONE_9_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0))
     #define GTM_DECLARE_GENERICS 1
   #else
     #define GTM_DECLARE_GENERICS 0

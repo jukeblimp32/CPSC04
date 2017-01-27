@@ -12,8 +12,8 @@ import FBSDKLoginKit
 
 class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+
     @IBOutlet weak var scrollView: UIScrollView!
-    
     
     /*lazy var uploadImageView: UIImageView = {
         let imageView = UIImageView()
@@ -415,7 +415,7 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
                     /**********************************************************
                      * Need to swap out with property id
                      ***********************************************************/
-                    let listingsReference = fireData.child("listings").child("90")
+                    let listingsReference = fireData.child("listings").child("89")
                     listingsReference.updateChildValues(values, withCompletionBlock: {
                         (err, ref) in
                         if err != nil {

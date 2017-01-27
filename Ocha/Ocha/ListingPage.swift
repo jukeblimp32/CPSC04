@@ -21,6 +21,8 @@ class ListingPage: UIViewController {
     
     var rent = UILabel()
     
+    var propertyID : Int = 0
+    
     @IBOutlet weak var toHomePageButton: UIButton!
 
     override func viewDidLoad() {
@@ -96,6 +98,7 @@ class ListingPage: UIViewController {
             destination.bedroomNum = rooms.text!
             destination.distance = distance.text!
             destination.image = image.image!
+            destination.propertyID = propertyID
         }
     }
   

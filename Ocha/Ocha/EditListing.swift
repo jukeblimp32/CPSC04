@@ -20,6 +20,8 @@ class EditListing: UITableViewController {
     
     var image : UIImage = UIImage(named: "default")!
     
+    var propertyID : Int = 0
+    
     @IBOutlet weak var addressTextField: UITextField!
     
     @IBOutlet weak var rentTextField: UITextField!
@@ -64,6 +66,7 @@ class EditListing: UITableViewController {
             destination.rooms.text = bedroomNum
             destination.distance.text = distance
             destination.image.image = image
+            destination.propertyID = propertyID
         }
     }
     
