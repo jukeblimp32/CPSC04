@@ -89,6 +89,8 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                 //getting the JSON array teams from the response
                 let properties: NSArray = propertyJSON["properties"] as! NSArray
                 
+                let uid = FIRAuth.auth()?.currentUser?.uid
+                
                 //looping through all the json objects in the array properties
                 DispatchQueue.main.async(execute: {
                     for i in 0 ..< properties.count{
@@ -106,8 +108,11 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let roomsValue = properties[i] as? NSDictionary
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
                         
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
-                        self.listings.append(listing)
+                        if landlordID == uid {
+                        
+                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+                            self.listings.append(listing)
+                        }
                         
                         // Update our table
                         DispatchQueue.main.async(execute: {
@@ -204,13 +209,11 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let listing = listings[indexPath.row]
         
-        if(listing.landlordID == uid){
-            cell.propertyAddress.text = listing.address
-            cell.propertyDistance.text = String(listing.milesToGU)
-            cell.propertyRent.text = String(listing.monthRent)
-            cell.propertyRooms.text = String(listing.numberOfRooms)
-            cell.propertyImage.image = listing.houseImage
-        }
+        cell.propertyAddress.text = listing.address
+        cell.propertyDistance.text = String(listing.milesToGU)
+        cell.propertyRent.text = String(listing.monthRent)
+        cell.propertyRooms.text = String(listing.numberOfRooms)
+        cell.propertyImage.image = listing.houseImage
         return cell
     }
     

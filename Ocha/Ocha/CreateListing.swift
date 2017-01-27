@@ -12,7 +12,8 @@ import FBSDKLoginKit
 
 class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet var scrollView: UIScrollView!
+
+    @IBOutlet weak var scrollView: UIScrollView!
     
     /*lazy var uploadImageView: UIImageView = {
         let imageView = UIImageView()

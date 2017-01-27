@@ -458,13 +458,22 @@
                     <view key="view" contentMode="scaleToFill" id="B81-js-uxB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ugp-4i-jEJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Create Listing" image="CreateListing" selectedImage="CreateListing" id="fwO-sI-cSL"/>
+                    <connections>
+                        <outlet property="scrollView" destination="Ugp-4i-jEJ" id="FAc-7u-0gU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="szx-qq-Uvq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="22" y="-1586"/>
+            <point key="canvasLocation" x="21.600000000000001" y="-1586.3568215892055"/>
         </scene>
         <!--Landlord Homepage-->
         <scene sceneID="Z7V-aD-BpN">
