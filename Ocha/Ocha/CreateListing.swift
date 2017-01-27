@@ -361,7 +361,7 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
                     /**********************************************************
                      * Need to swap out with property id
                      ***********************************************************/
-                    let listingsReference = fireData.child("listings").child("90")
+                    let listingsReference = fireData.child("listings").child("117")
                     listingsReference.updateChildValues(values, withCompletionBlock: {
                         (err, ref) in
                         if err != nil {
