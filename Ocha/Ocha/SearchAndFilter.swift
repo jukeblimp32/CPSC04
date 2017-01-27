@@ -27,6 +27,9 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
     var pickerData = ["200", "300", "400", "500", "600", "700", "800", "900", "1000", "1100", "1200",
     "1300", "1400", "1500", "1600", "1700", "1800", "1900", "2000", "2100", "2200", "2300", "2400", "2500", "2600", "2700", "2800", "2900", "3000"]
     
+    let getPropertyFilters = "http://147.222.165.203/MyWebService/api/PropertyFilters.php"
+    var filters = [Filters]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
@@ -68,6 +71,61 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
     
     //ELMA HEREEEEE
     @IBAction func applyFilters(_ sender: Any) {
+        //create NSURL
+        let getRequestURL = NSURL(string: getPropertyFilters )
+        //creating NSMutableURLRequest
+        let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
+        //setting the method to GET
+        getRequest.httpMethod = "GET"
+        //task to be sent to the GET request
+        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest) {
+            data, response,error in
+            //If there is an error in connecting with the database, print error
+            if error != nil {
+                print("error is \(error)")
+                return;
+            }
+            do {
+                //converting response to dictionary
+                var propertyJSON : NSDictionary!
+                propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                //Getting the properties in an array
+                let properties: NSArray = propertyJSON["properties"] as! NSArray
+                
+                //looping through all the objects in the array
+               // DispatchQueue.main.async(execute: {
+                    for i in 0 ..< properties.count{
+                        //Getting data from each listing and saving to vars
+                        let propIdValue = properties[i] as? NSDictionary
+                        let propertyID = propIdValue?["property_id"] as! Int
+                        let roomValue = properties[i] as? NSDictionary
+                        let numberRooms = roomValue?["number_of_rooms"] as! String
+                        let rentValue = properties[i] as? NSDictionary
+                        let rentPerMonth = rentValue?["rent_per_month"] as! String
+                        let milesValue = properties[i] as? NSDictionary
+                        let milesToGu = milesValue?["miles_to_gu"] as! String
+                        let propertyValue = properties[i] as? NSDictionary
+                        let propertyType = propertyValue?["property_type"] as! String
+                        
+                        let propertyFilter = Filters(propertyID: propertyID, numberOfRooms: numberRooms, monthRent: rentPerMonth, milesToGU: milesToGu, propertyType: propertyType )
+                        
+                        
+                        //Append this to list of listings
+                        self.filters.append(propertyFilter)
+                        
+                        //Update the tableview in student homepage to show the listing cells
+                    /*    DispatchQueue.main.async(execute: {
+                            self.propertiesList.reloadData()
+                        }) */
+                    }
+                //})
+            }
+            catch {
+                print(error)
+            }
+        }
+        getTask.resume()
     }
     
     

@@ -30,6 +30,7 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
     
     let URL_SAVE_PROPERTY = "http://147.222.165.203/MyWebService/api/CreateProperty.php"
     let propertyDetails = "http://147.222.165.203/MyWebService/api/PropertyDetails.php"
+    let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     
     let address = UITextField()
     let rentPerMonth = UITextField()
@@ -41,6 +42,9 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
     let dateAvailable = UITextField()
     let leaseLength = UITextField()
     let uploadImageView = UIImageView()
+    
+    var propertyIDs = [Int]()
+    
     //var firstName = " "
     override func viewDidLoad() {
         
@@ -339,9 +343,55 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
             leaseLength.text = ""
 
         }
-        
+        getPropertyID();
         
     }
+    
+    func getPropertyID(){
+        //create NSURL
+        let getRequestURL = NSURL(string: getProperties)
+        //creating NSMutableURLRequest
+        let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
+        //setting the method to GET
+        getRequest.httpMethod = "GET"
+        //task to be sent to the GET request
+        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest) {
+            data, response,error in
+            //If there is an error in connecting with the database, print error
+            if error != nil {
+                print("error is \(error)")
+                return;
+            }
+            do {
+                //converting response to dictionary
+                var propertyJSON : NSDictionary!
+                propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                //Getting the properties in an array
+                let properties: NSArray = propertyJSON["properties"] as! NSArray
+                
+                //looping through all the objects in the array
+                    for i in 0 ..< properties.count{
+                        //Getting data from each listing and saving to vars
+                        let propIdValue = properties[i] as? NSDictionary
+                        let propertyID = propIdValue?["property_id"] as! Int
+                        self.propertyIDs.append(propertyID)
+                        print("ALL")
+                        print(self.propertyIDs.max())
+                    }
+ 
+            }
+            catch {
+                print(error)
+            }
+        }
+        getTask.resume()
+        print("HEREHERE")
+        print (self.propertyIDs.max())
+    }
+    
+    
+
     
     private func uploadImage(address : String)
     {
