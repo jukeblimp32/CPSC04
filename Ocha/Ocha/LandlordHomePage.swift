@@ -53,12 +53,12 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             let destination = segue.destination as? ListingPage,
             let blogIndex = propertiesList.indexPathForSelectedRow?.row
         {
-           // destination.addressText = listings[blogIndex].address
             destination.address.text = listings[blogIndex].address
             destination.rent.text = listings[blogIndex].monthRent
             destination.distance.text = listings[blogIndex].milesToGU
             destination.rooms.text = listings[blogIndex].numberOfRooms
             destination.image.image = listings[blogIndex].houseImage
+            destination.propertyID = listings[blogIndex].propertyID
         }
     }
     
@@ -90,6 +90,8 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                 //getting the JSON array teams from the response
                 let properties: NSArray = propertyJSON["properties"] as! NSArray
                 
+                let uid = FIRAuth.auth()?.currentUser?.uid
+                
                 //looping through all the json objects in the array properties
                 DispatchQueue.main.async(execute: {
                     for i in 0 ..< properties.count{
@@ -107,8 +109,11 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let roomsValue = properties[i] as? NSDictionary
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
                         
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
-                        self.listings.append(listing)
+                        if landlordID == uid {
+                        
+                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+                            self.listings.append(listing)
+                        }
                         
                         // Update our table
                         DispatchQueue.main.async(execute: {
@@ -182,29 +187,18 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /*
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        var listingCount: Int = 0
-        
-        if(listings[value(forKey: landlordID)] == listings[landlordID: uid]){
-            listingCount += 1
-        }
-        
-        return listingCount
- */
+ 
         return listings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        
-        
         let cellIdentifier = "ListingTableViewCell"
         let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
         
         
         let listing = listings[indexPath.row]
         
+<<<<<<< HEAD
         if(listing.landlordID == uid){
             cell.propertyAddress.text = listing.address
             cell.propertyDistance.text = String(listing.milesToGU)
@@ -235,6 +229,14 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             })
 
         }
+=======
+        cell.propertyAddress.text = listing.address
+        cell.propertyDistance.text = String(listing.milesToGU)
+        cell.propertyRent.text = String(listing.monthRent)
+        cell.propertyRooms.text = String(listing.numberOfRooms)
+        cell.propertyImage.image = listing.houseImage
+
+>>>>>>> 7af453b6dee96822741546613812cb078cbcf474
         return cell
     }
     

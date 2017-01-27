@@ -128,7 +128,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
 
 
                         //Append this to list of listings
-
                         self.listings.append(listing)
                         
                         //Update the tableview in student homepage to show the listing cells
