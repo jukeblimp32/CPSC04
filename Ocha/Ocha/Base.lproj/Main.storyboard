@@ -473,16 +473,8 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="szx-qq-Uvq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
-
-            <point key="canvasLocation" x="-17" y="-1579"/>
-
-            <point key="canvasLocation" x="21.600000000000001" y="-1586.3568215892055"/>
-
-=======
             <point key="canvasLocation" x="-17" y="-1579"/>
             <point key="canvasLocation" x="21.600000000000001" y="-1586.3568215892055"/>
->>>>>>> 7af453b6dee96822741546613812cb078cbcf474
         </scene>
         <!--Landlord Homepage-->
         <scene sceneID="Z7V-aD-BpN">
