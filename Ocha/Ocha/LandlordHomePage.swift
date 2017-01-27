@@ -186,53 +186,23 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-       // let uid = FIRAuth.auth()?.currentUser?.uid
-        //var listingCount: Int = 0
-        
-        //if(listings[Listing]){
-          //  listingCount += 1
-       // }
-         //println(listings[landlordID])
-        
-        //return listingCount
  
         return listings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        
-        
         let cellIdentifier = "ListingTableViewCell"
         let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
         
         
         let listing = listings[indexPath.row]
         
-<<<<<<< HEAD
-        if(listing.landlordID == uid){
-            cell.propertyAddress.text = listing.address
-            cell.propertyDistance.text = String(listing.milesToGU)
-            cell.propertyRent.text = String(listing.monthRent)
-            cell.propertyRooms.text = String(listing.numberOfRooms)
-            cell.propertyImage.image = listing.houseImage
-        }
-        print("HERE")
-        
-       // var myAnswer = self.listings[];
-       // print (myAnswer)
-        //if let value = listings[0]{
-        //    print(value)
-       // }
-        
-=======
         cell.propertyAddress.text = listing.address
         cell.propertyDistance.text = String(listing.milesToGU)
         cell.propertyRent.text = String(listing.monthRent)
         cell.propertyRooms.text = String(listing.numberOfRooms)
         cell.propertyImage.image = listing.houseImage
->>>>>>> d25dbbdfa53bd2da0c3bd7d2e442cf20c4195c8f
+
         return cell
     }
     

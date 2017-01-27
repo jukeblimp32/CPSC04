@@ -86,7 +86,6 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
     }
     
     @IBAction func applyFilters(_ sender: Any) {
-<<<<<<< HEAD
         //create NSURL
         let getRequestURL = NSURL(string: getPropertyFilters )
         //creating NSMutableURLRequest
@@ -142,7 +141,7 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
             }
         }
         getTask.resume()
-=======
+
         var minPriceFilter = pickerData[pickerMin.selectedRow(inComponent: 0)]
         var maxPriceFilter = pickerData[pickerMax.selectedRow(inComponent: 0)]
         var bedroomFilter = bedroomNum.text
@@ -156,7 +155,7 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         print (distanceFilter)
         print(propertyFilter)
         print (petFilter)
->>>>>>> d25dbbdfa53bd2da0c3bd7d2e442cf20c4195c8f
+
     }
     
     

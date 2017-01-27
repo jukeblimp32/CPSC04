@@ -473,10 +473,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="szx-qq-Uvq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
             <point key="canvasLocation" x="-17" y="-1579"/>
-=======
->>>>>>> d25dbbdfa53bd2da0c3bd7d2e442cf20c4195c8f
             <point key="canvasLocation" x="21.600000000000001" y="-1586.3568215892055"/>
         </scene>
         <!--Landlord Homepage-->
