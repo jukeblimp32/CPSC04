@@ -16,6 +16,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     var listings = [Listing]()
+    var downloadURL = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -202,6 +203,29 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.propertyRent.text = String(listing.monthRent)
         cell.propertyRooms.text = String(listing.numberOfRooms)
         cell.propertyImage.image = listing.houseImage
+        //cell.propertyImage.contentMode = .scaleAspectFill
+        
+        // Get reference to database.
+        let databaseRef = FIRDatabase.database().reference()
+        
+        databaseRef.child("listings").child(String(listing.propertyID)).observeSingleEvent(of: .value, with: {(snapshot) in
+            let snapshot = snapshot.value as? NSDictionary
+            
+            // Use default image if there is no image listing
+            if(snapshot == nil)
+            {
+                self.downloadURL = ""
+            }
+            else
+            {
+                // Set the download URL and download the image
+                self.downloadURL = snapshot?["image1"] as! String
+                cell.propertyImage.loadCachedImages(url: self.downloadURL)
+                listing.houseImage = cell.propertyImage.image
+            }
+            
+        })
+
 
         return cell
     }

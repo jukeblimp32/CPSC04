@@ -38,6 +38,7 @@
 		15A5EED31DD6857600F1D8A1 /* FavoritesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */; };
 		5B70B3BA1E3AD0830052484C /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B70B3B91E3AD0830052484C /* Filters.swift */; };
 		77FC09C91BEAD1A78A8AD80C /* Pods_Ocha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E85B77C9845080382DC0D46 /* Pods_Ocha.framework */; };
+		7C2B9F351E3C14F200F6859F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B9F341E3C14F200F6859F /* Extensions.swift */; };
 		7C854E4F1DC400AD00E02883 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C854E4E1DC400AD00E02883 /* AppDelegate.swift */; };
 		7C854E511DC400AD00E02883 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C854E501DC400AD00E02883 /* CreateAccount.swift */; };
 		7C854E531DC400AD00E02883 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C854E521DC400AD00E02883 /* SecondViewController.swift */; };
@@ -102,6 +103,7 @@
 		3E85B77C9845080382DC0D46 /* Pods_Ocha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ocha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E3FF2C00B97A7DB8DC3C7B /* Pods-Ocha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.release.xcconfig"; sourceTree = "<group>"; };
 		5B70B3B91E3AD0830052484C /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		7C2B9F341E3C14F200F6859F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7C854E4B1DC400AD00E02883 /* Ocha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ocha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C854E4E1DC400AD00E02883 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C854E501DC400AD00E02883 /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 		7C854E4D1DC400AD00E02883 /* Ocha */ = {
 			isa = PBXGroup;
 			children = (
+				7C2B9F341E3C14F200F6859F /* Extensions.swift */,
 				7C89D4E41DC9782F00326666 /* Ocha.entitlements */,
 				1503592C1DD03518005AD597 /* UserType.swift */,
 				151930371DE25D1900858B8A /* ListingPage.swift */,
@@ -465,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C854E531DC400AD00E02883 /* SecondViewController.swift in Sources */,
+				7C2B9F351E3C14F200F6859F /* Extensions.swift in Sources */,
 				15A5EEC31DD67A2500F1D8A1 /* LandlordTabController.swift in Sources */,
 				15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */,
 				15A5EECD1DD684C200F1D8A1 /* ManageListings.swift in Sources */,
