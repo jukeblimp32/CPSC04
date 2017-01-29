@@ -287,17 +287,6 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
     
     //OVER HERE ELMA :)
     func submitListingInfo(_ sender : UIButton) {
-        /*
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                var myString: String = (dictionary["name"] as? String)!
-                var myStringArr = myString.components(separatedBy: " ")
-                    self.firstName = myStringArr[0]
-            }
-            
-            }, withCancel: nil)
-        */
         //created NSURL
         let saveRequestURL = NSURL(string: URL_SAVE_PROPERTY)
         
@@ -321,7 +310,7 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
         let availableDate = dateAvailable.text
         let milesToGu = milesToGU.text
         let lease = leaseLength.text
-        
+
         
         if propertyAddress == "" || monthlyRent == "" || propertyDeposit == "" || totalTenants == "" || numberOfRooms == "" || numberOfBathrooms == "" || availableDate == "" || milesToGu == "" || lease == ""
         {

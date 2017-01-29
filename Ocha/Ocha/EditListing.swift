@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class EditListing: UITableViewController {
+    
+    let URL_EDIT_PROPERTY = "http://147.222.165.203/MyWebService/api/editProperties.php"
     
     var address : String = ""
     
@@ -33,13 +36,14 @@ class EditListing: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addressTextField.text = address
-        rentTextField.text = rent
-        bedroomTextField.text = bedroomNum
+        addressTextField?.text = address
+        rentTextField?.text = rent
+        bedroomTextField?.text = bedroomNum
         stepper.value = Double(bedroomNum)!
         stepper.wraps = true
         stepper.autorepeat = true
         stepper.maximumValue = 10
+    
     }
     
     @IBAction func changeBedroomNumber(_ sender: UIStepper) {
@@ -47,7 +51,7 @@ class EditListing: UITableViewController {
     }
     
     @IBAction func reverseChanges(_ sender: Any) {
-        addressTextField.text = address
+        addressTextField?.text = address
         rentTextField.text = rent
         bedroomTextField.text = bedroomNum
         stepper.value = Double(bedroomNum)!
@@ -70,27 +74,84 @@ class EditListing: UITableViewController {
         }
     }
     
+
     
     //OVER HERE ELMA :) :) :)
     @IBAction func saveEdits(_ sender: Any) {
-        //address info
+        //created NSURL
+        let saveRequestURL = NSURL(string: URL_EDIT_PROPERTY)
+        
+        //creating NSMutableURLRequest
+        let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+        
+        //setting method to POST
+        saveRequest.httpMethod = "POST"
+        
+        let currentProperty = String(propertyID)
+        
+        //getting values from fields
         let editAddress = addressTextField.text
-        
-        //rent info
         let editRent = rentTextField.text
-        
-        //bedroom info
         let editBedroom = bedroomTextField.text
+
+ 
+            
+        //post parameter
+        //concatenating keys and values from text field
+        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty;
         
+        //adding parameters to request body
+        saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+        
+        
+        
+        //task to send to post request
+        let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+            data,response, error in
+            if error != nil{
+                print("error is \(error)")
+                return;
+            }
+            do{
+                //converting response to NSDictioanry
+                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+           
+                if let parseJSON = myJSON{
+                    var msg:String!
+                    msg = parseJSON["message"]as! String?
+                    print(msg)
+                }
+            }catch{
+                print(error)
+            }
+        }
+        saveTask.resume()
+        
+        // Go back to homepage
+        self.backToHomepage()
+
     }
     
+    func transitionToHomepage(){
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "Landlord Homepage") as UIViewController
+        self.dismiss(animated: true, completion: nil)
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    
+    func backToHomepage(){
+        let alert = UIAlertController(title: "Property Edited!", message: "Property will be sent for review before being published", preferredStyle: .alert)
+        let alertActionOkay = UIAlertAction(title: "Okay", style: .default){
+            (_) in
+            // Go back to login
+            self.transitionToHomepage()
+        }
+        alert.addAction(alertActionOkay)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    
-    
-    
+    }  
 }
