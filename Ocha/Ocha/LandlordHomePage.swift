@@ -44,7 +44,6 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         toHomePageButton.addTarget(self, action: #selector(StudentHomePage.logout(_:)), for: UIControlEvents.touchUpInside)
         view.addSubview(toHomePageButton)
         
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,7 +62,6 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func loadListingViews(){
-        
         //create NSURL
         let getRequestURL = NSURL(string: getProperties)
         
@@ -127,21 +125,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             }
         }
         getTask.resume()
-        /*
-         let photo1 = UIImage(named: "Image-1")
-         let listing1 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo1)
-         let listing2 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: nil)
-         let photo3 = UIImage(named: "Image-2")
-         let listing3 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo3)
-         let photo4 = UIImage(named: "Image-3")
-         let listing4 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo4)
-         let photo5 = UIImage(named: "Image-4")
-         let listing5 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo5)
-         let photo6 = UIImage(named: "Image-5")
-         let listing6 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo6)
-         
-         listings += [listing1, listing2, listing3, listing4, listing5, listing6]
-         */
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -186,26 +170,14 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /*
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        var listingCount: Int = 0
-        
-        if(listings[value(forKey: landlordID)] == listings[landlordID: uid]){
-            listingCount += 1
-        }
-        
-        return listingCount
- */
+
         return listings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let uid = FIRAuth.auth()?.currentUser?.uid
-        
-        
         let cellIdentifier = "ListingTableViewCell"
         let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
-        
         
         let listing = listings[indexPath.row]
         

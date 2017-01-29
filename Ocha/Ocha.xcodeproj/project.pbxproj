@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		150359291DCFF719005AD597 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150359281DCFF719005AD597 /* AccountInfo.swift */; };
-		1503592B1DD000DE005AD597 /* EditAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1503592A1DD000DE005AD597 /* EditAccountInfo.swift */; };
 		1503592D1DD03518005AD597 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1503592C1DD03518005AD597 /* UserType.swift */; };
 		150E9DBF1DF2405800915C2C /* CreateListingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E9DBE1DF2405800915C2C /* CreateListingTest.swift */; };
 		150E9DC11DF2436600915C2C /* FavoritePageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E9DC01DF2436600915C2C /* FavoritePageTest.swift */; };
@@ -66,7 +65,6 @@
 
 /* Begin PBXFileReference section */
 		150359281DCFF719005AD597 /* AccountInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
-		1503592A1DD000DE005AD597 /* EditAccountInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountInfo.swift; sourceTree = "<group>"; };
 		1503592C1DD03518005AD597 /* UserType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
 		150E9DBE1DF2405800915C2C /* CreateListingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateListingTest.swift; sourceTree = "<group>"; };
 		150E9DC01DF2436600915C2C /* FavoritePageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritePageTest.swift; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 				15A5EECC1DD684C200F1D8A1 /* ManageListings.swift */,
 				15A5EEC81DD6849800F1D8A1 /* ApproveListings.swift */,
 				15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */,
-				1503592A1DD000DE005AD597 /* EditAccountInfo.swift */,
 				15A5EECA1DD684AF00F1D8A1 /* ManageUsers.swift */,
 				1516D1511E36BDFF009FBCB3 /* EditListing.swift */,
 				15A5EED01DD6855A00F1D8A1 /* SearchAndFilter.swift */,
@@ -414,7 +411,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E35952F26705AC32D8FE0AF2 /* [CP] Copy Pods Resources */ = {
@@ -481,7 +478,6 @@
 				15A5EEC51DD67A2F00F1D8A1 /* AdminTabController.swift in Sources */,
 				15A5EEC71DD6846900F1D8A1 /* ApproveReviews.swift in Sources */,
 				15A5EEC11DD6752100F1D8A1 /* StudentTabController.swift in Sources */,
-				1503592B1DD000DE005AD597 /* EditAccountInfo.swift in Sources */,
 				15A0392E1DECDD9900FD2101 /* CreateListing.swift in Sources */,
 				7C99E85A1DDFCEF000C7CE03 /* ListingTableViewCell.swift in Sources */,
 				7C854E511DC400AD00E02883 /* CreateAccount.swift in Sources */,
