@@ -52,11 +52,11 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         let barViewControllers = self.tabBarController?.viewControllers
         let svc = barViewControllers![1] as! SearchAndFilter
         self.filters = svc.filters
-        print (self.filters)
         
         listings.removeAll()
         loadListingViews()
         propertiesList.reloadData()
+        print(self.filters)
     }
 
     
@@ -133,10 +133,10 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
 
                         let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil, propertyType: propertyType)
 
-
+                        if (self.checkFilters(listing: listing)) {
                         //Append this to list of listings
-                        self.listings.append(listing)
-                        
+                            self.listings.append(listing)
+                        }
                         //Update the tableview in student homepage to show the listing cells
                         DispatchQueue.main.async(execute: {
                             self.propertiesList.reloadData()
@@ -150,6 +150,120 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         getTask.resume()
     }
+    
+    func checkFilters(listing : Listing) -> Bool {
+        if (checkDefaults()) {
+            return true
+        }
+        if (!checkPriceRange(listing : listing)) {
+            return false
+            }
+        if (!checkBedrooms(listing : listing)) {
+            print ("I failed at bedroom")
+            return false
+        }
+        if (!checkPropType(listing : listing)) {
+            return false
+        }
+        if (!checkDistance(listing : listing)) {
+            print ("I failed at distance")
+            return false
+        }
+        return true
+    }
+
+    
+    
+    func checkDefaults() -> Bool {
+        if (self.filters == []) {
+            return true
+        }
+        return false
+    }
+    
+    func checkPriceRange(listing : Listing) -> Bool {
+        if ((self.filters[0] == "Any") && (self.filters[1] == "Any")) {
+            return true
+        }
+        if (Int(listing.monthRent) == nil) {
+            return false
+        }
+
+        let listingRent : Int = Int(listing.monthRent)!
+        let min : Int = Int(self.filters[0])!
+        let max : Int  = Int(self.filters[1])!
+        
+        
+        if ((listingRent <= max) && (listingRent >= max)) {
+            return true
+        }
+        return false
+    }
+    
+    func checkBedrooms(listing : Listing) -> Bool {
+        if(self.filters[2] == "Any") {
+            return true
+        }
+        
+        if (Int(listing.numberOfRooms) == nil) {
+            return false
+        }
+        
+        let listingBedroom : Int = Int(listing.numberOfRooms)!
+        let filterBedroom : Int = Int(self.filters[2])!
+        
+        if(listingBedroom == filterBedroom) {
+            return true
+        }
+        return false
+    }
+    
+    func checkPropType(listing : Listing) -> Bool {
+        if(self.filters[4] == "Any") {
+            return true
+        }
+        let listingType = listing.propertyType
+        var filterType = self.filters[4]
+        if (filterType == "Apt.") {
+            filterType = "Apartment"
+        }
+        if (filterType == "Other") {
+            if ((listingType != "House") && (listingType != "Apartment") && (listingType != "Room")) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            if (listingType == filterType) {
+                return true
+            }
+            return false
+        }
+    }
+    
+    func checkDistance(listing : Listing) -> Bool {
+        if(self.filters[3] == "10.0") {
+            return true
+        }
+        
+        if (Float(listing.milesToGU) == nil) {
+            return false
+        }
+        
+        let listingDistance : Float = Float(listing.milesToGU)!
+        let filterDistance : Float = Float(self.filters[3])!
+        
+        if (listingDistance <= filterDistance) {
+            return true
+        }
+        return false
+    }
+    
+    
+    
+    
     
     /*
      Logs a user out of the app if they press the logout button, and 

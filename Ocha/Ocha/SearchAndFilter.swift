@@ -98,6 +98,16 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         self.filters.append(distanceFilter)
         self.filters.append(propertyFilter!)
         sleep(2)
+        
+        /*
+        let barViewControllers = self.tabBarController?.viewControllers
+        let svc = barViewControllers![0]
+        let navigationViewControllers = self.navigationController?.viewControllers
+        let svc2 = navigationViewControllers![0] as! StudentHomePage
+        svc2.listings.removeAll()
+        svc2.loadListingViews()
+        svc2.propertiesList.reloadData()
+        */
         tabBarController?.selectedIndex = 0
         
     }
