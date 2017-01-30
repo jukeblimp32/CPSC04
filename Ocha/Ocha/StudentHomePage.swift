@@ -19,6 +19,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     var valueTopass : String!
     var downloadURL = ""
     var filters = [String]()
+    var filterLabels = [UILabel]()
     
     
     override func viewDidLoad() {
@@ -28,7 +29,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         // Do any additional setup after loading the view, typically from a nib.
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         // Initialize our table
-        propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (90/100))
+        propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (15/100), width: view.frame.width * (80/100), height: (view.frame.height) * (85/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
         propertiesList.reloadData()
@@ -43,6 +44,10 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
         toHomePageButton.layer.cornerRadius = 4
         toHomePageButton.addTarget(self, action: #selector(StudentHomePage.logout(_:)), for: UIControlEvents.touchUpInside)
+        
+        // Set up filter labels
+        initializeFilters()
+        
         view.addSubview(toHomePageButton)
 
     }
@@ -54,9 +59,86 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.filters = svc.filters
         print (self.filters)
         
+        loadFilters()
         listings.removeAll()
         loadListingViews()
         propertiesList.reloadData()
+    }
+    
+    func loadFilters(){
+        // Don't load if no filters
+        if(self.filters == [])
+        {
+            return
+        }
+        var positionInLabels = 0
+        // Go through the list of filters. If a filter is "Any" don't label it.
+        for index in 0 ..< self.filters.count{
+            // Check that the first filter is not Any.
+            if(index == 0 && self.filters[0] != "Any"){
+                // If not Any then add the upper bound and lower bound together
+                let priceFilter = "Price: " + self.filters[0] + " - " + self.filters[1]
+                // Set the label
+                filterLabels[positionInLabels].text = priceFilter
+                // Move the current position in the labels
+                positionInLabels += 1
+            }
+            // Check bed filter.
+            else if(index == 2 && self.filters[2] != "Any"){
+                let bedFilter = "Rooms: " + self.filters[2]
+                filterLabels[positionInLabels].text = bedFilter
+                positionInLabels += 1
+            }
+            // Check that the bed distance is not at maximum
+            /*************************************************
+            * This value will likely need to change from  10
+            *************************************************/
+            else if(index == 3 && self.filters[3] != "10.0"){
+                let distFilter = "Miles to GU: " + self.filters[3]
+                filterLabels[positionInLabels].text = distFilter
+                positionInLabels += 1
+            }
+            // Check Property Type filter
+            else if(index == 4 && self.filters[4] != "Any")
+            {
+                let propFilter = "Prop Type: " + self.filters[4]
+                filterLabels[positionInLabels].text = propFilter
+                positionInLabels += 1
+            }
+            
+        }
+    }
+    
+    func initializeFilters()
+    {
+        // Initialize the labels
+        for index in 0 ... 5 {
+            let newLabel = UILabel()
+            newLabel.text = ""
+            newLabel.font = UIFont(name: newLabel.font.fontName, size: 12)
+            newLabel.textColor = UIColor.white
+            newLabel.textAlignment = .center
+            
+            // Set positions
+            switch index{
+            case 0:
+                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (8/100), width: view.frame.width * (26/100), height: 20)
+            case 1:
+                newLabel.frame = CGRect(x: (view.frame.width) * (36/100), y: (view.frame.height) * (8/100), width: view.frame.width * (26/100), height: 20)
+            case 2:
+                newLabel.frame = CGRect(x: (view.frame.width) * (62/100), y: (view.frame.height) * (8/100), width: view.frame.width * (26/100), height: 20)
+            case 3:
+                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (11/100), width: view.frame.width * (26/100), height: 20)
+            case 4:
+                newLabel.frame = CGRect(x: (view.frame.width) * (36/100), y: (view.frame.height) * (11/100), width: view.frame.width * (26/100), height: 20)
+            case 5:
+                newLabel.frame = CGRect(x: (view.frame.width) * (62/100), y: (view.frame.height) * (11/100), width: view.frame.width * (26/100), height: 20)
+            default:
+                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (4/100), width: view.frame.width * (26/100), height: 20)
+            }
+            filterLabels.append(newLabel)
+            view.addSubview(newLabel)
+        }
     }
 
     
