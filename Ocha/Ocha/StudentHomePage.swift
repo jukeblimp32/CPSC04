@@ -18,6 +18,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     var listings = [Listing]()
     var valueTopass : String!
     var downloadURL = ""
+    var filters = [String]()
     
     
     override func viewDidLoad() {
@@ -32,8 +33,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         propertiesList.dataSource = self
         propertiesList.reloadData()
 
-        //}
-        
         let viewTitle = UILabel()
         
         let toHomePageButton = UIButton()
@@ -50,11 +49,16 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let barViewControllers = self.tabBarController?.viewControllers
+        let svc = barViewControllers![1] as! SearchAndFilter
+        self.filters = svc.filters
+        print (self.filters)
+        
         listings.removeAll()
         loadListingViews()
         propertiesList.reloadData()
     }
-    
+
     
     /*
      When a listing cell is clicked on the homepage, this function
@@ -123,9 +127,11 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let rentPerMonth = rentValue?["rent_per_month"] as! String
                         let roomsValue = properties[i] as? NSDictionary
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
+                        let propertyTypeValue = properties[i] as? NSDictionary
+                        let propertyType = propertyTypeValue?["property_type"] as! String
                         
 
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil, propertyType: propertyType)
 
 
                         //Append this to list of listings

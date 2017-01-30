@@ -108,10 +108,12 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let rentPerMonth = rentValue?["rent_per_month"] as! String
                         let roomsValue = properties[i] as? NSDictionary
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
+                        let propertyTypeValue = properties[i] as? NSDictionary
+                        let propertyType = propertyTypeValue?["property_type"] as! String
                         
                         if landlordID == uid {
                         
-                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil)
+                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil, propertyType: propertyType)
                             self.listings.append(listing)
                         }
                         

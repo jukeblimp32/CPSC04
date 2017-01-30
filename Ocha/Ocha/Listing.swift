@@ -15,15 +15,17 @@ class Listing {
     var landlordID: String
     var milesToGU: String
     var houseImage: UIImage?
+    var propertyType: String
 
     
-    init(propertyID: Int, landlordID: String, address: String, milesToGU: String, numberOfRooms: String, monthRent: String, houseImage : UIImage?) {
+    init(propertyID: Int, landlordID: String, address: String, milesToGU: String, numberOfRooms: String, monthRent: String, houseImage : UIImage?, propertyType: String) {
         self.address = address
         self.milesToGU = milesToGU
         self.propertyID = propertyID
         self.numberOfRooms = numberOfRooms
         self.monthRent = monthRent
         self.landlordID = landlordID
+        self.propertyType = propertyType
         if houseImage == nil {
             self.houseImage = UIImage(named: "default")
         }

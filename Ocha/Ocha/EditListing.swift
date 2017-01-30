@@ -127,28 +127,14 @@ class EditListing: UITableViewController {
         }
         saveTask.resume()
         
-        // Go back to homepage
-        self.backToHomepage()
+        let alert = UIAlertController(title: "Property Edited!", message: "Property will be sent for review before being published", preferredStyle: .alert)
+        let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
+        alert.addAction(alertActionOkay)
+        self.present(alert, animated: true, completion: nil)
 
     }
     
-    func transitionToHomepage(){
-        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "Landlord Homepage") as UIViewController
-        self.dismiss(animated: true, completion: nil)
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    
-    func backToHomepage(){
-        let alert = UIAlertController(title: "Property Edited!", message: "Property will be sent for review before being published", preferredStyle: .alert)
-        let alertActionOkay = UIAlertAction(title: "Okay", style: .default){
-            (_) in
-            // Go back to login
-            self.transitionToHomepage()
-        }
-        alert.addAction(alertActionOkay)
-        self.present(alert, animated: true, completion: nil)
-    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -28,12 +28,11 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
     
     @IBOutlet weak var petSelect: UISegmentedControl!
     
+    var filters = [String]()
     
     var pickerData = ["Any", "200", "300", "400", "500", "600", "700", "800", "900", "1000", "1100", "1200",
     "1300", "1400", "1500", "1600", "1700", "1800", "1900", "2000", "2100", "2200", "2300", "2400", "2500", "2600", "2700", "2800", "2900", "3000"]
     
-    let getPropertyFilters = "http://147.222.165.203/MyWebService/api/PropertyFilters.php"
-    var filters = [Filters]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +56,6 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         }
     }
     
-
     @IBAction func sliderChanged(_ sender: UISlider) {
         self.distanceLabel.text = "Under " + String(format: "%.1f", self.slider.value) + " miles"
     }
@@ -86,76 +84,22 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
     }
     
     @IBAction func applyFilters(_ sender: Any) {
-        //create NSURL
-        let getRequestURL = NSURL(string: getPropertyFilters )
-        //creating NSMutableURLRequest
-        let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
-        //setting the method to GET
-        getRequest.httpMethod = "GET"
-        //task to be sent to the GET request
-        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest) {
-            data, response,error in
-            //If there is an error in connecting with the database, print error
-            if error != nil {
-                print("error is \(error)")
-                return;
-            }
-            do {
-                //converting response to dictionary
-                var propertyJSON : NSDictionary!
-                propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-                
-                //Getting the properties in an array
-                let properties: NSArray = propertyJSON["properties"] as! NSArray
-                
-                //looping through all the objects in the array
-               // DispatchQueue.main.async(execute: {
-                    for i in 0 ..< properties.count{
-                        //Getting data from each listing and saving to vars
-                        let propIdValue = properties[i] as? NSDictionary
-                        let propertyID = propIdValue?["property_id"] as! Int
-                        let roomValue = properties[i] as? NSDictionary
-                        let numberRooms = roomValue?["number_of_rooms"] as! String
-                        let rentValue = properties[i] as? NSDictionary
-                        let rentPerMonth = rentValue?["rent_per_month"] as! String
-                        let milesValue = properties[i] as? NSDictionary
-                        let milesToGu = milesValue?["miles_to_gu"] as! String
-                        let propertyValue = properties[i] as? NSDictionary
-                        let propertyType = propertyValue?["property_type"] as! String
-                        
-                        let propertyFilter = Filters(propertyID: propertyID, numberOfRooms: numberRooms, monthRent: rentPerMonth, milesToGU: milesToGu, propertyType: propertyType )
-                        
-                        
-                        //Append this to list of listings
-                        self.filters.append(propertyFilter)
-                        
-                        //Update the tableview in student homepage to show the listing cells
-                    /*    DispatchQueue.main.async(execute: {
-                            self.propertiesList.reloadData()
-                        }) */
-                    }
-                //})
-            }
-            catch {
-                print(error)
-            }
-        }
-        getTask.resume()
 
         var minPriceFilter = pickerData[pickerMin.selectedRow(inComponent: 0)]
         var maxPriceFilter = pickerData[pickerMax.selectedRow(inComponent: 0)]
         var bedroomFilter = bedroomNum.text
-        var distanceFilter = distanceLabel.text
+        var distanceFilter = String(format: "%.1f", self.slider.value)
         var propertyFilter = propTypeSelect.titleForSegment(at: propTypeSelect.selectedSegmentIndex)
         var petFilter = petSelect.titleForSegment(at: petSelect.selectedSegmentIndex)
         
-        print (minPriceFilter)
-        print (maxPriceFilter)
-        print (bedroomFilter)
-        print (distanceFilter)
-        print(propertyFilter)
-        print (petFilter)
-
+        self.filters.append(minPriceFilter)
+        self.filters.append(maxPriceFilter)
+        self.filters.append(bedroomFilter!)
+        self.filters.append(distanceFilter)
+        self.filters.append(propertyFilter!)
+        sleep(2)
+        tabBarController?.selectedIndex = 0
+        
     }
     
     
