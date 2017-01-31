@@ -25,6 +25,9 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var leaseLength: UISegmentedControl!
     @IBOutlet weak var deposit: UITextField!
     
+    
+    var propertyIDs = [Int]()
+    var maxID = 0
     var milesToGU : String = "0.5"
     
     /*lazy var uploadImageView: UIImageView = {
@@ -41,16 +44,13 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
 
     
     let URL_SAVE_PROPERTY = "http://147.222.165.203/MyWebService/api/CreateProperty.php"
+    let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     
-    let uploadImageView = UIImageView()
-
+    @IBOutlet weak var uploadImageView: UIImageView!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        self.frame = self.view.bounds
-        frame.size.height = frame.size.height - 40;
         
         bathroomStepper.wraps = true
         bathroomStepper.autorepeat = true
@@ -61,6 +61,48 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         bedroomStepper.autorepeat = true
         bedroomStepper.minimumValue = 1
         bedroomStepper.maximumValue = 10
+        
+        uploadImageView.image = UIImage(named: "default")
+        uploadImageView.contentMode = .scaleAspectFill
+        uploadImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
+        uploadImageView.isUserInteractionEnabled = true
+        
+        //create NSURL
+        let getRequestURL = NSURL(string: getProperties)
+        //creating NSMutableURLRequest
+        let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
+        //setting the method to GET
+        getRequest.httpMethod = "GET"
+        //task to be sent to the GET request
+        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest) {
+            data, response,error in
+            //If there is an error in connecting with the database, print error
+            if error != nil {
+                print("error is \(error)")
+                return;
+            }
+            do {
+                //converting response to dictionary
+                var propertyJSON : NSDictionary!
+                propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                //Getting the properties in an array
+                let properties: NSArray = propertyJSON["properties"] as! NSArray
+                
+                //looping through all the objects in the array
+                for i in 0 ..< properties.count{
+                    //Getting data from each listing and saving to vars
+                    let propIdValue = properties[i] as? NSDictionary
+                    let propertyID = propIdValue?["property_id"] as! Int
+                    self.propertyIDs.append(propertyID)
+                }
+                self.maxID = Int(self.propertyIDs.max()!)
+            }
+            catch {
+                print(error)
+            }
+        }
+        getTask.resume()
         
         self.hideKeyboardWhenTappedAround()
     }
@@ -139,6 +181,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
                         msg = parseJSON["message"]as! String?
                         print(msg)
                     }
+                    print ("WHAT ABOUT HERE??")
                     let alert = UIAlertController(title: "Property Added!", message:"Property will be sent for review before being published", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Okay", style: .default))
                     self.present(alert, animated: true){}
@@ -152,8 +195,8 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             address.text = ""
             rent.text = ""
             deposit.text = ""
-            bedroomNumber.text = ""
-            bathroomNumber.text = ""
+            bedroomNumber.text = "1"
+            bathroomNumber.text = "1"
             leaseLength.selectedSegmentIndex = 0
 
         }
