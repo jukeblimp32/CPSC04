@@ -216,8 +216,11 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil, propertyType: propertyType)
 
                         if (self.checkFilters(listing: listing)) {
-                        //Append this to list of listings
+                            //Append this to list of listings
                             self.listings.append(listing)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                                self.propertiesList.reloadData()
+                            })
                         }
                         //Update the tableview in student homepage to show the listing cells
                         DispatchQueue.main.async(execute: {
@@ -276,7 +279,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         let max : Int  = Int(self.filters[1])!
         
         
-        if ((listingRent <= max) && (listingRent >= max)) {
+        if ((listingRent <= max) && (listingRent >= min)) {
             return true
         }
         return false
