@@ -142,12 +142,10 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         let propertyDeposit = deposit.text
         let numberOfRooms = bedroomNumber.text
         let numberOfBathrooms = bathroomNumber.text
-
         let availableDate = dateFormatter.string(from: datePicker.date)
         let milesToGu = milesToGU
         let lease = leaseLength.titleForSegment(at: leaseLength.selectedSegmentIndex)
         let propertyType = propType.titleForSegment(at: propType.selectedSegmentIndex)
-
 
         
         if propertyAddress == "" || monthlyRent == "" || propertyDeposit == "" || numberOfRooms == "" || numberOfBathrooms == "" || milesToGu == ""
@@ -161,8 +159,6 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         
             //post parameter
             //concatenating keys and values from text field
-
-
             let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!;
             
             // Upload Image

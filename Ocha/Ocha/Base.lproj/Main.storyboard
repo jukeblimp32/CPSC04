@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fcs-9k-Ynp">
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fcs-9k-Ynp">
+>>>>>>> 78711303658ba46b986598b796e0d37ca43add24
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1171,7 +1175,10 @@
                             <outlet property="delegate" destination="xfk-Aa-2ce" id="WkM-ma-pTn"/>
                         </connections>
                     </tableView>
+<<<<<<< HEAD
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+=======
+>>>>>>> 78711303658ba46b986598b796e0d37ca43add24
                     <connections>
                         <outlet property="email" destination="fEd-Uz-okm" id="rpN-Eq-LhF"/>
                         <outlet property="email2" destination="rxG-O9-gwM" id="jLt-zR-L7v"/>
@@ -1617,8 +1624,37 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+<<<<<<< HEAD
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="73" id="cLy-c9-4GZ">
                                         <rect key="frame" x="0.0" y="315" width="375" height="73"/>
+=======
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="103" id="Zcj-Qo-iMP">
+                                        <rect key="frame" x="0.0" y="315" width="375" height="103"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zcj-Qo-iMP" id="93g-CX-MJu">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="102"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Property Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5SG-1l-ycf">
+                                                    <rect key="frame" x="8" y="8" width="132" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mvn-di-8WS">
+                                                    <rect key="frame" x="191" y="10" width="98" height="82"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5SG-1l-ycf" firstAttribute="top" secondItem="93g-CX-MJu" secondAttribute="topMargin" id="KfK-Ve-Pmf"/>
+                                                <constraint firstItem="5SG-1l-ycf" firstAttribute="leading" secondItem="93g-CX-MJu" secondAttribute="leadingMargin" id="OFT-ZL-hgh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="73" id="cLy-c9-4GZ">
+                                        <rect key="frame" x="0.0" y="418" width="375" height="73"/>
+>>>>>>> 78711303658ba46b986598b796e0d37ca43add24
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cLy-c9-4GZ" id="MZg-xc-BeN">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
@@ -1633,6 +1669,10 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="saveEdits:" destination="D7g-ZN-r33" eventType="touchUpInside" id="YZ1-E2-Or8"/>
+<<<<<<< HEAD
+=======
+                                                        <segue destination="zwc-Pp-jTc" kind="push" id="1hD-qY-9H2"/>
+>>>>>>> 78711303658ba46b986598b796e0d37ca43add24
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1PE-eY-si1">
@@ -1661,6 +1701,10 @@
                     <connections>
                         <outlet property="addressTextField" destination="sdM-i4-6gN" id="Vno-6u-apY"/>
                         <outlet property="bedroomTextField" destination="JSQ-YV-Naa" id="hpJ-sd-H5p"/>
+<<<<<<< HEAD
+=======
+                        <outlet property="propertyImage" destination="mvn-di-8WS" id="8BQ-Tq-d6k"/>
+>>>>>>> 78711303658ba46b986598b796e0d37ca43add24
                         <outlet property="rentTextField" destination="th3-0y-bgD" id="uvX-mZ-jYO"/>
                         <outlet property="stepper" destination="TRs-Gp-XIL" id="NUW-Aa-LwX"/>
                     </connections>
@@ -1680,9 +1724,16 @@
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
         <segue reference="Wgi-Vy-FKQ"/>
         <segue reference="p9u-uk-oOO"/>
         <segue reference="GFc-HJ-P9D"/>
         <segue reference="tnY-tP-OhH"/>
+=======
+        <segue reference="tnY-tP-OhH"/>
+        <segue reference="1hD-qY-9H2"/>
+        <segue reference="Wgi-Vy-FKQ"/>
+        <segue reference="p9u-uk-oOO"/>
+>>>>>>> 78711303658ba46b986598b796e0d37ca43add24
     </inferredMetricsTieBreakers>
 </document>
