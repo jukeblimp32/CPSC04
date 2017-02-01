@@ -244,14 +244,12 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             return false
             }
         if (!checkBedrooms(listing : listing)) {
-            print ("I failed at bedroom")
             return false
         }
         if (!checkPropType(listing : listing)) {
             return false
         }
         if (!checkDistance(listing : listing)) {
-            print ("I failed at distance")
             return false
         }
         return true
