@@ -310,6 +310,7 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
         let availableDate = dateAvailable.text
         let milesToGu = milesToGU.text
         let lease = leaseLength.text
+        let propType = "House"
 
         
         if propertyAddress == "" || monthlyRent == "" || propertyDeposit == "" || totalTenants == "" || numberOfRooms == "" || numberOfBathrooms == "" || availableDate == "" || milesToGu == "" || lease == ""
@@ -324,7 +325,7 @@ class CreateListing: UIViewController, UITextFieldDelegate, UIImagePickerControl
             //post parameter
             //concatenating keys and values from text field
 
-            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease!;
+            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&total_tenants="+totalTenants!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate!+"&miles_to_gu="+milesToGu!+"&lease_length="+lease! + "&property_type="+propType;
             
             // Upload Image
             self.uploadImage(address: propertyAddress!)

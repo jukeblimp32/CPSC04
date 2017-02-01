@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class EditListing: UITableViewController {
+class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let URL_EDIT_PROPERTY = "http://147.222.165.203/MyWebService/api/editProperties.php"
     
@@ -33,12 +33,18 @@ class EditListing: UITableViewController {
     
     @IBOutlet weak var stepper: UIStepper!
     
+    @IBOutlet weak var propertyImage: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addressTextField?.text = address
         rentTextField?.text = rent
         bedroomTextField?.text = bedroomNum
+        propertyImage.image = image
+        propertyImage.contentMode = .scaleAspectFill
+        propertyImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
+        propertyImage.isUserInteractionEnabled = true
         stepper.value = Double(bedroomNum)!
         stepper.wraps = true
         stepper.autorepeat = true
@@ -103,7 +109,7 @@ class EditListing: UITableViewController {
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
         
-        
+        self.uploadImage()
         
         //task to send to post request
         let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
@@ -134,6 +140,75 @@ class EditListing: UITableViewController {
 
     }
     
+    private func uploadImage()
+    {
+        // Firebase images. First create a unique id number.
+        let imageName = NSUUID().uuidString
+        let storageRef = FIRStorage.storage().reference().child("Listing Images").child("\(imageName).png")
+        if let uploadData = UIImagePNGRepresentation(self.propertyImage.image!)
+        {
+            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                print(metadata)
+                // Set values
+                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                    let values = ["address": self.address, "image1": uploadImageUrl]
+                    
+                    // After uploading image to storage, add to property photos database
+                    let fireData = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+                    /**********************************************************
+                     * Need to swap out with property id
+                     ***********************************************************/
+                    let listingsReference = fireData.child("listings").child(String(self.propertyID))
+                    listingsReference.updateChildValues(values, withCompletionBlock: {
+                        (err, ref) in
+                        if err != nil {
+                            print(err)
+                            return
+                        }
+                        
+                    })
+                    
+                }
+                
+                
+            })
+            
+        }
+    }
+    
+    func handleSelectListingImage()
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        var selectedImageFromPicker: UIImage?
+        
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage{
+            selectedImageFromPicker = editedImage
+        }
+        else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage{
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker{
+            propertyImage.image = selectedImage
+        }
+        dismiss(animated:true, completion:nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("Cancelled picker")
+        dismiss(animated: true, completion:nil)
+    }
 
     
     override func didReceiveMemoryWarning() {
