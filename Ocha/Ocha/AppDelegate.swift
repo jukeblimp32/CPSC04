@@ -54,6 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         return googleDidHandle || fbDidHandle
     }
     
+    
+    func applicationWillEnterForeground(application: UIApplication!) {
+        StudentHomePage().refresh()
+    }
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error{

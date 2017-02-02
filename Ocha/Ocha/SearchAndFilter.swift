@@ -92,6 +92,8 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         var propertyFilter = propTypeSelect.titleForSegment(at: propTypeSelect.selectedSegmentIndex)
         var petFilter = petSelect.titleForSegment(at: petSelect.selectedSegmentIndex)
         
+        self.filters.removeAll()
+        
         self.filters.append(minPriceFilter)
         self.filters.append(maxPriceFilter)
         self.filters.append(bedroomFilter!)

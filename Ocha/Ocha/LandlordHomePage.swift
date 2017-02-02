@@ -17,6 +17,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     var listings = [Listing]()
     var downloadURL = ""
+    var refreshControl : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +26,15 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         // Do any additional setup after loading the view, typically from a nib.
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(LandlordHomePage.handleRefresh(_:)), for: .valueChanged)
+        
         // Initialize our table
         propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (90/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
         propertiesList.reloadData()
+        propertiesList.addSubview(refreshControl)
         
         //}
         
@@ -60,6 +65,13 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             destination.image.image = listings[blogIndex].houseImage
             destination.propertyID = listings[blogIndex].propertyID
         }
+    }
+    
+    func handleRefresh(_ sender : UIRefreshControl) {
+        listings.removeAll()
+        loadListingViews()
+        propertiesList.reloadData()
+        refreshControl.endRefreshing()
     }
     
     

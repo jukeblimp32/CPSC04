@@ -24,8 +24,8 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var rent: UITextField!
     @IBOutlet weak var leaseLength: UISegmentedControl!
     @IBOutlet weak var deposit: UITextField!
-    @IBOutlet weak var propType: UISegmentedControl!
     
+    @IBOutlet weak var propType: UISegmentedControl!
     
     var propertyIDs = [Int]()
     var maxID = 0
@@ -146,7 +146,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         let availableDate = dateFormatter.string(from: datePicker.date)
         let milesToGu = milesToGU
         let lease = leaseLength.titleForSegment(at: leaseLength.selectedSegmentIndex)
-        let propertyType = propType.titleForSegment(at: propType.selectedSegmentIndex)
+        let propertyType = propType.titleForSegment(at:propType.selectedSegmentIndex)
 
 
         

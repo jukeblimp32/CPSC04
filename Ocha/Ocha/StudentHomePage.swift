@@ -20,10 +20,17 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     var downloadURL = ""
     var filters = [String]()
     var filterLabels = [UILabel]()
+    var refreshControl : UIRefreshControl!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl = UIRefreshControl()
+        //refreshControl?.addTarget(self, action: Selector("handleRefresh:"), for: UIControlEvents.valueChanged)
+        
+        refreshControl.addTarget(self, action: #selector(StudentHomePage.handleRefresh(_:)), for: .valueChanged)
+        
+        
         self.propertiesList.register(ListingTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
@@ -33,6 +40,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         propertiesList.delegate = self
         propertiesList.dataSource = self
         propertiesList.reloadData()
+        propertiesList.addSubview(refreshControl)
 
         let viewTitle = UILabel()
         
@@ -49,6 +57,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         initializeFilters()
         
         view.addSubview(toHomePageButton)
+        refresh()
 
     }
     
@@ -63,6 +72,13 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         loadListingViews()
         propertiesList.reloadData()
         print(self.filters)
+    }
+    
+    func handleRefresh(_ sender : UIRefreshControl) {
+        listings.removeAll()
+        loadListingViews()
+        propertiesList.reloadData()
+        refreshControl.endRefreshing()
     }
     
     func loadFilters(){
@@ -117,6 +133,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             newLabel.text = ""
             newLabel.font = UIFont(name: newLabel.font.fontName, size: 12)
             newLabel.textColor = UIColor.white
+            newLabel.adjustsFontSizeToFitWidth = true
             newLabel.textAlignment = .center
             
             // Set positions
@@ -163,6 +180,11 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             destination.rooms.text = listings[cellIndex].numberOfRooms
             destination.image.image = listings[cellIndex].houseImage
         }
+    }
+    
+    
+    func refresh() {
+        print ("I refreshed")
     }
     
     /*
@@ -244,14 +266,12 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             return false
             }
         if (!checkBedrooms(listing : listing)) {
-            print ("I failed at bedroom")
             return false
         }
         if (!checkPropType(listing : listing)) {
             return false
         }
         if (!checkDistance(listing : listing)) {
-            print ("I failed at distance")
             return false
         }
         return true
@@ -309,11 +329,9 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         let listingType = listing.propertyType
         var filterType = self.filters[4]
-        if (filterType == "Apt.") {
-            filterType = "Apartment"
-        }
+
         if (filterType == "Other") {
-            if ((listingType != "House") && (listingType != "Apartment") && (listingType != "Room")) {
+            if ((listingType != "House") && (listingType != "Apt.") && (listingType != "Room")) {
                 return true
             }
             else {
