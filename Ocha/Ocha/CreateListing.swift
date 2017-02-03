@@ -167,10 +167,8 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             
             // Upload Image
             self.uploadImage(address: propertyAddress!)
-        
             //adding parameters to request body
             saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
-        
             //task to send to post request
             let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
                 data,response, error in
@@ -180,17 +178,18 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
                 }
                 do{
                     //converting response to NSDictioanry
+                    
+                    let alert = UIAlertController(title: "Property Added!", message:"Property will be sent for review before being published", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                    self.present(alert, animated: true){}
+                    
+                    //Here is the problem child
                     let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-                
                     if let parseJSON = myJSON{
                         var msg:String!
                         msg = parseJSON["message"]as! String?
                         print(msg)
                     }
-                    print ("WHAT ABOUT HERE??")
-                    let alert = UIAlertController(title: "Property Added!", message:"Property will be sent for review before being published", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Okay", style: .default))
-                    self.present(alert, animated: true){}
                 }catch{
                     print(error)
                 }

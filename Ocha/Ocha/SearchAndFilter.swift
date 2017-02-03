@@ -56,7 +56,6 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         }
     }
     
-    
     @IBAction func sliderChanged(_ sender: UISlider) {
         self.distanceLabel.text = "Under " + String(roundf(self.slider.value * 2.0) * 0.5) + " miles"
     }
