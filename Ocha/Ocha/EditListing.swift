@@ -48,7 +48,7 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         stepper.value = Double(bedroomNum)!
         stepper.wraps = true
         stepper.autorepeat = true
-        stepper.maximumValue = 10
+        stepper.maximumValue = 30
     
     }
     

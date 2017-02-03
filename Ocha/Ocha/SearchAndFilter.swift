@@ -39,7 +39,7 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         stepper.wraps = true
         stepper.autorepeat = true
-        stepper.maximumValue = 10
+        stepper.maximumValue = 30
         // Do any additional setup after loading the view, typically from a nib.
         pickerMin.delegate = self
         pickerMin.dataSource = self
@@ -56,8 +56,9 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         }
     }
     
+    
     @IBAction func sliderChanged(_ sender: UISlider) {
-        self.distanceLabel.text = "Under " + String(format: "%.1f", self.slider.value) + " miles"
+        self.distanceLabel.text = "Under " + String(roundf(self.slider.value * 2.0) * 0.5) + " miles"
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -75,8 +76,8 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
     @IBAction func clearFilters(_ sender: Any) {
         pickerMin.selectRow(0, inComponent: 0, animated: true)
         pickerMax.selectRow(0, inComponent: 0, animated: true)
-        self.distanceLabel.text = "Under 10.0 miles"
-        slider.value = 10
+        self.distanceLabel.text = "Under 30.0 miles"
+        slider.value = 30
         stepper.value = 0
         self.bedroomNum.text = "Any"
         propTypeSelect.selectedSegmentIndex = 0
@@ -100,16 +101,7 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         self.filters.append(distanceFilter)
         self.filters.append(propertyFilter!)
         sleep(2)
-        
-        /*
-        let barViewControllers = self.tabBarController?.viewControllers
-        let svc = barViewControllers![0]
-        let navigationViewControllers = self.navigationController?.viewControllers
-        let svc2 = navigationViewControllers![0] as! StudentHomePage
-        svc2.listings.removeAll()
-        svc2.loadListingViews()
-        svc2.propertiesList.reloadData()
-        */
+
         tabBarController?.selectedIndex = 0
         
     }

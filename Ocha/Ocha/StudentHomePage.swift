@@ -57,7 +57,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         initializeFilters()
         
         view.addSubview(toHomePageButton)
-        refresh()
 
     }
     
@@ -109,7 +108,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             /*************************************************
             * This value will likely need to change from  10
             *************************************************/
-            else if(index == 3 && self.filters[3] != "10.0"){
+            else if(index == 3 && self.filters[3] != "30.0"){
                 let distFilter = "Miles to GU: " + self.filters[3]
                 filterLabels[positionInLabels].text = distFilter
                 positionInLabels += 1
@@ -180,11 +179,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             destination.rooms.text = listings[cellIndex].numberOfRooms
             destination.image.image = listings[cellIndex].houseImage
         }
-    }
-    
-    
-    func refresh() {
-        print ("I refreshed")
     }
     
     /*
@@ -347,7 +341,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func checkDistance(listing : Listing) -> Bool {
-        if(self.filters[3] == "10.0") {
+        if(self.filters[3] == "30.0") {
             return true
         }
         

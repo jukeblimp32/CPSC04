@@ -103,10 +103,6 @@ class ListingPage: UIViewController {
     }
   
     
-
-
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
