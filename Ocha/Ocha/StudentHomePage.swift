@@ -488,6 +488,10 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         let cellIdentifier = "ListingTableViewCell"
         let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
         
+        cell.favoriteButton.setImage(UIImage(named: "emptyStar"), for: UIControlState.normal)
+        cell.favoriteButton.setImage(UIImage(named: "filledStar"), for: UIControlState.selected)
+        cell.favoriteButton.isSelected = false
+        
         let listing = listings[indexPath.row]
         
         cell.propertyAddress.text = listing.address

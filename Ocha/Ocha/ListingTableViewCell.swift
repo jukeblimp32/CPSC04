@@ -16,6 +16,8 @@ class ListingTableViewCell: UITableViewCell {
     let propertyRent = UILabel()
     let propertyRooms = UILabel()
     let propertyImage = UIImageView()
+    let favoriteButton = UIButton()
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,13 +25,19 @@ class ListingTableViewCell: UITableViewCell {
         
         propertyAddress.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyAddress.textColor = UIColor.black
-        propertyAddress.frame = CGRect(x: (screenSize.width) * (6/100) , y: (self.frame.height) * (10/100), width: self.frame.width * (90/100) , height: 15)
+        propertyAddress.frame = CGRect(x: (screenSize.width) * (6/100) , y: (self.frame.height) * (10/100), width: self.frame.width * (60/100) , height: 15)
         propertyAddress.adjustsFontSizeToFitWidth = true
         self.addSubview(propertyAddress)
         
         propertyImage.frame = CGRect(x: (screenSize.width * (6/100)), y: (self.frame.height) * (20/100), width: self.frame.width * (25/100) , height: self.frame.height * (60/100))
         self.addSubview(propertyImage)
         
+        //let image = UIImage(named: "emptyStar") as UIImage?
+        favoriteButton.backgroundColor = UIColor.black
+        favoriteButton.frame = CGRect(x: (screenSize.width) * (70/100), y: (self.frame.height) * (10/100), width: self.frame.width * (8/100), height: 20)
+        //favoriteButton.setImage(image, for: .normal)
+        favoriteButton.addTarget(self, action: #selector(ListingTableViewCell.starPressed(_:)), for:UIControlEvents.touchUpInside)
+        self.addSubview(favoriteButton)
         
         propertyRent.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyRent.textColor = UIColor.black
@@ -74,6 +82,18 @@ class ListingTableViewCell: UITableViewCell {
         self.addSubview(distanceLabel)
     }
 
+    
+    func starPressed(_ sender : UIButton) {
+        if (sender.isSelected){
+            sender.isSelected = false
+        }
+        else
+        {
+            sender.isSelected = true
+        }
+    }
+    
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
