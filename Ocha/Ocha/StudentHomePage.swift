@@ -281,14 +281,41 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func checkPriceRange(listing : Listing) -> Bool {
+        //Both prices are Any (no preference)
         if ((self.filters[0] == "Any") && (self.filters[1] == "Any")) {
             return true
         }
+        
+        //Listing has no proper rent value
         if (Int(listing.monthRent) == nil) {
             return false
         }
-
+        
         let listingRent : Int = Int(listing.monthRent)!
+        
+        //Just min is set to any
+        if (self.filters[0] == "Any") {
+            let max : Int = Int(self.filters[1])!
+            if(listingRent <= max) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        
+        //Just max is set to any
+        if (self.filters[1] == "Any") {
+            let min : Int = Int(self.filters[0])!
+            if (listingRent >= min) {
+                return true
+            }
+            else {
+                return false
+            }
+            
+        }
+        
         let min : Int = Int(self.filters[0])!
         let max : Int  = Int(self.filters[1])!
         
