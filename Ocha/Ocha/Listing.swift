@@ -16,6 +16,7 @@ class Listing {
     var milesToGU: String
     var houseImage: UIImage?
     var propertyType: String
+    var counter: Int = 0
 
     
     init(propertyID: Int, landlordID: String, address: String, milesToGU: String, numberOfRooms: String, monthRent: String, houseImage : UIImage?, propertyType: String) {
