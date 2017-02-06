@@ -227,6 +227,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             destination.rent.text = listings[cellIndex].monthRent
             destination.distance.text = listings[cellIndex].milesToGU
             destination.rooms.text = listings[cellIndex].numberOfRooms
+            // Pass the imageUrl just to ensure that the image loads
+            destination.imageUrl = listings[cellIndex].imageUrl
             destination.image.image = listings[cellIndex].houseImage
         }
     }
@@ -523,6 +525,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             {
                 // Set the download URL and download the image
                 self.downloadURL = snapshot?["image1"] as! String
+                listing.imageUrl = self.downloadURL
                 cell.propertyImage.loadCachedImages(url: self.downloadURL)
                 listing.houseImage = cell.propertyImage.image
                 

@@ -62,6 +62,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             destination.rent.text = listings[blogIndex].monthRent
             destination.distance.text = listings[blogIndex].milesToGU
             destination.rooms.text = listings[blogIndex].numberOfRooms
+            destination.imageUrl = listings[blogIndex].imageUrl
             destination.image.image = listings[blogIndex].houseImage
             destination.propertyID = listings[blogIndex].propertyID
         }
@@ -234,6 +235,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             {
                 // Set the download URL and download the image
                 self.downloadURL = snapshot?["image1"] as! String
+                listing.imageUrl = self.downloadURL
                 cell.propertyImage.loadCachedImages(url: self.downloadURL)
                 listing.houseImage = cell.propertyImage.image
             }

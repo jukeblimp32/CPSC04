@@ -15,6 +15,7 @@ class Listing {
     var landlordID: String
     var milesToGU: String
     var houseImage: UIImage?
+    var imageUrl: String
     var propertyType: String
     var counter: Int = 0
 
@@ -27,6 +28,7 @@ class Listing {
         self.monthRent = monthRent
         self.landlordID = landlordID
         self.propertyType = propertyType
+        self.imageUrl = ""
         if houseImage == nil {
             self.houseImage = UIImage(named: "default")
         }

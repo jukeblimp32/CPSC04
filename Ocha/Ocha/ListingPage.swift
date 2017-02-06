@@ -12,6 +12,7 @@ class ListingPage: UIViewController {
     
     
     var image = UIImageView()
+    var imageUrl = ""
     
     var address = UILabel()
     
@@ -36,6 +37,7 @@ class ListingPage: UIViewController {
         view.addSubview(address)
         
         image.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (25/100), width: view.frame.width * (50/100) , height: (view.frame.height * 25/100))
+        image.loadCachedImages(url: imageUrl)
         view.addSubview(image)
         
         distance.frame = CGRect(x: (view.frame.width) * (80/100), y: (view.frame.height) * (75/100), width: view.frame.width * (45/100) , height: 30)

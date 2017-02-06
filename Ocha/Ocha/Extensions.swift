@@ -15,6 +15,13 @@ extension UIImageView {
     func loadCachedImages(url: String){
         self.image = nil
         
+        // Load default image if no url
+        if(url == "" || url == nil)
+        {
+            self.image = UIImage(named: "default")
+            return
+        }
+        
         // Check if the picture exists in the cache
         if let cachedImage = propertyImageCache.object(forKey: url as NSString) {
             self.image = cachedImage
