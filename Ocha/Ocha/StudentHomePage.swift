@@ -63,15 +63,29 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("Now I HERE")
         let barViewControllers = self.tabBarController?.viewControllers
         let svc = barViewControllers![1] as! SearchAndFilter
         self.filters = svc.filters
+        print(self.filters)
+        
+        // Reset filters
+        //filterLabels.removeAll()
+        //print(filterLabels.count)
+        //initializeFilters()
+        //print(filterLabels.count)
         
         loadFilters()
         listings.removeAll()
         loadListingViews()
         propertiesList.reloadData()
         print(self.filters)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("YO FUCK YEAH")
+        positionInLabels = 0
+        clearFilterLabels()
     }
     
     func handleRefresh(_ sender : UIRefreshControl) {
@@ -166,6 +180,16 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    func clearFilterLabels()
+    {
+        for label in filterLabels{
+            label.setTitle(" ", for: UIControlState.normal)
+            label.backgroundColor = nil
+            positionInLabels = 0
+
+        }
+    }
+    
     func deselectFilter(_ sender : UIButton){
         // Only be able to remove if there is a filter
         if(sender.titleLabel?.text != nil && sender.titleLabel?.text != " ")
@@ -180,29 +204,37 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             filterLabels[positionInLabels - 1].backgroundColor = nil
             positionInLabels = 0
             
-            // Reload filters
+            // Reload filters and refresh
             loadFilters()
-            print(filters)
+            handleRefresh(refreshControl)
         }
-        loadListingViews()
-        propertiesList.reloadData()
         
         return
     }
     
+    
     func deleteFilter(filterTitle: String){
+        // Get reference to search and filter
+        let barViewControllers = self.tabBarController?.viewControllers
+        let svc = barViewControllers![1] as! SearchAndFilter
+        
         if(filterTitle.contains("x  Price:")){
             filters[0] = "Any"
+            svc.filters[0] = "Any"
             filters[1] = "Any"
+            svc.filters[1] = "Any"
         }
         else if(filterTitle.contains("x  Rooms:")){
             filters[2] = "Any"
+            svc.filters[2] = "Any"
         }
         else if(filterTitle.contains("x  Miles to GU:")){
             filters[3] = "30.0"
+            svc.filters[3] = "30.0"
         }
         else if(filterTitle.contains("x  Prop Type:")){
             filters[4] = "Any"
+            svc.filters[4] = "Any"
         }
     }
     
