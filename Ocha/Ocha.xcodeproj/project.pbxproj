@@ -333,7 +333,7 @@
 					};
 					7C854E4A1DC400AD00E02883 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = PE4D2M7AAM;
+						DevelopmentTeam = 5923KCHPM2;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -685,7 +685,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Ocha/Ocha.entitlements;
-				DEVELOPMENT_TEAM = PE4D2M7AAM;
+				DEVELOPMENT_TEAM = 5923KCHPM2;
 				INFOPLIST_FILE = Ocha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -705,7 +705,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Ocha/Ocha.entitlements;
-				DEVELOPMENT_TEAM = PE4D2M7AAM;
+				DEVELOPMENT_TEAM = 5923KCHPM2;
 				INFOPLIST_FILE = Ocha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
