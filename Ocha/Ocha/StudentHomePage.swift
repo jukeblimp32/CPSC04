@@ -46,7 +46,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         let viewTitle = UILabel()
         
         let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 20)
+        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (4/100), width: view.frame.width * (25/100) , height: 20)
         toHomePageButton.setTitle("Logout", for: UIControlState.normal)
         toHomePageButton.titleLabel?.adjustsFontSizeToFitWidth = true
         toHomePageButton.titleLabel?.textColor = UIColor.white
@@ -83,7 +83,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("YO FUCK YEAH")
         positionInLabels = 0
         clearFilterLabels()
     }
@@ -104,7 +103,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         // Go through the list of filters. If a filter is "Any" don't label it.
         for index in 0 ..< self.filters.count{
             // Check that the first filter is not Any.
-            if(index == 0 && self.filters[0] != "Any"){
+            if(index == 0 && !(self.filters[0] == "Any" && self.filters[1] == "Any")){
                 // If not Any then add the upper bound and lower bound together
                 let priceFilter = "x  Price: " + self.filters[0] + " - " + self.filters[1]
                 // Set the label
@@ -161,19 +160,19 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             // Set positions
             switch index{
             case 0:
-                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (8/100), width: view.frame.width * (23/100), height: 20)
+                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (9/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             case 1:
-                newLabel.frame = CGRect(x: (view.frame.width) * (36/100), y: (view.frame.height) * (8/100), width: view.frame.width * (23/100), height: 20)
+                newLabel.frame = CGRect(x: (view.frame.width) * (36/100), y: (view.frame.height) * (9/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             case 2:
-                newLabel.frame = CGRect(x: (view.frame.width) * (62/100), y: (view.frame.height) * (8/100), width: view.frame.width * (23/100), height: 20)
+                newLabel.frame = CGRect(x: (view.frame.width) * (62/100), y: (view.frame.height) * (9/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             case 3:
-                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (11/100), width: view.frame.width * (23/100), height: 20)
+                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (12/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             case 4:
-                newLabel.frame = CGRect(x: (view.frame.width) * (36/100), y: (view.frame.height) * (11/100), width: view.frame.width * (23/100), height: 20)
+                newLabel.frame = CGRect(x: (view.frame.width) * (36/100), y: (view.frame.height) * (12/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             case 5:
-                newLabel.frame = CGRect(x: (view.frame.width) * (62/100), y: (view.frame.height) * (11/100), width: view.frame.width * (23/100), height: 20)
+                newLabel.frame = CGRect(x: (view.frame.width) * (62/100), y: (view.frame.height) * (12/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             default:
-                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (4/100), width: view.frame.width * (23/100), height: 20)
+                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (9/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             }
             filterLabels.append(newLabel)
             view.addSubview(newLabel)
