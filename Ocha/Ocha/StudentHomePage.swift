@@ -347,6 +347,24 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         getTask.resume()
     }
     
+    
+    //Leah(:
+    /*
+    func favoritedProperties(listing: Listing, favoriteListing: FavoriteListings){
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        let userID = String(favoriteListing.userID)
+        
+        //if the current user has favorited property
+        //their id should be in the favoriteListing array
+        if (uid == userID){
+            //look for the property that was favorited in the listing array and append it to a new array
+            //look for it using the user ids?
+            for item in listing{
+                if 
+            }
+        }
+    }
+    */
     func checkFilters(listing : Listing) -> Int{
         if (checkDefaults()) {
             return 0
@@ -439,7 +457,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
              return 1
         }
         let listingType = listing.propertyType
-        var filterType = self.filters[4]
+        let filterType = self.filters[4]
 
         if (filterType == "Other") {
             if ((listingType != "House") && (listingType != "Apt.") && (listingType != "Room")) {

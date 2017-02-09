@@ -12,6 +12,11 @@ import FBSDKLoginKit
 
 class FavoritesPage: UIViewController {
     
+    let getFavorites = "http://147.222.165.203/MyWebService/api/DisplayFavorites.php"
+    var favoriteListings = [FavoriteListings]()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
@@ -34,8 +39,92 @@ class FavoritesPage: UIViewController {
         toHomePageButton.layer.cornerRadius = 4
         toHomePageButton.addTarget(self, action: #selector(FavoritesPage.logout(_:)), for: UIControlEvents.touchUpInside)
         view.addSubview(toHomePageButton)
+        loadListingViews()
 
     }
+    
+    func loadListingViews(){
+        //create NSURL
+        let getRequestURL = NSURL(string: getFavorites)
+        //creating NSMutableURLRequest
+        let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
+        //setting the method to GET
+        getRequest.httpMethod = "GET"
+        //task to be sent to the GET request
+        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest) {
+            data, response,error in
+            //If there is an error in connecting with the database, print error
+            if error != nil {
+                print("error is \(error)")
+                return;
+            }
+            do {
+                //converting response to dictionary
+                var propertyJSON : NSDictionary!
+                propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                //Getting the properties in an array
+                let favorites: NSArray = propertyJSON["favorites"] as! NSArray
+                
+                let uid = FIRAuth.auth()?.currentUser?.uid
+                
+                //looping through all the objects in the array
+                DispatchQueue.main.async(execute: {
+                    for i in 0 ..< favorites.count{
+                        //Getting data from each listing and saving to vars
+                        let propIdValue = favorites[i] as? NSDictionary
+                        let propertyID = propIdValue?["property_id"] as! Int
+                        let landlordIdValue = favorites[i] as? NSDictionary
+                        let landlordID = landlordIdValue?["landlord_id"] as! String
+                        let addressValue = favorites[i] as? NSDictionary
+                        let address = addressValue?["address"] as! String
+                        let milesValue = favorites[i] as? NSDictionary
+                        let milesToGu = milesValue?["miles_to_gu"] as! String
+                        let rentValue = favorites[i] as? NSDictionary
+                        let rentPerMonth = rentValue?["rent_per_month"] as! String
+                        let roomsValue = favorites[i] as? NSDictionary
+                        let roomNumber = roomsValue?["number_of_rooms"] as! String
+                        let propertyTypeValue = favorites[i] as? NSDictionary
+                        let propertyType = propertyTypeValue?["property_type"] as! String
+                        let availabilityValue = favorites[i] as? NSDictionary
+                        let available = availabilityValue?["availability"] as! String
+                        let favoriteIdValue = favorites[i] as? NSDictionary
+                        let favoriteID = favoriteIdValue?["favorite_id"] as! Int
+                        let userIdValue = favorites[i] as? NSDictionary
+                        let userID = userIdValue?["user_id"] as! String
+                        
+
+                        print("LOOKHERE")
+                        print(propertyID)
+                        print(landlordID)
+                        print(address)
+                        print(milesToGu)
+                        print(rentPerMonth)
+                        print(roomNumber)
+                        print(propertyType)
+                        print(available)
+                        print(favoriteID)
+                        print(userID)
+                        
+                        if userID == uid {
+                            let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil, propertyType: propertyType, available: available, favoriteID: favoriteID, userID: userID)
+                            self.favoriteListings.append(favoriteListing)
+                        }
+                        
+                        // Update our table
+                       // DispatchQueue.main.async(execute: {
+                       //     self.propertiesList.reloadData()
+                       // })
+                    }
+                })
+            }
+            catch {
+                print(error)
+            }
+        }
+        getTask.resume()
+    }
+
     
     
     func logout(_ sender : UIButton) {
