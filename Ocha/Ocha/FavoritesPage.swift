@@ -43,6 +43,13 @@ class FavoritesPage: UIViewController {
 
     }
     
+/*    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        let barViewControllers = self.tabBarController?.viewControllers
+        let svc = barViewControllers![0] as! StudentHomePage
+        self.favoriteListings = svc.favoriteListings
+    }*/
+    
     func loadListingViews(){
         //create NSURL
         let getRequestURL = NSURL(string: getFavorites)
@@ -109,6 +116,7 @@ class FavoritesPage: UIViewController {
                         if userID == uid {
                             let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil, propertyType: propertyType, available: available, favoriteID: favoriteID, userID: userID)
                             self.favoriteListings.append(favoriteListing)
+                            print(favoriteListing)
                         }
                         
                         // Update our table

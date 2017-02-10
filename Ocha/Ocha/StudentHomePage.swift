@@ -15,7 +15,11 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var propertiesList: UITableView!
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     let propertyDetails = "http://147.222.165.203/MyWebService/api/PropertyDetails.php"
+    let getFavorites = "http://147.222.165.203/MyWebService/api/DisplayFavorites.php"
+    
     var listings = [Listing]()
+    var favoriteListings = [FavoriteListings]()
+    
     var valueTopass : String!
     var downloadURL = ""
     var filters = [String]()
@@ -58,7 +62,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         initializeFilters()
         
         view.addSubview(toHomePageButton)
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +73,10 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.filters = svc.filters
         print(self.filters)
         
+        let fav = barViewControllers![2] as! FavoritesPage
+        self.favoriteListings = fav.favoriteListings
+        
+        
         // Reset filters
         //filterLabels.removeAll()
         //print(filterLabels.count)
@@ -78,6 +86,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         loadFilters()
         listings.removeAll()
         loadListingViews()
+        print("listings")
+        print(self.listings)
         propertiesList.reloadData()
         print(self.filters)
     }
@@ -337,6 +347,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                     })
                     print("Look here")
                     print(tempListings.count)
+                    print("favorited Properties")
+                    self.favoritedProperties()
                 })
             }
             catch {
@@ -346,24 +358,37 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         getTask.resume()
     }
     
+
     
     //Leah(:
-    /*
-    func favoritedProperties(listing: Listing, favoriteListing: FavoriteListings){
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        let userID = String(favoriteListing.userID)
+    //have to first go to 'favorites' page and then back to home to get properties that are favorited by logged in user
+    //because 'favoriteListings' gets filled when 'favoirtes' is visited
+    //one thing to do if fill 'favoriteListing' array on 'studenthomepage' and then just pass the array from 'studenthomepage' to 'favoritesPage'
+    //instead of right what we're doing right now, pasing in 'favoriteListing' from 'favoritesPage' to 'studenthomepage'
+    //returns an array of all favorited properties by logged in user that are in the 'listings' array
+    //called at the end of 'loadlistingview'
+    func favoritedProperties() -> Array<Listing>{
+        //array to hold all favorited properties that are in the current listings
+        var favListings = [Listing]()
         
-        //if the current user has favorited property
-        //their id should be in the favoriteListing array
-        if (uid == userID){
-            //look for the property that was favorited in the listing array and append it to a new array
-            //look for it using the user ids?
-            for item in listing{
-                if 
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        //check if listings from 'listings' is in the 'favorites', all of the favorited properties
+        for item1 in listings{
+            let property1 : Int = Int(item1.propertyID)
+            for item2 in favoriteListings{
+                let favUserId : String = String(item2.userID)
+                let property2 : Int = Int(item2.propertyID)
+                if ((uid == favUserId) && (property1 == property2)){
+                    favListings.append(item1)
+                }
             }
         }
+        print("this is favListings")
+        print(favListings.count) //should be 1
+        print(favListings)
+        return favListings
     }
-    */
+    
     func checkFilters(listing : Listing) -> Int{
         if (checkDefaults()) {
             return 0
