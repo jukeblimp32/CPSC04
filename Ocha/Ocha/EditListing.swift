@@ -14,42 +14,110 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
     let URL_EDIT_PROPERTY = "http://147.222.165.203/MyWebService/api/editProperties.php"
     
     var address : String = ""
-    
     var rent : String = ""
-    
     var bedroomNum : String = ""
-    
+    var bathroomNum : String = ""
     var distance : String = ""
-    
+    var dateAvailable : String = ""
+    var pets : String = ""
+    var deposit : String = ""
+    var propDescription : String = ""
+    var availability : String = ""
+    var leaseTerms : String = " "
     var image : UIImage = UIImage(named: "default")!
-    
     var propertyID : Int = 0
     
     @IBOutlet weak var addressTextField: UITextField!
-    
     @IBOutlet weak var rentTextField: UITextField!
-    
+    @IBOutlet weak var depositTextField: UITextField!
     @IBOutlet weak var bedroomTextField: UILabel!
-    
+    @IBOutlet weak var bathroomLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
-    
+    @IBOutlet weak var bathroomStepper: UIStepper!
     @IBOutlet weak var propertyImage: UIImageView!
+    @IBOutlet weak var propertyStatus: UISegmentedControl!
+    @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var descriptionText: UITextView!
+    @IBOutlet weak var characterLabel: UILabel!
+    @IBOutlet var leaseSegment: UISegmentedControl!
     
+    @IBOutlet weak var petPolicy: UISegmentedControl!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        determineAvailability()
+        determineDate()
+        determinePetPolicy()
+        determineLease()
         addressTextField?.text = address
         rentTextField?.text = rent
+        depositTextField?.text = deposit
         bedroomTextField?.text = bedroomNum
+        bathroomLabel?.text = bathroomNum
+        descriptionText?.text = propDescription
         propertyImage.image = image
+        
+        descriptionText!.layer.borderWidth = 1
+        descriptionText!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
+        
         propertyImage.contentMode = .scaleAspectFill
         propertyImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         propertyImage.isUserInteractionEnabled = true
+        
         stepper.value = Double(bedroomNum)!
         stepper.wraps = true
         stepper.autorepeat = true
-        stepper.maximumValue = 30
+        stepper.minimumValue = 1
+        stepper.maximumValue = 10
+        bathroomStepper.value = Double(bathroomNum)!
+        bathroomStepper.wraps = true
+        bathroomStepper.autorepeat = true
+        bathroomStepper.minimumValue = 1
+        bathroomStepper.maximumValue = 10
     
+    }
+    
+    func determineAvailability() {
+        if (availability == "Open") {
+            propertyStatus.selectedSegmentIndex = 0
+        }
+        else {
+            propertyStatus.selectedSegmentIndex = 1
+        }
+    }
+    
+    func determineLease() {
+        if (leaseTerms == "Monthly"){
+            leaseSegment.selectedSegmentIndex = 0
+        }
+        else if (leaseTerms == "6-Month"){
+            leaseSegment.selectedSegmentIndex = 1
+        }
+        else if (leaseTerms == "9-Month"){
+            leaseSegment.selectedSegmentIndex = 2
+        }
+        else {
+            leaseSegment.selectedSegmentIndex = 3
+        }
+    }
+    
+    //********In Progress
+    func determineDate() {
+        
+    }
+    
+    func determinePetPolicy() {
+        if (pets == "Yes") {
+            petPolicy.selectedSegmentIndex = 0
+        }
+        else {
+            petPolicy.selectedSegmentIndex = 1
+        }
+    }
+    
+    @IBAction func changeBathroomNumber(_ sender: UIStepper) {
+        bathroomLabel.text = Int(sender.value).description
     }
     
     @IBAction func changeBedroomNumber(_ sender: UIStepper) {
@@ -57,10 +125,18 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
     }
     
     @IBAction func reverseChanges(_ sender: Any) {
+        determineAvailability()
+        determineDate()
+        determinePetPolicy()
+        determineLease()
         addressTextField?.text = address
         rentTextField.text = rent
+        depositTextField.text = deposit
         bedroomTextField.text = bedroomNum
+        bathroomLabel.text = bathroomNum
         stepper.value = Double(bedroomNum)!
+        bathroomStepper.value = Double(bathroomNum)!
+        descriptionText.text = propDescription
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,17 +171,26 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         
         let currentProperty = String(propertyID)
         
+        var dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+        
         //getting values from fields
         let editAddress = addressTextField.text
         let editRent = rentTextField.text
+        let editDeposit = depositTextField.text
         let editBedroom = bedroomTextField.text
-
- 
-            
+        let editBathroom = bathroomLabel.text
+        let editPet = petPolicy.titleForSegment(at:petPolicy.selectedSegmentIndex)
+        let editStatus = propertyStatus.titleForSegment(at: propertyStatus.selectedSegmentIndex)
+        let editDescription = descriptionText.text
+        let editDate = dateFormatter.string(from: datePicker.date)
+        let editLease = leaseSegment.titleForSegment(at: leaseSegment.selectedSegmentIndex)
+        
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty;
-        
+        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length"+editLease!;
+
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
         
@@ -179,6 +264,8 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
             
         }
     }
+    
+    
     
     func handleSelectListingImage()
     {

@@ -106,6 +106,8 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
                         let bathroomValue = favorites[i] as? NSDictionary
                         let bathroomNumber = bathroomValue?["number_of_bathrooms"] as! String
+                        let leaseValue = favorites[i] as? NSDictionary
+                        let lease = leaseValue?["lease_length"] as! String
                         let propertyTypeValue = favorites[i] as? NSDictionary
                         let propertyType = propertyTypeValue?["property_type"] as! String
                         let availabilityValue = favorites[i] as? NSDictionary
@@ -120,7 +122,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         let userID = userIdValue?["user_id"] as! String
  
                         if userID == uid {
-                            let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, favoriteID: favoriteID, userID: userID)
+                            let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, favoriteID: favoriteID, userID: userID)
                             self.favoriteListings.append(favoriteListing)
                         }
                         
@@ -190,6 +192,14 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             // Pass the imageUrl just to ensure that the image loads
             destination.imageUrl = favoriteListings[cellIndex].imageUrl
             destination.image.image = favoriteListings[cellIndex].houseImage
+            destination.dateAvailable = favoriteListings[cellIndex].dateAvailable
+            destination.leaseLength = favoriteListings[cellIndex].leaseLength
+            destination.bathroomNumber = favoriteListings[cellIndex].bathroomNumber
+            destination.deposit = favoriteListings[cellIndex].deposit
+            destination.pets = favoriteListings[cellIndex].pets
+            destination.availability = favoriteListings[cellIndex].availability
+            destination.propDescription = favoriteListings[cellIndex].description
+            destination.propertyType = favoriteListings[cellIndex].propertyType
         }
     }
     

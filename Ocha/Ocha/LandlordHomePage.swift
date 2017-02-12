@@ -65,6 +65,14 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             destination.imageUrl = listings[blogIndex].imageUrl
             destination.image.image = listings[blogIndex].houseImage
             destination.propertyID = listings[blogIndex].propertyID
+            destination.dateAvailable = listings[blogIndex].dateAvailable
+            destination.leaseLength = listings[blogIndex].leaseLength
+            destination.bathroomNumber = listings[blogIndex].bathroomNumber
+            destination.deposit = listings[blogIndex].deposit
+            destination.pets = listings[blogIndex].pets
+            destination.availability = listings[blogIndex].availability
+            destination.propDescription = listings[blogIndex].description
+            destination.propertyType = listings[blogIndex].propertyType
         }
     }
     
@@ -127,6 +135,8 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
                         let bathroomValue = properties[i] as? NSDictionary
                         let bathroomNumber = bathroomValue?["number_of_bathrooms"] as! String
+                        let leaseValue = properties[i] as? NSDictionary
+                        let lease = leaseValue?["lease_length"] as! String
                         let propertyTypeValue = properties[i] as? NSDictionary
                         let propertyType = propertyTypeValue?["property_type"] as! String
                         let petValue = properties[i] as? NSDictionary
@@ -138,7 +148,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         
                         if landlordID == uid {
                         
-                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description)
+                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description)
                             self.listings.append(listing)
                         }
                         

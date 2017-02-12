@@ -20,6 +20,7 @@ class ListingPage: UIViewController {
     var dateAvailable : String = ""
     var deposit : String = ""
     var bathroomNumber : String = ""
+    var leaseLength : String = ""
     var propertyType: String = ""
     var pets : String = ""
     var availability: String = ""
@@ -105,6 +106,16 @@ class ListingPage: UIViewController {
             destination.distance = distance.text!
             destination.image = image.image!
             destination.propertyID = propertyID
+            
+            destination.dateAvailable = dateAvailable
+            destination.bathroomNum = bathroomNumber
+            destination.deposit = deposit
+            destination.pets = pets
+            destination.availability = availability
+            destination.propDescription = propDescription
+
+            
+            
         }
     }
   

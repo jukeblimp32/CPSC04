@@ -22,6 +22,7 @@ class FavoriteListingPage: UIViewController {
     var rent = UILabel()
     var dateAvailable : String = ""
     var deposit : String = ""
+    var leaseLength : String = ""
     var bathroomNumber : String = ""
     var propertyType: String = ""
     var pets : String = ""

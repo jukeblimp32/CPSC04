@@ -265,6 +265,14 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             // Pass the imageUrl just to ensure that the image loads
             destination.imageUrl = listings[cellIndex].imageUrl
             destination.image.image = listings[cellIndex].houseImage
+            destination.leaseLength = listings[cellIndex].leaseLength
+            destination.dateAvailable = listings[cellIndex].dateAvailable
+            destination.bathroomNumber = listings[cellIndex].bathroomNumber
+            destination.deposit = listings[cellIndex].deposit
+            destination.pets = listings[cellIndex].pets
+            destination.availability = listings[cellIndex].availability
+            destination.propDescription = listings[cellIndex].description
+            destination.propertyType = listings[cellIndex].propertyType
         }
     }
     
@@ -319,6 +327,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
                         let bathroomValue = properties[i] as? NSDictionary
                         let bathroomNumber = bathroomValue?["number_of_bathrooms"] as! String
+                        let leaseValue = properties[i] as? NSDictionary
+                        let lease = leaseValue?["lease_length"] as! String
                         let propertyTypeValue = properties[i] as? NSDictionary
                         let propertyType = propertyTypeValue?["property_type"] as! String
                         let petValue = properties[i] as? NSDictionary
@@ -329,7 +339,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let description = descriptionValue?["description"] as! String
                     
 
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description)
+                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description)
 
                         
                         let filterCounter = self.checkFilters(listing: listing)

@@ -18,6 +18,7 @@ class FavoriteListings {
     var deposit : String
     var numberOfRooms: String
     var bathroomNumber : String
+    var leaseLength : String
     var propertyType: String
     var favoriteID: Int
     var userID: String
@@ -28,13 +29,14 @@ class FavoriteListings {
     var imageUrl: String
     
     
-    init(propertyID: Int, landlordID: String, address: String, dateAvailable : String, milesToGU: String, numberOfRooms: String, bathroomNumber: String, monthRent: String, deposit : String, houseImage : UIImage?, propertyType: String,pets : String, availability: String, description: String, favoriteID: Int, userID: String) {
+    init(propertyID: Int, landlordID: String, address: String, dateAvailable : String, milesToGU: String, numberOfRooms: String, bathroomNumber: String, leaseLength : String, monthRent: String, deposit : String, houseImage : UIImage?, propertyType: String,pets : String, availability: String, description: String, favoriteID: Int, userID: String) {
         self.address = address
         self.dateAvailable = dateAvailable
         self.milesToGU = milesToGU
         self.propertyID = propertyID
         self.numberOfRooms = numberOfRooms
         self.bathroomNumber = bathroomNumber
+        self.leaseLength = leaseLength
         self.monthRent = monthRent
         self.deposit = deposit
         self.landlordID = landlordID

@@ -23,16 +23,18 @@ class Listing {
     var pets : String
     var availability: String
     var description : String
+    var leaseLength : String
     var counter: Int = 0
 
     
-    init(propertyID: Int, landlordID: String, address: String, dateAvailable : String, milesToGU: String, numberOfRooms: String, bathroomNumber: String, monthRent: String, deposit : String, houseImage : UIImage?, propertyType: String, pets: String, availability: String, description: String) {
+    init(propertyID: Int, landlordID: String, address: String, dateAvailable : String, milesToGU: String, numberOfRooms: String, bathroomNumber: String, leaseLength : String, monthRent: String, deposit : String, houseImage : UIImage?, propertyType: String, pets: String, availability: String, description: String) {
         self.address = address
         self.dateAvailable = dateAvailable
         self.milesToGU = milesToGU
         self.propertyID = propertyID
         self.numberOfRooms = numberOfRooms
         self.bathroomNumber = bathroomNumber
+        self.leaseLength = leaseLength
         self.monthRent = monthRent
         self.deposit = deposit
         self.landlordID = landlordID
