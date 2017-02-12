@@ -17,6 +17,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     let propertyDetails = "http://147.222.165.203/MyWebService/api/PropertyDetails.php"
     let getFavorites = "http://147.222.165.203/MyWebService/api/DisplayFavorites.php"
     
+    var favoritePropIDs = [Int]()
     var listings = [Listing]()
     var favoriteListings = [FavoriteListings]()
     
@@ -85,12 +86,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         //sleep(4)
         //print("favorited properties1: ",  self.favoriteListings.count)
-        
-        print("listings")
-        print(self.listings)
         propertiesList.reloadData()
-        print(self.filters)
-        
        // print("favorited Properties")
        // self.favoritedProperties()
         propertiesList.reloadData()
@@ -104,6 +100,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     func handleRefresh(_ sender : UIRefreshControl) {
         listings.removeAll()
         favoriteListings.removeAll()
+        favoritePropIDs.removeAll()
         loadListingViews()
         propertiesList.reloadData()
         refreshControl.endRefreshing()
@@ -451,7 +448,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let userIdValue = favorites[i] as? NSDictionary
                         let userID = userIdValue?["user_id"] as! String
                         
-                        
                        // print(address)
                        // print(bathroom)
                         
@@ -460,7 +456,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         
                         //print("HEREHERE")
                         //print(favoriteListing)
-                        
                         self.favoriteListings.append(favoriteListing)
                         //print(self.favoriteListings.count)
                     }
@@ -498,6 +493,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                 let property2 : Int = Int(item2.propertyID)
                 if ((uid == favUserId) && (property1 == property2)){
                     favListings.append(item1)
+                    print (item1.propertyID)
+                    self.favoritePropIDs.append(item1.propertyID)
                 }
             }
         }
@@ -683,10 +680,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         let cellIdentifier = "ListingTableViewCell"
         let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
         
-        cell.favoriteButton.setImage(UIImage(named: "emptyStar"), for: UIControlState.normal)
-        cell.favoriteButton.setImage(UIImage(named: "filledStar"), for: UIControlState.selected)
-        cell.favoriteButton.isSelected = false
-        
         let listing = listings[indexPath.row]
         
         cell.propertyAddress.text = listing.address
@@ -696,6 +689,16 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         cell.propertyImage.image = listing.houseImage
         //cell.propertyImage.contentMode = .scaleAspectFill
+        
+        
+        cell.favoriteButton.setImage(UIImage(named: "emptyStar"), for: UIControlState.normal)
+        cell.favoriteButton.setImage(UIImage(named: "filledStar"), for: UIControlState.selected)
+        if favoritePropIDs.contains(listing.propertyID) {
+            cell.favoriteButton.isSelected = true
+        }
+        else {
+            cell.favoriteButton.isSelected = false
+        }
         
         // Get reference to database.
         let databaseRef = FIRDatabase.database().reference()

@@ -106,7 +106,7 @@ class ListingPage: UIViewController {
             destination.distance = distance.text!
             destination.image = image.image!
             destination.propertyID = propertyID
-            
+            destination.leaseTerms = leaseLength
             destination.dateAvailable = dateAvailable
             destination.bathroomNum = bathroomNumber
             destination.deposit = deposit
