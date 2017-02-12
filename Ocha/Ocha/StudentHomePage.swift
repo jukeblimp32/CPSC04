@@ -27,7 +27,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     var positionInLabels = 0
     var refreshControl : UIRefreshControl!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl = UIRefreshControl()
@@ -73,8 +72,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.filters = svc.filters
         print(self.filters)
         
-        let fav = barViewControllers![2] as! FavoritesPage
-        self.favoriteListings = fav.favoriteListings
+     //   let fav = barViewControllers![2] as! FavoritesPage
+     //   self.favoriteListings = fav.favoriteListings
         
         
         // Reset filters
@@ -84,12 +83,22 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         //print(filterLabels.count)
         
         loadFilters()
+        
         listings.removeAll()
+        //favoriteListings.removeAll()
+        getFavoritedProperties()
         loadListingViews()
+        
+        //sleep(4)
+        //print("favorited properties1: ",  self.favoriteListings.count)
+        
         print("listings")
         print(self.listings)
         propertiesList.reloadData()
         print(self.filters)
+        
+       // print("favorited Properties")
+       // self.favoritedProperties()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -99,6 +108,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func handleRefresh(_ sender : UIRefreshControl) {
         listings.removeAll()
+        favoriteListings.removeAll()
         loadListingViews()
         propertiesList.reloadData()
         refreshControl.endRefreshing()
@@ -345,8 +355,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         self.propertiesList.reloadData()
                     })
-                    print("Look here")
-                    print(tempListings.count)
+                    //print("Look here")
+                    //print(tempListings.count)
                     print("favorited Properties")
                     self.favoritedProperties()
                 })
@@ -359,6 +369,97 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
 
+    
+    //Fucntion to load in all favorited properties into  favoriteListing
+    //favoriteListings is used in favoritedProperties
+    func getFavoritedProperties() -> Array<FavoriteListings> {
+        //create NSURL
+        let getRequestURL = NSURL(string: getFavorites)
+        //creating NSMutableURLRequest
+        let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
+        //setting the method to GET
+        getRequest.httpMethod = "GET"
+        //task to be sent to the GET request
+        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest) {
+            data, response,error in
+            //If there is an error in connecting with the database, print error
+            if error != nil {
+                print("error is \(error)")
+                return;
+            }
+            do {
+                //converting response to dictionary
+                var propertyJSON : NSDictionary!
+                propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                //Getting the properties in an array
+                let favorites: NSArray = propertyJSON["favorites"] as! NSArray
+                
+                let uid = FIRAuth.auth()?.currentUser?.uid
+                
+                //looping through all the objects in the array
+                DispatchQueue.main.async(execute: {
+                    for i in 0 ..< favorites.count{
+                        //Getting data from each listing and saving to vars
+                        let propIdValue = favorites[i] as? NSDictionary
+                        let propertyID = propIdValue?["property_id"] as! Int
+                        let landlordIdValue = favorites[i] as? NSDictionary
+                        let landlordID = landlordIdValue?["landlord_id"] as! String
+                        let addressValue = favorites[i] as? NSDictionary
+                        let address = addressValue?["address"] as! String
+                        let milesValue = favorites[i] as? NSDictionary
+                        let milesToGu = milesValue?["miles_to_gu"] as! String
+                        let rentValue = favorites[i] as? NSDictionary
+                        let rentPerMonth = rentValue?["rent_per_month"] as! String
+                        let roomsValue = favorites[i] as? NSDictionary
+                        let roomNumber = roomsValue?["number_of_rooms"] as! String
+                        let propertyTypeValue = favorites[i] as? NSDictionary
+                        let propertyType = propertyTypeValue?["property_type"] as! String
+                        let availabilityValue = favorites[i] as? NSDictionary
+                        let available = availabilityValue?["availability"] as! String
+                        let descriptionValue = favorites[i] as? NSDictionary
+                        let description = descriptionValue?["description"] as! String
+                        let depositValue = favorites[i] as? NSDictionary
+                        let deposit = depositValue?["deposit"] as! String
+                        let bathroomValue = favorites[i] as? NSDictionary
+                        let bathroom = bathroomValue?["number_of_rooms"] as! String
+                        let dateValue = favorites[i] as? NSDictionary
+                        let date = dateValue?["date_available"] as! String
+                        let leaseValue = favorites[i] as? NSDictionary
+                        let lease = leaseValue?["lease_length"] as! String
+                        let petsValue = favorites[i] as? NSDictionary
+                        let pets = petsValue?["pets"] as! String
+                        let favoriteIdValue = favorites[i] as? NSDictionary
+                        let favoriteID = favoriteIdValue?["favorite_id"] as! Int
+                        let userIdValue = favorites[i] as? NSDictionary
+                        let userID = userIdValue?["user_id"] as! String
+                        
+                        
+                       // print(address)
+                       // print(bathroom)
+                        
+                        
+                        let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil, propertyType: propertyType, available: available, description: description, deposit: deposit, bathroom: bathroom, date: date, lease: lease, pets: pets, favoriteID: favoriteID, userID: userID)
+                        
+                        //print("HEREHERE")
+                        //print(favoriteListing)
+                        
+                        self.favoriteListings.append(favoriteListing)
+                        //print(self.favoriteListings.count)
+                    }
+                   // print("this is all favorite Listings")
+                   // print(self.favoriteListings.count)
+                   //print(self.favoriteListings)
+                })
+               
+            }
+            catch {
+                print(error)
+            }
+        }
+        getTask.resume()
+       return self.favoriteListings
+    }
     
     //Leah(:
     //have to first go to 'favorites' page and then back to home to get properties that are favorited by logged in user
