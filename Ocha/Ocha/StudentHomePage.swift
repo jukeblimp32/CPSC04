@@ -68,18 +68,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         let barViewControllers = self.tabBarController?.viewControllers
         let svc = barViewControllers![1] as! SearchAndFilter
         self.filters = svc.filters
-        
-<<<<<<< HEAD
-     //   let fav = barViewControllers![2] as! FavoritesPage
-     //   self.favoriteListings = fav.favoriteListings
-        
-        
-=======
-        /*
-        let fav = barViewControllers![2] as! FavoritesPage
-        self.favoriteListings = fav.favoriteListings
-        */
->>>>>>> 36b6adec5a1d22a475ea38d01aa026ec974f47d8
+          
+
         // Reset filters
         //filterLabels.removeAll()
         //print(filterLabels.count)
@@ -92,8 +82,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         //favoriteListings.removeAll()
         getFavoritedProperties()
         loadListingViews()
-<<<<<<< HEAD
-        
+
         //sleep(4)
         //print("favorited properties1: ",  self.favoriteListings.count)
         
@@ -104,9 +93,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         
        // print("favorited Properties")
        // self.favoritedProperties()
-=======
         propertiesList.reloadData()
->>>>>>> 36b6adec5a1d22a475ea38d01aa026ec974f47d8
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -362,7 +349,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let descriptionValue = properties[i] as? NSDictionary
                         let description = descriptionValue?["description"] as! String
                     
-
                         let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description)
 
                         
@@ -385,11 +371,9 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         self.propertiesList.reloadData()
                     })
-<<<<<<< HEAD
                     //print("Look here")
                     //print(tempListings.count)
-=======
->>>>>>> 36b6adec5a1d22a475ea38d01aa026ec974f47d8
+
                     print("favorited Properties")
                     self.favoritedProperties()
                 })
@@ -472,7 +456,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                        // print(bathroom)
                         
                         
-                        let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil, propertyType: propertyType, available: available, description: description, deposit: deposit, bathroom: bathroom, date: date, lease: lease, pets: pets, favoriteID: favoriteID, userID: userID)
+                        let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroom, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, favoriteID: favoriteID, userID: userID)
                         
                         //print("HEREHERE")
                         //print(favoriteListing)

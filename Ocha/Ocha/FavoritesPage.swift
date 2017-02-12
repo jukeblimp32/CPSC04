@@ -43,10 +43,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         view.addSubview(toHomePageButton)
 
     }
-<<<<<<< HEAD
 
-=======
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         favoriteListings.removeAll()
@@ -142,7 +139,6 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
         getTask.resume()
     }
->>>>>>> 36b6adec5a1d22a475ea38d01aa026ec974f47d8
 
     
     func logout(_ sender : UIButton) {
