@@ -115,18 +115,30 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let landlordID = landlordIdValue?["landlord_id"] as! String
                         let addressValue = properties[i] as? NSDictionary
                         let address = addressValue?["address"] as! String
+                        let dateValue = properties[i] as? NSDictionary
+                        let date = dateValue?["date_available"] as! String
                         let milesValue = properties[i] as? NSDictionary
                         let milesToGu = milesValue?["miles_to_gu"] as! String
                         let rentValue = properties[i] as? NSDictionary
                         let rentPerMonth = rentValue?["rent_per_month"] as! String
+                        let depositValue = properties[i] as? NSDictionary
+                        let deposit = depositValue?["deposit"] as! String
                         let roomsValue = properties[i] as? NSDictionary
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
+                        let bathroomValue = properties[i] as? NSDictionary
+                        let bathroomNumber = bathroomValue?["number_of_bathrooms"] as! String
                         let propertyTypeValue = properties[i] as? NSDictionary
                         let propertyType = propertyTypeValue?["property_type"] as! String
+                        let petValue = properties[i] as? NSDictionary
+                        let pets = petValue?["pets"] as! String
+                        let availabilityValue = properties[i] as? NSDictionary
+                        let availability = availabilityValue?["availability"] as! String
+                        let descriptionValue = properties[i] as? NSDictionary
+                        let description = descriptionValue?["description"] as! String
                         
                         if landlordID == uid {
                         
-                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil, propertyType: propertyType)
+                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description)
                             self.listings.append(listing)
                         }
                         

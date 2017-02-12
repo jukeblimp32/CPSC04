@@ -34,7 +34,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         refreshControl.addTarget(self, action: #selector(StudentHomePage.handleRefresh(_:)), for: .valueChanged)
         
-        
         self.propertiesList.register(ListingTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
@@ -66,16 +65,21 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("Now I HERE")
         let barViewControllers = self.tabBarController?.viewControllers
         let svc = barViewControllers![1] as! SearchAndFilter
         self.filters = svc.filters
-        print(self.filters)
         
+<<<<<<< HEAD
      //   let fav = barViewControllers![2] as! FavoritesPage
      //   self.favoriteListings = fav.favoriteListings
         
         
+=======
+        /*
+        let fav = barViewControllers![2] as! FavoritesPage
+        self.favoriteListings = fav.favoriteListings
+        */
+>>>>>>> 36b6adec5a1d22a475ea38d01aa026ec974f47d8
         // Reset filters
         //filterLabels.removeAll()
         //print(filterLabels.count)
@@ -88,6 +92,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         //favoriteListings.removeAll()
         getFavoritedProperties()
         loadListingViews()
+<<<<<<< HEAD
         
         //sleep(4)
         //print("favorited properties1: ",  self.favoriteListings.count)
@@ -99,6 +104,9 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         
        // print("favorited Properties")
        // self.favoritedProperties()
+=======
+        propertiesList.reloadData()
+>>>>>>> 36b6adec5a1d22a475ea38d01aa026ec974f47d8
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -323,17 +331,29 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let landlordID = landlordIdValue?["landlord_id"] as! String
                         let addressValue = properties[i] as? NSDictionary
                         let address = addressValue?["address"] as! String
+                        let dateValue = properties[i] as? NSDictionary
+                        let date = dateValue?["date_available"] as! String
                         let milesValue = properties[i] as? NSDictionary
                         let milesToGu = milesValue?["miles_to_gu"] as! String
                         let rentValue = properties[i] as? NSDictionary
                         let rentPerMonth = rentValue?["rent_per_month"] as! String
+                        let depositValue = properties[i] as? NSDictionary
+                        let deposit = depositValue?["deposit"] as! String
                         let roomsValue = properties[i] as? NSDictionary
                         let roomNumber = roomsValue?["number_of_rooms"] as! String
+                        let bathroomValue = properties[i] as? NSDictionary
+                        let bathroomNumber = bathroomValue?["number_of_bathrooms"] as! String
                         let propertyTypeValue = properties[i] as? NSDictionary
                         let propertyType = propertyTypeValue?["property_type"] as! String
-                        
+                        let petValue = properties[i] as? NSDictionary
+                        let pets = petValue?["pets"] as! String
+                        let availabilityValue = properties[i] as? NSDictionary
+                        let availability = availabilityValue?["availability"] as! String
+                        let descriptionValue = properties[i] as? NSDictionary
+                        let description = descriptionValue?["description"] as! String
+                    
 
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, milesToGU: milesToGu, numberOfRooms: roomNumber, monthRent: rentPerMonth, houseImage: nil, propertyType: propertyType)
+                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description)
 
                         
                         let filterCounter = self.checkFilters(listing: listing)
@@ -355,8 +375,11 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         self.propertiesList.reloadData()
                     })
+<<<<<<< HEAD
                     //print("Look here")
                     //print(tempListings.count)
+=======
+>>>>>>> 36b6adec5a1d22a475ea38d01aa026ec974f47d8
                     print("favorited Properties")
                     self.favoritedProperties()
                 })
@@ -657,11 +680,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         appDelegate.window?.rootViewController = initialViewController
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listings.count
     }
@@ -708,8 +726,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
             
         })
-
-        
         return cell
     }
     
@@ -726,6 +742,11 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         
     }
  
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     
     
 }

@@ -18,6 +18,8 @@ class ApproveReviews: UIViewController {
         
         let viewTitle = UILabel()
         
+        
+        
         let toHomePageButton = UIButton()
         toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 20)
         toHomePageButton.setTitle("Logout", for: UIControlState.normal)

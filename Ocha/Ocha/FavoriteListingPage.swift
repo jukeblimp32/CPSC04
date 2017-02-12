@@ -1,15 +1,18 @@
 //
-//  ListingPage.swift
+//  favoriteListingPage.swift
 //  Ocha
 //
-//  Created by Talkov, Leah C on 11/20/16.
-//  Copyright © 2016 CPSC04. All rights reserved.
+//  Created by Talkov, Leah C on 2/11/17.
+//  Copyright © 2017 CPSC04. All rights reserved.
 //
+
+
 
 import UIKit
 
-class ListingPage: UIViewController {
+class FavoriteListingPage: UIViewController {
     
+    @IBOutlet weak var toHomePageButton: UIButton!
     
     var image = UIImageView()
     var imageUrl = ""
@@ -26,13 +29,10 @@ class ListingPage: UIViewController {
     var propDescription : String = ""
     var propertyID : Int = 0
     
-    
-    @IBOutlet weak var toHomePageButton: UIButton!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // addressText = address.text!
+        // addressText = address.text!
         //rentText = rent.text!
         address.frame = CGRect(x: (view.frame.width) / 9, y: (view.frame.height) * (15/100), width: view.frame.width * (90/100) , height: 30)
         address.font = UIFont(name: address.font.fontName, size: 20)
@@ -91,23 +91,6 @@ class ListingPage: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //If the segue from any table cell to listingPage is clicked
-        if segue.identifier == "EditListing",
-            //Sets the page to be loaded as ListingPage
-            let destination = segue.destination as? EditListing
-            //Gets the selected cell index
-            //Setting the variables in the listing class to the cell info 
-        {
-            destination.address = address.text!
-            destination.rent = rent.text!
-            destination.bedroomNum = rooms.text!
-            destination.distance = distance.text!
-            destination.image = image.image!
-            destination.propertyID = propertyID
-        }
-    }
-  
     
     
     override func didReceiveMemoryWarning() {
@@ -118,3 +101,4 @@ class ListingPage: UIViewController {
     
     
 }
+

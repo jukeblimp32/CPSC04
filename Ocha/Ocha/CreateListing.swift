@@ -23,8 +23,10 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var bathroomStepper: UIStepper!
     @IBOutlet weak var rent: UITextField!
     @IBOutlet weak var leaseLength: UISegmentedControl!
+    @IBOutlet weak var petPolicy: UISegmentedControl!
+    @IBOutlet weak var characterLabel: UILabel!
+    @IBOutlet weak var propDescription: UITextView!
     @IBOutlet weak var deposit: UITextField!
-    
     @IBOutlet weak var propType: UISegmentedControl!
     
     var propertyIDs = [Int]()
@@ -52,6 +54,9 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        propDescription!.layer.borderWidth = 1
+        propDescription!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
         
         bathroomStepper.wraps = true
         bathroomStepper.autorepeat = true
@@ -147,10 +152,13 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         let milesToGu = milesToGU
         let lease = leaseLength.titleForSegment(at: leaseLength.selectedSegmentIndex)
         let propertyType = propType.titleForSegment(at:propType.selectedSegmentIndex)
+        let petChoice = petPolicy.titleForSegment(at:petPolicy.selectedSegmentIndex)
+        var description = " "
+        if (propDescription.text != nil){
+            description = propDescription.text!
+        }
 
-
-        
-        if propertyAddress == "" || monthlyRent == "" || propertyDeposit == "" || numberOfRooms == "" || numberOfBathrooms == "" || milesToGu == ""
+        if propertyAddress == "" || monthlyRent == "" || propertyDeposit == ""
         {
             let alert = UIAlertController(title: "Empty Fields", message:"Make sure you have entered information for all fields", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: .default))
@@ -162,8 +170,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             //post parameter
             //concatenating keys and values from text field
 
-
-            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!;
+            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=open";
             
             // Upload Image
             self.uploadImage(address: propertyAddress!)
