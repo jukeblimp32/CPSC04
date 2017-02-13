@@ -213,6 +213,10 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         cell.favoriteButton.setImage(UIImage(named: "emptyStar"), for: UIControlState.normal)
         cell.favoriteButton.setImage(UIImage(named: "filledStar"), for: UIControlState.selected)
+        
+        /*********************************************************************
+        // Should this be selected, Leah????????????????
+        *********************************************************************/
         cell.favoriteButton.isSelected = false
         
         let listing = favoriteListings[indexPath.row]
@@ -248,6 +252,22 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
             
         })
+        if listing.availability == "Closed"
+        {
+            print("Jeni is the prettiest ever")
+            cell.backgroundColor = UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.4)
+            cell.favoriteButton.alpha = 0.2
+            cell.propertyImage.alpha = 0.2
+            cell.propertyAddress.alpha = 0.2
+            cell.propertyDistance.alpha = 0.2
+            cell.propertyRent.alpha = 0.2
+            cell.propertyRooms.alpha = 0.2
+            cell.rentLabel.alpha = 0.2
+            cell.roomLabel.alpha = 0.2
+            cell.distanceLabel.alpha = 0.2
+            
+        }
+
         
         return cell
     }

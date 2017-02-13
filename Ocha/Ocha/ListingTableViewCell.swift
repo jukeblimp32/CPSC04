@@ -17,6 +17,9 @@ class ListingTableViewCell: UITableViewCell {
     let propertyRooms = UILabel()
     let propertyImage = UIImageView()
     let favoriteButton = UIButton()
+    let rentLabel = UILabel()
+    let roomLabel = UILabel()
+    let distanceLabel = UILabel()
     
     
     override func awakeFromNib() {
@@ -57,15 +60,13 @@ class ListingTableViewCell: UITableViewCell {
         propertyDistance.frame = CGRect(x: (screenSize.width) * (68/100), y: (self.frame.height) * (70/100), width: self.frame.width * (18/100), height: 15)
         self.addSubview(propertyDistance)
         
-        let rentLabel = UILabel()
         rentLabel.text = "Rent per Month:"
         rentLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
         rentLabel.textColor = UIColor.black
         rentLabel.adjustsFontSizeToFitWidth = true
         rentLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (30/100), width: screenSize.width * (30/100), height: 15)
         self.addSubview(rentLabel)
-        
-        let roomLabel = UILabel()
+    
         roomLabel.text = "Bedrooms:"
         roomLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
         roomLabel.textColor = UIColor.black
@@ -73,7 +74,6 @@ class ListingTableViewCell: UITableViewCell {
         roomLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (50/100), width: screenSize.width * (30/100), height: 15)
         self.addSubview(roomLabel)
         
-        let distanceLabel = UILabel()
         distanceLabel.text = "Miles to GU:"
         distanceLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyAddress.adjustsFontSizeToFitWidth = true
