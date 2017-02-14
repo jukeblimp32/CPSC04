@@ -723,6 +723,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
             
         })
+        
         return cell
     }
     

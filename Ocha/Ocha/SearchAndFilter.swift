@@ -39,7 +39,7 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         stepper.wraps = true
         stepper.autorepeat = true
-        stepper.maximumValue = 30
+        stepper.maximumValue = 15
         // Do any additional setup after loading the view, typically from a nib.
         pickerMin.delegate = self
         pickerMin.dataSource = self
