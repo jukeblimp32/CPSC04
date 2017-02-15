@@ -14,7 +14,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: Properties
     @IBOutlet weak var propertiesList: UITableView!
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
-    let propertyDetails = "http://147.222.165.203/MyWebService/api/PropertyDetails.php"
     let getFavorites = "http://147.222.165.203/MyWebService/api/DisplayFavorites.php"
     
     var favoritePropIDs = [Int]()
@@ -346,8 +345,12 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let availability = availabilityValue?["availability"] as! String
                         let descriptionValue = properties[i] as? NSDictionary
                         let description = descriptionValue?["description"] as! String
+                        /*
+                        let phoneNumberValue = properties[i] as? NSDictionary
+                        let phoneNumber = phoneNumberValue?["phone_number"] as! String
+                        */
                     
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description)
+                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description) //phoneNumber: phoneNumber
 
                         
                         let filterCounter = self.checkFilters(listing: listing)
@@ -448,7 +451,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let favoriteID = favoriteIdValue?["favorite_id"] as! Int
                         let userIdValue = favorites[i] as? NSDictionary
                         let userID = userIdValue?["user_id"] as! String
-                        
+ 
                        // print(address)
                        // print(bathroom)
                         

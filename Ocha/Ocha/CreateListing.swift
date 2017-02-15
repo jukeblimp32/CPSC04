@@ -157,6 +157,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         if (propDescription.text != nil){
             description = propDescription.text!
         }
+        //let phoneNumber =
 
         if propertyAddress == "" || monthlyRent == "" || propertyDeposit == ""
         {
@@ -170,7 +171,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             //post parameter
             //concatenating keys and values from text field
 
-            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open";
+            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"; //+"&phone_number="+phoneNumber
             
             // Upload Image
             self.uploadImage(address: propertyAddress!)

@@ -186,10 +186,11 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         let editDescription = descriptionText.text
         let editDate = dateFormatter.string(from: datePicker.date)
         let editLease = leaseSegment.titleForSegment(at: leaseSegment.selectedSegmentIndex)
+        //let editPhoneNumber =
  
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!;
+        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!; //+"&phone_number="+editPhoneNumber
 
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
