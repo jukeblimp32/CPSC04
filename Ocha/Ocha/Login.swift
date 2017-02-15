@@ -50,19 +50,18 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         view.addSubview(divisorLine2)
         
         
-        //add title
-        let appTitle = UILabel()
-        appTitle.text = "OCHA"
-        appTitle.font = UIFont(name: appTitle.font.fontName, size: 33)
-        appTitle.textColor = UIColor.white
-        appTitle.textAlignment = .center
-        appTitle.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (2/100), width: view.frame.width * (80/100), height: 200)
-        view.addSubview(appTitle)
+        //add logo
+        let imageName = "Logo.png"
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image!)
+        
+        imageView.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (2/100), width: view.frame.width * (80/100), height: 200)
+        view.addSubview(imageView)
         
         //add email label
         let emailLabel = UILabel()
         emailLabel.text = "Email:"
-        emailLabel.font = UIFont(name: appTitle.font.fontName, size: 17)
+        emailLabel.font = UIFont(name: emailLabel.font.fontName, size: 17)
         emailLabel.textColor = UIColor.white
         emailLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (27/100), width: view.frame.width / 6, height: 15)
         view.addSubview(emailLabel)
@@ -70,7 +69,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         //add password label
         let passwordLabel = UILabel()
         passwordLabel.text = "Password:"
-        passwordLabel.font = UIFont(name: appTitle.font.fontName, size: 17)
+        passwordLabel.font = UIFont(name: passwordLabel.font.fontName, size: 17)
         passwordLabel.textColor = UIColor.white
         passwordLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (37/100), width: view.frame.width / 3, height: 15)
         view.addSubview(passwordLabel)
@@ -109,7 +108,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         let loginButton = UIButton()
         loginButton.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (50/100), width: view.frame.width * (60/100), height: 40)
         loginButton.setTitle("Login", for: UIControlState.normal)
-        loginButton.titleLabel?.font = UIFont(name: appTitle.font.fontName, size: 20)
+        loginButton.titleLabel?.font = UIFont(name: emailLabel.font.fontName, size: 20)
         loginButton.setTitleColor(UIColor.white, for: .normal)
         loginButton.addTarget(self, action: #selector(ViewController.submitUserInfo(_:)), for: UIControlEvents.touchUpInside)
         loginButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
