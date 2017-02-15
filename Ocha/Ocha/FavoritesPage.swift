@@ -248,7 +248,8 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
             
         })
-        if listing.availability == "Closed"
+        // Make opaque if closed
+        if listing.availability == "Closed" || listing.availability == " Closed"
         {
             cell.backgroundColor = UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.4)
             cell.favoriteButton.alpha = 0.2
@@ -260,7 +261,20 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             cell.rentLabel.alpha = 0.2
             cell.roomLabel.alpha = 0.2
             cell.distanceLabel.alpha = 0.2
-            
+        }
+        // Set to normal look if open
+        else
+        {
+            cell.backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            cell.favoriteButton.alpha = 1.0
+            cell.propertyImage.alpha = 1.0
+            cell.propertyAddress.alpha = 1.0
+            cell.propertyDistance.alpha = 1.0
+            cell.propertyRent.alpha = 1.0
+            cell.propertyRooms.alpha = 1.0
+            cell.rentLabel.alpha = 1.0
+            cell.roomLabel.alpha = 1.0
+            cell.distanceLabel.alpha = 1.0
         }
 
         

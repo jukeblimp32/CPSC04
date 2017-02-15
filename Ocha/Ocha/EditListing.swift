@@ -265,8 +265,6 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         }
     }
     
-    
-    
     func handleSelectListingImage()
     {
         let picker = UIImagePickerController()

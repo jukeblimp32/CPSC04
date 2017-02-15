@@ -81,6 +81,7 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         self.bedroomNum.text = "Any"
         propTypeSelect.selectedSegmentIndex = 0
         petSelect.selectedSegmentIndex = 0
+        self.filters.removeAll()
     }
     
     @IBAction func applyFilters(_ sender: Any) {
