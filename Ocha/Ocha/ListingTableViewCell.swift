@@ -28,7 +28,7 @@ class ListingTableViewCell: UITableViewCell {
         
         propertyAddress.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyAddress.textColor = UIColor.black
-        propertyAddress.frame = CGRect(x: (screenSize.width) * (6/100) , y: (self.frame.height) * (10/100), width: self.frame.width * (60/100) , height: 15)
+        propertyAddress.frame = CGRect(x: (screenSize.width) * (6/100) , y: (self.frame.height) * (5/100), width: self.frame.width * (60/100) , height: 20)
         propertyAddress.adjustsFontSizeToFitWidth = true
         self.addSubview(propertyAddress)
         
