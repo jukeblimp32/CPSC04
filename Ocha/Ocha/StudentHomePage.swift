@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import GameplayKit
 
 class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: Properties
@@ -249,6 +250,15 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    /* Checks if the filters are all set to Any, or 30.0 in the case of distance */
+    func areFiltersDefault() -> Bool{
+        if(filters == [])
+        {
+            return true
+        }
+        return (filters[0] == "Any" && filters[1] == "Any"  && filters[2] == "Any" && filters[3] == "30.0" && filters[4] == "Any")
+    }
+    
 
     
     /*
@@ -352,13 +362,17 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                     
                         let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description) //phoneNumber: phoneNumber
 
-                        
                         let filterCounter = self.checkFilters(listing: listing)
                         
                         listing.counter = filterCounter
                         
                         tempListings.append((filterCounter, listing))
                         
+                        // Only shuffle if there are no filters applied
+                        if (self.areFiltersDefault()){
+                            // Randomize the listings
+                            tempListings = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: tempListings) as! [(Int, Listing)]
+                        }
                         
                         //Update the tableview in student homepage to show the listing cells
                         DispatchQueue.main.async(execute: {
