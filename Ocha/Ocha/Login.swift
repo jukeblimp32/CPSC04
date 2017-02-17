@@ -55,7 +55,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
         
-        imageView.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (2/100), width: view.frame.width * (80/100), height: 200)
+        imageView.frame = CGRect(x: (view.frame.width) * (15/100), y: (view.frame.height) * (2/100), width: view.frame.width * (70/100), height: 150)
         view.addSubview(imageView)
         
         //add email label

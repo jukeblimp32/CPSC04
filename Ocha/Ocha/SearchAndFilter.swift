@@ -89,7 +89,7 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         var minPriceFilter = pickerData[pickerMin.selectedRow(inComponent: 0)]
         var maxPriceFilter = pickerData[pickerMax.selectedRow(inComponent: 0)]
         var bedroomFilter = bedroomNum.text
-        var distanceFilter = String(format: "%.1f", self.slider.value)
+        var distanceFilter = String(format: "%.1f", roundf(self.slider.value * 2.0) * 0.5)
         var propertyFilter = propTypeSelect.titleForSegment(at: propTypeSelect.selectedSegmentIndex)
         var petFilter = petSelect.titleForSegment(at: petSelect.selectedSegmentIndex)
         

@@ -19,6 +19,9 @@ class AccountInfo: UITableViewController {
     
     @IBOutlet weak var emailLabel: UILabel!
     
+    @IBOutlet var appLogo: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
@@ -42,6 +45,9 @@ class AccountInfo: UITableViewController {
             
         }, withCancel: nil)
         
+        emailLabel.adjustsFontSizeToFitWidth = true
+        let image = UIImage(named: "Logo.png")
+        appLogo.image = image
     }
 
     @IBAction func logout(_ sender: Any) {
