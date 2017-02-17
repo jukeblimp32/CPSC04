@@ -145,10 +145,14 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let availability = availabilityValue?["availability"] as! String
                         let descriptionValue = properties[i] as? NSDictionary
                         let description = descriptionValue?["description"] as! String
+                        /*
+                         let phoneNumberValue = properties[i] as? NSDictionary
+                         let phoneNumber = phoneNumberValue?["phone_number"] as! String
+                         */
                         
                         if landlordID == uid {
                         
-                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description)
+                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description) //phoneNumber: phoneNumber
                             self.listings.append(listing)
                         }
                         
@@ -242,6 +246,35 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.propertyImage.image = listing.houseImage
         //cell.propertyImage.contentMode = .scaleAspectFill
         
+        // Make opaque if closed
+        if listing.availability == "Closed" || listing.availability == " Closed"
+        {
+            cell.backgroundColor = UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.4)
+            cell.favoriteButton.alpha = 0.2
+            cell.propertyImage.alpha = 0.2
+            cell.propertyAddress.alpha = 0.2
+            cell.propertyDistance.alpha = 0.2
+            cell.propertyRent.alpha = 0.2
+            cell.propertyRooms.alpha = 0.2
+            cell.rentLabel.alpha = 0.2
+            cell.roomLabel.alpha = 0.2
+            cell.distanceLabel.alpha = 0.2
+        }
+        // Set to normal look if open
+        else
+        {
+            cell.backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            cell.favoriteButton.alpha = 1.0
+            cell.propertyImage.alpha = 1.0
+            cell.propertyAddress.alpha = 1.0
+            cell.propertyDistance.alpha = 1.0
+            cell.propertyRent.alpha = 1.0
+            cell.propertyRooms.alpha = 1.0
+            cell.rentLabel.alpha = 1.0
+            cell.roomLabel.alpha = 1.0
+            cell.distanceLabel.alpha = 1.0
+        }
+
         // Get reference to database.
         let databaseRef = FIRDatabase.database().reference()
         
