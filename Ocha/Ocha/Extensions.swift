@@ -47,3 +47,20 @@ extension UIImageView {
 
     }
 }
+
+
+/******************************************************************************************
+ * This extension exists for an in place shuffle, but due to me not understanding arc4random
+ * , I am currently instead using the shuffling provided by the GameplayKit
+ ******************************************************************************************/
+extension Array
+{
+    /** Randomizes the order of an array's elements. */
+    mutating func shuffle()
+    {
+        for _ in 0..<self.count
+        {
+            sort { (_,_) in arc4random() < arc4random() }
+        }
+    }
+}
