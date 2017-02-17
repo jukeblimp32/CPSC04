@@ -17,6 +17,7 @@ class ListingPage: UIViewController {
     var distance = UILabel()
     var rooms = UILabel()
     var rent = UILabel()
+    var phoneNumber : String = ""
     var dateAvailable : String = ""
     var deposit : String = ""
     var bathroomNumber : String = ""

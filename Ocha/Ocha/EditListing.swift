@@ -38,6 +38,7 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
     @IBOutlet weak var propertyStatus: UISegmentedControl!
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var descriptionText: UITextView!
+    @IBOutlet var phoneNumberTextField: UITextField!
     @IBOutlet weak var characterLabel: UILabel!
     @IBOutlet var leaseSegment: UISegmentedControl!
     

@@ -28,7 +28,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var propDescription: UITextView!
     @IBOutlet weak var deposit: UITextField!
     @IBOutlet weak var propType: UISegmentedControl!
-    
+    @IBOutlet var phoneNumberTextField: UITextField!
     var propertyIDs = [Int]()
     var maxID = 0
     var milesToGU : String = "0.5"
