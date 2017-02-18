@@ -116,15 +116,13 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         let pets = petValue?["pets"] as! String
                         let descriptionValue = favorites[i] as? NSDictionary
                         let description = descriptionValue?["description"] as! String
-                        let favoriteIdValue = favorites[i] as? NSDictionary
-                        let favoriteID = favoriteIdValue?["favorite_id"] as! Int
                         let userIdValue = favorites[i] as? NSDictionary
                         let userID = userIdValue?["user_id"] as! String
                         let phoneValue = favorites[i] as? NSDictionary
                         let phoneNumber = phoneValue?["phone_number"] as! String
  
                         if userID == uid {
-                            let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber : phoneNumber, favoriteID: favoriteID, userID: userID)
+                            let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber : phoneNumber,  userID: userID)
                             self.favoriteListings.append(favoriteListing)
                         }
                         
@@ -220,6 +218,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         let listing = favoriteListings[indexPath.row]
         
+        cell.listing = listing
         cell.propertyAddress.text = listing.address
         cell.propertyDistance.text = String(listing.milesToGU)
         cell.propertyRent.text = String(listing.monthRent)

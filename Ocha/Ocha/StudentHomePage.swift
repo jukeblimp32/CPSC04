@@ -17,8 +17,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     let getFavorites = "http://147.222.165.203/MyWebService/api/DisplayFavorites.php"
     
-    let createFavorites = "http://147.222.165.203/MyWebService/api/CreateFavorite.php"
-    let removeFavorites = "http://147.222.165.203/MyWebService/api/RemoveFavorites.php"
     
     var favoritePropIDs = [Int]()
     var listings = [Listing]()
@@ -352,8 +350,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let phoneNumberValue = properties[i] as? NSDictionary
                         let phoneNumber = phoneNumberValue?["phone_number"] as! String
                         
-                    
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, favoriteID : 0, userID : "")
+                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, userID : "")
 
                         let filterCounter = self.checkFilters(listing: listing)
                         
@@ -456,14 +453,12 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let lease = leaseValue?["lease_length"] as! String
                         let petsValue = favorites[i] as? NSDictionary
                         let pets = petsValue?["pets"] as! String
-                        let favoriteIdValue = favorites[i] as? NSDictionary
-                        let favoriteID = favoriteIdValue?["favorite_id"] as! Int
                         let userIdValue = favorites[i] as? NSDictionary
                         let userID = userIdValue?["user_id"] as! String
                         let phoneNumberValue = favorites[i] as? NSDictionary
                         let phoneNumber = phoneNumberValue?["phone_number"] as! String
 
-                        let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroom, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber:phoneNumber, favoriteID: favoriteID, userID: userID)
+                        let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroom, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber:phoneNumber, userID: userID)
                         
                         self.favoriteListings.append(favoriteListing)
                         //print(self.favoriteListings.count)
@@ -690,7 +685,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         let listing = listings[indexPath.row]
         
-        
+        cell.listing = listing
         cell.propertyAddress.text = listing.address
         cell.propertyDistance.text = String(listing.milesToGU)
         cell.propertyRent.text = String(listing.monthRent)

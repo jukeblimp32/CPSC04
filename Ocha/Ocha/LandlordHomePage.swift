@@ -152,7 +152,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         
                         if landlordID == uid {
                         
-                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, favoriteID : -1, userID: "")
+                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber,  userID: "")
                             self.listings.append(listing)
                         }
                         
@@ -224,6 +224,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let listing = listings[indexPath.row]
         
+        cell.listing = listing
         cell.propertyAddress.text = listing.address
         cell.propertyDistance.text = String(listing.milesToGU)
         cell.propertyRent.text = String(listing.monthRent)

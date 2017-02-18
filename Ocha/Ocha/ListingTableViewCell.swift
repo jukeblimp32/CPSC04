@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class ListingTableViewCell: UITableViewCell {
     // MARK: Properties
     
+    let createFavorites = "http://147.222.165.203/MyWebService/api/CreateFavorite.php"
+    let removeFavorites = "http://147.222.165.203/MyWebService/api/RemoveFavorites.php"
     
     let propertyAddress = UILabel()
     let propertyDistance = UILabel()
@@ -21,7 +24,7 @@ class ListingTableViewCell: UITableViewCell {
     let rentLabel = UILabel()
     let roomLabel = UILabel()
     let distanceLabel = UILabel()
-    let listing = Listing(propertyID: 0, landlordID: "", address: "", dateAvailable: "", milesToGU: "", numberOfRooms: "", bathroomNumber: "", leaseLength: "", monthRent: "", deposit: "", houseImage: nil, propertyType: "", pets: "", availability: "", description: "", phoneNumber: "", favoriteID : 0, userID : "")
+    var listing = Listing(propertyID: 0, landlordID: "", address: "", dateAvailable: "", milesToGU: "", numberOfRooms: "", bathroomNumber: "", leaseLength: "", monthRent: "", deposit: "", houseImage: nil, propertyType: "", pets: "", availability: "", description: "", phoneNumber: "", userID : "")
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -87,11 +90,102 @@ class ListingTableViewCell: UITableViewCell {
     func starPressed(_ sender : UIButton) {
         if (sender.isSelected){
             sender.isSelected = false
+            removeFavorite()
         }
         else
         {
             sender.isSelected = true
+            createFavorite()
         }
+    }
+    
+    func createFavorite(){
+        //created NSURL
+        let saveRequestURL = NSURL(string: createFavorites)
+        //creating NSMutableURLRequest
+        let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+        //setting method to POST
+        saveRequest.httpMethod = "POST"
+        
+        //getting values from text fields
+        
+        //let landlordID = self.firstName
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        
+        //post parameter
+        //concatenating keys and values from text field
+        let propID = listing.propertyID
+        let userID = uid
+        let postParameters="property_id="+String(propID)+"&user_id="+userID!;
+        
+        
+        //adding parameters to request body
+        saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+        //task to send to post request
+        let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+            data,response, error in
+            if error != nil{
+                print("error is \(error)")
+                return;
+            }
+            do{
+                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                if let parseJSON = myJSON{
+                    var msg:String!
+                    msg = parseJSON["message"]as! String?
+                    print(msg)
+                }
+            }catch{
+                print(error)
+            }
+        }
+        saveTask.resume()
+    }
+    
+    func removeFavorite(){
+        //created NSURL
+        let saveRequestURL = NSURL(string: removeFavorites)
+        
+        //creating NSMutableURLRequest
+        let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+        
+        //setting method to POST
+        saveRequest.httpMethod = "POST"
+        
+        //getting values from text fields
+        
+        //let landlordID = self.firstName
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        //post parameter
+        //concatenating keys and values from text field
+        let propID = listing.propertyID
+        let userID = uid
+        let postParameters="property_id="+String(propID)+"&user_id="+userID!;
+        
+        //adding parameters to request body
+        saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+        //task to send to post request
+        let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+            data,response, error in
+            if error != nil{
+                print("error is \(error)")
+                return;
+            }
+            do{
+                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                if let parseJSON = myJSON{
+                    var msg:String!
+                    msg = parseJSON["message"]as! String?
+                    print(msg)
+                }
+            }catch{
+                print(error)
+            }
+        }
+        saveTask.resume()
+        
     }
     
     
