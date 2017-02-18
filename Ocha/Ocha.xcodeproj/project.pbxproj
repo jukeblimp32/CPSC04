@@ -336,7 +336,7 @@
 					};
 					7C854E4A1DC400AD00E02883 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 5923KCHPM2;
+						DevelopmentTeam = R6D4CDD677;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -689,11 +689,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Ocha/Ocha.entitlements;
-				DEVELOPMENT_TEAM = 5923KCHPM2;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = R6D4CDD677;
 				INFOPLIST_FILE = Ocha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CPSC04.Ocha;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CPSC04.Ocha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ocha/Ocha-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -709,11 +710,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Ocha/Ocha.entitlements;
-				DEVELOPMENT_TEAM = 5923KCHPM2;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = R6D4CDD677;
 				INFOPLIST_FILE = Ocha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CPSC04.Ocha;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CPSC04.Ocha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ocha/Ocha-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
