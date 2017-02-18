@@ -73,6 +73,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             destination.availability = listings[blogIndex].availability
             destination.propDescription = listings[blogIndex].description
             destination.propertyType = listings[blogIndex].propertyType
+            destination.phoneNumber = listings[blogIndex].phoneNumber
         }
     }
     
@@ -145,14 +146,14 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let availability = availabilityValue?["availability"] as! String
                         let descriptionValue = properties[i] as? NSDictionary
                         let description = descriptionValue?["description"] as! String
-                        /*
+                        
                          let phoneNumberValue = properties[i] as? NSDictionary
                          let phoneNumber = phoneNumberValue?["phone_number"] as! String
-                         */
+                        
                         
                         if landlordID == uid {
                         
-                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description) //phoneNumber: phoneNumber
+                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber)
                             self.listings.append(listing)
                         }
                         
@@ -169,21 +170,6 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             }
         }
         getTask.resume()
-        /*
-         let photo1 = UIImage(named: "Image-1")
-         let listing1 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo1)
-         let listing2 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: nil)
-         let photo3 = UIImage(named: "Image-2")
-         let listing3 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo3)
-         let photo4 = UIImage(named: "Image-3")
-         let listing4 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo4)
-         let photo5 = UIImage(named: "Image-4")
-         let listing5 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo5)
-         let photo6 = UIImage(named: "Image-5")
-         let listing6 = Listing(propertyID: "35sf", address: "533 Strange Street", milesToGU: 0.9, numberOfRooms: 4, monthRent: 350, houseImage: photo6)
-         
-         listings += [listing1, listing2, listing3, listing4, listing5, listing6]
-         */
     }
     
     override func viewWillAppear(_ animated: Bool) {

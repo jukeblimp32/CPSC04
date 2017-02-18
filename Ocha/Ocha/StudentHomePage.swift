@@ -291,6 +291,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             destination.availability = listings[cellIndex].availability
             destination.propDescription = listings[cellIndex].description
             destination.propertyType = listings[cellIndex].propertyType
+            destination.phoneNumber = listings[cellIndex].phoneNumber
         }
     }
     
@@ -355,12 +356,12 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let availability = availabilityValue?["availability"] as! String
                         let descriptionValue = properties[i] as? NSDictionary
                         let description = descriptionValue?["description"] as! String
-                        /*
+                        
                         let phoneNumberValue = properties[i] as? NSDictionary
                         let phoneNumber = phoneNumberValue?["phone_number"] as! String
-                        */
+                        
                     
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description) //phoneNumber: phoneNumber
+                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber)
 
                         let filterCounter = self.checkFilters(listing: listing)
                         
@@ -465,15 +466,11 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let favoriteID = favoriteIdValue?["favorite_id"] as! Int
                         let userIdValue = favorites[i] as? NSDictionary
                         let userID = userIdValue?["user_id"] as! String
- 
-                       // print(address)
-                       // print(bathroom)
+                        let phoneNumberValue = favorites[i] as? NSDictionary
+                        let phoneNumber = phoneNumberValue?["phone_number"] as! String
+
+                        let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroom, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, favoriteID: favoriteID, userID: userID, phoneNumber:phoneNumber)
                         
-                        
-                        let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroom, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, favoriteID: favoriteID, userID: userID)
-                        
-                        //print("HEREHERE")
-                        //print(favoriteListing)
                         self.favoriteListings.append(favoriteListing)
                         //print(self.favoriteListings.count)
                     }

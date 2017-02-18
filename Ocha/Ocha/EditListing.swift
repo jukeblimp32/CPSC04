@@ -26,6 +26,7 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
     var leaseTerms : String = " "
     var image : UIImage = UIImage(named: "default")!
     var propertyID : Int = 0
+    var phoneNumber : String = ""
     
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var rentTextField: UITextField!
@@ -58,6 +59,7 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         bathroomLabel?.text = bathroomNum
         descriptionText?.text = propDescription
         propertyImage.image = image
+        phoneNumberTextField.text = phoneNumber
         
         descriptionText!.layer.borderWidth = 1
         descriptionText!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
@@ -66,12 +68,22 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         propertyImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         propertyImage.isUserInteractionEnabled = true
         
-        stepper.value = Double(bedroomNum)!
+        if (Double(bedroomNum) == nil) {
+            stepper.value = 1
+        }
+        else {
+            stepper.value = Double(bedroomNum)!
+        }
         stepper.wraps = true
         stepper.autorepeat = true
         stepper.minimumValue = 1
         stepper.maximumValue = 10
-        bathroomStepper.value = Double(bathroomNum)!
+        if (Double(bathroomNum) == nil) {
+            bathroomStepper.value = 1
+        }
+        else {
+            bathroomStepper.value = Double(bathroomNum)!
+        }
         bathroomStepper.wraps = true
         bathroomStepper.autorepeat = true
         bathroomStepper.minimumValue = 1
@@ -138,6 +150,7 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         stepper.value = Double(bedroomNum)!
         bathroomStepper.value = Double(bathroomNum)!
         descriptionText.text = propDescription
+        phoneNumberTextField.text = phoneNumber
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -154,6 +167,7 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
             destination.distance.text = distance
             destination.image.image = image
             destination.propertyID = propertyID
+            destination.phoneNumber = phoneNumber
         }
     }
     
@@ -187,11 +201,13 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         let editDescription = descriptionText.text
         let editDate = dateFormatter.string(from: datePicker.date)
         let editLease = leaseSegment.titleForSegment(at: leaseSegment.selectedSegmentIndex)
-        //let editPhoneNumber =
+        let editPhoneNumber = phoneNumberTextField.text
  
+        print (phoneNumberTextField.text)
+        
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!; //+"&phone_number="+editPhoneNumber
+        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!;
 
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)

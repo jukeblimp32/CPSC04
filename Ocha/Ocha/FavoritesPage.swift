@@ -120,9 +120,11 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         let favoriteID = favoriteIdValue?["favorite_id"] as! Int
                         let userIdValue = favorites[i] as? NSDictionary
                         let userID = userIdValue?["user_id"] as! String
+                        let phoneValue = favorites[i] as? NSDictionary
+                        let phoneNumber = phoneValue?["phone_number"] as! String
  
                         if userID == uid {
-                            let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, favoriteID: favoriteID, userID: userID)
+                            let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, favoriteID: favoriteID, userID: userID, phoneNumber : phoneNumber)
                             self.favoriteListings.append(favoriteListing)
                         }
                         
@@ -199,6 +201,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             destination.availability = favoriteListings[cellIndex].availability
             destination.propDescription = favoriteListings[cellIndex].description
             destination.propertyType = favoriteListings[cellIndex].propertyType
+            destination.phoneNumber = favoriteListings[cellIndex].phoneNumber
         }
     }
     

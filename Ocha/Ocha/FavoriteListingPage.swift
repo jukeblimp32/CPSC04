@@ -28,6 +28,7 @@ class FavoriteListingPage: UIViewController {
     var pets : String = ""
     var availability: String = ""
     var propDescription : String = ""
+    var phoneNumber : String = ""
     var propertyID : Int = 0
     
     override func viewDidLoad() {

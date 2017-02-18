@@ -114,8 +114,7 @@ class ListingPage: UIViewController {
             destination.pets = pets
             destination.availability = availability
             destination.propDescription = propDescription
-
-            
+            destination.phoneNumber = phoneNumber 
             
         }
     }
