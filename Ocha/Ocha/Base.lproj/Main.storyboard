@@ -900,7 +900,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="6Y5-qP-uwG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" selectedImage="Hompage" id="2oW-k8-QXp"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZNO-dB-cfU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZNO-dB-cfU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1074,7 +1074,7 @@
         <scene sceneID="bDa-d2-vmM">
             <objects>
                 <tableViewController storyboardIdentifier="CreateAccount" id="xfk-Aa-2ce" customClass="CreateAccount" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Y0U-zc-Q0q">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Y0U-zc-Q0q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1458,7 +1458,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="bCL-hc-hQe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account Info" image="Account Info" id="i4J-ew-EKB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iYM-9U-RUU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYM-9U-RUU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1637,7 +1637,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Pcc-rx-e2J" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="HomePage" image="Hompage" id="fYD-0k-Szd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o73-Pz-GaW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o73-Pz-GaW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
