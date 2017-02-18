@@ -28,7 +28,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var propDescription: UITextView!
     @IBOutlet weak var deposit: UITextField!
     @IBOutlet weak var propType: UISegmentedControl!
-    
+    @IBOutlet var phoneNumberTextField: UITextField!
     var propertyIDs = [Int]()
     var maxID = 0
     var milesToGU : String = "0.5"
@@ -154,6 +154,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         let propertyType = propType.titleForSegment(at:propType.selectedSegmentIndex)
         let petChoice = petPolicy.titleForSegment(at:petPolicy.selectedSegmentIndex)
         var description = " "
+        let phoneNumber = phoneNumberTextField.text
         if (propDescription.text != nil){
             description = propDescription.text!
         }
@@ -171,7 +172,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             //post parameter
             //concatenating keys and values from text field
 
-            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"; //+"&phone_number="+phoneNumber
+            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!;
             
             // Upload Image
             self.uploadImage(address: propertyAddress!)

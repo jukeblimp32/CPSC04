@@ -27,9 +27,10 @@ class FavoriteListings {
     var description : String
     var houseImage: UIImage?
     var imageUrl: String
+    var phoneNumber : String
     
     
-    init(propertyID: Int, landlordID: String, address: String, dateAvailable : String, milesToGU: String, numberOfRooms: String, bathroomNumber: String, leaseLength : String, monthRent: String, deposit : String, houseImage : UIImage?, propertyType: String,pets : String, availability: String, description: String, favoriteID: Int, userID: String) {
+    init(propertyID: Int, landlordID: String, address: String, dateAvailable : String, milesToGU: String, numberOfRooms: String, bathroomNumber: String, leaseLength : String, monthRent: String, deposit : String, houseImage : UIImage?, propertyType: String,pets : String, availability: String, description: String, favoriteID: Int, userID: String, phoneNumber : String) {
         self.address = address
         self.dateAvailable = dateAvailable
         self.milesToGU = milesToGU
@@ -46,6 +47,7 @@ class FavoriteListings {
         self.pets = pets
         self.availability = availability
         self.description = description
+        self.phoneNumber = phoneNumber
         self.imageUrl = ""
         if houseImage == nil {
             self.houseImage = UIImage(named: "default")
