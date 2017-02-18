@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7C854E601DC400AD00E02883"
+               BlueprintIdentifier = "15A039321DECEBCD00FD2101"
                BuildableName = "OchaTests.xctest"
                BlueprintName = "OchaTests"
                ReferencedContainer = "container:Ocha.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7C854E6B1DC400AD00E02883"
+               BlueprintIdentifier = "15A039471DED098C00FD2101"
                BuildableName = "OchaUITests.xctest"
                BlueprintName = "OchaUITests"
                ReferencedContainer = "container:Ocha.xcodeproj">
