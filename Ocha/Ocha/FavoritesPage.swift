@@ -14,7 +14,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     @IBOutlet weak var favoritesList: UITableView!
     let getFavorites = "http://147.222.165.203/MyWebService/api/DisplayFavorites.php"
-    var favoriteListings = [FavoriteListings]()
+    var favoriteListings = [Listing]()
     var valueTopass : String!
     var downloadURL = ""
     
@@ -124,7 +124,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         let phoneNumber = phoneValue?["phone_number"] as! String
  
                         if userID == uid {
-                            let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, favoriteID: favoriteID, userID: userID, phoneNumber : phoneNumber)
+                            let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber : phoneNumber, favoriteID: favoriteID, userID: userID)
                             self.favoriteListings.append(favoriteListing)
                         }
                         

@@ -17,9 +17,12 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     let getFavorites = "http://147.222.165.203/MyWebService/api/DisplayFavorites.php"
     
+    let createFavorites = "http://147.222.165.203/MyWebService/api/CreateFavorite.php"
+    let removeFavorites = "http://147.222.165.203/MyWebService/api/RemoveFavorites.php"
+    
     var favoritePropIDs = [Int]()
     var listings = [Listing]()
-    var favoriteListings = [FavoriteListings]()
+    var favoriteListings = [Listing]()
     
     
     var valueTopass : String!
@@ -70,27 +73,16 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         let barViewControllers = self.tabBarController?.viewControllers
         let svc = barViewControllers![1] as! SearchAndFilter
         self.filters = svc.filters
-          
-
-        // Reset filters
-        //filterLabels.removeAll()
-        //print(filterLabels.count)
-        //initializeFilters()
-        //print(filterLabels.count)
         
         loadFilters()
         
         listings.removeAll()
-        //favoriteListings.removeAll()
+        favoriteListings.removeAll()
+        favoritePropIDs.removeAll()
         getFavoritedProperties()
         loadListingViews()
+        propertiesList.reloadData()
 
-        //sleep(4)
-        //print("favorited properties1: ",  self.favoriteListings.count)
-        propertiesList.reloadData()
-       // print("favorited Properties")
-       // self.favoritedProperties()
-        propertiesList.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -102,8 +94,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         listings.removeAll()
         favoriteListings.removeAll()
         favoritePropIDs.removeAll()
+        getFavoritedProperties()
         loadListingViews()
-        propertiesList.reloadData()
         refreshControl.endRefreshing()
     }
     
@@ -361,7 +353,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let phoneNumber = phoneNumberValue?["phone_number"] as! String
                         
                     
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber)
+                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, favoriteID : 0, userID : "")
 
                         let filterCounter = self.checkFilters(listing: listing)
                         
@@ -387,11 +379,13 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         self.propertiesList.reloadData()
                     })
-                    //print("Look here")
-                    //print(tempListings.count)
 
                     print("favorited Properties")
-                    self.favoritedProperties()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                        self.favoritedProperties()
+                    })
+                    
                 })
             }
             catch {
@@ -405,7 +399,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     //Fucntion to load in all favorited properties into  favoriteListing
     //favoriteListings is used in favoritedProperties
-    func getFavoritedProperties() -> Array<FavoriteListings> {
+    func getFavoritedProperties() {
         //create NSURL
         let getRequestURL = NSURL(string: getFavorites)
         //creating NSMutableURLRequest
@@ -469,7 +463,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let phoneNumberValue = favorites[i] as? NSDictionary
                         let phoneNumber = phoneNumberValue?["phone_number"] as! String
 
-                        let favoriteListing = FavoriteListings(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroom, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, favoriteID: favoriteID, userID: userID, phoneNumber:phoneNumber)
+                        let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroom, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber:phoneNumber, favoriteID: favoriteID, userID: userID)
                         
                         self.favoriteListings.append(favoriteListing)
                         //print(self.favoriteListings.count)
@@ -485,7 +479,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
         }
         getTask.resume()
-       return self.favoriteListings
     }
     
     //Leah(:
@@ -696,6 +689,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
         
         let listing = listings[indexPath.row]
+        
         
         cell.propertyAddress.text = listing.address
         cell.propertyDistance.text = String(listing.milesToGU)

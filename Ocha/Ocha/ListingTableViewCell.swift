@@ -11,6 +11,7 @@ import UIKit
 class ListingTableViewCell: UITableViewCell {
     // MARK: Properties
     
+    
     let propertyAddress = UILabel()
     let propertyDistance = UILabel()
     let propertyRent = UILabel()
@@ -20,7 +21,7 @@ class ListingTableViewCell: UITableViewCell {
     let rentLabel = UILabel()
     let roomLabel = UILabel()
     let distanceLabel = UILabel()
-    
+    let listing = Listing(propertyID: 0, landlordID: "", address: "", dateAvailable: "", milesToGU: "", numberOfRooms: "", bathroomNumber: "", leaseLength: "", monthRent: "", deposit: "", houseImage: nil, propertyType: "", pets: "", availability: "", description: "", phoneNumber: "", favoriteID : 0, userID : "")
     
     override func awakeFromNib() {
         super.awakeFromNib()
