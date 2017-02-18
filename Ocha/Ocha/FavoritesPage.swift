@@ -17,9 +17,16 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var favoriteListings = [Listing]()
     var valueTopass : String!
     var downloadURL = ""
+    var refreshControl : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshControl = UIRefreshControl()
+        //refreshControl?.addTarget(self, action: Selector("handleRefresh:"), for: UIControlEvents.valueChanged)
+        
+        refreshControl.addTarget(self, action: #selector(FavoritesPage.handleRefresh(_:)), for: .valueChanged)
+        
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -41,6 +48,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         toHomePageButton.layer.cornerRadius = 4
         toHomePageButton.addTarget(self, action: #selector(FavoritesPage.logout(_:)), for: UIControlEvents.touchUpInside)
         view.addSubview(toHomePageButton)
+        favoritesList.addSubview(refreshControl)
 
     }
 
@@ -49,6 +57,12 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         favoriteListings.removeAll()
         loadListingViews()
         favoritesList.reloadData()
+    }
+    
+    func handleRefresh(_ sender : UIRefreshControl) {
+        favoriteListings.removeAll()
+        loadListingViews()
+        refreshControl.endRefreshing()
     }
     
 /*    override func viewWillAppear(_ animated: Bool){

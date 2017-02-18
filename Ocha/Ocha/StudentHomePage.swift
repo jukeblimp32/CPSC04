@@ -33,8 +33,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl = UIRefreshControl()
-        //refreshControl?.addTarget(self, action: Selector("handleRefresh:"), for: UIControlEvents.valueChanged)
-        
         refreshControl.addTarget(self, action: #selector(StudentHomePage.handleRefresh(_:)), for: .valueChanged)
         
         self.propertiesList.register(ListingTableViewCell.self, forCellReuseIdentifier: "cell")
