@@ -264,13 +264,13 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             let cellIndex = propertiesList.indexPathForSelectedRow?.row
         {
             //Setting the variables in the listing class to the cell info
-            destination.address.text = listings[cellIndex].address
-            destination.rent.text = listings[cellIndex].monthRent
-            destination.distance.text = listings[cellIndex].milesToGU
-            destination.rooms.text = listings[cellIndex].numberOfRooms
+            destination.address = listings[cellIndex].address
+            destination.rent = listings[cellIndex].monthRent
+            destination.distance = listings[cellIndex].milesToGU
+            destination.rooms = listings[cellIndex].numberOfRooms
             // Pass the imageUrl just to ensure that the image loads
             destination.imageUrl = listings[cellIndex].imageUrl
-            destination.image.image = listings[cellIndex].houseImage
+            //destination.image = listings[cellIndex].houseImage!
             destination.leaseLength = listings[cellIndex].leaseLength
             destination.dateAvailable = listings[cellIndex].dateAvailable
             destination.bathroomNumber = listings[cellIndex].bathroomNumber
@@ -632,8 +632,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         return 0
     }
-    
-    
     
     
     

@@ -27,6 +27,7 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
     var image : UIImage = UIImage(named: "default")!
     var propertyID : Int = 0
     var phoneNumber : String = ""
+    var imageURL : String = ""
     
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var rentTextField: UITextField!
@@ -60,7 +61,7 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         descriptionText?.text = propDescription
         propertyImage.image = image
         phoneNumberTextField.text = phoneNumber
-        
+        propertyImage.loadCachedImages(url: imageURL)
         descriptionText!.layer.borderWidth = 1
         descriptionText!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
         
@@ -157,16 +158,24 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         //If the segue from any table cell to listingPage is clicked
         if segue.identifier == "backToListing",
             //Sets the page to be loaded as ListingPage
-            let destination = segue.destination as? ListingPage
+            let destination = segue.destination as? LandlordListingPage
             //Gets the selected cell index
         {
             //Setting the variables in the listing class to the cell info
-            destination.address.text = address
-            destination.rent.text = rent
-            destination.rooms.text = bedroomNum
-            destination.distance.text = distance
-            destination.image.image = image
+            destination.address = address
+            destination.rent = rent
+            destination.rooms = bedroomNum
+            destination.distance = distance
+           // destination.image = image
+            destination.imageUrl = imageURL
             destination.propertyID = propertyID
+            destination.leaseLength = leaseTerms
+            destination.dateAvailable = dateAvailable
+            destination.bathroomNumber = bathroomNum
+            destination.deposit = deposit
+            destination.pets = pets
+            destination.availability = availability
+            destination.propDescription = propDescription
             destination.phoneNumber = phoneNumber
         }
     }

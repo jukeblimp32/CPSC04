@@ -191,20 +191,20 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //If the segue from any table cell to listingPage is clicked
-        if segue.identifier == "showDetail",
+        if segue.identifier == "showDetailFavorite",
             //Sets the page to be loaded as ListingPage
             let destination = segue.destination as? FavoriteListingPage,
             //Gets the selected cell index
             let cellIndex = favoritesList.indexPathForSelectedRow?.row
         {
             //Setting the variables in the listing class to the cell info
-            destination.address.text = favoriteListings[cellIndex].address
-            destination.rent.text = favoriteListings[cellIndex].monthRent
-            destination.distance.text = favoriteListings[cellIndex].milesToGU
-            destination.rooms.text = favoriteListings[cellIndex].numberOfRooms
+            destination.address = favoriteListings[cellIndex].address
+            destination.rent = favoriteListings[cellIndex].monthRent
+            destination.distance = favoriteListings[cellIndex].milesToGU
+            destination.rooms = favoriteListings[cellIndex].numberOfRooms
             // Pass the imageUrl just to ensure that the image loads
             destination.imageUrl = favoriteListings[cellIndex].imageUrl
-            destination.image.image = favoriteListings[cellIndex].houseImage
+            //destination.image = favoriteListings[cellIndex].houseImage!
             destination.dateAvailable = favoriteListings[cellIndex].dateAvailable
             destination.leaseLength = favoriteListings[cellIndex].leaseLength
             destination.bathroomNumber = favoriteListings[cellIndex].bathroomNumber

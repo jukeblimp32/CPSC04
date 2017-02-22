@@ -55,15 +55,15 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if  segue.identifier == "showDetailLandlord",
-            let destination = segue.destination as? ListingPage,
+            let destination = segue.destination as? LandlordListingPage,
             let blogIndex = propertiesList.indexPathForSelectedRow?.row
         {
-            destination.address.text = listings[blogIndex].address
-            destination.rent.text = listings[blogIndex].monthRent
-            destination.distance.text = listings[blogIndex].milesToGU
-            destination.rooms.text = listings[blogIndex].numberOfRooms
+            destination.address = listings[blogIndex].address
+            destination.rent = listings[blogIndex].monthRent
+            destination.distance = listings[blogIndex].milesToGU
+            destination.rooms = listings[blogIndex].numberOfRooms
             destination.imageUrl = listings[blogIndex].imageUrl
-            destination.image.image = listings[blogIndex].houseImage
+            //destination.image = listings[blogIndex].houseImage!
             destination.propertyID = listings[blogIndex].propertyID
             destination.dateAvailable = listings[blogIndex].dateAvailable
             destination.leaseLength = listings[blogIndex].leaseLength

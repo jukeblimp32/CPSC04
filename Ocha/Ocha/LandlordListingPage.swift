@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListingPage: UITableViewController {
+class LandlordListingPage: UITableViewController {
     
     var imageUrl = ""
     var address : String = ""
@@ -28,22 +28,21 @@ class ListingPage: UITableViewController {
     var image : UIImage = UIImage(named: "default")!
     
     @IBOutlet var addressLabel: UILabel!
+    @IBOutlet var propertyImage: UIImageView!
     @IBOutlet var dateAvailableLabel: UILabel!
     @IBOutlet var availabilityLabel: UILabel!
+    @IBOutlet var rentLabel: UILabel!
     @IBOutlet var depositLabel: UILabel!
-    @IBOutlet var bedroomLabel: UILabel!
     @IBOutlet var bathroomLabel: UILabel!
+    @IBOutlet var bedroomLabel: UILabel!
+    @IBOutlet var descriptionField: UITextView!
+
+    @IBOutlet var petsLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var phoneLabel: UILabel!
-    @IBOutlet var petsLabel: UILabel!
     @IBOutlet var leaseLabel: UILabel!
-    @IBOutlet var descriptionField: UITextView!
-    @IBOutlet var rentLabel: UILabel!
-    @IBOutlet var propertyImage: UIImageView!
-    
-    
     @IBOutlet weak var toHomePageButton: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addressLabel.text = address
@@ -59,10 +58,37 @@ class ListingPage: UITableViewController {
         descriptionField.text = propDescription
         rentLabel.text = "Rent: " + rent
         propertyImage.loadCachedImages(url: imageUrl)
-    
-
     }
-  
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //If the segue from any table cell to listingPage is clicked
+        if segue.identifier == "EditListing",
+            //Sets the page to be loaded as ListingPage
+            let destination = segue.destination as? EditListing
+            //Gets the selected cell index
+            //Setting the variables in the listing class to the cell info
+        {
+            destination.address = address
+            destination.rent = rent
+            destination.bedroomNum = rooms
+            destination.distance = distance
+            destination.imageURL = imageUrl
+           // destination.image = propertyImage.image!
+            destination.propertyID = propertyID
+            destination.leaseTerms = leaseLength
+            destination.dateAvailable = dateAvailable
+            destination.bathroomNum = bathroomNumber
+            destination.deposit = deposit
+            destination.pets = pets
+            destination.availability = availability
+            destination.propDescription = propDescription
+            destination.phoneNumber = phoneNumber
+            
+        }
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
