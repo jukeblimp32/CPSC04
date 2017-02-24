@@ -60,7 +60,12 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         uploadImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         uploadImageView.isUserInteractionEnabled = true
         
+        address.delegate = self
+        phoneNumberTextField.delegate = self
+        rent.delegate = self
+        deposit.delegate = self
         propDescription.delegate = self
+        self.addReturnButtonOnNumpad()
         
         //create NSURL
         let getRequestURL = NSURL(string: getProperties)
@@ -289,6 +294,68 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // Called when 'return' key is pressed
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed.
+    {
+        // Set so that hitting return key advances to next field
+        if textField == self.address {
+            self.phoneNumberTextField.becomeFirstResponder()
+        }
+        // If we are in any other field, dismiss keyboard
+        else{
+            textField.resignFirstResponder()
+        }
+        return true
+        
+    }
+    
+    /* Because numpad has no return key, we must add it ourselves*/
+    func addReturnButtonOnNumpad()
+    {
+        // Add next button to rent keyboard.
+        let nextToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        nextToolbar.barStyle = UIBarStyle.default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let next: UIBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.done, target: self, action: #selector(CreateListing.nextButtonAction))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(next)
+        
+        nextToolbar.items = items
+        nextToolbar.sizeToFit()
+        
+        self.rent.inputAccessoryView = nextToolbar
+        
+        let returnToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        returnToolbar.barStyle = UIBarStyle.default
+        
+        let flexSpace1 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let returnB: UIBarButtonItem = UIBarButtonItem(title: "Return", style: UIBarButtonItemStyle.done, target: self, action: #selector(CreateListing.returnButtonAction))
+        
+        var items1 = [UIBarButtonItem]()
+        items1.append(flexSpace1)
+        items1.append(returnB)
+        
+        returnToolbar.items = items1
+        returnToolbar.sizeToFit()
+        
+        self.deposit.inputAccessoryView = returnToolbar
+        
+    }
+    
+    func nextButtonAction()
+    {
+        self.deposit.becomeFirstResponder()
+    }
+    
+    func returnButtonAction()
+    {
+        self.deposit.resignFirstResponder()
+    }
+
     
     
 }

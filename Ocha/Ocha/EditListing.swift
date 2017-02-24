@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     let URL_EDIT_PROPERTY = "http://147.222.165.203/MyWebService/api/editProperties.php"
     
@@ -55,13 +55,17 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         determinePetPolicy()
         determineLease()
         addressTextField?.text = address
+        addressTextField.delegate = self
         rentTextField?.text = rent
+        rentTextField.delegate = self
         depositTextField?.text = deposit
+        depositTextField.delegate = self
         bedroomTextField?.text = bedroomNum
         bathroomLabel?.text = bathroomNum
         descriptionText?.text = propDescription
         propertyImage.image = image
         phoneNumberTextField.text = phoneNumber
+        phoneNumberTextField.delegate = self
         propertyImage.loadCachedImages(url: imageURL)
         descriptionText!.layer.borderWidth = 1
         descriptionText!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
@@ -93,6 +97,7 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         bathroomStepper.autorepeat = true
         bathroomStepper.minimumValue = 1
         bathroomStepper.maximumValue = 10
+        self.addReturnButtonOnNumpad()
     
     }
     
@@ -338,5 +343,68 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }  
+    }
+    
+    // Called when 'return' key is pressed
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed.
+    {
+        // Set so that hitting return key advances to next field
+        if textField == self.addressTextField {
+            self.phoneNumberTextField.becomeFirstResponder()
+        }
+        // If we are in any other field, dismiss keyboard
+        else{
+            textField.resignFirstResponder()
+        }
+        return true
+        
+    }
+
+    
+    /* Because numpad has no return key, we must add it ourselves*/
+    func addReturnButtonOnNumpad()
+    {
+        // Add next button to rent keyboard.
+        let nextToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        nextToolbar.barStyle = UIBarStyle.default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let next: UIBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.done, target: self, action: #selector(CreateListing.nextButtonAction))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(next)
+        
+        nextToolbar.items = items
+        nextToolbar.sizeToFit()
+        
+        self.rentTextField.inputAccessoryView = nextToolbar
+        
+        let returnToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        returnToolbar.barStyle = UIBarStyle.default
+        
+        let flexSpace1 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let returnB: UIBarButtonItem = UIBarButtonItem(title: "Return", style: UIBarButtonItemStyle.done, target: self, action: #selector(CreateListing.returnButtonAction))
+        
+        var items1 = [UIBarButtonItem]()
+        items1.append(flexSpace1)
+        items1.append(returnB)
+        
+        returnToolbar.items = items1
+        returnToolbar.sizeToFit()
+        
+        self.depositTextField.inputAccessoryView = returnToolbar
+        
+    }
+    
+    func nextButtonAction()
+    {
+        self.depositTextField.becomeFirstResponder()
+    }
+    
+    func returnButtonAction()
+    {
+        self.depositTextField.resignFirstResponder()
+    }
+
 }

@@ -30,6 +30,12 @@ class CreateAccount: UITableViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        firstName.delegate = self
+        lastName.delegate = self
+        password1.delegate = self
+        password2.delegate = self
+        email.delegate = self
+        email2.delegate = self
     }
 
     @IBAction func backToMain(_ sender: Any) {
@@ -171,8 +177,28 @@ class CreateAccount: UITableViewController, UITextFieldDelegate{
     // Called when 'return' key is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed.
     {
-        textField.resignFirstResponder()
+        // Set so that hitting return key advances to next field
+        if textField == self.firstName {
+            self.lastName.becomeFirstResponder()
+        }
+        else if textField == self.lastName{
+            self.password1.becomeFirstResponder()
+        }
+        else if textField == self.password1{
+            self.password2.becomeFirstResponder()
+        }
+        else if textField == self.password2{
+            self.email.becomeFirstResponder()
+        }
+        else if textField == self.email{
+            self.email2.becomeFirstResponder()
+        }
+        // If we are in the last field, just dismiss keyboard
+        else{
+            textField.resignFirstResponder()
+        }
         return true
+        
     }
 
 
