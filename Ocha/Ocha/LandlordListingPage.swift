@@ -73,7 +73,6 @@ class LandlordListingPage: UITableViewController {
             destination.bedroomNum = rooms
             destination.distance = distance
             destination.imageURL = imageUrl
-           // destination.image = propertyImage.image!
             destination.propertyID = propertyID
             destination.leaseTerms = leaseLength
             destination.dateAvailable = dateAvailable

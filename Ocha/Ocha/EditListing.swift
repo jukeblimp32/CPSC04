@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     let URL_EDIT_PROPERTY = "http://147.222.165.203/MyWebService/api/editProperties.php"
     
@@ -49,6 +49,7 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        descriptionText.delegate = self
         determineAvailability()
         determineDate()
         determinePetPolicy()
@@ -64,6 +65,9 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
         propertyImage.loadCachedImages(url: imageURL)
         descriptionText!.layer.borderWidth = 1
         descriptionText!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
+
+        let initialChars = propDescription.characters.count
+        characterLabel.text = "(" + String(900 - initialChars) + " characters remaining)"
         
         propertyImage.contentMode = .scaleAspectFill
         propertyImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
@@ -137,6 +141,14 @@ class EditListing: UITableViewController, UIImagePickerControllerDelegate, UINav
     @IBAction func changeBedroomNumber(_ sender: UIStepper) {
         bedroomTextField.text = Int(sender.value).description
     }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (descriptionText.text as NSString).replacingCharacters(in: range, with: text)
+        let numberOfChars = newText.characters.count
+        characterLabel.text = "(" + String(900 - numberOfChars) + " characters remaining)"
+        return numberOfChars <= 900;
+    }
+    
     
     @IBAction func reverseChanges(_ sender: Any) {
         determineAvailability()

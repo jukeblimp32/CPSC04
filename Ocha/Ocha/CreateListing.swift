@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FBSDKLoginKit
 
-class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     
     
@@ -32,19 +32,6 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     var propertyIDs = [Int]()
     var maxID = 0
     var milesToGU : String = "0.5"
-    
-    /*lazy var uploadImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "default")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        
-       // imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
-        imageView.isUserInteractionEnabled = true
-        
-        return imageView
-    }() */
-
     
     let URL_SAVE_PROPERTY = "http://147.222.165.203/MyWebService/api/CreateProperty.php"
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
@@ -72,6 +59,8 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         uploadImageView.contentMode = .scaleAspectFill
         uploadImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         uploadImageView.isUserInteractionEnabled = true
+        
+        propDescription.delegate = self
         
         //create NSURL
         let getRequestURL = NSURL(string: getProperties)
@@ -115,6 +104,13 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     
     @IBAction func changedBedroomNum(_ sender: UIStepper) {
         self.bedroomNumber.text = Int(sender.value).description
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (propDescription.text as NSString).replacingCharacters(in: range, with: text)
+        let numberOfChars = newText.characters.count
+        characterLabel.text = "(" + String(900 - numberOfChars) + " characters remaining)"
+        return numberOfChars <= 900;
     }
     
     
