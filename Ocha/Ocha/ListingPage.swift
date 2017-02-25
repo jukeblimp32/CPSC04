@@ -24,6 +24,7 @@ class ListingPage: UITableViewController {
     var pets : String = ""
     var availability: String = ""
     var propDescription : String = ""
+    var email : String = ""
     var propertyID : Int = 0
     var image : UIImage = UIImage(named: "default")!
     
@@ -39,6 +40,7 @@ class ListingPage: UITableViewController {
     @IBOutlet var leaseLabel: UILabel!
     @IBOutlet var descriptionField: UITextView!
     @IBOutlet var rentLabel: UILabel!
+    @IBOutlet var emailLabel: UILabel!
     @IBOutlet var propertyImage: UIImageView!
     
     
@@ -58,6 +60,8 @@ class ListingPage: UITableViewController {
         leaseLabel.text = "Lease Terms: " + leaseLength
         descriptionField.text = propDescription
         rentLabel.text = "Rent: " + rent
+        emailLabel.text = "Email: " + email
+        emailLabel.adjustsFontSizeToFitWidth = true
         propertyImage.loadCachedImages(url: imageUrl)
     
 

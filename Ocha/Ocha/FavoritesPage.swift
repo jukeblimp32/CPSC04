@@ -125,9 +125,11 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         let userID = userIdValue?["user_id"] as! String
                         let phoneValue = favorites[i] as? NSDictionary
                         let phoneNumber = phoneValue?["phone_number"] as! String
+                        let emailValue = favorites[i] as? NSDictionary
+                        let email = emailValue?["email"] as! String
  
                         if userID == uid {
-                            let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber : phoneNumber,  userID: userID)
+                            let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber : phoneNumber, email: email, userID: userID)
                             self.favoriteListings.append(favoriteListing)
                         }
                         
@@ -167,7 +169,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             destination.rooms = favoriteListings[cellIndex].numberOfRooms
             // Pass the imageUrl just to ensure that the image loads
             destination.imageUrl = favoriteListings[cellIndex].imageUrl
-            //destination.image = favoriteListings[cellIndex].houseImage!
+            destination.email = favoriteListings[cellIndex].email
             destination.dateAvailable = favoriteListings[cellIndex].dateAvailable
             destination.leaseLength = favoriteListings[cellIndex].leaseLength
             destination.bathroomNumber = favoriteListings[cellIndex].bathroomNumber

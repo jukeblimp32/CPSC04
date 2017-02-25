@@ -24,6 +24,7 @@ class LandlordListingPage: UITableViewController {
     var pets : String = ""
     var availability: String = ""
     var propDescription : String = ""
+    var email : String = ""
     var propertyID : Int = 0
     var image : UIImage = UIImage(named: "default")!
     
@@ -40,6 +41,7 @@ class LandlordListingPage: UITableViewController {
     @IBOutlet var petsLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var phoneLabel: UILabel!
+    @IBOutlet var emailLabel: UILabel!
     @IBOutlet var leaseLabel: UILabel!
     @IBOutlet weak var toHomePageButton: UIButton!
     
@@ -57,6 +59,8 @@ class LandlordListingPage: UITableViewController {
         leaseLabel.text = "Lease Terms: " + leaseLength
         descriptionField.text = propDescription
         rentLabel.text = "Rent: " + rent
+        emailLabel.text = "Email: " + email
+        emailLabel.adjustsFontSizeToFitWidth = true
         propertyImage.loadCachedImages(url: imageUrl)
     }
     
@@ -78,6 +82,7 @@ class LandlordListingPage: UITableViewController {
             destination.dateAvailable = dateAvailable
             destination.bathroomNum = bathroomNumber
             destination.deposit = deposit
+            destination.email = email
             destination.pets = pets
             destination.availability = availability
             destination.propDescription = propDescription

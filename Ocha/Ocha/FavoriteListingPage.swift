@@ -24,6 +24,7 @@ class FavoriteListingPage: UITableViewController {
     var pets : String = ""
     var availability: String = ""
     var propDescription : String = ""
+    var email : String = ""
     var propertyID : Int = 0
     var image : UIImage = UIImage(named: "default")!
     
@@ -40,6 +41,7 @@ class FavoriteListingPage: UITableViewController {
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var bathroomLabel: UILabel!
     @IBOutlet var bedroomLabel: UILabel!
+    @IBOutlet var emailLabel: UILabel!
     @IBOutlet var dateAvailableLabel: UILabel!
     
     @IBOutlet weak var toHomePageButton: UIButton!
@@ -57,6 +59,8 @@ class FavoriteListingPage: UITableViewController {
         leaseLabel.text = "Lease Terms: " + leaseLength
         descriptionField.text = propDescription
         rentLabel.text = "Rent: " + rent
+        emailLabel.text = "Email: " + email
+        emailLabel.adjustsFontSizeToFitWidth = true
         propertyImage.loadCachedImages(url: imageUrl)
         super.viewDidLoad()
         

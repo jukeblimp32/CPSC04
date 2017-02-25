@@ -268,13 +268,12 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             destination.rent = listings[cellIndex].monthRent
             destination.distance = listings[cellIndex].milesToGU
             destination.rooms = listings[cellIndex].numberOfRooms
-            // Pass the imageUrl just to ensure that the image loads
             destination.imageUrl = listings[cellIndex].imageUrl
-            //destination.image = listings[cellIndex].houseImage!
             destination.leaseLength = listings[cellIndex].leaseLength
             destination.dateAvailable = listings[cellIndex].dateAvailable
             destination.bathroomNumber = listings[cellIndex].bathroomNumber
             destination.deposit = listings[cellIndex].deposit
+            destination.email = listings[cellIndex].email
             destination.pets = listings[cellIndex].pets
             destination.availability = listings[cellIndex].availability
             destination.propDescription = listings[cellIndex].description
@@ -344,11 +343,12 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let availability = availabilityValue?["availability"] as! String
                         let descriptionValue = properties[i] as? NSDictionary
                         let description = descriptionValue?["description"] as! String
-                        
+                        let emailValue = properties[i] as? NSDictionary
+                        let email = emailValue?["email"] as! String
                         let phoneNumberValue = properties[i] as? NSDictionary
                         let phoneNumber = phoneNumberValue?["phone_number"] as! String
                         
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, userID : "")
+                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
 
                         let filterCounter = self.checkFilters(listing: listing)
                         
@@ -455,8 +455,10 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let userID = userIdValue?["user_id"] as! String
                         let phoneNumberValue = favorites[i] as? NSDictionary
                         let phoneNumber = phoneNumberValue?["phone_number"] as! String
+                        let emailValue = favorites[i] as? NSDictionary
+                        let email = emailValue?["email"] as! String
 
-                        let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroom, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber:phoneNumber, userID: userID)
+                        let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroom, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber:phoneNumber, email: email, userID: userID)
                         
                         self.favoriteListings.append(favoriteListing)
                         //print(self.favoriteListings.count)
