@@ -58,7 +58,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         uploadImageView.contentMode = .scaleAspectFill
         uploadImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         uploadImageView.isUserInteractionEnabled = true
-        
+        characterLabel.adjustsFontSizeToFitWidth = true
         address.delegate = self
         phoneNumberTextField.delegate = self
         rent.delegate = self
@@ -113,7 +113,8 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (propDescription.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = newText.characters.count
-        characterLabel.text = "(" + String(900 - numberOfChars) + " characters remaining)"
+        characterLabel.text = "Description: (" + String(900 - numberOfChars) + " characters remaining)"
+        characterLabel.adjustsFontSizeToFitWidth = true
         return numberOfChars <= 900;
     }
     

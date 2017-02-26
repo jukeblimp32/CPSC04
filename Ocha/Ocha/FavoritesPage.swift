@@ -12,6 +12,9 @@ import FBSDKLoginKit
 
 class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
+    
+    @IBOutlet var favoritesMap: UIButton!
     @IBOutlet weak var favoritesList: UITableView!
     let getFavorites = "http://147.222.165.203/MyWebService/api/DisplayFavorites.php"
     var favoriteListings = [Listing]()
@@ -29,6 +32,8 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         // Do any additional setup after loading the view, typically from a nib.
+        
+        favoritesMap.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (80/100), height: (view.frame.height) * (10/100))
         
         favoritesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (15/100), width: view.frame.width * (80/100), height: (view.frame.height) * (85/100))
         self.favoritesList.register(ListingTableViewCell.self, forCellReuseIdentifier: "cell")

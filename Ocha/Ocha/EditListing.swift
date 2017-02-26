@@ -73,8 +73,8 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         descriptionText!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
 
         let initialChars = propDescription.characters.count
-        characterLabel.text = "(" + String(900 - initialChars) + " characters remaining)"
-        
+        characterLabel.text = "Description: (" + String(900 - initialChars) + " characters remaining)"
+        characterLabel.adjustsFontSizeToFitWidth = true
         propertyImage.contentMode = .scaleAspectFill
         propertyImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         propertyImage.isUserInteractionEnabled = true
@@ -152,7 +152,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (descriptionText.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = newText.characters.count
-        characterLabel.text = "(" + String(900 - numberOfChars) + " characters remaining)"
+        characterLabel.text = "Description: (" + String(900 - numberOfChars) + " characters remaining)"
         return numberOfChars <= 900;
     }
     

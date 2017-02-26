@@ -31,10 +31,7 @@ class LandlordListingPage: UITableViewController {
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var propertyImage: UIImageView!
     @IBOutlet var dateAvailableLabel: UILabel!
-    @IBOutlet var availabilityLabel: UILabel!
     @IBOutlet var rentLabel: UILabel!
-    @IBOutlet var depositLabel: UILabel!
-    @IBOutlet var bathroomLabel: UILabel!
     @IBOutlet var bedroomLabel: UILabel!
     @IBOutlet var descriptionField: UITextView!
 
@@ -48,11 +45,6 @@ class LandlordListingPage: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addressLabel.text = address
-        dateAvailableLabel.text = "Date Available: " + dateAvailable
-        availabilityLabel.text = "Availability: " + availability
-        depositLabel.text = "Deposit: " + deposit
-        bedroomLabel.text = "Bedrooms: " + rooms
-        bathroomLabel.text = "Bathrooms: " + bathroomNumber
         distanceLabel.text = "Distance from Gonzaga: " + distance + " mile(s)"
         phoneLabel.text = "Phone Number: " + phoneNumber
         petsLabel.text = "Pets allowed: " + pets
@@ -60,7 +52,17 @@ class LandlordListingPage: UITableViewController {
         descriptionField.text = propDescription
         rentLabel.text = "Rent: " + rent
         emailLabel.text = "Email: " + email
+        dateAvailableLabel.text = "Date Available: " + dateAvailable + "          Availability: " + availability
+        bedroomLabel.text = "Bedrooms: " + rooms + "          Bathrooms: " + bathroomNumber
+        rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
+        dateAvailableLabel.adjustsFontSizeToFitWidth = true
+        bedroomLabel.adjustsFontSizeToFitWidth = true
+        rentLabel.adjustsFontSizeToFitWidth = true
         emailLabel.adjustsFontSizeToFitWidth = true
+        distanceLabel.adjustsFontSizeToFitWidth = true
+        phoneLabel.adjustsFontSizeToFitWidth = true
+        petsLabel.adjustsFontSizeToFitWidth = true
+        leaseLabel.adjustsFontSizeToFitWidth = true
         propertyImage.loadCachedImages(url: imageUrl)
     }
     
