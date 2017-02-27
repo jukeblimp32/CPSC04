@@ -26,6 +26,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     var leaseTerms : String = " "
     var image : UIImage = UIImage(named: "default")!
     var propertyID : Int = 0
+    var email : String = ""
     var phoneNumber : String = ""
     var imageURL : String = ""
     
@@ -49,6 +50,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         descriptionText.delegate = self
         determineAvailability()
         determineDate()
@@ -71,8 +73,8 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         descriptionText!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
 
         let initialChars = propDescription.characters.count
-        characterLabel.text = "(" + String(900 - initialChars) + " characters remaining)"
-        
+        characterLabel.text = "Description: (" + String(900 - initialChars) + " characters remaining)"
+        characterLabel.adjustsFontSizeToFitWidth = true
         propertyImage.contentMode = .scaleAspectFill
         propertyImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         propertyImage.isUserInteractionEnabled = true
@@ -150,7 +152,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (descriptionText.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = newText.characters.count
-        characterLabel.text = "(" + String(900 - numberOfChars) + " characters remaining)"
+        characterLabel.text = "Description: (" + String(900 - numberOfChars) + " characters remaining)"
         return numberOfChars <= 900;
     }
     
@@ -183,7 +185,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
             destination.rent = rent
             destination.rooms = bedroomNum
             destination.distance = distance
-           // destination.image = image
+            destination.email = email
             destination.imageUrl = imageURL
             destination.propertyID = propertyID
             destination.leaseLength = leaseTerms
@@ -198,8 +200,6 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     }
     
 
-    
-    //OVER HERE ELMA :) :) :)
     @IBAction func saveEdits(_ sender: Any) {
         //created NSURL
         let saveRequestURL = NSURL(string: URL_EDIT_PROPERTY)
@@ -233,7 +233,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!;
+        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email=" + email;
 
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)

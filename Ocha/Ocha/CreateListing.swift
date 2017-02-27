@@ -15,7 +15,6 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     
     
     @IBOutlet weak var address: UITextField!
-    
     @IBOutlet weak var bedroomNumber: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var bathroomNumber: UILabel!
@@ -59,7 +58,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         uploadImageView.contentMode = .scaleAspectFill
         uploadImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         uploadImageView.isUserInteractionEnabled = true
-        
+        characterLabel.adjustsFontSizeToFitWidth = true
         address.delegate = self
         phoneNumberTextField.delegate = self
         rent.delegate = self
@@ -114,7 +113,8 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (propDescription.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = newText.characters.count
-        characterLabel.text = "(" + String(900 - numberOfChars) + " characters remaining)"
+        characterLabel.text = "Description: (" + String(900 - numberOfChars) + " characters remaining)"
+        characterLabel.adjustsFontSizeToFitWidth = true
         return numberOfChars <= 900;
     }
     
@@ -138,7 +138,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
 
         //let landlordID = self.firstName
         let uid = FIRAuth.auth()?.currentUser?.uid
-
+        let email = FIRAuth.auth()?.currentUser?.email
         var dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
@@ -161,7 +161,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         }
         //let phoneNumber =
 
-        if propertyAddress == "" || monthlyRent == "" || propertyDeposit == ""
+        if propertyAddress == "" || monthlyRent == "" || propertyDeposit == "" || phoneNumber == ""
         {
             let alert = UIAlertController(title: "Empty Fields", message:"Make sure you have entered information for all fields", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: .default))
@@ -173,7 +173,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             //post parameter
             //concatenating keys and values from text field
 
-            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!;
+            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!+"&email="+email!;
             
             // Upload Image
             self.uploadImage(address: propertyAddress!)

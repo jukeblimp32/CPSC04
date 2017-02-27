@@ -12,6 +12,9 @@ import FBSDKLoginKit
 
 class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
+    
+    @IBOutlet var favoritesMap: UIButton!
     @IBOutlet weak var favoritesList: UITableView!
     let getFavorites = "http://147.222.165.203/MyWebService/api/DisplayFavorites.php"
     var favoriteListings = [Listing]()
@@ -29,6 +32,8 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         // Do any additional setup after loading the view, typically from a nib.
+        
+        favoritesMap.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (80/100), height: (view.frame.height) * (10/100))
         
         favoritesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (15/100), width: view.frame.width * (80/100), height: (view.frame.height) * (85/100))
         self.favoritesList.register(ListingTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -125,9 +130,11 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         let userID = userIdValue?["user_id"] as! String
                         let phoneValue = favorites[i] as? NSDictionary
                         let phoneNumber = phoneValue?["phone_number"] as! String
+                        let emailValue = favorites[i] as? NSDictionary
+                        let email = emailValue?["email"] as! String
  
                         if userID == uid {
-                            let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber : phoneNumber,  userID: userID)
+                            let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber : phoneNumber, email: email, userID: userID)
                             self.favoriteListings.append(favoriteListing)
                         }
                         
@@ -167,7 +174,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             destination.rooms = favoriteListings[cellIndex].numberOfRooms
             // Pass the imageUrl just to ensure that the image loads
             destination.imageUrl = favoriteListings[cellIndex].imageUrl
-            //destination.image = favoriteListings[cellIndex].houseImage!
+            destination.email = favoriteListings[cellIndex].email
             destination.dateAvailable = favoriteListings[cellIndex].dateAvailable
             destination.leaseLength = favoriteListings[cellIndex].leaseLength
             destination.bathroomNumber = favoriteListings[cellIndex].bathroomNumber

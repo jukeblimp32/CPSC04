@@ -45,6 +45,7 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         pickerMin.dataSource = self
         pickerMax.delegate = self
         pickerMax.dataSource = self
+        distanceLabel.adjustsFontSizeToFitWidth = true
     }
     
     @IBAction func changeRoomNum(_ sender: UIStepper) {
