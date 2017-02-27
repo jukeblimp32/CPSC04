@@ -107,6 +107,7 @@
 		15E63D591E5FBF490090E37F /* FavoritesMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesMap.swift; sourceTree = "<group>"; };
 		3E85B77C9845080382DC0D46 /* Pods_Ocha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ocha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E3FF2C00B97A7DB8DC3C7B /* Pods-Ocha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.release.xcconfig"; sourceTree = "<group>"; };
+		5B801FB41E60B79900532A1B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7C2B9F341E3C14F200F6859F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7C854E4B1DC400AD00E02883 /* Ocha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ocha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C854E4E1DC400AD00E02883 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -250,6 +251,7 @@
 		C7AED9CF7539A70DE2B3ECE5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B801FB41E60B79900532A1B /* MapKit.framework */,
 				3E85B77C9845080382DC0D46 /* Pods_Ocha.framework */,
 			);
 			name = Frameworks;

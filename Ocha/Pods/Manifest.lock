@@ -42,6 +42,11 @@ PODS:
     - GoogleSymbolUtilities (~> 1.1)
   - GoogleInterchangeUtilities (1.2.2):
     - GoogleSymbolUtilities (~> 1.1)
+  - GoogleMaps (2.1.1):
+    - GoogleMaps/Maps (= 2.1.1)
+  - GoogleMaps/Base (2.1.1)
+  - GoogleMaps/Maps (2.1.1):
+    - GoogleMaps/Base
   - GoogleSignIn (4.0.1):
     - GoogleAppUtilities (~> 1.1)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
@@ -74,6 +79,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseAuth
   - FirebaseDatabase
+  - GoogleMaps
   - GoogleSignIn
 
 SPEC CHECKSUMS:
@@ -90,12 +96,13 @@ SPEC CHECKSUMS:
   FirebaseStorage: c50aa353bf484072704e73b4aff1bd47adb735c4
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
+  GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
   GoogleSignIn: a8694c0a8e6d1b0ec77c58014de5bfd4ba2fa766
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
 
-PODFILE CHECKSUM: 862091f26c0356a20116b330159bb92ba5bc797c
+PODFILE CHECKSUM: 42bf6ecc02a9537f596a54c568234aaafc7c006b
 
 COCOAPODS: 1.1.1
