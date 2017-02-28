@@ -41,7 +41,7 @@ class ListingTableViewCell: UITableViewCell {
         
         //let image = UIImage(named: "emptyStar") as UIImage?
         favoriteButton.backgroundColor = UIColor.white
-        favoriteButton.frame = CGRect(x: (screenSize.width) * (68/100), y: (self.frame.height) * (4/100), width: self.frame.width * (10/100), height: 40)
+        favoriteButton.frame = CGRect(x: (screenSize.width) * (68/100), y: (self.frame.height) * (4/100), width: self.frame.width * (10/100), height: 30)
         //favoriteButton.setImage(image, for: .normal)
         favoriteButton.addTarget(self, action: #selector(ListingTableViewCell.starPressed(_:)), for:UIControlEvents.touchUpInside)
         self.addSubview(favoriteButton)
