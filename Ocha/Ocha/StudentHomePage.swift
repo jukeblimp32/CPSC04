@@ -279,6 +279,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             destination.propDescription = listings[cellIndex].description
             destination.propertyType = listings[cellIndex].propertyType
             destination.phoneNumber = listings[cellIndex].phoneNumber
+            destination.propertyID = listings[cellIndex].propertyID
+            destination.favoritePropIDs = favoritePropIDs
         }
     }
     
@@ -375,8 +377,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         self.propertiesList.reloadData()
                     })
 
-                    print("favorited Properties")
-                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         self.favoritedProperties()
                     })
@@ -496,14 +496,10 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                 let property2 : Int = Int(item2.propertyID)
                 if ((uid == favUserId) && (property1 == property2)){
                     favListings.append(item1)
-                    print (item1.propertyID)
                     self.favoritePropIDs.append(item1.propertyID)
                 }
             }
         }
-        print("this is favListings")
-        print(favListings.count) //should be 1
-        print(favListings)
         return favListings
     }
     

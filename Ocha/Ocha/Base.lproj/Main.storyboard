@@ -821,7 +821,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="DESCRIPTION HERE" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4j-1i-Mzn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="367" height="128"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="367" height="127"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -1528,7 +1528,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOI-pz-0xP">
-                                                    <rect key="frame" x="0.0" y="0.0" width="149" height="64.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="149" height="65"/>
                                                     <color key="backgroundColor" red="0.052100770999999997" green="0.5631377233" blue="0.63247738279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="149" id="ZGL-ME-UoL"/>
@@ -2582,16 +2582,32 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03s-Sf-FSf">
-                                                    <rect key="frame" x="8" y="11" width="359" height="21"/>
+                                                    <rect key="frame" x="8" y="11" width="294" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.052100770999999997" green="0.5631377233" blue="0.63247738279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qaf-RD-nj6">
+                                                    <rect key="frame" x="316" y="2" width="45" height="46"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="45" id="MOO-xY-FI4"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" title="Button" image="emptyStar">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="starPressed:" destination="3Eg-ML-LD3" eventType="touchUpInside" id="sae-K6-Ch3"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="03s-Sf-FSf" firstAttribute="leading" secondItem="QBX-C8-AgE" secondAttribute="leadingMargin" id="Vs4-sS-m7N"/>
-                                                <constraint firstItem="03s-Sf-FSf" firstAttribute="trailing" secondItem="QBX-C8-AgE" secondAttribute="trailingMargin" id="Y68-Yr-6Qh"/>
-                                                <constraint firstItem="03s-Sf-FSf" firstAttribute="top" secondItem="QBX-C8-AgE" secondAttribute="topMargin" constant="3" id="v3E-FM-6GB"/>
+                                                <constraint firstItem="03s-Sf-FSf" firstAttribute="top" secondItem="QBX-C8-AgE" secondAttribute="topMargin" constant="3" id="AA9-Ai-g3i"/>
+                                                <constraint firstItem="qaf-RD-nj6" firstAttribute="centerY" secondItem="QBX-C8-AgE" secondAttribute="centerY" id="SLI-9k-hGm"/>
+                                                <constraint firstItem="qaf-RD-nj6" firstAttribute="leading" secondItem="03s-Sf-FSf" secondAttribute="trailing" constant="14" id="dmS-cF-Zay"/>
+                                                <constraint firstItem="03s-Sf-FSf" firstAttribute="leading" secondItem="QBX-C8-AgE" secondAttribute="leadingMargin" id="huQ-u0-49g"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="qaf-RD-nj6" secondAttribute="trailing" constant="6" id="miR-Ng-4x4"/>
+                                                <constraint firstItem="qaf-RD-nj6" firstAttribute="top" secondItem="QBX-C8-AgE" secondAttribute="topMargin" constant="-6" id="mqU-S7-h33"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2838,6 +2854,7 @@
                         <outlet property="descriptionField" destination="gQ0-xL-khj" id="BQU-s3-eoF"/>
                         <outlet property="distanceLabel" destination="Klj-St-gZr" id="Lkb-ss-OU8"/>
                         <outlet property="emailLabel" destination="Ca3-lw-F3v" id="y5L-OR-Zjd"/>
+                        <outlet property="favoriteButton" destination="qaf-RD-nj6" id="qKl-mJ-lPl"/>
                         <outlet property="leaseLabel" destination="z8n-34-x9s" id="jhX-75-QUk"/>
                         <outlet property="petsLabel" destination="esg-uB-lmZ" id="jTu-aT-3y4"/>
                         <outlet property="phoneLabel" destination="8lI-vM-zUT" id="YAr-BU-ddo"/>
@@ -2898,16 +2915,31 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pK8-CY-nz9">
-                                                    <rect key="frame" x="8" y="11" width="359" height="21"/>
+                                                    <rect key="frame" x="8" y="11" width="297" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.052100770999999997" green="0.5631377233" blue="0.63247738279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYT-76-9AF">
+                                                    <rect key="frame" x="313" y="2" width="45" height="46"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="45" id="fjJ-D7-ls6"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="filledStar">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="starPressed:" destination="U36-Ro-q88" eventType="touchUpInside" id="lnt-Yx-Bi5"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="pK8-CY-nz9" firstAttribute="trailing" secondItem="p0h-Lr-ZTF" secondAttribute="trailingMargin" id="1ej-IZ-jsX"/>
-                                                <constraint firstItem="pK8-CY-nz9" firstAttribute="top" secondItem="p0h-Lr-ZTF" secondAttribute="topMargin" constant="3" id="ATb-i9-WLs"/>
-                                                <constraint firstItem="pK8-CY-nz9" firstAttribute="leading" secondItem="p0h-Lr-ZTF" secondAttribute="leadingMargin" id="UVl-ZQ-uVt"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="AYT-76-9AF" secondAttribute="trailing" constant="9" id="8Fh-1b-WMO"/>
+                                                <constraint firstItem="AYT-76-9AF" firstAttribute="top" secondItem="p0h-Lr-ZTF" secondAttribute="topMargin" constant="-6" id="FFP-zc-add"/>
+                                                <constraint firstItem="AYT-76-9AF" firstAttribute="leading" secondItem="pK8-CY-nz9" secondAttribute="trailing" constant="8" symbolic="YES" id="MVa-MR-aI2"/>
+                                                <constraint firstItem="pK8-CY-nz9" firstAttribute="leading" secondItem="p0h-Lr-ZTF" secondAttribute="leadingMargin" id="ojD-Zc-SMj"/>
+                                                <constraint firstItem="AYT-76-9AF" firstAttribute="centerY" secondItem="p0h-Lr-ZTF" secondAttribute="centerY" id="pdn-nz-wbp"/>
+                                                <constraint firstItem="pK8-CY-nz9" firstAttribute="top" secondItem="p0h-Lr-ZTF" secondAttribute="topMargin" constant="3" id="qHt-rK-I4V"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -3154,6 +3186,7 @@
                         <outlet property="descriptionField" destination="ibi-eI-EZd" id="dsV-mU-zrM"/>
                         <outlet property="distanceLabel" destination="u8Q-Wg-0xS" id="ju8-Pi-7u2"/>
                         <outlet property="emailLabel" destination="u3I-Xe-NZa" id="7KU-RV-AEr"/>
+                        <outlet property="favoriteButton" destination="AYT-76-9AF" id="FOJ-yZ-f2v"/>
                         <outlet property="leaseLabel" destination="7S0-Vp-bcc" id="Ze2-JX-oci"/>
                         <outlet property="petsLabel" destination="Fpp-YM-Ghz" id="Ww5-Tf-a9d"/>
                         <outlet property="phoneLabel" destination="XtQ-II-Lk5" id="omZ-gA-rzY"/>
@@ -3171,6 +3204,8 @@
         <image name="CreateListing" width="30" height="30"/>
         <image name="Hompage" width="30" height="30"/>
         <image name="default" width="169" height="169"/>
+        <image name="emptyStar" width="242" height="244"/>
+        <image name="filledStar" width="242" height="244"/>
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>

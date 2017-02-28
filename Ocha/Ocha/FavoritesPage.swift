@@ -184,6 +184,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             destination.propDescription = favoriteListings[cellIndex].description
             destination.propertyType = favoriteListings[cellIndex].propertyType
             destination.phoneNumber = favoriteListings[cellIndex].phoneNumber
+            destination.propertyID = favoriteListings[cellIndex].propertyID
         }
     }
     

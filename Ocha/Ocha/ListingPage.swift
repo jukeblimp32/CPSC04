@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class ListingPage: UITableViewController {
+    
+    let createFavorites = "http://147.222.165.203/MyWebService/api/CreateFavorite.php"
+    let removeFavorites = "http://147.222.165.203/MyWebService/api/RemoveFavorites.php"
+    
     
     var imageUrl = ""
     var address : String = ""
@@ -27,6 +32,7 @@ class ListingPage: UITableViewController {
     var email : String = ""
     var propertyID : Int = 0
     var image : UIImage = UIImage(named: "default")!
+    var favoritePropIDs = [Int]()
     
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var dateAvailableLabel: UILabel!
@@ -39,7 +45,7 @@ class ListingPage: UITableViewController {
     @IBOutlet var rentLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var propertyImage: UIImageView!
-    
+    @IBOutlet var favoriteButton: UIButton!
     
     @IBOutlet weak var toHomePageButton: UIButton!
 
@@ -64,10 +70,118 @@ class ListingPage: UITableViewController {
         petsLabel.adjustsFontSizeToFitWidth = true
         leaseLabel.adjustsFontSizeToFitWidth = true
         propertyImage.loadCachedImages(url: imageUrl)
-    
+        favoriteButton.backgroundColor = UIColor.white
 
+        if favoritePropIDs.contains(propertyID) {
+            favoriteButton.setImage(UIImage(named: "filledStar"), for: UIControlState.normal)
+        }
+        else {
+            favoriteButton.setImage(UIImage(named: "emptyStar"), for: UIControlState.normal)
+        }
     }
   
+    @IBAction func starPressed(_ sender: UIButton) {
+        if (sender.currentImage?.isEqual(UIImage(named: "filledStar")))!{
+            sender.setImage(UIImage(named: "emptyStar"), for: UIControlState.normal)
+            removeFavorite()
+        }
+        else
+        {
+            sender.setImage(UIImage(named: "filledStar"), for: UIControlState.normal)
+            createFavorite()
+        }
+    }
+    
+    
+    func createFavorite(){
+        //created NSURL
+        let saveRequestURL = NSURL(string: createFavorites)
+        //creating NSMutableURLRequest
+        let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+        //setting method to POST
+        saveRequest.httpMethod = "POST"
+        
+        //getting values from text fields
+        
+        //let landlordID = self.firstName
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        
+        //post parameter
+        //concatenating keys and values from text field
+        let propID = propertyID
+        let userID = uid
+        let postParameters="property_id="+String(propID)+"&user_id="+userID!;
+        
+        
+        //adding parameters to request body
+        saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+        //task to send to post request
+        let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+            data,response, error in
+            if error != nil{
+                print("error is \(error)")
+                return;
+            }
+            do{
+                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                if let parseJSON = myJSON{
+                    var msg:String!
+                    msg = parseJSON["message"]as! String?
+                    print(msg)
+                }
+            }catch{
+                print(error)
+            }
+        }
+        saveTask.resume()
+    }
+    
+    func removeFavorite(){
+        //created NSURL
+        let saveRequestURL = NSURL(string: removeFavorites)
+        
+        //creating NSMutableURLRequest
+        let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+        
+        //setting method to POST
+        saveRequest.httpMethod = "POST"
+        
+        //getting values from text fields
+        
+        //let landlordID = self.firstName
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        //post parameter
+        //concatenating keys and values from text field
+        let propID = propertyID
+        let userID = uid
+        let postParameters="property_id="+String(propID)+"&user_id="+userID!;
+        
+        //adding parameters to request body
+        saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+        //task to send to post request
+        let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+            data,response, error in
+            if error != nil{
+                print("error is \(error)")
+                return;
+            }
+            do{
+                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                if let parseJSON = myJSON{
+                    var msg:String!
+                    msg = parseJSON["message"]as! String?
+                    print(msg)
+                }
+            }catch{
+                print(error)
+            }
+        }
+        saveTask.resume()
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
