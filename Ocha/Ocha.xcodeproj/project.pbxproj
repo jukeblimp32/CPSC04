@@ -16,6 +16,10 @@
 		1516D1521E36BDFF009FBCB3 /* EditListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516D1511E36BDFF009FBCB3 /* EditListing.swift */; };
 		151930381DE25D1900858B8A /* ListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151930371DE25D1900858B8A /* ListingPage.swift */; };
 		153E3FF41E4FD9D600E4EF33 /* FavoriteListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E3FF31E4FD9D600E4EF33 /* FavoriteListingPage.swift */; };
+		153FBDBB1E68F83A008E4B41 /* ApproveListings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FBDBA1E68F83A008E4B41 /* ApproveListings.swift */; };
+		153FBDBD1E68FA13008E4B41 /* AdminListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FBDBC1E68FA13008E4B41 /* AdminListingPage.swift */; };
+		153FBDBF1E68FA69008E4B41 /* EditAdminListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FBDBE1E68FA69008E4B41 /* EditAdminListing.swift */; };
+		153FBDC11E690311008E4B41 /* ApprovePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FBDC01E690311008E4B41 /* ApprovePage.swift */; };
 		154C50B31DE23C1400F39D67 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154C50B21DE23C1400F39D67 /* Listing.swift */; };
 		155C36B81DC4205A00154B12 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155C36B71DC4205A00154B12 /* Login.swift */; };
 		15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E571DCC0E0B003F7812 /* StudentHomePage.swift */; };
@@ -30,11 +34,6 @@
 		15A5EEC11DD6752100F1D8A1 /* StudentTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC01DD6752000F1D8A1 /* StudentTabController.swift */; };
 		15A5EEC31DD67A2500F1D8A1 /* LandlordTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC21DD67A2500F1D8A1 /* LandlordTabController.swift */; };
 		15A5EEC51DD67A2F00F1D8A1 /* AdminTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC41DD67A2F00F1D8A1 /* AdminTabController.swift */; };
-		15A5EEC71DD6846900F1D8A1 /* ApproveReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC61DD6846900F1D8A1 /* ApproveReviews.swift */; };
-		15A5EEC91DD6849800F1D8A1 /* ApproveListings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EEC81DD6849800F1D8A1 /* ApproveListings.swift */; };
-		15A5EECB1DD684AF00F1D8A1 /* ManageUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EECA1DD684AF00F1D8A1 /* ManageUsers.swift */; };
-		15A5EECD1DD684C200F1D8A1 /* ManageListings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EECC1DD684C200F1D8A1 /* ManageListings.swift */; };
-		15A5EECF1DD684ED00F1D8A1 /* AdminNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EECE1DD684ED00F1D8A1 /* AdminNotifications.swift */; };
 		15A5EED11DD6855A00F1D8A1 /* SearchAndFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EED01DD6855A00F1D8A1 /* SearchAndFilter.swift */; };
 		15A5EED31DD6857600F1D8A1 /* FavoritesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */; };
 		15D733AC1E5CED2E001915B1 /* LandlordListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D733AB1E5CED2E001915B1 /* LandlordListingPage.swift */; };
@@ -78,6 +77,10 @@
 		1516D1511E36BDFF009FBCB3 /* EditListing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListing.swift; sourceTree = "<group>"; };
 		151930371DE25D1900858B8A /* ListingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingPage.swift; sourceTree = "<group>"; };
 		153E3FF31E4FD9D600E4EF33 /* FavoriteListingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteListingPage.swift; sourceTree = "<group>"; };
+		153FBDBA1E68F83A008E4B41 /* ApproveListings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveListings.swift; sourceTree = "<group>"; };
+		153FBDBC1E68FA13008E4B41 /* AdminListingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminListingPage.swift; sourceTree = "<group>"; };
+		153FBDBE1E68FA69008E4B41 /* EditAdminListing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAdminListing.swift; sourceTree = "<group>"; };
+		153FBDC01E690311008E4B41 /* ApprovePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovePage.swift; sourceTree = "<group>"; };
 		154C50B21DE23C1400F39D67 /* Listing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		155C36B71DC4205A00154B12 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		15635E571DCC0E0B003F7812 /* StudentHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHomePage.swift; sourceTree = "<group>"; };
@@ -96,11 +99,6 @@
 		15A5EEC01DD6752000F1D8A1 /* StudentTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTabController.swift; sourceTree = "<group>"; };
 		15A5EEC21DD67A2500F1D8A1 /* LandlordTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordTabController.swift; sourceTree = "<group>"; };
 		15A5EEC41DD67A2F00F1D8A1 /* AdminTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminTabController.swift; sourceTree = "<group>"; };
-		15A5EEC61DD6846900F1D8A1 /* ApproveReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveReviews.swift; sourceTree = "<group>"; };
-		15A5EEC81DD6849800F1D8A1 /* ApproveListings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveListings.swift; sourceTree = "<group>"; };
-		15A5EECA1DD684AF00F1D8A1 /* ManageUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageUsers.swift; sourceTree = "<group>"; };
-		15A5EECC1DD684C200F1D8A1 /* ManageListings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageListings.swift; sourceTree = "<group>"; };
-		15A5EECE1DD684ED00F1D8A1 /* AdminNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminNotifications.swift; sourceTree = "<group>"; };
 		15A5EED01DD6855A00F1D8A1 /* SearchAndFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAndFilter.swift; sourceTree = "<group>"; };
 		15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesPage.swift; sourceTree = "<group>"; };
 		15D733AB1E5CED2E001915B1 /* LandlordListingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordListingPage.swift; sourceTree = "<group>"; };
@@ -212,21 +210,20 @@
 				150359281DCFF719005AD597 /* AccountInfo.swift */,
 				15635E591DCC0F1E003F7812 /* AdminHomePage.swift */,
 				7C854E501DC400AD00E02883 /* CreateAccount.swift */,
+				153FBDBC1E68FA13008E4B41 /* AdminListingPage.swift */,
 				155C36B71DC4205A00154B12 /* Login.swift */,
+				153FBDC01E690311008E4B41 /* ApprovePage.swift */,
+				153FBDBA1E68F83A008E4B41 /* ApproveListings.swift */,
 				15D733AB1E5CED2E001915B1 /* LandlordListingPage.swift */,
 				7C854E521DC400AD00E02883 /* SecondViewController.swift */,
-				15A5EEC61DD6846900F1D8A1 /* ApproveReviews.swift */,
 				15A5EEC01DD6752000F1D8A1 /* StudentTabController.swift */,
-				15A5EECC1DD684C200F1D8A1 /* ManageListings.swift */,
-				15A5EEC81DD6849800F1D8A1 /* ApproveListings.swift */,
 				15E63D591E5FBF490090E37F /* FavoritesMap.swift */,
+				153FBDBE1E68FA69008E4B41 /* EditAdminListing.swift */,
 				15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */,
 				1503592A1DD000DE005AD597 /* EditAccountInfo.swift */,
-				15A5EECA1DD684AF00F1D8A1 /* ManageUsers.swift */,
 				153E3FF31E4FD9D600E4EF33 /* FavoriteListingPage.swift */,
 				1516D1511E36BDFF009FBCB3 /* EditListing.swift */,
 				15A5EED01DD6855A00F1D8A1 /* SearchAndFilter.swift */,
-				15A5EECE1DD684ED00F1D8A1 /* AdminNotifications.swift */,
 				154C50B21DE23C1400F39D67 /* Listing.swift */,
 				7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */,
 				7C854E541DC400AD00E02883 /* Main.storyboard */,
@@ -476,27 +473,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C854E531DC400AD00E02883 /* SecondViewController.swift in Sources */,
+				153FBDBB1E68F83A008E4B41 /* ApproveListings.swift in Sources */,
 				7C2B9F351E3C14F200F6859F /* Extensions.swift in Sources */,
 				15A5EEC31DD67A2500F1D8A1 /* LandlordTabController.swift in Sources */,
 				15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */,
-				15A5EECD1DD684C200F1D8A1 /* ManageListings.swift in Sources */,
 				15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */,
 				7C854E4F1DC400AD00E02883 /* AppDelegate.swift in Sources */,
 				15A5EED31DD6857600F1D8A1 /* FavoritesPage.swift in Sources */,
 				155C36B81DC4205A00154B12 /* Login.swift in Sources */,
-				15A5EEC91DD6849800F1D8A1 /* ApproveListings.swift in Sources */,
 				1516D1521E36BDFF009FBCB3 /* EditListing.swift in Sources */,
 				151930381DE25D1900858B8A /* ListingPage.swift in Sources */,
 				15A5EED11DD6855A00F1D8A1 /* SearchAndFilter.swift in Sources */,
-				15A5EECF1DD684ED00F1D8A1 /* AdminNotifications.swift in Sources */,
-				15A5EECB1DD684AF00F1D8A1 /* ManageUsers.swift in Sources */,
 				150359291DCFF719005AD597 /* AccountInfo.swift in Sources */,
 				1503592D1DD03518005AD597 /* UserType.swift in Sources */,
+				153FBDC11E690311008E4B41 /* ApprovePage.swift in Sources */,
 				154C50B31DE23C1400F39D67 /* Listing.swift in Sources */,
 				15A5EEC51DD67A2F00F1D8A1 /* AdminTabController.swift in Sources */,
+				153FBDBF1E68FA69008E4B41 /* EditAdminListing.swift in Sources */,
 				15E63D5A1E5FBF490090E37F /* FavoritesMap.swift in Sources */,
 				15D733AC1E5CED2E001915B1 /* LandlordListingPage.swift in Sources */,
-				15A5EEC71DD6846900F1D8A1 /* ApproveReviews.swift in Sources */,
 				15A5EEC11DD6752100F1D8A1 /* StudentTabController.swift in Sources */,
 				1503592B1DD000DE005AD597 /* EditAccountInfo.swift in Sources */,
 				15A0392E1DECDD9900FD2101 /* CreateListing.swift in Sources */,
@@ -504,6 +499,7 @@
 				7C854E511DC400AD00E02883 /* CreateAccount.swift in Sources */,
 				15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */,
 				153E3FF41E4FD9D600E4EF33 /* FavoriteListingPage.swift in Sources */,
+				153FBDBD1E68FA13008E4B41 /* AdminListingPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
