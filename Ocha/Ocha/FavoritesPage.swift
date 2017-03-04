@@ -50,6 +50,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
         favoriteListings.removeAll()
         loadListingViews()
         favoritesList.reloadData()
@@ -186,6 +187,12 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             destination.phoneNumber = favoriteListings[cellIndex].phoneNumber
             destination.propertyID = favoriteListings[cellIndex].propertyID
         }
+        if segue.identifier == "favoritesMap",
+            let destination = segue.destination as? FavoritesMap {
+            destination.favListings = favoriteListings
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

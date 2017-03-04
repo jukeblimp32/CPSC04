@@ -1218,7 +1218,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="yJj-YM-8H8" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="auD-aB-qIY"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jXg-kH-W6Q">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jXg-kH-W6Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1255,7 +1255,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="6Y5-qP-uwG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" selectedImage="Hompage" id="2oW-k8-QXp"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZNO-dB-cfU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZNO-dB-cfU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1610,7 +1610,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="dhk-wM-Tem" kind="push" id="BJu-LD-rMf"/>
+                                    <segue destination="dhk-wM-Tem" kind="push" identifier="favoritesMap" id="BJu-LD-rMf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1654,7 +1654,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYx-Pn-S3Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4071.1999999999998" y="-195.6521739130435"/>
+            <point key="canvasLocation" x="-4274" y="13"/>
         </scene>
         <!--Item-->
         <scene sceneID="ysC-wQ-Vau">
@@ -1662,7 +1662,7 @@
                 <navigationController navigationBarHidden="YES" id="9U8-jT-oXb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="lY8-gG-zhb"/>
                     <navigationItem key="navigationItem" id="3Xi-pU-xsL"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MTk-qs-JsG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MTk-qs-JsG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1680,7 +1680,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="bCL-hc-hQe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account Info" image="Account Info" id="i4J-ew-EKB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iYM-9U-RUU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYM-9U-RUU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1859,7 +1859,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Pcc-rx-e2J" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="HomePage" image="Hompage" id="fYD-0k-Szd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o73-Pz-GaW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o73-Pz-GaW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3847,7 +3847,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="kXK-vq-jzA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="New Listings" selectedImage="second" id="GCZ-7v-Bg1"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="g3x-Ck-1oX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="g3x-Ck-1oX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4265,7 +4265,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="9RR-NA-bSI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Pending Edits" image="first" id="Abz-gh-OG0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="RGc-bW-MKx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RGc-bW-MKx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4345,7 +4345,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="PHs-Ax-Rdh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Pending Reviews" id="8wO-3Q-FH6"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kZd-92-WMo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kZd-92-WMo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4726,15 +4726,15 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tdz-VX-gJN"/>
-        <segue reference="m06-09-obF"/>
         <segue reference="ciy-bW-OGB"/>
         <segue reference="1hD-qY-9H2"/>
+        <segue reference="m06-09-obF"/>
         <segue reference="Wgi-Vy-FKQ"/>
         <segue reference="h93-ZZ-6l2"/>
-        <segue reference="ZLl-OI-v7r"/>
+        <segue reference="tdz-VX-gJN"/>
         <segue reference="9BA-JH-gVZ"/>
         <segue reference="mmq-Ki-Or5"/>
-        <segue reference="zjl-A3-T5k"/>
+        <segue reference="ZLl-OI-v7r"/>
+        <segue reference="vYR-Ob-tDb"/>
     </inferredMetricsTieBreakers>
 </document>
