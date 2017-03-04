@@ -1,5 +1,5 @@
 //
-//  ApprovePage.swift
+//  ApproveEditsPage.swift
 //  Ocha
 //
 //  Created by Talkov, Leah C on 11/20/16.
@@ -8,8 +8,7 @@
 
 import UIKit
 
-class ApprovePage: UITableViewController {
-    
+class ApproveEditsPage: UITableViewController {
     var imageUrl = ""
     var address : String = ""
     var distance : String = ""
@@ -64,6 +63,13 @@ class ApprovePage: UITableViewController {
         petsLabel.adjustsFontSizeToFitWidth = true
         leaseLabel.adjustsFontSizeToFitWidth = true
         propertyImage.loadCachedImages(url: imageUrl)
+    }
+    
+    @IBAction func rejectEdits(_ sender: Any) {
+    }
+    
+    @IBAction func approveEdits(_ sender: Any) {
+        
     }
     
     override func didReceiveMemoryWarning() {

@@ -1,5 +1,5 @@
 //
-//  LandlordHomePage.swift
+//  ApproveListings.swift
 //  Ocha
 //
 //  Created by Talkov, Leah C on 11/3/16.
@@ -9,116 +9,125 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import GameplayKit
 
-class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ApproveNewListings: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    // MARK: Properties
     
-    @IBOutlet weak var propertiesList: UITableView!
+    @IBOutlet var propertiesList: UITableView!
+    //propertiesList
     
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     var listings = [Listing]()
-    var status = [String]()
+    
+    
+    var valueTopass : String!
     var downloadURL = ""
     var refreshControl : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(StudentHomePage.handleRefresh(_:)), for: .valueChanged)
+        
         self.propertiesList.register(ListingTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
-        
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(LandlordHomePage.handleRefresh(_:)), for: .valueChanged)
-        
         // Initialize our table
-        propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (90/100))
+        propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (15/100), width: view.frame.width * (80/100), height: (view.frame.height) * (85/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
         propertiesList.reloadData()
         propertiesList.addSubview(refreshControl)
         
-        //}
-        
         let viewTitle = UILabel()
-        
-        let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 20)
-        toHomePageButton.setTitle("Logout", for: UIControlState.normal)
-        toHomePageButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
-        toHomePageButton.titleLabel?.textColor = UIColor.white
-        toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
-        toHomePageButton.layer.cornerRadius = 4
-        toHomePageButton.addTarget(self, action: #selector(StudentHomePage.logout(_:)), for: UIControlEvents.touchUpInside)
-        view.addSubview(toHomePageButton)
-        
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if  segue.identifier == "showDetailLandlord",
-            let destination = segue.destination as? LandlordListingPage,
-            let blogIndex = propertiesList.indexPathForSelectedRow?.row
-        {
-            destination.address = listings[blogIndex].address
-            destination.rent = listings[blogIndex].monthRent
-            destination.distance = listings[blogIndex].milesToGU
-            destination.rooms = listings[blogIndex].numberOfRooms
-            destination.imageUrl = listings[blogIndex].imageUrl
-            destination.email = listings[blogIndex].email
-            destination.propertyID = listings[blogIndex].propertyID
-            destination.dateAvailable = listings[blogIndex].dateAvailable
-            destination.leaseLength = listings[blogIndex].leaseLength
-            destination.bathroomNumber = listings[blogIndex].bathroomNumber
-            destination.deposit = listings[blogIndex].deposit
-            destination.pets = listings[blogIndex].pets
-            destination.availability = listings[blogIndex].availability
-            destination.propDescription = listings[blogIndex].description
-            destination.propertyType = listings[blogIndex].propertyType
-            destination.phoneNumber = listings[blogIndex].phoneNumber
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        listings.removeAll()
+        loadListingViews()
+        propertiesList.reloadData()
+        
     }
     
     func handleRefresh(_ sender : UIRefreshControl) {
         listings.removeAll()
         loadListingViews()
-        propertiesList.reloadData()
         refreshControl.endRefreshing()
     }
     
     
+    /*
+     When a listing cell is clicked on the homepage, this function
+     sends the cell information and saves them as variables in
+     the class ListingPage. The listing page will then show
+     information that corresponds to the selected cell.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //If the segue from any table cell to listingPage is clicked
+        if segue.identifier == "ApproveListing",
+            //Sets the page to be loaded as ListingPage
+            let destination = segue.destination as? ApproveNewListingPage,
+            //Gets the selected cell index
+            let cellIndex = propertiesList.indexPathForSelectedRow?.row
+        {
+            //Setting the variables in the listing class to the cell info
+            destination.address = listings[cellIndex].address
+            destination.rent = listings[cellIndex].monthRent
+            destination.distance = listings[cellIndex].milesToGU
+            destination.rooms = listings[cellIndex].numberOfRooms
+            destination.imageUrl = listings[cellIndex].imageUrl
+            destination.leaseLength = listings[cellIndex].leaseLength
+            destination.dateAvailable = listings[cellIndex].dateAvailable
+            destination.bathroomNumber = listings[cellIndex].bathroomNumber
+            destination.deposit = listings[cellIndex].deposit
+            destination.email = listings[cellIndex].email
+            destination.pets = listings[cellIndex].pets
+            destination.availability = listings[cellIndex].availability
+            destination.propDescription = listings[cellIndex].description
+            destination.propertyType = listings[cellIndex].propertyType
+            destination.phoneNumber = listings[cellIndex].phoneNumber
+            destination.propertyID = listings[cellIndex].propertyID
+        }
+    }
+    
+    /*
+     This function loads the the listings from the database
+     onto cells that contain summary info for each listing. The
+     cells are displayed in a scrollable view on the student homepage.
+     */
     func loadListingViews(){
-        
+        var tempListings = [(Int, Listing)]()
         //create NSURL
         let getRequestURL = NSURL(string: getProperties)
-        
         //creating NSMutableURLRequest
         let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
-        
         //setting the method to GET
         getRequest.httpMethod = "GET"
-        
         //task to be sent to the GET request
-        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest){
-            data,response,error in
-            
-            if error != nil{
+        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest) {
+            data, response,error in
+            //If there is an error in connecting with the database, print error
+            if error != nil {
                 print("error is \(error)")
                 return;
             }
-            do{
-                //converting response to a NSDictionary
+            do {
+                //converting response to dictionary
                 var propertyJSON : NSDictionary!
                 propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                 
-                //getting the JSON array teams from the response
+                //Getting the properties in an array
                 let properties: NSArray = propertyJSON["properties"] as! NSArray
                 
-                let uid = FIRAuth.auth()?.currentUser?.uid
-                
-                //looping through all the json objects in the array properties
+                //looping through all the objects in the array
                 DispatchQueue.main.async(execute: {
                     for i in 0 ..< properties.count{
-                        //getting the data at each index
+                        //Getting data from each listing and saving to vars
                         let propIdValue = properties[i] as? NSDictionary
                         let propertyID = propIdValue?["property_id"] as! Int
                         let landlordIdValue = properties[i] as? NSDictionary
@@ -147,109 +156,102 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let availability = availabilityValue?["availability"] as! String
                         let descriptionValue = properties[i] as? NSDictionary
                         let description = descriptionValue?["description"] as! String
-                        let phoneNumberValue = properties[i] as? NSDictionary
-                        let phoneNumber = phoneNumberValue?["phone_number"] as! String
                         let emailValue = properties[i] as? NSDictionary
                         let email = emailValue?["email"] as! String
+                        let phoneNumberValue = properties[i] as? NSDictionary
+                        let phoneNumber = phoneNumberValue?["phone_number"] as! String
                         let statusValue = properties[i] as? NSDictionary
                         let status = statusValue?["status"] as! String
                         
-                        if landlordID == uid {
+                        if (status != "Approved") {
+                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
                         
-                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email,  userID: "")
+                        
                             self.listings.append(listing)
-                            self.status.append(status)
                         }
                         
-                        // Update our table
+                        //Update the tableview in student homepage to show the listing cells
                         DispatchQueue.main.async(execute: {
                             self.propertiesList.reloadData()
                         })
                     }
                     
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                        self.propertiesList.reloadData()
+                    })
+                    
+                    
+                    
                 })
-                
-            }catch{
+            }
+            catch {
                 print(error)
             }
         }
         getTask.resume()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        listings.removeAll()
-        loadListingViews()
-        propertiesList.reloadData()
-    }
     
-    
+    /*
+     Logs a user out of the app if they press the logout button, and
+     returns them to the homepage.
+     */
     func logout(_ sender : UIButton) {
+        //Checks the credentials of the current user in firebase
         if FIRAuth.auth() != nil {
-            
+            //Tries to log the user out of firebase
             do {
                 try FIRAuth.auth()?.signOut()
                 print("the user is logged out")
+                //If unsuccessful, prints out the error and the current user ID
             } catch let error as NSError {
                 print(error.localizedDescription)
                 print("the current user id is \(FIRAuth.auth()?.currentUser?.uid)")
             }
+            //Tries to log the user out of Google
             do {
                 try GIDSignIn.sharedInstance().signOut()
                 print("Google signed out")
+                //If unsuccessful, prints out the error
             } catch let error as NSError {
                 print(error.localizedDescription)
                 print("Error logging out of google")
             }
+            //Logs out the user out of facebook
             FBSDKLoginManager().logOut()
             print("Facebook signed out")
-            
         }
-        
-        
-        let initialViewController = UIStoryboard(name: "Main", bundle:nil).instantiateInitialViewController()! as UIViewController
+        //Instantiates the login page as the root
+        let initialViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()! as UIViewController
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         appDelegate.window?.rootViewController = initialViewController
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
- 
         return listings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cellIdentifier = "ListingTableViewCell"
         let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
         
-        
         let listing = listings[indexPath.row]
-        let listingStatus = status[indexPath.row]
         
         cell.listing = listing
         cell.propertyAddress.text = listing.address
         cell.propertyDistance.text = String(listing.milesToGU)
         cell.propertyRent.text = String(listing.monthRent)
         cell.propertyRooms.text = String(listing.numberOfRooms)
+        
         cell.propertyImage.image = listing.houseImage
-        cell.favoriteButton.isHidden = true
         //cell.propertyImage.contentMode = .scaleAspectFill
         
         // Make opaque if closed
         if listing.availability == "Closed" || listing.availability == " Closed"
         {
-            if listingStatus == "Pending"
-            {
-                print("We are here")
-                cell.favoriteButton.backgroundColor = UIColor.init(red: 0.9, green: 0.0, blue: 0.0, alpha: 0.4)
-            }
-            else {
-                cell.backgroundColor = UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.4)
-            }
+            cell.backgroundColor = UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.4)
+            cell.favoriteButton.alpha = 0.2
             cell.propertyImage.alpha = 0.2
             cell.propertyAddress.alpha = 0.2
             cell.propertyDistance.alpha = 0.2
@@ -259,15 +261,11 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             cell.roomLabel.alpha = 0.2
             cell.distanceLabel.alpha = 0.2
         }
+            // Set to normal look if open
         else
         {
-            if listingStatus == "Pending"
-            {
-                cell.backgroundColor = UIColor.init(red: 0.9, green: 0.0, blue: 0.0, alpha: 0.4)
-            }
-            else {
-                cell.backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            }
+            cell.backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            cell.favoriteButton.alpha = 1.0
             cell.propertyImage.alpha = 1.0
             cell.propertyAddress.alpha = 1.0
             cell.propertyDistance.alpha = 1.0
@@ -277,6 +275,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             cell.roomLabel.alpha = 1.0
             cell.distanceLabel.alpha = 1.0
         }
+        
         
         // Get reference to database.
         let databaseRef = FIRDatabase.database().reference()
@@ -296,11 +295,12 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                 listing.imageUrl = self.downloadURL
                 cell.propertyImage.loadCachedImages(url: self.downloadURL)
                 listing.houseImage = cell.propertyImage.image
+                
+                
             }
             
         })
-
-
+        
         return cell
     }
     
@@ -310,9 +310,18 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Hey")
+        
+        let indexPath = tableView.indexPathForSelectedRow!
+        let currentCell = tableView.cellForRow(at: indexPath)! as! ListingTableViewCell
+        valueTopass = currentCell.propertyAddress.text
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     
+    
 }
-

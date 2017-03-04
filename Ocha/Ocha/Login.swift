@@ -13,7 +13,6 @@ import Firebase
 class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, UITextFieldDelegate {
     
     
-    
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
     

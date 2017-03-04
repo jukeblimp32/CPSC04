@@ -1,5 +1,5 @@
 //
-//  ApproveListings.swift
+//  ApproveEdits.swift
 //  Ocha
 //
 //  Created by Talkov, Leah C on 11/3/16.
@@ -11,7 +11,7 @@ import Firebase
 import FBSDKLoginKit
 import GameplayKit
 
-class ApproveListings: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: Properties
     
     @IBOutlet var propertiesList: UITableView!
@@ -69,9 +69,9 @@ class ApproveListings: UIViewController, UITableViewDelegate, UITableViewDataSou
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //If the segue from any table cell to listingPage is clicked
-        if segue.identifier == "showAdminDetail",
+        if segue.identifier == "ApproveEdits",
             //Sets the page to be loaded as ListingPage
-            let destination = segue.destination as? AdminListingPage,
+            let destination = segue.destination as? ApproveEditsPage,
             //Gets the selected cell index
             let cellIndex = propertiesList.indexPathForSelectedRow?.row
         {
@@ -160,11 +160,15 @@ class ApproveListings: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let email = emailValue?["email"] as! String
                         let phoneNumberValue = properties[i] as? NSDictionary
                         let phoneNumber = phoneNumberValue?["phone_number"] as! String
+                        let statusValue = properties[i] as? NSDictionary
+                        let status = statusValue?["status"] as! String
                         
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
-                        
-                        
-                        self.listings.append(listing)
+                        if (status != "Approved") {
+                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
+                            
+                            
+                            self.listings.append(listing)
+                        }
                         
                         //Update the tableview in student homepage to show the listing cells
                         DispatchQueue.main.async(execute: {

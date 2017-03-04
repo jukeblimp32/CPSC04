@@ -233,7 +233,7 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email=" + email;
+        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email=" + email+"&status=Approved";
         
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
@@ -262,7 +262,7 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         }
         saveTask.resume()
         
-        let alert = UIAlertController(title: "Property Edited!", message: "Property will be sent for review before being published", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Property Edited!", message: "The property has been edited.", preferredStyle: .alert)
         let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
         alert.addAction(alertActionOkay)
         self.present(alert, animated: true, completion: nil)

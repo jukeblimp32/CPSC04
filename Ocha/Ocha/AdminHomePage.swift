@@ -170,11 +170,16 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         let email = emailValue?["email"] as! String
                         let phoneNumberValue = properties[i] as? NSDictionary
                         let phoneNumber = phoneNumberValue?["phone_number"] as! String
+                        let statusValue = properties[i] as? NSDictionary
+                        let status = statusValue?["status"] as! String
+                    
+                        if (status == "Approved") {
                         
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
+                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
                         
 
-                        self.listings.append(listing)
+                            self.listings.append(listing)
+                        }
                         
                         //Update the tableview in student homepage to show the listing cells
                         DispatchQueue.main.async(execute: {
