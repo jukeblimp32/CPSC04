@@ -21,6 +21,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     var favoritePropIDs = [Int]()
     var listings = [Listing]()
     var favoriteListings = [Listing]()
+    var seeClosed = UISwitch()
+    var closedFlag = false
     
     
     var valueTopass : String!
@@ -45,22 +47,25 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         propertiesList.dataSource = self
         propertiesList.reloadData()
         propertiesList.addSubview(refreshControl)
-
         let viewTitle = UILabel()
         
-        let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (4/100), width: view.frame.width * (25/100) , height: 20)
-        toHomePageButton.setTitle("Logout", for: UIControlState.normal)
-        toHomePageButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        toHomePageButton.titleLabel?.textColor = UIColor.white
-        toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
-        toHomePageButton.layer.cornerRadius = 4
-        toHomePageButton.addTarget(self, action: #selector(StudentHomePage.logout(_:)), for: UIControlEvents.touchUpInside)
+        seeClosed.isOn = false
+        seeClosed.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (20/100), height: (view.frame.height) * (2/100))
+        seeClosed.addTarget(self, action: #selector(StudentHomePage.switchIsChanged(_:)), for: UIControlEvents.valueChanged)
+        seeClosed.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+        
+        var closedLabel = UILabel()
+        closedLabel.text = "Show Closed Listings?"
+        closedLabel.font = UIFont(name: closedLabel.font.fontName, size: 17)
+        closedLabel.adjustsFontSizeToFitWidth = true
+        closedLabel.textColor = UIColor.white
+        closedLabel.frame = CGRect(x: (view.frame.width) * (25/100), y: (view.frame.height) * (10/100), width: view.frame.width * (30/100), height: (view.frame.height) * (4/100))
+        view.addSubview(closedLabel)
+
+        view.addSubview(seeClosed)
         
         // Set up filter labels
         initializeFilters()
-        
-        view.addSubview(toHomePageButton)
         
     }
     
@@ -93,6 +98,19 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         getFavoritedProperties()
         loadListingViews()
         refreshControl.endRefreshing()
+    }
+    
+    func switchIsChanged(_ sender: UISwitch)
+    {
+        if sender.isOn
+        {
+            closedFlag = true
+        }
+        else
+        {
+            closedFlag = false
+        }
+        handleRefresh(refreshControl)
     }
     
     func loadFilters(){
@@ -161,19 +179,19 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             // Set positions
             switch index{
             case 0:
-                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (9/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (4/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             case 1:
-                newLabel.frame = CGRect(x: (view.frame.width) * (36/100), y: (view.frame.height) * (9/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (36/100), y: (view.frame.height) * (4/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             case 2:
-                newLabel.frame = CGRect(x: (view.frame.width) * (62/100), y: (view.frame.height) * (9/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (62/100), y: (view.frame.height) * (4/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             case 3:
-                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (12/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (7/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             case 4:
-                newLabel.frame = CGRect(x: (view.frame.width) * (36/100), y: (view.frame.height) * (12/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (36/100), y: (view.frame.height) * (7/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             case 5:
-                newLabel.frame = CGRect(x: (view.frame.width) * (62/100), y: (view.frame.height) * (12/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (62/100), y: (view.frame.height) * (7/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             default:
-                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (9/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (7/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
             }
             filterLabels.append(newLabel)
             view.addSubview(newLabel)
@@ -356,7 +374,19 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         
                         listing.counter = filterCounter
                         
-                        tempListings.append((filterCounter, listing))
+                        // If we want to see closed, add everything
+                        if(self.closedFlag)
+                        {
+                           tempListings.append((filterCounter, listing))
+                        }
+                        // Else only add non closed listings
+                        else
+                        {
+                            if(!(listing.availability == "Closed" || listing.availability == " Closed"))
+                            {
+                                tempListings.append((filterCounter, listing))
+                            }
+                        }
                         
                         // Only shuffle if there are no filters applied
                         if (self.areFiltersDefault()){
@@ -380,7 +410,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         self.favoritedProperties()
                     })
-                    
                 })
             }
             catch {
