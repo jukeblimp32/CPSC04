@@ -367,12 +367,15 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let email = emailValue?["email"] as! String
                         let phoneNumberValue = properties[i] as? NSDictionary
                         let phoneNumber = phoneNumberValue?["phone_number"] as! String
+                        let statusValue = properties[i] as? NSDictionary
+                        let status = statusValue?["status"] as! String
                         
-                        let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
+                        if (status == "Approved") {
+                            let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
 
-                        let filterCounter = self.checkFilters(listing: listing)
+                            let filterCounter = self.checkFilters(listing: listing)
                         
-                        listing.counter = filterCounter
+                            listing.counter = filterCounter
                         
                         // If we want to see closed, add everything
                         if(self.closedFlag)
@@ -490,11 +493,8 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroom, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber:phoneNumber, email: email, userID: userID)
                         
                         self.favoriteListings.append(favoriteListing)
-                        //print(self.favoriteListings.count)
                     }
-                   // print("this is all favorite Listings")
-                   // print(self.favoriteListings.count)
-                   //print(self.favoriteListings)
+
                 })
                
             }
@@ -505,13 +505,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         getTask.resume()
     }
     
-    //Leah(:
-    //have to first go to 'favorites' page and then back to home to get properties that are favorited by logged in user
-    //because 'favoriteListings' gets filled when 'favoirtes' is visited
-    //one thing to do if fill 'favoriteListing' array on 'studenthomepage' and then just pass the array from 'studenthomepage' to 'favoritesPage'
-    //instead of right what we're doing right now, pasing in 'favoriteListing' from 'favoritesPage' to 'studenthomepage'
-    //returns an array of all favorited properties by logged in user that are in the 'listings' array
-    //called at the end of 'loadlistingview'
+
     func favoritedProperties() -> Array<Listing>{
         //array to hold all favorited properties that are in the current listings
         var favListings = [Listing]()
@@ -659,8 +653,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         return 0
     }
-    
-    
     
     /*
      Logs a user out of the app if they press the logout button, and 

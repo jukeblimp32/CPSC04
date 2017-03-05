@@ -27,31 +27,30 @@ class Properties: NSObject{
 
 class FavoritesMap: UIViewController {
     
+    var favListings = [Listing]()
+    
     var mapView: GMSMapView?
     
     let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
     
-    let apiKey = GMSServices.provideAPIKey("AIzaSyC-HdTV2ioRSQvhGJyBJVmd3B78Lfigjv8")
+    let apiKey = GMSServices.provideAPIKey("AIzaSyCoeK0AFvWvqHTIHOrlzvOKK2YeaoGa7Gk")
     
     
     var currentProperty: Properties?
-  
-    var property = [Properties(name: "St Aloysius Church", location: CLLocationCoordinate2DMake(47.668132, -117.404259), zoom: 14),Properties(name: "Kennedy Apartments", location: CLLocationCoordinate2DMake(47.669114, -117.408657), zoom: 14)]
+    
+    var property = [Properties]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.isNavigationBarHidden = false
         
-        print("overhere")
-        //getLatLngForZip(address: "1217 N Hamilton St, Spokane, WA, USA")
-        
-        //let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
-        
-       // let apiKey = GMSServices.provideAPIKey("AIzaSyC-HdTV2ioRSQvhGJyBJVmd3B78Lfigjv8")
-        
-        // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
+        for listing in favListings {
+            let propAddress = listing.address
+            let location = propAddress + ", Spokane, WA, USA"
+            getLatLngForZip(address: location)
+        }
         let camera = GMSCameraPosition.camera(withLatitude: 47.667160, longitude: -117.402342, zoom: 14)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         view = mapView
@@ -64,7 +63,6 @@ class FavoritesMap: UIViewController {
         marker.map = mapView
         
         for item in property{
-            print("look here")
             print(item.name)
             print(item.location)
             print(item.zoom)
@@ -73,42 +71,39 @@ class FavoritesMap: UIViewController {
             marker.title = item.name
             marker.map = mapView
             
-            //let currentProperty = item
-            //setMapCamara()
         }
     }
     
-    
-    //"1217 N Hamilton St, Spokane, WA, USA"
-    /*
- let prop = Properties(name: address, location: coordinates, zoom: 14)
- print("added prop")
- print (prop)
- self.property.append(prop)*/
-  /*  func getLatLngForZip(address: String) {
-        let url = NSURL(string: "\(baseUrl)address=\(address)&key=\(apiKey)")
-        let data = NSData(contentsOf: url! as URL)
+    func getLatLngForZip(address: String){
+        let key = "AIzaSyCoeK0AFvWvqHTIHOrlzvOKK2YeaoGa7Gk"
+        
+        let url : NSString = "\(baseUrl)address=\(address)&key=\(key)" as NSString
+        let urlStr : NSString = url.addingPercentEscapes(using: String.Encoding.utf8.rawValue)! as NSString
+        let searchURL : NSURL = NSURL(string: urlStr as String)!
+        
+        let data = NSData(contentsOf: searchURL as URL)
         let json = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
-        if let result = json["results"] as? NSArray {
-            if let geometry = result[0]["geometry"] as? NSDictionary {
-                if let location = geometry["location"] as? NSDictionary {
-                    let latitude = location["lat"] as! Float
-                    let longitude = location["lng"] as! Float
+        
+        if let results = json["results"] as? [[String: AnyObject]] {
+            let result = results[0]
+            if let geometry = result["geometry"] as? [String:AnyObject] {
+                if let location = geometry["location"] as? [String:Double] {
+                    let lat = location["lat"]
+                    let lon = location["lng"]
+                    let latitude = Double(lat!)
+                    let longitude = Double(lon!)
+                    let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+                    let prop = Properties(name: address, location: coordinates, zoom: 14)
+                    print("added prop")
+                    print (prop)
+                    self.property.append(prop)
+                    print("OVERHERE")
                     print("\n\(latitude), \(longitude)")
                 }
             }
         }
-    }*/
-    
-    /*private func setMapCamara(){
-      //  CATransaction.begin()
-      //  CATransaction.setValue(1, forKey: kCATransactionAnimationDuration)
-      //  mapView?.animateToCameraPosition(GMSCameraPosition.cameraWithTarget(currentProperty!.location,zoom: currentProperty!.zoom))
-      //  CATransaction.commit()
-        
-        let marker = GMSMarker(position: currentProperty!.location)
-        marker.title = currentProperty?.name
-        marker.map = mapView
-    }*/
-    
+    }
 }
+
+
+

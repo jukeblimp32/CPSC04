@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     let URL_EDIT_PROPERTY = "http://147.222.165.203/MyWebService/api/editProperties.php"
     
@@ -46,7 +46,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     @IBOutlet var leaseSegment: UISegmentedControl!
     
     @IBOutlet weak var petPolicy: UISegmentedControl!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +71,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         propertyImage.loadCachedImages(url: imageURL)
         descriptionText!.layer.borderWidth = 1
         descriptionText!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
-
+        
         let initialChars = propDescription.characters.count
         characterLabel.text = "Description: (" + String(900 - initialChars) + " characters remaining)"
         characterLabel.adjustsFontSizeToFitWidth = true
@@ -100,11 +100,11 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         bathroomStepper.minimumValue = 1
         bathroomStepper.maximumValue = 10
         self.addReturnButtonOnNumpad()
-    
+        
     }
     
     func determineAvailability() {
-        if (availability == "Open" || availability == " Open") {
+        if (availability == "Open") {
             propertyStatus.selectedSegmentIndex = 0
         }
         else {
@@ -175,9 +175,9 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //If the segue from any table cell to listingPage is clicked
-        if segue.identifier == "backToListing",
+        if segue.identifier == "backToAdminListing",
             //Sets the page to be loaded as ListingPage
-            let destination = segue.destination as? LandlordListingPage
+            let destination = segue.destination as? AdminListingPage
             //Gets the selected cell index
         {
             //Setting the variables in the listing class to the cell info
@@ -199,7 +199,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         }
     }
     
-
+    
     @IBAction func saveEdits(_ sender: Any) {
         //created NSURL
         let saveRequestURL = NSURL(string: URL_EDIT_PROPERTY)
@@ -228,13 +228,13 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         let editDate = dateFormatter.string(from: datePicker.date)
         let editLease = leaseSegment.titleForSegment(at: leaseSegment.selectedSegmentIndex)
         let editPhoneNumber = phoneNumberTextField.text
- 
+        
         print (phoneNumberTextField.text)
         
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email=" + email+"&status=Pending";
-
+        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email=" + email+"&status=Approved";
+        
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
         
@@ -250,7 +250,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
             do{
                 //converting response to NSDictioanry
                 let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-           
+                
                 if let parseJSON = myJSON{
                     var msg:String!
                     msg = parseJSON["message"]as! String?
@@ -262,11 +262,11 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         }
         saveTask.resume()
         
-        let alert = UIAlertController(title: "Property Edited!", message: "Property will be sent for review before being published", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Property Edited!", message: "The property has been edited.", preferredStyle: .alert)
         let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
         alert.addAction(alertActionOkay)
         self.present(alert, animated: true, completion: nil)
-
+        
     }
     
     private func uploadImage()
@@ -338,7 +338,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         print("Cancelled picker")
         dismiss(animated: true, completion:nil)
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -352,14 +352,14 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         if textField == self.addressTextField {
             self.phoneNumberTextField.becomeFirstResponder()
         }
-        // If we are in any other field, dismiss keyboard
+            // If we are in any other field, dismiss keyboard
         else{
             textField.resignFirstResponder()
         }
         return true
         
     }
-
+    
     
     /* Because numpad has no return key, we must add it ourselves*/
     func addReturnButtonOnNumpad()
@@ -406,5 +406,5 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     {
         self.depositTextField.resignFirstResponder()
     }
-
+    
 }
