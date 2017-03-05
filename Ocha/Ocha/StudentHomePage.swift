@@ -377,17 +377,18 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         
                             listing.counter = filterCounter
                         
-                        // If we want to see closed, add everything
-                        if(self.closedFlag)
-                        {
-                           tempListings.append((filterCounter, listing))
-                        }
-                        // Else only add non closed listings
-                        else
-                        {
-                            if(!(listing.availability == "Closed" || listing.availability == " Closed"))
+                            // If we want to see closed, add everything
+                            if(self.closedFlag)
                             {
                                 tempListings.append((filterCounter, listing))
+                            }
+                                // Else only add non closed listings
+                            else
+                            {
+                                if(!(listing.availability == "Closed" || listing.availability == " Closed"))
+                                {
+                                    tempListings.append((filterCounter, listing))
+                                }
                             }
                         }
                         
