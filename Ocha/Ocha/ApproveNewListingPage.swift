@@ -38,12 +38,13 @@ class ApproveNewListingPage: UITableViewController {
     @IBOutlet var bedroomLabel: UILabel!
     @IBOutlet var descriptionField: UITextView!
     
+    @IBOutlet weak var toHomePageButton: UIButton!
+    
     @IBOutlet var petsLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var phoneLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var leaseLabel: UILabel!
-    @IBOutlet weak var toHomePageButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,92 +72,125 @@ class ApproveNewListingPage: UITableViewController {
     
     //THIS DELETES FROM BOTH EDIT AND ORIG PROP TABLE
     @IBAction func deleteListing(_ sender: Any) {
-        //MAKE YOUR POP UP HERE AND CALL BELOW CODE IF THEY PRESS OK
+        // Create alert
+        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete this listing?", preferredStyle: .alert)
         
-        //created NSURL
-        let saveRequestURL = NSURL(string: removeProperty)
-        
-        //creating NSMutableURLRequest
-        let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
-        
-        //setting method to POST
-        saveRequest.httpMethod = "POST"
-        
-        //getting values from text fields
-        
-        //let landlordID = self.firstName
-        let postParameters="property_id="+String(propertyID);
-        
-        
-        //adding parameters to request body
-        saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
-        //task to send to post request
-        let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
-            data,response, error in
-            if error != nil{
-                print("error is \(error)")
-                return;
-            }
-            do{
-                //converting response to NSDictioanry
-                
-                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-                if let parseJSON = myJSON{
-                    var msg:String!
-                    msg = parseJSON["message"]as! String?
-                    print(msg)
-                }
-            }catch{
-                print(error)
-            }
+        // Do nothing if we cancel
+        let alertActionResend = UIAlertAction(title: "Cancel", style: .default) {
+            (_) in
+            return
         }
-        saveTask.resume()
+        // If yes, delete the listing from the database
+        let alertActionOkay = UIAlertAction(title: "Yes", style: .default){
+            (_) in
+            //created NSURL
+            let saveRequestURL = NSURL(string: self.removeProperty)
+            
+            //creating NSMutableURLRequest
+            let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+            
+            //setting method to POST
+            saveRequest.httpMethod = "POST"
+            
+            //getting values from text fields
+            
+            //let landlordID = self.firstName
+            let postParameters="property_id="+String(self.propertyID);
+            
+            
+            //adding parameters to request body
+            saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+            //task to send to post request
+            let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+                data,response, error in
+                if error != nil{
+                    print("error is \(error)")
+                    return;
+                }
+                do{
+                    //converting response to NSDictioanry
+                    
+                    let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    if let parseJSON = myJSON{
+                        var msg:String!
+                        msg = parseJSON["message"]as! String?
+                        print(msg)
+                    }
+                }catch{
+                    print(error)
+                }
+            }
+            saveTask.resume()
+            // Go back to homepage
+            self.toHomePageButton.sendActions(for: .touchUpInside)
 
+        }
+        alertVC.addAction(alertActionResend)
+        alertVC.addAction(alertActionOkay)
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     //THIS CHANGES STATUS TO "APPROVED" IN EDIT AND ORIG PROP TABLE
     @IBAction func approveListing(_ sender: Any) {
-        //MAKE YOUR POP UP HERE AND CALL BELOW CODE IF THEY PRESS OK
+        // Make pop up
+        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to approve this listing?", preferredStyle: .alert)
         
-        //created NSURL
-        let saveRequestURL = NSURL(string: statusChange)
-        
-        //creating NSMutableURLRequest
-        let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
-        
-        //setting method to POST
-        saveRequest.httpMethod = "POST"
-        
-        //getting values from text fields
-        
-        //let landlordID = self.firstName
-        let postParameters="status=Approved"+"&property_id="+String(propertyID);
-        
-        
-        //adding parameters to request body
-        saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
-        //task to send to post request
-        let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
-            data,response, error in
-            if error != nil{
-                print("error is \(error)")
-                return;
-            }
-            do{
-                //converting response to NSDictioanry
-                
-                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-                if let parseJSON = myJSON{
-                    var msg:String!
-                    msg = parseJSON["message"]as! String?
-                    print(msg)
-                }
-            }catch{
-                print(error)
-            }
+        // If cancel, do nothing
+        let alertActionResend = UIAlertAction(title: "Cancel", style: .default) {
+            (_) in
+            return
         }
-        saveTask.resume()
+        // If we approve, update in database
+        let alertActionOkay = UIAlertAction(title: "Yes", style: .default){
+            (_) in
+            // Go back to login
+            //created NSURL
+            let saveRequestURL = NSURL(string: self.statusChange)
+            
+            //creating NSMutableURLRequest
+            let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+            
+            //setting method to POST
+            saveRequest.httpMethod = "POST"
+            
+            //getting values from text fields
+            
+            //let landlordID = self.firstName
+            let postParameters="status=Approved"+"&property_id="+String(self.propertyID);
+            
+            
+            //adding parameters to request body
+            saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+            //task to send to post request
+            let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+                data,response, error in
+                if error != nil{
+                    print("error is \(error)")
+                    return;
+                }
+                do{
+                    //converting response to NSDictioanry
+                    
+                    let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    if let parseJSON = myJSON{
+                        var msg:String!
+                        msg = parseJSON["message"]as! String?
+                        print(msg)
+                    }
+                }catch{
+                    print(error)
+                }
+            }
+            saveTask.resume()
+            // Go back to previous page
+            self.toHomePageButton.sendActions(for: .touchUpInside)
 
+        }
+        alertVC.addAction(alertActionResend)
+        alertVC.addAction(alertActionOkay)
+        self.present(alertVC, animated: true, completion: nil)
+        
+        
     }
     
     
