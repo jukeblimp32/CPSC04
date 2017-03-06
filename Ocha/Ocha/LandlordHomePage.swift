@@ -41,7 +41,17 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let viewTitle = UILabel()
         
-        let toHomePageButton = UIButton()
+        var headerLabel = UILabel()
+        headerLabel.text = "My Listings"
+        headerLabel.font = UIFont(name: headerLabel.font.fontName, size: 24)
+        headerLabel.adjustsFontSizeToFitWidth = true
+        headerLabel.textColor = UIColor.white
+        headerLabel.frame = CGRect(x: (view.frame.width) * (35/100), y: (view.frame.height) * (2/100), width: view.frame.width * (30/100), height: (view.frame.height) * (10/100))
+        view.addSubview(headerLabel)
+
+        
+        
+        /*let toHomePageButton = UIButton()
         toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 20)
         toHomePageButton.setTitle("Logout", for: UIControlState.normal)
         toHomePageButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
@@ -49,7 +59,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
         toHomePageButton.layer.cornerRadius = 4
         toHomePageButton.addTarget(self, action: #selector(StudentHomePage.logout(_:)), for: UIControlEvents.touchUpInside)
-        view.addSubview(toHomePageButton)
+        view.addSubview(toHomePageButton) */
         
         
     }

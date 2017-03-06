@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MessageUI
+import Firebase
 
-class ApproveNewListingPage: UITableViewController {
+class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerDelegate {
     
     let removeProperty = "http://147.222.165.203/MyWebService/api/RemoveProperty.php"
     let statusChange = "http://147.222.165.203/MyWebService/api/statusChange.php"
@@ -29,6 +31,8 @@ class ApproveNewListingPage: UITableViewController {
     var propDescription : String = ""
     var email : String = ""
     var propertyID : Int = 0
+    var landlordID : String = ""
+    var landlordName : String = ""
     var image : UIImage = UIImage(named: "default")!
     
     @IBOutlet var addressLabel: UILabel!
@@ -68,6 +72,7 @@ class ApproveNewListingPage: UITableViewController {
         petsLabel.adjustsFontSizeToFitWidth = true
         leaseLabel.adjustsFontSizeToFitWidth = true
         propertyImage.loadCachedImages(url: imageUrl)
+        getLandlordName()
     }
     
     //THIS DELETES FROM BOTH EDIT AND ORIG PROP TABLE
@@ -133,7 +138,7 @@ class ApproveNewListingPage: UITableViewController {
     //THIS CHANGES STATUS TO "APPROVED" IN EDIT AND ORIG PROP TABLE
     @IBAction func approveListing(_ sender: Any) {
         // Make pop up
-        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to approve this listing?", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to approve this listing? After confirming, an email will open up. Send the email to the administrator.", preferredStyle: .alert)
         
         // If cancel, do nothing
         let alertActionResend = UIAlertAction(title: "Cancel", style: .default) {
@@ -182,6 +187,8 @@ class ApproveNewListingPage: UITableViewController {
                 }
             }
             saveTask.resume()
+            // Send email
+            self.sendListingEmail()
             // Go back to previous page
             self.toHomePageButton.sendActions(for: .touchUpInside)
 
@@ -193,6 +200,75 @@ class ApproveNewListingPage: UITableViewController {
         
     }
     
+    func sendListingEmail()
+    {
+        let listingEmail = configureEmail()
+        // Can only send email if the device has mail set up
+        if(MFMailComposeViewController.canSendMail())
+        {
+            self.present(listingEmail, animated: true, completion: nil)
+        }
+        else
+        {
+            print("Not enabled")
+        }
+    }
+    
+    func configureEmail() -> MFMailComposeViewController
+    {
+        let emailComposerVC = MFMailComposeViewController()
+        emailComposerVC.mailComposeDelegate = self
+        
+        // Set info for sending
+        let adminEmail = FIRAuth.auth()?.currentUser?.email
+        /********************************************************************************************************
+         * Still need to retrieve landlord name
+         *******************************************************************************************************/
+        let nameField = "Name: \(landlordName) \n\n"
+        let emailField = "Email: \(email) \n\n"
+        let phoneField = "Phone Number: \(phoneNumber) \n\n"
+        let dateField = "Date Available: \(dateAvailable) \n\n"
+        let houseField = "Housing Type: \(propertyType) \n\n"
+        let bedBathField = "Number of Bedrooms & Bathrooms: \(rooms) bed \(bathroomNumber) bath \n\n"
+        let rentDepositField = "Rent & Deposit Amount: \(rent) rent \(deposit) deposit \n\n"
+        let leaseField = "Lease Terms: \(leaseLength) \n\n"
+        let descriptionField = "About the Property (address, laundry, pets allowed, amenities, miles to GU, utilities included in rent, etc.): \(propDescription)Pets are a \(pets). \(distance) miles from GU \n"
+        
+        // Put all fields together
+        let completeEmail = nameField + emailField + phoneField + dateField + houseField + bedBathField + rentDepositField + leaseField + descriptionField
+        
+        // Address email
+        emailComposerVC.setToRecipients([adminEmail!])
+        emailComposerVC.setSubject("New Listing")
+        emailComposerVC.setMessageBody(completeEmail, isHTML: false)
+        
+        return emailComposerVC
+    }
+    
+    func getLandlordName()
+    {
+        let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+        let usersReference = dataRef.child("users").child(landlordID)
+        
+        // See if an instance of the user already exists
+        usersReference.observeSingleEvent(of: .value, with: {(snapshot) in
+            let snapshot = snapshot.value as? NSDictionary
+            // If there is no snapshot, there is no landlord. May need to look into this case more
+            if(snapshot == nil)
+            {
+                self.landlordName = "Unknown"
+            }
+            // Otherwise, return the landlord name
+            else
+            {
+                self.landlordName = (snapshot?["name"] as! String)
+            }
+        })
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
     
     
     override func didReceiveMemoryWarning() {

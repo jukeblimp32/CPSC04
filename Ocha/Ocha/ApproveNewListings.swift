@@ -92,6 +92,7 @@ class ApproveNewListings: UIViewController, UITableViewDelegate, UITableViewData
             destination.propertyType = listings[cellIndex].propertyType
             destination.phoneNumber = listings[cellIndex].phoneNumber
             destination.propertyID = listings[cellIndex].propertyID
+            destination.landlordID = listings[cellIndex].landlordID
         }
     }
     
