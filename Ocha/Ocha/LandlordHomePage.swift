@@ -239,10 +239,13 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.favoriteButton.isHidden = true
         //cell.propertyImage.contentMode = .scaleAspectFill
         
+        print(indexPath.row)
+        print (listingStatus)
+        
         // Make opaque if closed
         if listing.availability == "Closed" || listing.availability == " Closed"
         {
-            if listingStatus == "Pending"
+            if listingStatus == "Pending" || listingStatus == " Pending"
             {
                 print("We are here")
                 cell.favoriteButton.backgroundColor = UIColor.init(red: 0.9, green: 0.0, blue: 0.0, alpha: 0.4)
@@ -261,7 +264,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         else
         {
-            if listingStatus == "Pending"
+            if listingStatus == "Pending" || listingStatus == " Pending"
             {
                 cell.backgroundColor = UIColor.init(red: 0.9, green: 0.0, blue: 0.0, alpha: 0.4)
             }
