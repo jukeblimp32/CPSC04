@@ -4203,34 +4203,63 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNP-Tw-VEx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="168" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="178" height="43"/>
+                                                    <color key="backgroundColor" red="0.70027121110000001" green="0.1272581247" blue="0.172559871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="168" id="aB4-WK-Win"/>
+                                                        <constraint firstAttribute="width" constant="178" id="aB4-WK-Win"/>
                                                     </constraints>
-                                                    <state key="normal" title="Delete Listing"/>
+                                                    <state key="normal" title="Delete Listing">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="deleteListing:" destination="TC4-Nd-ZSC" eventType="touchUpInside" id="9rG-cB-fa9"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgJ-kF-Rz4">
                                                     <rect key="frame" x="176" y="0.0" width="199" height="46"/>
-                                                    <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Approve Listing">
+                                                    <color key="backgroundColor" red="0.052100770999999997" green="0.5631377233" blue="0.63247738279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Suggest Edits">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="approveListing:" destination="TC4-Nd-ZSC" eventType="touchUpInside" id="0AS-3A-bEZ"/>
+                                                        <action selector="suggestEdits:" destination="TC4-Nd-ZSC" eventType="touchUpInside" id="6ch-yC-fGY"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="HgJ-kF-Rz4" firstAttribute="leading" secondItem="iNP-Tw-VEx" secondAttribute="trailing" constant="8" symbolic="YES" id="GIA-N9-4WP"/>
+                                                <constraint firstItem="HgJ-kF-Rz4" firstAttribute="leading" secondItem="iNP-Tw-VEx" secondAttribute="trailing" constant="-2" id="GIA-N9-4WP"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="HgJ-kF-Rz4" secondAttribute="bottom" constant="-11" id="aps-sD-lXM"/>
                                                 <constraint firstItem="iNP-Tw-VEx" firstAttribute="top" secondItem="jSs-3O-1az" secondAttribute="top" id="dlp-UJ-Yyd"/>
                                                 <constraint firstAttribute="trailing" secondItem="HgJ-kF-Rz4" secondAttribute="trailing" id="eCa-xS-WBO"/>
                                                 <constraint firstItem="iNP-Tw-VEx" firstAttribute="leading" secondItem="jSs-3O-1az" secondAttribute="leading" id="oRa-UO-PPF"/>
                                                 <constraint firstAttribute="bottom" secondItem="iNP-Tw-VEx" secondAttribute="bottom" id="toV-kn-lxo"/>
                                                 <constraint firstItem="iNP-Tw-VEx" firstAttribute="top" secondItem="HgJ-kF-Rz4" secondAttribute="top" id="wQr-jT-tct"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="EnC-Er-rpE">
+                                        <rect key="frame" x="0.0" y="868" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EnC-Er-rpE" id="iMk-nL-ml5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nv5-RG-Vz9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
+                                                    <color key="backgroundColor" red="0.040982640670000001" green="0.58122166450000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Approve Listing">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="approveListing:" destination="TC4-Nd-ZSC" eventType="touchUpInside" id="bhu-A7-56w"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="nv5-RG-Vz9" secondAttribute="trailing" id="65l-m8-JnL"/>
+                                                <constraint firstItem="nv5-RG-Vz9" firstAttribute="top" secondItem="iMk-nL-ml5" secondAttribute="top" id="LFz-qH-5xV"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nv5-RG-Vz9" secondAttribute="bottom" constant="-11" id="LXw-NQ-k4o"/>
+                                                <constraint firstItem="nv5-RG-Vz9" firstAttribute="leading" secondItem="iMk-nL-ml5" secondAttribute="leading" id="YZc-I5-01i"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -4759,19 +4788,19 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="168" id="uB1-ZK-7vG"/>
                                                     </constraints>
-                                                    <state key="normal" title="Delete Listing"/>
+                                                    <state key="normal" title="Reject Edits"/>
                                                     <connections>
-                                                        <action selector="rejectEdits:" destination="ykg-tu-2YD" eventType="touchUpInside" id="Fvh-tJ-U3f"/>
+                                                        <action selector="discardEdits:" destination="ykg-tu-2YD" eventType="touchUpInside" id="hZj-Qx-zcC"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="665-iM-r1f">
                                                     <rect key="frame" x="176" y="0.0" width="199" height="46"/>
                                                     <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Approve Listing">
+                                                    <state key="normal" title="Approve Edits">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="approveEdits:" destination="ykg-tu-2YD" eventType="touchUpInside" id="2ar-1K-SL8"/>
+                                                        <action selector="approveEdits:" destination="ykg-tu-2YD" eventType="touchUpInside" id="OeA-Wt-bby"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -4800,6 +4829,7 @@
                         <outlet property="bedroomLabel" destination="u2w-zq-2V9" id="q7h-tX-woE"/>
                         <outlet property="dateAvailableLabel" destination="Pgg-le-R3K" id="E36-dE-esu"/>
                         <outlet property="descriptionField" destination="ZEj-F8-Mdl" id="dUg-v7-QoJ"/>
+                        <outlet property="discardEdits" destination="tcJ-94-Llc" id="tlc-oI-lHD"/>
                         <outlet property="distanceLabel" destination="6o0-nB-VTd" id="7RS-1H-nbp"/>
                         <outlet property="emailLabel" destination="KXj-14-kxh" id="BMB-gM-6Mr"/>
                         <outlet property="leaseLabel" destination="gvC-eD-IWi" id="txs-db-86y"/>

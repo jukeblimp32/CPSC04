@@ -134,8 +134,14 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
         alertVC.addAction(alertActionOkay)
         self.present(alertVC, animated: true, completion: nil)
     }
+
     
-    //THIS CHANGES STATUS TO "APPROVED" IN EDIT AND ORIG PROP TABLE
+    //*************OVER HERE
+    @IBAction func suggestEdits(_ sender: Any) {
+    }
+    
+    
+    
     @IBAction func approveListing(_ sender: Any) {
         // Make pop up
         let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to approve this listing? After confirming, an email will open up. Send the email to the administrator.", preferredStyle: .alert)
