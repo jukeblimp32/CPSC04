@@ -22,6 +22,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("HOme saved us")
         self.propertiesList.register(ListingTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
@@ -90,6 +91,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func handleRefresh(_ sender : UIRefreshControl) {
         listings.removeAll()
+        status.removeAll()
         loadListingViews()
         propertiesList.reloadData()
         refreshControl.endRefreshing()
@@ -189,8 +191,10 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         listings.removeAll()
+        status.removeAll()
         loadListingViews()
         propertiesList.reloadData()
+        print("View will appear saved us")
     }
     
     
@@ -273,6 +277,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         {
             if listingStatus == "Pending"
             {
+                print(cell.propertyAddress.text)
                 cell.backgroundColor = UIColor.init(red: 0.9, green: 0.0, blue: 0.0, alpha: 0.4)
             }
             else {

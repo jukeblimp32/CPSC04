@@ -52,7 +52,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         seeClosed.isOn = false
         seeClosed.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (20/100), height: (view.frame.height) * (2/100))
         seeClosed.addTarget(self, action: #selector(StudentHomePage.switchIsChanged(_:)), for: UIControlEvents.valueChanged)
-        seeClosed.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+        seeClosed.transform = CGAffineTransform(scaleX: 0.85, y: 0.80)
         
         var closedLabel = UILabel()
         closedLabel.text = "Show Closed Listings?"
@@ -407,9 +407,9 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                     for item in tempListings{
                         self.listings.append(item.1)
                     }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                    /*DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         self.propertiesList.reloadData()
-                    })
+                    }) */
 
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         self.favoritedProperties()
