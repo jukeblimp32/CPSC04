@@ -33,9 +33,7 @@ class FavoritesMap: UIViewController {
     
     let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
     
-    let apiKey = GMSServices.provideAPIKey("AIzaSyCoeK0AFvWvqHTIHOrlzvOKK2YeaoGa7Gk")
-    
-    
+    let apiKey = GMSServices.provideAPIKey("AIzaSyAZiputpqkl-sCQk6gk5uTBQLJQVSe0684")
     var currentProperty: Properties?
     
     var property = [Properties]()
@@ -45,6 +43,7 @@ class FavoritesMap: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.isNavigationBarHidden = false
+        self.loadViewIfNeeded()
         
         for listing in favListings {
             let propAddress = listing.address

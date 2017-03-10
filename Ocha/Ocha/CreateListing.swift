@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import GoogleMaps
+import CoreLocation
 
 class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
@@ -32,14 +34,24 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     var maxID = 0
     var milesToGU : String = "0.5"
     
-    let URL_SAVE_PROPERTY = "http://147.222.165.203/MyWebService/api/CreateProperty.php"
+    let URL_SAVE_PROPERTY = "http://147.222.165.203/MyWebService/api/landlordCreateProperty.php"
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
+    
+    
+    let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
+    
+    let apiKey = GMSServices.provideAPIKey("AIzaSyAZiputpqkl-sCQk6gk5uTBQLJQVSe0684")
+    
+    
     
     @IBOutlet weak var uploadImageView: UIImageView!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        
+        
         
         propDescription!.layer.borderWidth = 1
         propDescription!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
@@ -123,6 +135,43 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         self.bathroomNumber.text = Int(sender.value).description
     }
     
+    func getLatLngForZip(address: String) -> String {
+       // var coordinateAddress!
+        let key = "AIzaSyCoeK0AFvWvqHTIHOrlzvOKK2YeaoGa7Gk"
+        var distanceInMiles = ""
+        let url : NSString = "\(baseUrl)address=\(address)&key=\(key)" as NSString
+        let urlStr : NSString = url.addingPercentEscapes(using: String.Encoding.utf8.rawValue)! as NSString
+        let searchURL  : NSURL = NSURL(string: urlStr as String)!
+        
+        let data = NSData(contentsOf: searchURL as URL)
+        let json = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
+        
+        if let results = json["results"] as? [[String: AnyObject]] {
+            let result = results[0]
+            if let geometry = result["geometry"] as? [String:AnyObject] {
+                if let location = geometry["location"] as? [String:Double] {
+                    let lat = location["lat"]
+                    let lon = location["lng"]
+                    let latitude = Double(lat!)
+                    let longitude = Double(lon!)
+                    let coordinateAddress = CLLocation(latitude: latitude, longitude: longitude)
+                    let coordinateHome = CLLocation(latitude: 47.667160, longitude:-117.402342)
+                    let distanceInMeters = coordinateHome.distance(from: coordinateAddress)
+                    let distance = distanceInMeters/1609.34
+                    let decimalDistance = Double(round(100*distance)/100)
+                    distanceInMiles = String(decimalDistance)
+                    
+                    print("MILES")
+                    print(distanceInMiles)
+                   // print("OVERHERE")
+                    print("\n\(latitude), \(longitude)")
+                    //return distanceInMiles
+                }
+            }
+        }
+        return distanceInMiles
+    }
+    
     
     @IBAction func submitListingInfo(_ sender: Any) {
         //created NSURL
@@ -150,7 +199,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         let numberOfBathrooms = bathroomNumber.text
 
         let availableDate = dateFormatter.string(from: datePicker.date)
-        let milesToGu = milesToGU
+        //let milesToGu = milesToGU
         let lease = leaseLength.titleForSegment(at: leaseLength.selectedSegmentIndex)
         let propertyType = propType.titleForSegment(at:propType.selectedSegmentIndex)
         let petChoice = petPolicy.titleForSegment(at:petPolicy.selectedSegmentIndex)
@@ -161,6 +210,14 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         }
         //let phoneNumber =
 
+        
+        let location = propertyAddress! + ", Spokane, WA, USA"
+        let milesToGu = getLatLngForZip(address: location)
+        
+       // getLatLngForZip(address: location)
+        //getmiles
+        //miles = getmiles
+        
         if propertyAddress == "" || monthlyRent == "" || propertyDeposit == "" || phoneNumber == ""
         {
             let alert = UIAlertController(title: "Empty Fields", message:"Make sure you have entered information for all fields", preferredStyle: .alert)
