@@ -61,6 +61,12 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
+    
+    
+    
+    
+    
+    
     /*
      When a listing cell is clicked on the homepage, this function
      sends the cell information and saves them as variables in
