@@ -164,7 +164,7 @@ class ApproveNewListings: UIViewController, UITableViewDelegate, UITableViewData
                         let statusValue = properties[i] as? NSDictionary
                         let status = statusValue?["status"] as! String
                         
-                        if (status != "Approved") {
+                        if (status == "Pending" || status == " Pending") {
                             let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
                         
                         

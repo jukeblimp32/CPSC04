@@ -84,6 +84,9 @@ class FavoritesMap: UIViewController {
         let json = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
         
         if let results = json["results"] as? [[String: AnyObject]] {
+            if(results.count == 0) {
+                return
+            }
             let result = results[0]
             if let geometry = result["geometry"] as? [String:AnyObject] {
                 if let location = geometry["location"] as? [String:Double] {

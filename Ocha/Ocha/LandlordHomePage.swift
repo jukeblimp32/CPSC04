@@ -14,7 +14,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBOutlet weak var propertiesList: UITableView!
     
-    let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
+    let getProperties = "http://147.222.165.203/MyWebService/api/editDisplayProperties.php"
     var listings = [Listing]()
     var status = [String]()
     var downloadURL = ""
@@ -22,7 +22,6 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("HOme saved us")
         self.propertiesList.register(ListingTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
@@ -86,6 +85,8 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             destination.propDescription = listings[blogIndex].description
             destination.propertyType = listings[blogIndex].propertyType
             destination.phoneNumber = listings[blogIndex].phoneNumber
+            
+            destination.listingStatus = status[blogIndex]
         }
     }
     
@@ -123,7 +124,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                 propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                 
                 //getting the JSON array teams from the response
-                let properties: NSArray = propertyJSON["properties"] as! NSArray
+                let properties: NSArray = propertyJSON["editProperties"] as! NSArray
                 
                 let uid = FIRAuth.auth()?.currentUser?.uid
                 

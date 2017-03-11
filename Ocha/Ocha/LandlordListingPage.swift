@@ -10,6 +10,8 @@ import UIKit
 
 class LandlordListingPage: UITableViewController {
     
+    var listingStatus = ""
+    
     var imageUrl = ""
     var address : String = ""
     var distance : String = ""
@@ -41,6 +43,7 @@ class LandlordListingPage: UITableViewController {
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var leaseLabel: UILabel!
     @IBOutlet weak var toHomePageButton: UIButton!
+    @IBOutlet var editButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +67,12 @@ class LandlordListingPage: UITableViewController {
         petsLabel.adjustsFontSizeToFitWidth = true
         leaseLabel.adjustsFontSizeToFitWidth = true
         propertyImage.loadCachedImages(url: imageUrl)
+        
+        if (listingStatus == " Pending" || listingStatus == "Pending") {
+            editButton.isEnabled = false
+            editButton.isHidden = true
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

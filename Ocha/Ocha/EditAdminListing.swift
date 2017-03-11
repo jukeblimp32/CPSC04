@@ -8,10 +8,16 @@
 
 import UIKit
 import Firebase
+import GoogleMaps
+import CoreLocation
 
 class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
-    let URL_EDIT_PROPERTY = "http://147.222.165.203/MyWebService/api/editProperties.php"
+    let URL_EDIT_PROPERTY = "http://147.222.165.203/MyWebService/api/adminEditProperty.php"
+    
+    let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
+    
+    let apiKey = GMSServices.provideAPIKey("AIzaSyAZiputpqkl-sCQk6gk5uTBQLJQVSe0684")
     
     var address : String = ""
     var rent : String = ""
@@ -200,6 +206,47 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
     }
     
     
+    func getLatLngForZip(address: String) -> String {
+        // var coordinateAddress!
+        let key = "AIzaSyCoeK0AFvWvqHTIHOrlzvOKK2YeaoGa7Gk"
+        var distanceInMiles = ""
+        let url : NSString = "\(baseUrl)address=\(address)&key=\(key)" as NSString
+        let urlStr : NSString = url.addingPercentEscapes(using: String.Encoding.utf8.rawValue)! as NSString
+        let searchURL  : NSURL = NSURL(string: urlStr as String)!
+        
+        let data = NSData(contentsOf: searchURL as URL)
+        let json = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
+        
+        if let results = json["results"] as? [[String: AnyObject]] {
+            if (results.count == 0) {
+                return "N/A"
+            }
+            let result = results[0]
+            if let geometry = result["geometry"] as? [String:AnyObject] {
+                if let location = geometry["location"] as? [String:Double] {
+                    let lat = location["lat"]
+                    let lon = location["lng"]
+                    let latitude = Double(lat!)
+                    let longitude = Double(lon!)
+                    let coordinateAddress = CLLocation(latitude: latitude, longitude: longitude)
+                    let coordinateHome = CLLocation(latitude: 47.667160, longitude:-117.402342)
+                    let distanceInMeters = coordinateHome.distance(from: coordinateAddress)
+                    let distance = distanceInMeters/1609.34
+                    let decimalDistance = Double(round(100*distance)/100)
+                    distanceInMiles = String(decimalDistance)
+                    
+                    print("MILES")
+                    print(distanceInMiles)
+                    // print("OVERHERE")
+                    print("\n\(latitude), \(longitude)")
+                    //return distanceInMiles
+                }
+            }
+        }
+        return distanceInMiles
+    }
+    
+    
     @IBAction func saveEdits(_ sender: Any) {
         //created NSURL
         let saveRequestURL = NSURL(string: URL_EDIT_PROPERTY)
@@ -229,11 +276,17 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         let editLease = leaseSegment.titleForSegment(at: leaseSegment.selectedSegmentIndex)
         let editPhoneNumber = phoneNumberTextField.text
         
-        print (phoneNumberTextField.text)
+        
+        
+        let stringAddress = String(editAddress!)
+        
+        let location = stringAddress! + ", Spokane, WA, USA"
+        let editMilesToGu = getLatLngForZip(address: location)
+
         
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email=" + email+"&status=Approved";
+        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email=" + email+"&status=Approved"+"&miles_to_gu="+editMilesToGu;
         
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)

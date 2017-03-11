@@ -904,6 +904,7 @@
                         <outlet property="dateAvailableLabel" destination="Gha-lw-lM2" id="htF-m0-tvX"/>
                         <outlet property="descriptionField" destination="x4j-1i-Mzn" id="7Pq-1h-HLM"/>
                         <outlet property="distanceLabel" destination="jaH-80-w6U" id="38a-kb-1c4"/>
+                        <outlet property="editButton" destination="Y6X-X9-LXK" id="jwA-7j-Zp6"/>
                         <outlet property="emailLabel" destination="4mW-yd-p2k" id="BFy-dz-yxG"/>
                         <outlet property="leaseLabel" destination="lEi-No-wbk" id="Qpj-Ab-hQ8"/>
                         <outlet property="petsLabel" destination="FoH-SJ-hWI" id="iB5-HH-HFe"/>
@@ -1194,24 +1195,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rSP-cj-tgg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3287.1999999999998" y="-2375.2623688155923"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="TIa-7n-f1p">
-            <objects>
-                <viewController id="eHU-vb-7YN" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4cP-gY-e82"/>
-                        <viewControllerLayoutGuide type="bottom" id="U6N-vT-ecV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pkk-LU-zWt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jXd-le-Fsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-4807" y="-1549"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bYL-5T-oNz">
@@ -4784,18 +4767,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcJ-94-Llc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="168" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="184" height="43"/>
+                                                    <color key="backgroundColor" red="0.70027121110000001" green="0.1272581247" blue="0.172559871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="168" id="uB1-ZK-7vG"/>
+                                                        <constraint firstAttribute="width" constant="184" id="uB1-ZK-7vG"/>
                                                     </constraints>
-                                                    <state key="normal" title="Reject Edits"/>
+                                                    <state key="normal" title="Reject Edits">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="discardEdits:" destination="ykg-tu-2YD" eventType="touchUpInside" id="hZj-Qx-zcC"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="665-iM-r1f">
                                                     <rect key="frame" x="176" y="0.0" width="199" height="46"/>
-                                                    <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.040982640670000001" green="0.58122166450000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Approve Edits">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -4808,7 +4794,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="665-iM-r1f" secondAttribute="trailing" id="No4-Pr-by7"/>
                                                 <constraint firstItem="tcJ-94-Llc" firstAttribute="top" secondItem="Dg7-XV-wQj" secondAttribute="top" id="PnB-AN-1wo"/>
                                                 <constraint firstItem="tcJ-94-Llc" firstAttribute="leading" secondItem="Dg7-XV-wQj" secondAttribute="leading" id="Xbj-hM-jME"/>
-                                                <constraint firstItem="665-iM-r1f" firstAttribute="leading" secondItem="tcJ-94-Llc" secondAttribute="trailing" constant="8" symbolic="YES" id="dDa-hY-Hr3"/>
+                                                <constraint firstItem="665-iM-r1f" firstAttribute="leading" secondItem="tcJ-94-Llc" secondAttribute="trailing" constant="-8" id="dDa-hY-Hr3"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="665-iM-r1f" secondAttribute="bottom" constant="-11" id="dMf-QH-DFZ"/>
                                                 <constraint firstItem="tcJ-94-Llc" firstAttribute="top" secondItem="665-iM-r1f" secondAttribute="top" id="li4-fG-ndP"/>
                                                 <constraint firstAttribute="bottom" secondItem="tcJ-94-Llc" secondAttribute="bottom" id="xbe-h6-pey"/>
@@ -4829,7 +4815,6 @@
                         <outlet property="bedroomLabel" destination="u2w-zq-2V9" id="q7h-tX-woE"/>
                         <outlet property="dateAvailableLabel" destination="Pgg-le-R3K" id="E36-dE-esu"/>
                         <outlet property="descriptionField" destination="ZEj-F8-Mdl" id="dUg-v7-QoJ"/>
-                        <outlet property="discardEdits" destination="tcJ-94-Llc" id="tlc-oI-lHD"/>
                         <outlet property="distanceLabel" destination="6o0-nB-VTd" id="7RS-1H-nbp"/>
                         <outlet property="emailLabel" destination="KXj-14-kxh" id="BMB-gM-6Mr"/>
                         <outlet property="leaseLabel" destination="gvC-eD-IWi" id="txs-db-86y"/>
@@ -4841,7 +4826,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TgC-8K-0SW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3356" y="-843"/>
+            <point key="canvasLocation" x="3356" y="-843.32833583208401"/>
         </scene>
     </scenes>
     <resources>
@@ -4856,7 +4841,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="n3e-hw-rhr"/>
-        <segue reference="1hD-qY-9H2"/>
+        <segue reference="R2m-C0-Dkv"/>
         <segue reference="m06-09-obF"/>
         <segue reference="Wgi-Vy-FKQ"/>
         <segue reference="h93-ZZ-6l2"/>

@@ -37,7 +37,6 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     let URL_SAVE_PROPERTY = "http://147.222.165.203/MyWebService/api/landlordCreateProperty.php"
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     
-    
     let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
     
     let apiKey = GMSServices.provideAPIKey("AIzaSyAZiputpqkl-sCQk6gk5uTBQLJQVSe0684")
@@ -147,6 +146,9 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         let json = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
         
         if let results = json["results"] as? [[String: AnyObject]] {
+            if(results.count == 0) {
+                return "N/A"
+            }
             let result = results[0]
             if let geometry = result["geometry"] as? [String:AnyObject] {
                 if let location = geometry["location"] as? [String:Double] {

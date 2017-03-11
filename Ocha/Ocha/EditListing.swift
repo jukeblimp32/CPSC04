@@ -13,7 +13,7 @@ import CoreLocation
 
 class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
-    let URL_EDIT_PROPERTY = "http://147.222.165.203/MyWebService/api/landlordEditProperties.php"
+    let URL_EDIT_PROPERTY = "http://147.222.165.203/MyWebService/api/landlordEditProperty.php"
     
     let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
     
@@ -120,13 +120,13 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     }
     
     func determineLease() {
-        if (leaseTerms == "Monthly"){
+        if (leaseTerms == "Monthly" || leaseTerms == " Monthly"){
             leaseSegment.selectedSegmentIndex = 0
         }
-        else if (leaseTerms == "6-Month"){
+        else if (leaseTerms == "6-Month" || leaseTerms == " 6-Month"){
             leaseSegment.selectedSegmentIndex = 1
         }
-        else if (leaseTerms == "9-Month"){
+        else if (leaseTerms == "9-Month" || leaseTerms == " 9-Month"){
             leaseSegment.selectedSegmentIndex = 2
         }
         else {
@@ -219,6 +219,9 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         let json = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
         
         if let results = json["results"] as? [[String: AnyObject]] {
+            if (results.count == 0) {
+                return "N/A"
+            }
             let result = results[0]
             if let geometry = result["geometry"] as? [String:AnyObject] {
                 if let location = geometry["location"] as? [String:Double] {
@@ -286,7 +289,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email="+email+"&status=Pending"+"&miles_to_gu="+editMilesToGu;
+        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email="+email+"&status=Editing"+"&miles_to_gu="+editMilesToGu;
 
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)

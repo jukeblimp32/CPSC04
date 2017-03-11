@@ -17,7 +17,7 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet var propertiesList: UITableView!
     //propertiesList
     
-    let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
+    let getProperties = "http://147.222.165.203/MyWebService/api/editDisplayProperties.php"
     var listings = [Listing]()
     
     
@@ -122,7 +122,7 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
                 propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                 
                 //Getting the properties in an array
-                let properties: NSArray = propertyJSON["properties"] as! NSArray
+                let properties: NSArray = propertyJSON["editProperties"] as! NSArray
                 
                 //looping through all the objects in the array
                 DispatchQueue.main.async(execute: {
@@ -163,7 +163,7 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
                         let statusValue = properties[i] as? NSDictionary
                         let status = statusValue?["status"] as! String
                         
-                        if (status != "Approved") {
+                        if (status == "Editing" || status == " Editing") {
                             let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
                             
                             

@@ -17,7 +17,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     let getFavorites = "http://147.222.165.203/MyWebService/api/DisplayFavorites.php"
     
-    
     var favoritePropIDs = [Int]()
     var listings = [Listing]()
     var favoriteListings = [Listing]()
@@ -370,7 +369,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let statusValue = properties[i] as? NSDictionary
                         let status = statusValue?["status"] as! String
                         
-                        if (status == "Approved") {
+                        if (status == "Approved" || status == " Approved") {
                             let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
 
                             let filterCounter = self.checkFilters(listing: listing)
