@@ -286,7 +286,7 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability=+"+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email=" + email+"&status=Approved"+"&miles_to_gu="+editMilesToGu;
+        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability="+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email=" + email+"&status=Approved"+"&miles_to_gu="+editMilesToGu;
         
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
