@@ -26,6 +26,17 @@ class UserTableViewCell: UITableViewCell {
     }
     
     @IBAction func deleteSelectedUser(_ sender: Any) {
+        var userId = " "
+        FIRDatabase.database().reference().child("users").observe(.childAdded, with: {(snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let fbUser = FireUser()
+                fbUser.setValuesForKeys(dictionary)
+                if (fbUser.email == self.emailLabel.text) {
+                    userId = snapshot.key
+                    print(userId)
+                }
+            }
+        }, withCancel: nil)
     }
     
     

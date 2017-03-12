@@ -136,8 +136,46 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
     }
 
     
-    //*************OVER HERE
     @IBAction func suggestEdits(_ sender: Any) {
+        // Make pop up
+        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to send an email to the landlord about suggested edits?", preferredStyle: .alert)
+        
+        // If cancel, do nothing
+        let alertActionResend = UIAlertAction(title: "Cancel", style: .default) {
+            (_) in
+            return
+        }
+        // If yes, open up the email app
+        let alertActionOkay = UIAlertAction(title: "Yes", style: .default){
+            (_) in
+            
+            self.sendEditEmail()
+            // Go back to previous page
+            self.toHomePageButton.sendActions(for: .touchUpInside)
+            
+        }
+        alertVC.addAction(alertActionResend)
+        alertVC.addAction(alertActionOkay)
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    func sendEditEmail()
+    {
+        // Can only send email if the device has mail set up
+        if(MFMailComposeViewController.canSendMail())
+        {
+            // Address the email
+            let editComposerVC = MFMailComposeViewController()
+            editComposerVC.mailComposeDelegate = self
+            editComposerVC.setToRecipients([email])
+            editComposerVC.setSubject("Suggested Edits to Your Property at \(address)")
+            self.present(editComposerVC, animated: true, completion: nil)
+        }
+        else
+        {
+            print("Not enabled")
+        }
+
     }
     
     
@@ -154,7 +192,6 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
         // If we approve, update in database
         let alertActionOkay = UIAlertAction(title: "Yes", style: .default){
             (_) in
-            // Go back to login
             //created NSURL
             let saveRequestURL = NSURL(string: self.statusChange)
             

@@ -104,8 +104,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 else if snapshot?["type"] as? String == "Landlord" {
                     initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "LandlordTabController") as UIViewController
                 }
-                else {
+                else if snapshot?["type"] as? String == "Student"{
                     initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
+                }
+                else{
+                    return
                 }
         
                 self.window = UIWindow(frame: UIScreen.main.bounds)

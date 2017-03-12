@@ -20,9 +20,10 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     var downloadURL = ""
     var refreshControl : UIRefreshControl!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.propertiesList.register(ListingTableViewCell.self, forCellReuseIdentifier: "cell")
+        self.propertiesList.register(LandlordTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
@@ -238,8 +239,8 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "ListingTableViewCell"
-        let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
+        let cellIdentifier = "LandlordTableViewCell"
+        let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! LandlordTableViewCell
         
         
         let listing = listings[indexPath.row]
@@ -252,20 +253,28 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.propertyRooms.text = String(listing.numberOfRooms)
         cell.propertyImage.image = listing.houseImage
         cell.favoriteButton.isHidden = true
+        cell.propertyStatus.text = listingStatus
+        //cell.property
+    
         //cell.propertyImage.contentMode = .scaleAspectFill
         
         print(indexPath.row)
         print (listingStatus)
         
         // Make opaque if closed
-        if listing.availability == "Closed" || listing.availability == " Closed"
+        if (listing.availability == "Closed" || listing.availability == " Closed")
         {
-            if listingStatus == "Pending" || listingStatus == " Pending"
+            if (listingStatus == "Pending" || listingStatus == " Pending")
             {
                 print("We are here")
                 cell.favoriteButton.backgroundColor = UIColor.init(red: 0.9, green: 0.0, blue: 0.0, alpha: 0.4)
             }
-            else {
+            else if (listingStatus == "Editing" || listingStatus == " Editing")
+            {
+                cell.backgroundColor = UIColor.init(red: (230.0 / 255), green: (223.0 / 255), blue: (67.0 / 255), alpha: 0.7)
+            }
+            else
+            {
                 cell.backgroundColor = UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.4)
             }
             cell.propertyImage.alpha = 0.2
@@ -279,12 +288,16 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         else
         {
-            if listingStatus == "Pending" || listingStatus == " Pending"
+            if (listingStatus == "Pending" || listingStatus == " Pending")
             {
-                print(cell.propertyAddress.text)
                 cell.backgroundColor = UIColor.init(red: 0.9, green: 0.0, blue: 0.0, alpha: 0.4)
             }
-            else {
+            else if (listingStatus == "Editing" || listingStatus == " Editing")
+            {
+                cell.backgroundColor = UIColor.init(red: (230.0 / 255), green: (223.0 / 255), blue: (67.0 / 255), alpha: 0.7)
+            }
+            else
+            {
                 cell.backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             }
             cell.propertyImage.alpha = 1.0
