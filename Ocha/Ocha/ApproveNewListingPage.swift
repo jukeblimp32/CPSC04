@@ -145,10 +145,49 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
             (_) in
             return
         }
-        // If yes, open up the email app
+        // If yes, open up the email app after switching to edit status
         let alertActionOkay = UIAlertAction(title: "Yes", style: .default){
             (_) in
             
+            //created NSURL
+            let saveRequestURL = NSURL(string: self.statusChange)
+            
+            //creating NSMutableURLRequest
+            let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+            
+            //setting method to POST
+            saveRequest.httpMethod = "POST"
+            
+            //getting values from text fields
+            
+            //let landlordID = self.firstName
+            let postParameters="status=Editing"+"&property_id="+String(self.propertyID);
+            
+            
+            //adding parameters to request body
+            saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+            //task to send to post request
+            let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+                data,response, error in
+                if error != nil{
+                    print("error is \(error)")
+                    return;
+                }
+                do{
+                    //converting response to NSDictioanry
+                    
+                    let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    if let parseJSON = myJSON{
+                        var msg:String!
+                        msg = parseJSON["message"]as! String?
+                        print(msg)
+                    }
+                }catch{
+                    print(error)
+                }
+            }
+            saveTask.resume()
+
             self.sendEditEmail()
             // Go back to previous page
             self.toHomePageButton.sendActions(for: .touchUpInside)
