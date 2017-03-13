@@ -33,6 +33,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        logOutDeletedUser()
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(StudentHomePage.handleRefresh(_:)), for: .valueChanged)
         
@@ -689,6 +690,38 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         appDelegate.window?.rootViewController = initialViewController
     }
     
+    // This is the same as above, but Swift had issues when I removed the button function
+    func logout(){
+        //Checks the credentials of the current user in firebase
+        if FIRAuth.auth() != nil {
+            //Tries to log the user out of firebase
+            do {
+                try FIRAuth.auth()?.signOut()
+                print("the user is logged out")
+                //If unsuccessful, prints out the error and the current user ID
+            } catch let error as NSError {
+                print(error.localizedDescription)
+                print("the current user id is \(FIRAuth.auth()?.currentUser?.uid)")
+            }
+            //Tries to log the user out of Google
+            do {
+                try GIDSignIn.sharedInstance().signOut()
+                print("Google signed out")
+                //If unsuccessful, prints out the error
+            } catch let error as NSError {
+                print(error.localizedDescription)
+                print("Error logging out of google")
+            }
+            //Logs out the user out of facebook
+            FBSDKLoginManager().logOut()
+            print("Facebook signed out")
+        }
+        //Instantiates the login page as the root
+        let initialViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()! as UIViewController
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        appDelegate.window?.rootViewController = initialViewController
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listings.count
     }
@@ -793,6 +826,40 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func logOutDeletedUser(){
+        // Get our user
+        if let user = FIRAuth.auth()?.currentUser {
+            // Get a snapshot
+            FIRDatabase.database().reference().child("users").child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    // If they are blocked, delete the account
+                    if dictionary["type"] as? String == "Block"{
+                        FIRDatabase.database().reference().child("users").child(user.uid).removeValue()
+                        user.delete { error in
+                            if let error = error {
+                                print(error)
+                            } else {
+                                print("You've been deleted")
+                                self.deletedAlert()
+                                self.logout()
+                            }
+                        }
+                    }
+                }
+            }, withCancel: nil)
+        }
+
+    }
+    
+    func deletedAlert()
+    {
+        let alertVC = UIAlertController(title: "Deleted", message: "Your account has been deleted by the administrator. Create a new one if you wish to continue using Ocha.", preferredStyle: .alert)
+        let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
+        alertVC.addAction(alertActionOkay)
+        self.present(alertVC, animated: true, completion: nil)
+    }
+
     
     
     

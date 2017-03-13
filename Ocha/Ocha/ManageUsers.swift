@@ -29,8 +29,12 @@ class ManageUsers: UITableViewController {
         FIRDatabase.database().reference().child("users").observe(.childAdded, with: {(snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let fbUser = FireUser()
-                fbUser.setValuesForKeys(dictionary)
-                if (fbUser.type != "Admin") {
+                fbUser.name = dictionary["name"] as! String?
+                fbUser.email = dictionary["email"] as! String?
+                fbUser.type = dictionary["type"] as! String?
+                fbUser.fbId = snapshot.key
+                
+                if (fbUser.type != "Admin" && fbUser.type != "Block") {
                     self.userList.append(fbUser)
                 }
                 self.userList.sort {$0.email!.lowercased() < $1.email!.lowercased()}
@@ -56,6 +60,10 @@ class ManageUsers: UITableViewController {
         
         cell.emailLabel.text = user.email
         cell.nameLabel.text = user.name
+        cell.userID = user.fbId!
+        cell.deleteUser.tag = indexPath.row
+        cell.deleteUser.addTarget(self, action: #selector(self.deleteUser(_:)), for: UIControlEvents.touchUpInside)
+        
         return cell
     }
 
@@ -65,7 +73,40 @@ class ManageUsers: UITableViewController {
     }
     */
     
-    
+    func deleteUser(_ sender: UIButton)
+    {
+        let cell = userList[sender.tag]
+        let userReference =   FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/").child("users").child(cell.fbId!)
+        
+        // Make pop up
+        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete \(cell.email!) from the users?", preferredStyle: .alert)
+        
+        // If cancel, do nothing
+        let alertActionCancel = UIAlertAction(title: "Cancel", style: .default) {
+            (_) in
+            return
+        }
+        // If yes, open up the email app after switching to edit status
+        let alertActionYes = UIAlertAction(title: "Yes", style: .default){
+            (_) in
+            //Block the user by setting their type
+            let values = ["type" : "Block"]
+            userReference.updateChildValues(values, withCompletionBlock: { (err, dataRef) in
+                //If there was an error in saving user type, return and print error
+                if err != nil {
+                    print(err)
+                    return
+                }
+                print("Saved user successfully")
+            })
+            
+            
+        }
+        alertVC.addAction(alertActionCancel)
+        alertVC.addAction(alertActionYes)
+        self.present(alertVC, animated: true, completion: nil)
+
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

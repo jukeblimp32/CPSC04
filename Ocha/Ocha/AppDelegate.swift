@@ -97,25 +97,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 var initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
                 
-                // Choose the correct home screen based off of the type name from Firebase database
-                if snapshot?["type"]as? String  == "Admin" {
-                    initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "AdminTabController") as UIViewController
+                if snapshot?["type"]as? String != "Block"
+                {
+                    print(snapshot?["type"])
+                    // Choose the correct home screen based off of the type name from Firebase database
+                    if snapshot?["type"]as? String  == "Admin" {
+                        initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "AdminTabController") as UIViewController
+                    }
+                    else if snapshot?["type"] as? String == "Landlord" {
+                        initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "LandlordTabController") as UIViewController
+                    }
+                    else {
+                        initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
+                    }
+                    self.window = UIWindow(frame: UIScreen.main.bounds)
+                    self.window?.rootViewController = initialViewControlleripad
+                    self.window?.makeKeyAndVisible()
                 }
-                else if snapshot?["type"] as? String == "Landlord" {
-                    initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "LandlordTabController") as UIViewController
+                else
+                {
+                    FIRDatabase.database().reference().child("users").child(user!.uid).removeValue()
+                    user?.delete { error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            print("You've been deleted")
+                        }
+                    }
+                    self.deletedAlert()
                 }
-                else if snapshot?["type"] as? String == "Student"{
-                    initialViewControlleripad  = mainStoryboardIpad.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
-                }
-                else{
-                    return
-                }
-        
-                self.window = UIWindow(frame: UIScreen.main.bounds)
-                self.window?.rootViewController = initialViewControlleripad
-                self.window?.makeKeyAndVisible()            })
+            })
         }
     }
+    
+    func deletedAlert()
+    {
+        let alertVC = UIAlertController(title: "Deleted", message: "Your account has been deleted by the administrator. Create a new one if you wish to continue using Ocha.", preferredStyle: .alert)
+        let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
+        alertVC.addAction(alertActionOkay)
+        self.window?.rootViewController?.present(alertVC, animated: true, completion: nil)
+    }
+
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         

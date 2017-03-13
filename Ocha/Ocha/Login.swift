@@ -223,12 +223,25 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
             self.dismiss(animated: true, completion: nil)
             self.present(viewController, animated: true, completion: nil)
         }
-        else {
+        else if snapshot["type"] as? String == "Student"{
             let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
             self.dismiss(animated: true, completion: nil)
             self.present(viewController, animated: true, completion: nil)
         }
-
+        // Delete a blocked user
+        else{
+            if let user = FIRAuth.auth()?.currentUser{
+                FIRDatabase.database().reference().child("users").child(user.uid).removeValue()
+                user.delete { error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        print("You've been deleted")
+                    }
+                }
+                self.deletedAlert()
+            }
+        }
     }
     
     
@@ -275,10 +288,22 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
                                 self.dismiss(animated: true, completion: nil)
                                 self.present(viewController, animated: true, completion: nil)
                             }
-                            else {
+                            else if dictionary["type"] as? String == "Student"{
                                 let viewController = self.storyboard!.instantiateViewController(withIdentifier: "StudentTabController") as UIViewController
                                 self.dismiss(animated: true, completion: nil)
                                 self.present(viewController, animated: true, completion: nil)
+                            }
+                            // Delete a blocked user
+                            else{
+                                FIRDatabase.database().reference().child("users").child(uid!).removeValue()
+                                user.delete { error in
+                                    if let error = error {
+                                        print(error)
+                                    } else {
+                                        print("You've been deleted")
+                                    }
+                                }
+                                self.deletedAlert()
                             }
                         }
                     }, withCancel: nil)
@@ -293,6 +318,14 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
 
             }
         })
+    }
+    
+    func deletedAlert()
+    {
+        let alertVC = UIAlertController(title: "Deleted", message: "Your account has been deleted by the administrator. Create a new one if you wish to continue using Ocha.", preferredStyle: .alert)
+        let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
+        alertVC.addAction(alertActionOkay)
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     
