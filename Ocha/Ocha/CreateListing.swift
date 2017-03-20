@@ -33,6 +33,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     var propertyIDs = [Int]()
     var maxID = 0
     var milesToGU : String = "0.5"
+    var userType = ""
     
     let URL_SAVE_PROPERTY = "http://147.222.165.203/MyWebService/api/landlordCreateProperty.php"
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
@@ -49,6 +50,15 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         
         super.viewDidLoad()
         
+        
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                var myString: String = (dictionary["type"] as? String)!
+                self.userType = myString
+                print(myString)
+            }
+        }, withCancel: nil)
         
         
         
@@ -228,11 +238,16 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             
         }
         else {
-        
+            var postParameters = ""
             //post parameter
             //concatenating keys and values from text field
             
-            let postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!+"&email="+email!+"&status=Pending";
+            if (userType == "Admin") {
+                postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!+"&email="+email!+"&status=Approved";
+            }
+            else {
+                postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!+"&email="+email!+"&status=Pending";
+            }
             
             // Upload Image
             self.uploadImage(address: propertyAddress!)
@@ -269,10 +284,12 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             address.text = ""
             rent.text = ""
             deposit.text = ""
+            phoneNumberTextField.text = ""
             bedroomNumber.text = "1"
             bathroomNumber.text = "1"
             leaseLength.selectedSegmentIndex = 0
             propType.selectedSegmentIndex = 0
+            propDescription.text = ""
 
         }
     }

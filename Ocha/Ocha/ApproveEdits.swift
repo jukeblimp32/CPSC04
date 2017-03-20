@@ -249,7 +249,8 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
         cell.propertyDistance.text = String(listing.milesToGU)
         cell.propertyRent.text = String(listing.monthRent)
         cell.propertyRooms.text = String(listing.numberOfRooms)
-        
+        cell.favoriteButton.isHidden = true
+        cell.propertyStatus.isHidden = true
         cell.propertyImage.image = listing.houseImage
         //cell.propertyImage.contentMode = .scaleAspectFill
         

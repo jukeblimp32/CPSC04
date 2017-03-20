@@ -24,6 +24,8 @@ class ListingTableViewCell: UITableViewCell {
     let rentLabel = UILabel()
     let roomLabel = UILabel()
     let distanceLabel = UILabel()
+    let propertyStatus = UILabel()
+    let statusLabel = UILabel()
     var listing = Listing(propertyID: 0, landlordID: "", address: "", dateAvailable: "", milesToGU: "", numberOfRooms: "", bathroomNumber: "", leaseLength: "", monthRent: "", deposit: "", houseImage: nil, propertyType: "", pets: "", availability: "", description: "", phoneNumber: "", email : "", userID : "")
     
     override func awakeFromNib() {
@@ -84,6 +86,13 @@ class ListingTableViewCell: UITableViewCell {
         distanceLabel.textColor = UIColor.black
         distanceLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (70/100) , width: screenSize.width * (30/100), height: 15)
         self.addSubview(distanceLabel)
+        
+        statusLabel.text = "STATUS:"
+        statusLabel.font = UIFont(name: statusLabel.font.fontName, size: 15)
+        statusLabel.adjustsFontSizeToFitWidth = true
+        statusLabel.textColor = UIColor.white
+        statusLabel.frame = CGRect(x: (screenSize.width) * (6/100), y: (self.frame.height) * (90/100) , width: screenSize.width * (30/100), height: 15)
+        self.addSubview(statusLabel)
     }
 
     

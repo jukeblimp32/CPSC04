@@ -1,15 +1,15 @@
 //
-//  LandlordTableViewCell.swift
+//  FavoriteTableViewCell.swift
 //  Ocha
 //
-//  Created by Taylor, Scott A on 3/11/17.
+//  Created by Talkov, Leah C on 3/19/17.
 //  Copyright © 2017 CPSC04. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class LandlordTableViewCell: UITableViewCell {
+class FavoriteTableViewCell: UITableViewCell {
     // MARK: Properties
     
     let createFavorites = "http://147.222.165.203/MyWebService/api/CreateFavorite.php"
@@ -20,12 +20,11 @@ class LandlordTableViewCell: UITableViewCell {
     let propertyRent = UILabel()
     let propertyRooms = UILabel()
     let propertyImage = UIImageView()
-    let propertyStatus = UILabel()
     let favoriteButton = UIButton()
     let rentLabel = UILabel()
     let roomLabel = UILabel()
     let distanceLabel = UILabel()
-    let statusLabel = UILabel()
+    let propertyStatus = UILabel()
     var listing = Listing(propertyID: 0, landlordID: "", address: "", dateAvailable: "", milesToGU: "", numberOfRooms: "", bathroomNumber: "", leaseLength: "", monthRent: "", deposit: "", houseImage: nil, propertyType: "", pets: "", availability: "", description: "", phoneNumber: "", email : "", userID : "")
     
     override func awakeFromNib() {
@@ -41,10 +40,17 @@ class LandlordTableViewCell: UITableViewCell {
         propertyImage.frame = CGRect(x: (screenSize.width * (6/100)), y: (self.frame.height) * (20/100), width: self.frame.width * (25/100) , height: self.frame.height * (60/100))
         self.addSubview(propertyImage)
         
+        //let image = UIImage(named: "emptyStar") as UIImage?
+        favoriteButton.backgroundColor = UIColor.white
+        favoriteButton.frame = CGRect(x: (screenSize.width) * (68/100), y: (self.frame.height) * (4/100), width: self.frame.width * (10/100), height: 30)
+        //favoriteButton.setImage(image, for: .normal)
+        favoriteButton.addTarget(self, action: #selector(ListingTableViewCell.starPressed(_:)), for:UIControlEvents.touchUpInside)
+        self.addSubview(favoriteButton)
+        
         propertyRent.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyRent.textColor = UIColor.black
         propertyRent.adjustsFontSizeToFitWidth = true
-        propertyRent.frame = CGRect(x: (screenSize.width) * (68/100), y: (self.frame.height) * (30/100), width: self.frame.width * (18/100), height: 20)
+        propertyRent.frame = CGRect(x: (screenSize.width) * (68/100), y: (self.frame.height) * (30/100), width: self.frame.width * (18/100), height: 15)
         self.addSubview(propertyRent)
         
         propertyRooms.font = UIFont(name: propertyRent.font.fontName, size: 15)
@@ -58,12 +64,6 @@ class LandlordTableViewCell: UITableViewCell {
         propertyDistance.adjustsFontSizeToFitWidth = true
         propertyDistance.frame = CGRect(x: (screenSize.width) * (68/100), y: (self.frame.height) * (70/100), width: self.frame.width * (18/100), height: 15)
         self.addSubview(propertyDistance)
-        
-        propertyStatus.font = UIFont(name: propertyStatus.font.fontName, size: 15)
-        propertyStatus.textColor = UIColor.white
-        propertyStatus.adjustsFontSizeToFitWidth = true
-        propertyStatus.frame = CGRect(x: (screenSize.width) * (36/100), y: (self.frame.height) * (90/100), width: self.frame.width * (18/100), height: 15)
-        self.addSubview(propertyStatus)
         
         rentLabel.text = "Rent per Month:"
         rentLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
@@ -85,14 +85,6 @@ class LandlordTableViewCell: UITableViewCell {
         distanceLabel.textColor = UIColor.black
         distanceLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (70/100) , width: screenSize.width * (30/100), height: 15)
         self.addSubview(distanceLabel)
-        
-        statusLabel.text = "STATUS:"
-        statusLabel.font = UIFont(name: statusLabel.font.fontName, size: 15)
-        statusLabel.adjustsFontSizeToFitWidth = true
-        statusLabel.textColor = UIColor.white
-        statusLabel.frame = CGRect(x: (screenSize.width) * (6/100), y: (self.frame.height) * (90/100) , width: screenSize.width * (30/100), height: 15)
-        self.addSubview(statusLabel)
-
     }
     
     

@@ -38,6 +38,11 @@
 		15A5EED31DD6857600F1D8A1 /* FavoritesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */; };
 		15B25DB71E6A4ACB00503C03 /* ApproveEdits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B25DB61E6A4ACB00503C03 /* ApproveEdits.swift */; };
 		15B25DB91E6A4B6400503C03 /* ApproveEditsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B25DB81E6A4B6400503C03 /* ApproveEditsPage.swift */; };
+		15BFB8001E7F4576003A6849 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BFB7FF1E7F4576003A6849 /* FavoriteTableViewCell.swift */; };
+		15BFB8021E7F4584003A6849 /* StudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BFB8011E7F4584003A6849 /* StudentTableViewCell.swift */; };
+		15BFB8041E7F45B0003A6849 /* AdminTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BFB8031E7F45B0003A6849 /* AdminTableViewCell.swift */; };
+		15BFB8061E7F45DF003A6849 /* ApproveEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BFB8051E7F45DF003A6849 /* ApproveEditTableViewCell.swift */; };
+		15BFB8081E7F45F3003A6849 /* ApproveNewListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BFB8071E7F45F3003A6849 /* ApproveNewListTableViewCell.swift */; };
 		15C308B41E7335C2002A8BAC /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C308B31E7335C2002A8BAC /* UserTableViewCell.swift */; };
 		15C308B61E73364A002A8BAC /* ManageUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C308B51E73364A002A8BAC /* ManageUsers.swift */; };
 		15D733AC1E5CED2E001915B1 /* LandlordListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D733AB1E5CED2E001915B1 /* LandlordListingPage.swift */; };
@@ -109,6 +114,11 @@
 		15A5EED21DD6857600F1D8A1 /* FavoritesPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesPage.swift; sourceTree = "<group>"; };
 		15B25DB61E6A4ACB00503C03 /* ApproveEdits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveEdits.swift; sourceTree = "<group>"; };
 		15B25DB81E6A4B6400503C03 /* ApproveEditsPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveEditsPage.swift; sourceTree = "<group>"; };
+		15BFB7FF1E7F4576003A6849 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		15BFB8011E7F4584003A6849 /* StudentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTableViewCell.swift; sourceTree = "<group>"; };
+		15BFB8031E7F45B0003A6849 /* AdminTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminTableViewCell.swift; sourceTree = "<group>"; };
+		15BFB8051E7F45DF003A6849 /* ApproveEditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveEditTableViewCell.swift; sourceTree = "<group>"; };
+		15BFB8071E7F45F3003A6849 /* ApproveNewListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveNewListTableViewCell.swift; sourceTree = "<group>"; };
 		15C308B31E7335C2002A8BAC /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		15C308B51E73364A002A8BAC /* ManageUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageUsers.swift; sourceTree = "<group>"; };
 		15D733AB1E5CED2E001915B1 /* LandlordListingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordListingPage.swift; sourceTree = "<group>"; };
@@ -241,6 +251,12 @@
 				15A5EED01DD6855A00F1D8A1 /* SearchAndFilter.swift */,
 				154C50B21DE23C1400F39D67 /* Listing.swift */,
 				7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */,
+				15BFB7FF1E7F4576003A6849 /* FavoriteTableViewCell.swift */,
+				15BFB8031E7F45B0003A6849 /* AdminTableViewCell.swift */,
+				7CF00CD31E74C30A00598169 /* LandlordTableViewCell.swift */,
+				15BFB8011E7F4584003A6849 /* StudentTableViewCell.swift */,
+				15BFB8051E7F45DF003A6849 /* ApproveEditTableViewCell.swift */,
+				15BFB8071E7F45F3003A6849 /* ApproveNewListTableViewCell.swift */,
 				15C308B31E7335C2002A8BAC /* UserTableViewCell.swift */,
 				7C854E541DC400AD00E02883 /* Main.storyboard */,
 				7C854E571DC400AD00E02883 /* Assets.xcassets */,
@@ -249,7 +265,6 @@
 				7C89D4E81DC993C200326666 /* GoogleService-Info.plist */,
 				7C89D4E51DC97F8B00326666 /* Ocha-Bridging-Header.h */,
 				7C20DED01E7230D000E1A082 /* FireUser.swift */,
-				7CF00CD31E74C30A00598169 /* LandlordTableViewCell.swift */,
 			);
 			path = Ocha;
 			sourceTree = "<group>";
@@ -491,6 +506,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C854E531DC400AD00E02883 /* SecondViewController.swift in Sources */,
+				15BFB8041E7F45B0003A6849 /* AdminTableViewCell.swift in Sources */,
 				7CF00CD41E74C30A00598169 /* LandlordTableViewCell.swift in Sources */,
 				153FBDBB1E68F83A008E4B41 /* ApproveNewListings.swift in Sources */,
 				7C2B9F351E3C14F200F6859F /* Extensions.swift in Sources */,
@@ -498,9 +514,11 @@
 				15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */,
 				15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */,
 				15C308B61E73364A002A8BAC /* ManageUsers.swift in Sources */,
+				15BFB8061E7F45DF003A6849 /* ApproveEditTableViewCell.swift in Sources */,
 				7C854E4F1DC400AD00E02883 /* AppDelegate.swift in Sources */,
 				15A5EED31DD6857600F1D8A1 /* FavoritesPage.swift in Sources */,
 				155C36B81DC4205A00154B12 /* Login.swift in Sources */,
+				15BFB8081E7F45F3003A6849 /* ApproveNewListTableViewCell.swift in Sources */,
 				1516D1521E36BDFF009FBCB3 /* EditListing.swift in Sources */,
 				151930381DE25D1900858B8A /* ListingPage.swift in Sources */,
 				15A5EED11DD6855A00F1D8A1 /* SearchAndFilter.swift in Sources */,
@@ -509,9 +527,11 @@
 				153FBDC11E690311008E4B41 /* ApproveNewListingPage.swift in Sources */,
 				154C50B31DE23C1400F39D67 /* Listing.swift in Sources */,
 				15A5EEC51DD67A2F00F1D8A1 /* AdminTabController.swift in Sources */,
+				15BFB8001E7F4576003A6849 /* FavoriteTableViewCell.swift in Sources */,
 				153FBDBF1E68FA69008E4B41 /* EditAdminListing.swift in Sources */,
 				15E63D5A1E5FBF490090E37F /* FavoritesMap.swift in Sources */,
 				15D733AC1E5CED2E001915B1 /* LandlordListingPage.swift in Sources */,
+				15BFB8021E7F4584003A6849 /* StudentTableViewCell.swift in Sources */,
 				15C308B41E7335C2002A8BAC /* UserTableViewCell.swift in Sources */,
 				15A5EEC11DD6752100F1D8A1 /* StudentTabController.swift in Sources */,
 				1503592B1DD000DE005AD597 /* EditAccountInfo.swift in Sources */,

@@ -53,17 +53,6 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
 
         
         
-        /*let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (25/100) , height: 20)
-        toHomePageButton.setTitle("Logout", for: UIControlState.normal)
-        toHomePageButton.titleLabel?.font = UIFont(name: viewTitle.font.fontName, size: 20)
-        toHomePageButton.titleLabel?.textColor = UIColor.white
-        toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
-        toHomePageButton.layer.cornerRadius = 4
-        toHomePageButton.addTarget(self, action: #selector(StudentHomePage.logout(_:)), for: UIControlEvents.touchUpInside)
-        view.addSubview(toHomePageButton) */
-        
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -269,8 +258,8 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "LandlordTableViewCell"
-        let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! LandlordTableViewCell
+        let cellIdentifier = "ListingTableViewCell"
+        let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
         
         
         let listing = listings[indexPath.row]
@@ -282,12 +271,9 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.propertyRent.text = String(listing.monthRent)
         cell.propertyRooms.text = String(listing.numberOfRooms)
         cell.propertyImage.image = listing.houseImage
-        cell.favoriteButton.isHidden = true
         cell.propertyStatus.text = listingStatus
-        //cell.property
-    
-        //cell.propertyImage.contentMode = .scaleAspectFill
-        
+        cell.favoriteButton.isHidden = true
+
         print(indexPath.row)
         print (listingStatus)
         
@@ -372,7 +358,6 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Hey")
     }
     
     // Logs out and deletes blocked users
