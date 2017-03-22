@@ -42,6 +42,7 @@ class ApproveEditsPage: UITableViewController {
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var leaseLabel: UILabel!
     @IBOutlet weak var toHomePageButton: UIButton!
+    @IBOutlet weak var toHomePageButton1: UIButton!
     
     
     let URL_APPROVE_EDIT = "http://147.222.165.203/MyWebService/api/approveEdits.php"
@@ -156,6 +157,30 @@ class ApproveEditsPage: UITableViewController {
     
     
     @IBAction func approveEdits(_ sender: Any) {
+        // Make pop up
+        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to approve these edits and make them visible?", preferredStyle: .alert)
+        
+        // If cancel, do nothing
+        let alertActionCancel = UIAlertAction(title: "Cancel", style: .default) {
+            (_) in
+            return
+        }
+        // If yes, upload the changes
+        let alertActionYes = UIAlertAction(title: "Yes", style: .default){
+            (_) in
+            self.saveEdits()
+            // Go back to previous page
+            self.toHomePageButton1.sendActions(for: .touchUpInside)
+            
+        }
+        alertVC.addAction(alertActionCancel)
+        alertVC.addAction(alertActionYes)
+        self.present(alertVC, animated: true, completion: nil)
+        
+    }
+    
+    /* This function saves edits to the database and changes the status of a property */
+    func saveEdits(){
         let saveRequestURL = NSURL(string: URL_APPROVE_EDIT)
         
         //creating NSMutableURLRequest
@@ -165,7 +190,7 @@ class ApproveEditsPage: UITableViewController {
         saveRequest.httpMethod = "POST"
         
         let currentProperty = String(propertyID)
-
+        
         //concatenating keys and values from text field
         let postParameters="address="+address+"&rent_per_month="+rent+"&number_of_rooms="+rooms+"&property_id="+currentProperty+"&deposit="+deposit+"&number_of_bathrooms="+bathroomNumber+"&pets="+pets+"&availability="+availability+"&description="+propDescription+"&date_available="+dateAvailable+"&lease_length="+leaseLength+"&phone_number="+phoneNumber+"&email="+email+"&status=Approved"+"&miles_to_gu="+distance;
         
@@ -232,9 +257,33 @@ class ApproveEditsPage: UITableViewController {
             }
         }
         saveTask2.resume()
+
     }
 
     @IBAction func discardEdits(_ sender: Any) {
+        // Make pop up
+        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to disapprove these edits? If a listing has not been previously approved, doing this action will delete the listing.", preferredStyle: .alert)
+        
+        // If cancel, do nothing
+        let alertActionCancel = UIAlertAction(title: "Cancel", style: .default) {
+            (_) in
+            return
+        }
+        // If yes, upload the changes
+        let alertActionYes = UIAlertAction(title: "Yes", style: .default){
+            (_) in
+            self.rejectEdit()
+            // Go back to previous page
+            self.toHomePageButton1.sendActions(for: .touchUpInside)
+            
+        }
+        alertVC.addAction(alertActionCancel)
+        alertVC.addAction(alertActionYes)
+        self.present(alertVC, animated: true, completion: nil)
+
+    }
+    func rejectEdit()
+    {
         let saveRequestURL = NSURL(string: URL_REJECT_EDIT)
         
         //creating NSMutableURLRequest
@@ -325,8 +374,7 @@ class ApproveEditsPage: UITableViewController {
             }
         }
         saveTask2.resume()
-        
-        
+
     }
 
     override func didReceiveMemoryWarning() {
