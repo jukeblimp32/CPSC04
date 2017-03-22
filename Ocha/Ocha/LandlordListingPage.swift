@@ -75,6 +75,12 @@ class LandlordListingPage: UITableViewController {
         
     }
     
+    
+    //HI SCOTT IM YOUR FRIEND******************
+    @IBAction func deleteListing(_ sender: Any) {
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //If the segue from any table cell to listingPage is clicked
         if segue.identifier == "EditListing",
