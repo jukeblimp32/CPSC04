@@ -80,6 +80,31 @@ class ListingPage: UITableViewController {
         }
     }
   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //If the segue from any table cell to listingPage is clicked
+        if segue.identifier == "seeReviews",
+            let destination = segue.destination as? StudentPropertyReviews
+            
+        {
+            destination.address = address
+            destination.rent = rent
+            destination.rooms = rooms
+            destination.distance = distance
+            destination.imageUrl = imageUrl
+            destination.propertyID = propertyID
+            destination.leaseLength = leaseLength
+            destination.dateAvailable = dateAvailable
+            destination.bathroomNumber = bathroomNumber
+            destination.deposit = deposit
+            destination.email = email
+            destination.pets = pets
+            destination.availability = availability
+            destination.propDescription = propDescription
+            destination.phoneNumber = phoneNumber
+            
+        }
+    }
+    
     @IBAction func starPressed(_ sender: UIButton) {
         if (sender.currentImage?.isEqual(UIImage(named: "filledStar")))!{
             sender.setImage(UIImage(named: "emptyStar"), for: UIControlState.normal)

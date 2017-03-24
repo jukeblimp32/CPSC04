@@ -66,6 +66,11 @@ class AdminListingPage: UITableViewController {
         propertyImage.loadCachedImages(url: imageUrl)
     }
     
+    //******HI SCOTT IM ALSO YOUR FRIEND HAHAHAHA
+    @IBAction func deleteListing(_ sender: Any) {
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //If the segue from any table cell to listingPage is clicked
         if segue.identifier == "EditAdminListing",
@@ -91,6 +96,10 @@ class AdminListingPage: UITableViewController {
             destination.phoneNumber = phoneNumber
             
         }
+        
+        //DO AN IF HERE FOR SEEING REVIEWS AND SENDING INFO
+        //***** DONT FORGET LEAH OTHERWISE YOU ARE DUMB
+        
     }
     
     
