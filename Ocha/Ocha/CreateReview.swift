@@ -10,6 +10,8 @@ import UIKit
 
 class CreateReview: UIViewController {
     
+    let URL_SAVE_REVIEW = "http://147.222.165.203/MyWebService/api/createReview.php"
+    
     var imageUrl = ""
     var address : String = ""
     var distance : String = ""
@@ -57,6 +59,58 @@ class CreateReview: UIViewController {
             destination.phoneNumber = phoneNumber
             
         }
+    }
+    
+    func submitReview(){
+        //created NSURL
+        let saveRequestURL = NSURL(string: URL_SAVE_REVIEW)
+        
+        //creating NSMutableURLRequest
+        let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+        
+        //setting method to POST
+        saveRequest.httpMethod = "POST"
+        
+        //getting values from text fields
+        
+       /* let propId =
+        let cat1 =
+        let cat2 =
+        let cat3 =
+        let cat4 =
+        let cat5 =*/
+        
+        var postParameters = ""
+      //  postParameters="property_id="+propId!+"&category_1="+cat1!+"&category_2="+cat2!+"&category_3="+cat3!+"&category_4="+cat4!+"&category_5="+cat5!;
+
+        //adding parameters to request body
+        saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+        //task to send to post request
+        let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+            data,response, error in
+            if error != nil{
+                print("error is \(error)")
+                return;
+            }
+            do{
+                //converting response to NSDictioanry
+                let alert = UIAlertController(title: "Review Added!", message:"Review added", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                self.present(alert, animated: true){}
+                    
+                //Here is the problem child
+                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                if let parseJSON = myJSON{
+                    var msg:String!
+                    msg = parseJSON["message"]as! String?
+                    print(msg)
+                }
+            }catch{
+                print(error)
+            }
+        }
+        saveTask.resume()
+
     }
     
     override func didReceiveMemoryWarning() {
