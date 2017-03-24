@@ -9,6 +9,11 @@
 import UIKit
 
 class StudentPropertyReviews: UITableViewController {
+    let getReviews = "http://147.222.165.203/MyWebService/api/DisplayReviews.php"
+    
+    @IBOutlet var propertyReviews: UITableView!
+    
+    var reviews = [Review]()
     
     var imageUrl = ""
     var address : String = ""
@@ -31,13 +36,15 @@ class StudentPropertyReviews: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("HI FUCK YOU")
+        reviews.removeAll()
+        loadReviews()
+        self.propertyReviews.register(ReviewTableViewCell.self, forCellReuseIdentifier: "cell")
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //If the segue from any table cell to listingPage is clicked
-        if segue.identifier == "ExitReviews",
+        if segue.identifier == "exitReviews",
             let destination = segue.destination as? ListingPage
 
         {
@@ -82,6 +89,93 @@ class StudentPropertyReviews: UITableViewController {
         }
         
     }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return reviews.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cellIdentifier = "ReviewTableViewCell"
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ReviewTableViewCell
+        
+        let review = reviews[indexPath.row]
+        
+        cell.propertyID = review.propertyID
+        cell.reviewNum = review.reviewNum
+        cell.responseScore.text = review.landlordResponse
+        cell.locationScore.text = review.location
+        cell.valueScore.text = review.priceValue
+        cell.spaceScore.text = review.space
+        cell.qualityScore.text = review.quality
+
+        
+        return cell
+    }
+    
+    
+    func loadReviews(){
+        //create NSURL
+        let getRequestURL = NSURL(string: getReviews)
+        //creating NSMutableURLRequest
+        let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
+        //setting the method to GET
+        getRequest.httpMethod = "GET"
+        //task to be sent to the GET request
+        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest) {
+            data, response,error in
+            //If there is an error in connecting with the database, print error
+            if error != nil {
+                print("error is \(error)")
+                return;
+            }
+            do {
+                //converting response to dictionary
+                var propertyJSON : NSDictionary!
+                propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                //Getting the properties in an array
+                let propReviews: NSArray = propertyJSON["reviews"] as! NSArray
+                
+                //looping through all the objects in the array
+                DispatchQueue.main.async(execute: {
+                    for i in 0 ..< propReviews.count{
+                        //Getting data from each listing and saving to vars
+                        let reviewIdValue = propReviews[i] as? NSDictionary
+                        let reviewID = reviewIdValue?["review_id"] as! Int
+                        let propIdValue = propReviews[i] as? NSDictionary
+                        let propID = propIdValue?["property_id"] as! Int
+                        let cat1Value = propReviews[i] as? NSDictionary
+                        let category1 = cat1Value?["category_1"] as! String
+                        let cat2Value = propReviews[i] as? NSDictionary
+                        let category2 = cat2Value?["category_2"] as! String
+                        let cat3Value = propReviews[i] as? NSDictionary
+                        let category3 = cat3Value?["category_3"] as! String
+                        let cat4Value = propReviews[i] as? NSDictionary
+                        let category4 = cat4Value?["category_4"] as! String
+                        let cat5Value = propReviews[i] as? NSDictionary
+                        let category5 = cat5Value?["category_5"] as! String
+                      
+                        
+                        if (self.propertyID == propID) {
+                            let review = Review(propertyID: propID, reviewNum: reviewID, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
+                            
+                            self.reviews.append(review)
+                        }
+                    }
+                    
+                })
+            }
+            catch {
+                print(error)
+            }
+        }
+        getTask.resume()
+    }
+
+    
+    
+    
     
     
     override func didReceiveMemoryWarning() {

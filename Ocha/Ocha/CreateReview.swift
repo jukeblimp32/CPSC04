@@ -31,6 +31,20 @@ class CreateReview: UIViewController {
     var image : UIImage = UIImage(named: "default")!
     var favoritePropIDs = [Int]()
     
+    @IBOutlet var responseScore: UILabel!
+    @IBOutlet var spaceScore: UILabel!
+    @IBOutlet var valueScore: UILabel!
+    @IBOutlet var locationScore: UILabel!
+    @IBOutlet var qualityScore: UILabel!
+    
+    
+    @IBOutlet var responseSlider: UISlider!
+    @IBOutlet var locationSlider: UISlider!
+    @IBOutlet var priceValueSlider: UISlider!
+    @IBOutlet var spaceSlider: UISlider!
+    @IBOutlet var qualitySlider: UISlider!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -60,8 +74,30 @@ class CreateReview: UIViewController {
             
         }
     }
+
+    @IBAction func responseSliderChanged(_ sender: Any) {
+        self.responseScore.text = String(Int(self.responseSlider.value))
+    }
     
-    func submitReview(){
+    
+    @IBAction func locationSliderChanged(_ sender: Any) {
+        self.locationScore.text = String(Int(self.locationSlider.value))
+    }
+    
+    @IBAction func priceValueSliderChanged(_ sender: Any) {
+        self.valueScore.text = String(Int(self.priceValueSlider.value))
+    }
+    
+    
+    @IBAction func spaceSliderChanged(_ sender: Any) {
+        self.spaceScore.text = String(Int(self.spaceSlider.value))
+    }
+    
+    @IBAction func qualitySliderChanged(_ sender: Any) {
+        self.qualityScore.text = String(Int(self.qualitySlider.value))
+    }
+   
+    @IBAction func submitReview(_ sender: Any) {
         //created NSURL
         let saveRequestURL = NSURL(string: URL_SAVE_REVIEW)
         
@@ -73,16 +109,18 @@ class CreateReview: UIViewController {
         
         //getting values from text fields
         
-       /* let propId =
-        let cat1 =
-        let cat2 =
-        let cat3 =
-        let cat4 =
-        let cat5 =*/
+        //let propId = propertyID
+ 
+        let propId = String(propertyID)
+        let landlordResponse = responseScore.text
+        let location = locationScore.text
+        let priceValue = valueScore.text
+        let spacePerson = spaceScore.text
+        let overallQuality = qualityScore.text
         
-        var postParameters = ""
-      //  postParameters="property_id="+propId!+"&category_1="+cat1!+"&category_2="+cat2!+"&category_3="+cat3!+"&category_4="+cat4!+"&category_5="+cat5!;
-
+        let postParameters = "property_id="+propId+"&category_1="+landlordResponse!+"&category_2="+location!+"&category_3="+priceValue!+"&category_4="+spacePerson!+"&category_5="+overallQuality!;
+        
+        
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
         //task to send to post request

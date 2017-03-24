@@ -11,21 +11,20 @@ import Firebase
 
 class ReviewTableViewCell: UITableViewCell {
     
-    @IBOutlet var propertyImage: UIImageView!
-    @IBOutlet var propertyDistance: UILabel!
-    @IBOutlet var propertyRent: UILabel!
-    @IBOutlet var propertyAddress: UILabel!
-    @IBOutlet var propertyRooms: UILabel!
+    var propertyID : Int = 0
+    var reviewNum: Int = 0
     
-    var listing = Listing(propertyID: 0, landlordID: "", address: "", dateAvailable: "", milesToGU: "", numberOfRooms: "", bathroomNumber: "", leaseLength: "", monthRent: "", deposit: "", houseImage: nil, propertyType: "", pets: "", availability: "", description: "", phoneNumber: "", email : "", userID : "")
+    
+    @IBOutlet var responseScore: UILabel!
+    @IBOutlet var qualityScore: UILabel!
+    @IBOutlet var spaceScore: UILabel!
+    @IBOutlet var valueScore: UILabel!
+    @IBOutlet var locationScore: UILabel!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        propertyDistance.adjustsFontSizeToFitWidth = true
-        propertyRent.adjustsFontSizeToFitWidth = true
-        propertyAddress.adjustsFontSizeToFitWidth = true
-        propertyRooms.adjustsFontSizeToFitWidth = true
     }
     
     
