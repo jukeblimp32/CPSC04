@@ -21,6 +21,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         UITabBar.appearance().tintColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
+        // Get a scale based on iPhone 5
+        let screenScale = view.frame.height / 568.0
         
         // Do any additional setup after loading the view, typically from a nib.
         GIDSignIn.sharedInstance().uiDelegate = self
@@ -28,15 +30,27 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         // Create actual Facebook button
         let fbloginButton = FBSDKLoginButton()
         view.addSubview(fbloginButton)
-        fbloginButton.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (75/100), width: (view.frame.width) * (60/100), height: 50)
+        fbloginButton.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (75/100), width: (view.frame.width) * (60/100), height: (view.frame.height) * (6/100))
         fbloginButton.delegate = self
+        fbloginButton.titleLabel?.font = UIFont.systemFont(ofSize: 20 * screenScale)
         fbloginButton.readPermissions = ["email"]
         
         //add google sign in button
-        let googleButton = GIDSignInButton()
-        googleButton.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (85/100), width: view.frame.width * (60/100), height: 50)
+        //let googleButton = GIDSignInButton()
+        let googleButton = UIButton()
+        googleButton.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (85/100), width: view.frame.width * (60/100), height: (view.frame.height) * (6/100))
+        googleButton.setImage(UIImage(named: "google1.png"), for: UIControlState.normal)
+        //googleButton.contentMode = UIViewContentMode.scaleToFill
+        googleButton.imageEdgeInsets = UIEdgeInsetsMake(0, 7 * screenScale, 0, 0)
+        googleButton.setTitle("Sign in", for: UIControlState.normal)
+        googleButton.titleEdgeInsets = UIEdgeInsetsMake(0, (googleButton.frame.width / 4) - (20 * screenScale) / 2, 0, 0);
+        googleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left;
+        googleButton.setTitleColor(UIColor.black, for: .normal)
+        googleButton.titleLabel?.font = UIFont.systemFont(ofSize: 20 * screenScale)
+        googleButton.backgroundColor = UIColor.white
+        googleButton.addTarget(self, action: #selector(ViewController.googleLogin), for: UIControlEvents.touchUpInside)
         view.addSubview(googleButton)
-        GIDSignIn.sharedInstance().uiDelegate = self
+        //GIDSignIn.sharedInstance().uiDelegate = self
         
         let divisorLine = UIView()
         divisorLine.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (70/100), width: (view.frame.width) * (25/100), height: 2)
@@ -48,29 +62,29 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         divisorLine2.backgroundColor = UIColor.white
         view.addSubview(divisorLine2)
         
-        
         //add logo
         let imageName = "Logo.png"
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
         
-        imageView.frame = CGRect(x: (view.frame.width) * (15/100), y: (view.frame.height) * (2/100), width: view.frame.width * (70/100), height: 150)
+        imageView.frame = CGRect(x: (view.frame.width) * (15/100), y: (view.frame.height) * (2/100), width: view.frame.width * (70/100), height: (view.frame.height) * (20/100))
         view.addSubview(imageView)
         
         //add email label
         let emailLabel = UILabel()
         emailLabel.text = "Email:"
-        emailLabel.font = UIFont(name: emailLabel.font.fontName, size: 17)
+        //emailLabel.font = UIFont(name: emailLabel.font.fontName, size: 17)
+        emailLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
         emailLabel.textColor = UIColor.white
-        emailLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (27/100), width: view.frame.width / 6, height: 15)
+        emailLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (27/100), width: view.frame.width / 6, height: 20 * screenScale)
         view.addSubview(emailLabel)
         
         //add password label
         let passwordLabel = UILabel()
         passwordLabel.text = "Password:"
-        passwordLabel.font = UIFont(name: passwordLabel.font.fontName, size: 17)
+        passwordLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
         passwordLabel.textColor = UIColor.white
-        passwordLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (37/100), width: view.frame.width / 3, height: 15)
+        passwordLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (37/100), width: view.frame.width / 3, height: 20 * screenScale)
         view.addSubview(passwordLabel)
         
         //add OR label
@@ -79,36 +93,45 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         orLabel.textAlignment = .center
         orLabel.adjustsFontSizeToFitWidth = true
         orLabel.minimumScaleFactor = 0.5
+        orLabel.font = UIFont.systemFont(ofSize: 20 * screenScale)
         orLabel.textColor = UIColor.white
-        orLabel.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (70/100), width: view.frame.width / 2, height: 15)
+        let orOffset = (20 * screenScale) / 2
+        orLabel.frame = CGRect(x: (view.frame.width) / 4, y: (view.frame.height) * (70/100) - orOffset, width: view.frame.width / 2, height: 20 * screenScale)
         view.addSubview(orLabel)
 
         
         
         //add email textfield
-        emailTextField.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (30/100), width: view.frame.width * (60/100), height: 25)
+        emailTextField.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (30/100), width: view.frame.width * (60/100), height: (view.frame.height) * (5/100))
         view.addSubview(emailTextField)
         emailTextField.borderStyle = UITextBorderStyle.roundedRect
         emailTextField.backgroundColor = UIColor.white
         // Add these lines to dismiss the keyboard by clicking done
+        emailTextField.font = UIFont.systemFont(ofSize: 20 * screenScale)
         emailTextField.returnKeyType = UIReturnKeyType.done
+        emailTextField.adjustsFontSizeToFitWidth = true
         self.emailTextField.delegate = self
         
         //add password textfield
-        passwordTextField.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (40/100), width: view.frame.width * (60/100), height: 25)
+        passwordTextField.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (40/100), width: view.frame.width * (60/100), height: (view.frame.height) * (5/100))
         view.addSubview(passwordTextField)
         passwordTextField.borderStyle = UITextBorderStyle.roundedRect
         passwordTextField.backgroundColor = UIColor.white
         passwordTextField.isSecureTextEntry = true
+        passwordTextField.font = UIFont.systemFont(ofSize: 20 * screenScale)
         passwordTextField.returnKeyType = UIReturnKeyType.done
         self.passwordTextField.delegate = self
         
         //add login button
         let loginButton = UIButton()
-        loginButton.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (50/100), width: view.frame.width * (60/100), height: 40)
+        loginButton.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (50/100), width: view.frame.width * (60/100), height: (view.frame.height) * (6/100))
         loginButton.setTitle("Login", for: UIControlState.normal)
-        loginButton.titleLabel?.font = UIFont(name: emailLabel.font.fontName, size: 20)
         loginButton.setTitleColor(UIColor.white, for: .normal)
+        //loginButton.titleLabel?.minimumScaleFactor = 0.01;
+        loginButton.titleLabel?.numberOfLines = 1;
+        loginButton.titleLabel?.adjustsFontSizeToFitWidth = true;
+        loginButton.titleLabel?.lineBreakMode = NSLineBreakMode.byClipping;
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 20 * screenScale)
         loginButton.addTarget(self, action: #selector(ViewController.submitUserInfo(_:)), for: UIControlEvents.touchUpInside)
         loginButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
         loginButton.layer.cornerRadius = 4
@@ -118,11 +141,12 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         
          //add create account button
         let createAccountButton = UIButton()
-        createAccountButton.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (60/100), width: view.frame.width * (60/100), height: 40)
+        createAccountButton.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (60/100), width: view.frame.width * (60/100), height: (view.frame.height) * (6/100))
         createAccountButton.setTitle("Create An Account", for: UIControlState.normal)
         // Dynamically change size of font to fit screen
         createAccountButton.titleLabel?.adjustsFontSizeToFitWidth = true
         createAccountButton.titleLabel?.minimumScaleFactor=0.5
+        createAccountButton.titleLabel?.font = UIFont.systemFont(ofSize: 20 * screenScale)
         createAccountButton.setTitleColor(UIColor.white, for: .normal)
         createAccountButton.addTarget(self, action: #selector(ViewController.goToCreateAccount(_:)), for: UIControlEvents.touchUpInside)
         createAccountButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
@@ -130,6 +154,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         view.addSubview(createAccountButton)
         self.view.addSubview(createAccountButton)
         
+    }
+    
+    func googleLogin(){
+        GIDSignIn.sharedInstance().signIn()
     }
  
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
