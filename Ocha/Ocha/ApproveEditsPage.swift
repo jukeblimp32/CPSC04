@@ -9,6 +9,11 @@
 import UIKit
 
 class ApproveEditsPage: UITableViewController {
+    
+    private var propertyStatus : String = ""
+    
+    var propStat : String = ""
+    
     var imageUrl = ""
     var address : String = ""
     var distance : String = ""
@@ -49,6 +54,7 @@ class ApproveEditsPage: UITableViewController {
     let URL_REJECT_EDIT = "http://147.222.165.203/MyWebService/api/rejectEdits.php"
     let statusChange = "http://147.222.165.203/MyWebService/api/statusChange.php"
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
+    let getStatus = "http://147.222.165.203/MyWebService/api/getStatus.php"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +79,80 @@ class ApproveEditsPage: UITableViewController {
         petsLabel.adjustsFontSizeToFitWidth = true
         leaseLabel.adjustsFontSizeToFitWidth = true
         propertyImage.loadCachedImages(url: imageUrl)
+    
+      /*  print("LOOK")
+        getPropertyStatus{
+            propertyStat in
+            print(propertyStat)
+            self.propertyStatus = propertyStat
+            print(self.propertyStatus)
+            print(self.status())
+            //print("in getpropstat function" + propertyStatus)
+            //retun self.propertyStatus
+        }*/
+        //print("propertyStatus is: " + self.propStat)
+        //print(status())
+        //print (returningPropStat)
+        //getPropertyStatus{propertyStatus in print(propertyStatus)}
+    
     }
+    
+
+    func getPropertyStatus(callback:@escaping (String) -> ()){
+        //var propertyStatus = ""
+        //create NSURL
+        let getRequestURL = NSURL(string: getStatus)
+        //creating NSMutableURLRequest
+        let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
+        //setting the method to GET
+        getRequest.httpMethod = "GET"
+        //task to be sent to the GET request
+        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest) {
+            data, response,error in
+            //If there is an error in connecting with the database, print error
+            if error != nil {
+                print("error is \(error)")
+                return;
+            }
+            do {
+                //converting response to dictionary
+                var propertyJSON : NSDictionary!
+                propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                //Getting the properties in an array
+                let propStatus: NSArray = propertyJSON["propStatus"] as! NSArray
+                //looping through all the objects in the array
+                DispatchQueue.main.async(execute: {
+                    for i in 0 ..< propStatus.count{
+                        //Getting data from each listing and saving to vars
+                        let propIdValue = propStatus[i] as? NSDictionary
+                        let propertyID = propIdValue?["property_id"] as! Int
+                        let statusValue = propStatus[i] as? NSDictionary
+                        let status = statusValue?["status"] as! String
+                        
+                        if(propertyID == self.propertyID){
+                            //propertyStatus = String(status)
+                            callback(String(status))
+                        }
+                    }
+                    
+                })
+            }
+            catch {
+                print(error)
+            }
+        }
+        getTask.resume()
+       // return propertyStatus
+        
+    }
+    
+    func status() -> String{
+       // return getPropertyStatus()
+        return self.propertyStatus
+    }
+    
+    
     
     func findOriginalListing(){
         var tempListings = [(Int, Listing)]()
@@ -284,6 +363,7 @@ class ApproveEditsPage: UITableViewController {
     }
     func rejectEdit()
     {
+        //getPropertyStatus()
         let saveRequestURL = NSURL(string: URL_REJECT_EDIT)
         
         //creating NSMutableURLRequest
@@ -307,6 +387,7 @@ class ApproveEditsPage: UITableViewController {
         let origphoneNumber = listing.phoneNumber
         let origemail = listing.email
         let origdistance = listing.milesToGU
+        
         
         //concatenating keys and values from text field
         let postParameters="address="+origaddress+"&rent_per_month="+origrent+"&number_of_rooms="+origrooms+"&property_id="+currentProperty+"&deposit="+origdeposit+"&number_of_bathrooms="+origbathroomNumber+"&pets="+origpets+"&availability="+origavailability+"&description="+origpropDescription+"&date_available="+origdateAvailable+"&lease_length="+origleaseLength+"&phone_number="+origphoneNumber+"&email="+origemail+"&status=Approved"+"&miles_to_gu="+origdistance;
@@ -347,12 +428,43 @@ class ApproveEditsPage: UITableViewController {
         
         //getting values from text fields
         
-        //let landlordID = self.firstName
-        let postParameters2="status=Approved"+"&property_id="+String(self.propertyID);
-        
+        print("LOOK")
+        getPropertyStatus{
+            propertyStat in
+            print(propertyStat)
+            self.propertyStatus = propertyStat
+            if (self.propertyStatus == "Approved"){
+                let postParameters2="status=Editing"+"&property_id="+String(self.propertyID);
+                saveRequest2.httpBody=postParameters2.data(using: String.Encoding.utf8)
+                //task to send to post request
+                let saveTask2=URLSession.shared.dataTask(with: saveRequest2 as URLRequest){
+                    data,response, error in
+                    if error != nil{
+                        print("error is \(error)")
+                        return;
+                    }
+                    do{
+                        //converting response to NSDictioanry
+                        
+                        let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                        if let parseJSON = myJSON{
+                            var msg:String!
+                            msg = parseJSON["message"]as! String?
+                            print(msg)
+                        }
+                    }catch{
+                        print(error)
+                    }
+                }
+                saveTask2.resume()
+            }
+        }
+       // if originalStatus == "Approved"{
+       // let postParameters2="status=Editing"+"&property_id="+String(self.propertyID);
+        //}
         
         //adding parameters to request body
-        saveRequest2.httpBody=postParameters2.data(using: String.Encoding.utf8)
+      /*  saveRequest2.httpBody=postParameters2.data(using: String.Encoding.utf8)
         //task to send to post request
         let saveTask2=URLSession.shared.dataTask(with: saveRequest2 as URLRequest){
             data,response, error in
@@ -373,7 +485,7 @@ class ApproveEditsPage: UITableViewController {
                 print(error)
             }
         }
-        saveTask2.resume()
+        saveTask2.resume()*/
 
     }
 
