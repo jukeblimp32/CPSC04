@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fcs-9k-Ynp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fcs-9k-Ynp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -187,7 +187,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qto-Bf-Rpr">
-                                                    <rect key="frame" x="7" y="29" width="351" height="89"/>
+                                                    <rect key="frame" x="7" y="29" width="350" height="89"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="507251801.70504302">
                                                         <!--2017-01-27 23:16:41 +0000-->
@@ -938,6 +938,7 @@
                         <outlet property="phoneLabel" destination="C3o-mc-7WI" id="JVP-Qd-iZW"/>
                         <outlet property="propertyImage" destination="xwJ-BX-Nee" id="2VX-rH-bJj"/>
                         <outlet property="rentLabel" destination="8Zy-lV-Tku" id="OEs-zf-yex"/>
+                        <outlet property="toHomePageButton" destination="kOI-IF-WVm" id="von-T0-kY4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cT-oE-KX6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3664,6 +3665,7 @@
                         <outlet property="phoneLabel" destination="buQ-5Y-QBw" id="5QS-x2-SSl"/>
                         <outlet property="propertyImage" destination="Qe0-YM-oJ1" id="2t9-T6-BYe"/>
                         <outlet property="rentLabel" destination="kb3-ZU-ACR" id="pos-7U-GrY"/>
+                        <outlet property="toHomePageButton" destination="X6A-74-6H7" id="D7B-YZ-2az"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MQo-za-8KY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3817,7 +3819,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="AZb-1U-AYy">
-                                                    <rect key="frame" x="12" y="31" width="331" height="90"/>
+                                                    <rect key="frame" x="11" y="31" width="332" height="90"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="508559640.85728002">
                                                         <!--2017-02-12 02:34:00 +0000-->
@@ -5110,17 +5112,17 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="R2m-C0-Dkv"/>
-        <segue reference="n3e-hw-rhr"/>
-        <segue reference="czO-4x-Dp4"/>
-        <segue reference="UKi-hf-e5d"/>
-        <segue reference="bi6-qh-6oc"/>
-        <segue reference="m06-09-obF"/>
         <segue reference="Wgi-Vy-FKQ"/>
         <segue reference="h93-ZZ-6l2"/>
+        <segue reference="dOb-qY-2Pf"/>
         <segue reference="9BA-JH-gVZ"/>
-        <segue reference="mmq-Ki-Or5"/>
-        <segue reference="ZLl-OI-v7r"/>
         <segue reference="vYR-Ob-tDb"/>
+        <segue reference="UKi-hf-e5d"/>
+        <segue reference="czO-4x-Dp4"/>
+        <segue reference="bi6-qh-6oc"/>
+        <segue reference="R2m-C0-Dkv"/>
+        <segue reference="n3e-hw-rhr"/>
+        <segue reference="m06-09-obF"/>
+        <segue reference="ZLl-OI-v7r"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -27,6 +27,7 @@ class AdminListingPage: UITableViewController {
     var email : String = ""
     var propertyID : Int = 0
     var image : UIImage = UIImage(named: "default")!
+    let removeProperty = "http://147.222.165.203/MyWebService/api/RemoveProperty.php"
     
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var propertyImage: UIImageView!
@@ -66,8 +67,65 @@ class AdminListingPage: UITableViewController {
         propertyImage.loadCachedImages(url: imageUrl)
     }
     
-    //******HI SCOTT IM ALSO YOUR FRIEND HAHAHAHA
+    /* Deletes current listing from database */
     @IBAction func deleteListing(_ sender: Any) {
+        // Create alert
+        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to permanently delete this listing?", preferredStyle: .alert)
+        
+        // Do nothing if we cancel
+        let alertActionResend = UIAlertAction(title: "Cancel", style: .default) {
+            (_) in
+            return
+        }
+        // If yes, delete the listing from the database
+        let alertActionOkay = UIAlertAction(title: "Yes", style: .default){
+            (_) in
+            //created NSURL
+            let saveRequestURL = NSURL(string: self.removeProperty)
+            
+            //creating NSMutableURLRequest
+            let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+            
+            //setting method to POST
+            saveRequest.httpMethod = "POST"
+            
+            //getting values from text fields
+            
+            //let landlordID = self.firstName
+            let postParameters="property_id="+String(self.propertyID);
+            
+            
+            //adding parameters to request body
+            saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+            //task to send to post request
+            let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+                data,response, error in
+                if error != nil{
+                    print("error is \(error)")
+                    return;
+                }
+                do{
+                    //converting response to NSDictioanry
+                    
+                    let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    if let parseJSON = myJSON{
+                        var msg:String!
+                        msg = parseJSON["message"]as! String?
+                        print(msg)
+                    }
+                }catch{
+                    print(error)
+                }
+            }
+            saveTask.resume()
+            // Go back to homepage
+            self.toHomePageButton.sendActions(for: .touchUpInside)
+            
+        }
+        alertVC.addAction(alertActionResend)
+        alertVC.addAction(alertActionOkay)
+        self.present(alertVC, animated: true, completion: nil)
+
     }
     
     
