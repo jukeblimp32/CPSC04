@@ -55,6 +55,7 @@ class ApproveEditsPage: UITableViewController {
     let statusChange = "http://147.222.165.203/MyWebService/api/statusChange.php"
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     let getStatus = "http://147.222.165.203/MyWebService/api/getStatus.php"
+    let deleteProperty = "http://147.222.165.203/MyWebService/api/RemoveProperty.php"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -433,11 +434,21 @@ class ApproveEditsPage: UITableViewController {
             propertyStat in
             print(propertyStat)
             self.propertyStatus = propertyStat
-            if (self.propertyStatus == "Approved"){
-                let postParameters2="status=Editing"+"&property_id="+String(self.propertyID);
-                saveRequest2.httpBody=postParameters2.data(using: String.Encoding.utf8)
+            if (self.propertyStatus == "Editing"){
+                let saveRequestURL = NSURL(string: self.deleteProperty)
+                
+                //creating NSMutableURLRequest
+                let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+                
+                //setting method to POST
+                saveRequest.httpMethod = "POST"
+                let postParameters="property_id="+String(self.propertyID);
+                
+                //adding parameters to request body
+                saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+                
                 //task to send to post request
-                let saveTask2=URLSession.shared.dataTask(with: saveRequest2 as URLRequest){
+                let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
                     data,response, error in
                     if error != nil{
                         print("error is \(error)")
@@ -445,8 +456,8 @@ class ApproveEditsPage: UITableViewController {
                     }
                     do{
                         //converting response to NSDictioanry
-                        
                         let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                        
                         if let parseJSON = myJSON{
                             var msg:String!
                             msg = parseJSON["message"]as! String?
@@ -456,36 +467,9 @@ class ApproveEditsPage: UITableViewController {
                         print(error)
                     }
                 }
-                saveTask2.resume()
+                saveTask.resume()
             }
         }
-       // if originalStatus == "Approved"{
-       // let postParameters2="status=Editing"+"&property_id="+String(self.propertyID);
-        //}
-        
-        //adding parameters to request body
-      /*  saveRequest2.httpBody=postParameters2.data(using: String.Encoding.utf8)
-        //task to send to post request
-        let saveTask2=URLSession.shared.dataTask(with: saveRequest2 as URLRequest){
-            data,response, error in
-            if error != nil{
-                print("error is \(error)")
-                return;
-            }
-            do{
-                //converting response to NSDictioanry
-                
-                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-                if let parseJSON = myJSON{
-                    var msg:String!
-                    msg = parseJSON["message"]as! String?
-                    print(msg)
-                }
-            }catch{
-                print(error)
-            }
-        }
-        saveTask2.resume()*/
 
     }
 
