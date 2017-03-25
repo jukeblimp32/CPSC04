@@ -1,16 +1,17 @@
 //
-//  StudentPropertyReviews.swift
+//  AdminPropertyReviews.swift
 //  Ocha
 //
-//  Created by Talkov, Leah C on 3/22/17.
+//  Created by Talkov, Leah C on 3/24/17.
 //  Copyright © 2017 CPSC04. All rights reserved.
 //
 
 import UIKit
 
-class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let getReviews = "http://147.222.165.203/MyWebService/api/DisplayReviews.php"
-
+    let deleteReviews = "http://147.222.165.203/MyWebService/api/deleteReview.php"
+    
     @IBOutlet var propertyReviews: UITableView!
     
     var reviews = [Review]()
@@ -39,7 +40,7 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
         reviews.removeAll()
         loadReviews()
         print(reviews.count)
-        self.propertyReviews.register(ReviewTableViewCell.self, forCellReuseIdentifier: "cell")
+        self.propertyReviews.register(AdminReviewTableViewCell.self, forCellReuseIdentifier: "cell")
         propertyReviews.delegate = self
         propertyReviews.dataSource = self
         propertyReviews.reloadData()
@@ -48,30 +49,8 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //If the segue from any table cell to listingPage is clicked
-        if segue.identifier == "exitReviews",
-            let destination = segue.destination as? ListingPage
-
-        {
-            destination.address = address
-            destination.rent = rent
-            destination.rooms = rooms
-            destination.distance = distance
-            destination.imageUrl = imageUrl
-            destination.propertyID = propertyID
-            destination.leaseLength = leaseLength
-            destination.dateAvailable = dateAvailable
-            destination.bathroomNumber = bathroomNumber
-            destination.deposit = deposit
-            destination.email = email
-            destination.pets = pets
-            destination.availability = availability
-            destination.propDescription = propDescription
-            destination.phoneNumber = phoneNumber
-            
-        }
-        
-        if segue.identifier == "createReview",
-            let destination = segue.destination as? CreateReview
+        if segue.identifier == "toAdminListing",
+            let destination = segue.destination as? AdminListingPage
             
         {
             destination.address = address
@@ -100,8 +79,8 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellIdentifier = "ReviewTableViewCell"
-        let cell = self.propertyReviews.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ReviewTableViewCell
+        let cellIdentifier = "AdminReviewTableViewCell"
+        let cell = self.propertyReviews.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! AdminReviewTableViewCell
         
         let review = reviews[indexPath.row]
         
@@ -112,11 +91,70 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
         cell.valueScore.text = review.priceValue
         cell.spaceScore.text = review.space
         cell.qualityScore.text = review.quality
+        cell.deleteReview.tag = indexPath.row
+        cell.deleteReview.addTarget(self, action: #selector(self.deleteReview(_:)), for: UIControlEvents.touchUpInside)
         
         return cell
     }
     
-    
+    func deleteReview(_ sender: UIButton)
+    {
+        let cell = reviews[sender.tag]
+        let reviewID = String(cell.reviewNum)
+        // Make pop up
+        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete this property review?", preferredStyle: .alert)
+
+        let alertActionCancel = UIAlertAction(title: "Cancel", style: .default) {
+            (_) in
+            return
+        }
+        // If yes, open up the email app after switching to edit status
+        let alertActionYes = UIAlertAction(title: "Yes", style: .default){
+            (_) in
+            let saveRequestURL = NSURL(string: self.deleteReviews)
+            
+            //creating NSMutableURLRequest
+            let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+            
+            //setting method to POST
+            saveRequest.httpMethod = "POST"
+            
+            //getting values from text fields
+            
+            //let landlordID = self.firstName
+            let postParameters="review_id="+reviewID;
+            
+            //adding parameters to request body
+            saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+            //task to send to post request
+            let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+                data,response, error in
+                if error != nil{
+                    print("error is \(error)")
+                    return;
+                }
+                do{
+                    //converting response to NSDictioanry
+                    
+                    let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    if let parseJSON = myJSON{
+                        var msg:String!
+                        msg = parseJSON["message"]as! String?
+                        print(msg)
+                    }
+                }catch{
+                    print(error)
+                }
+            }
+            saveTask.resume()
+            print("Deleted Review successfully")
+            
+        }
+        alertVC.addAction(alertActionCancel)
+        alertVC.addAction(alertActionYes)
+        self.present(alertVC, animated: true, completion: nil)
+    }
+
     func loadReviews(){
         //create NSURL
         let getRequestURL = NSURL(string: getReviews)
@@ -158,7 +196,7 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
                         let category4 = cat4Value?["category_4"] as! String
                         let cat5Value = propReviews[i] as? NSDictionary
                         let category5 = cat5Value?["category_5"] as! String
-                      
+                        
                         print(self.propertyID)
                         print(propID)
                         if (self.propertyID == propID) {
@@ -180,14 +218,11 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
         }
         getTask.resume()
     }
-
+    
     
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 }
-

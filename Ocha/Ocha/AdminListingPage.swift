@@ -154,9 +154,31 @@ class AdminListingPage: UITableViewController {
             destination.phoneNumber = phoneNumber
             
         }
+        if segue.identifier == "toAdminReviews",
+            //Sets the page to be loaded as ListingPage
+            let destination = segue.destination as? AdminPropertyReviews
+            //Gets the selected cell index
+            //Setting the variables in the listing class to the cell info
+        {
+            destination.address = address
+            destination.rent = rent
+            destination.rooms = rooms
+            destination.distance = distance
+            destination.imageUrl = imageUrl
+            destination.propertyID = propertyID
+            destination.leaseLength = leaseLength
+            destination.dateAvailable = dateAvailable
+            destination.bathroomNumber = bathroomNumber
+            destination.deposit = deposit
+            destination.email = email
+            destination.pets = pets
+            destination.availability = availability
+            destination.propDescription = propDescription
+            destination.phoneNumber = phoneNumber
+            
+            
+        }
         
-        //DO AN IF HERE FOR SEEING REVIEWS AND SENDING INFO
-        //***** DONT FORGET LEAH OTHERWISE YOU ARE DUMB
         
     }
     
