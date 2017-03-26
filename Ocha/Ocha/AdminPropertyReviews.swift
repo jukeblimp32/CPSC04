@@ -13,6 +13,18 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
     let deleteReviews = "http://147.222.165.203/MyWebService/api/deleteReview.php"
     
     @IBOutlet var propertyReviews: UITableView!
+    @IBOutlet var avgResponseScore: UILabel!
+    @IBOutlet var avgLocationScore: UILabel!
+    @IBOutlet var avgValueScore: UILabel!
+    @IBOutlet var avgSpaceScore: UILabel!
+    @IBOutlet var avgQualityScore: UILabel!
+    
+    @IBOutlet var responseLabel: UILabel!
+    @IBOutlet var locationLabel: UILabel!
+    @IBOutlet var valueLabel: UILabel!
+    @IBOutlet var spaceLabel: UILabel!
+    @IBOutlet var qualityLabel: UILabel!
+    
     
     var reviews = [Review]()
     
@@ -45,6 +57,7 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
         propertyReviews.dataSource = self
         propertyReviews.reloadData()
         // Do any additional setup after loading the view, typically from a nib.
+        responseLabel.adjustsFontSizeToFitWidth = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -156,6 +169,13 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func loadReviews(){
+        
+        var reponseTotal = 0
+        var locationTotal = 0
+        var valueTotal = 0
+        var spaceTotal = 0
+        var qualityTotal = 0
+
         //create NSURL
         let getRequestURL = NSURL(string: getReviews)
         //creating NSMutableURLRequest
@@ -202,10 +222,26 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
                         if (self.propertyID == propID) {
                             let review = Review(propertyID: propID, reviewNum: reviewID, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
                             
+                            reponseTotal += Int(category1)!
+                            locationTotal += Int(category2)!
+                            valueTotal += Int(category3)!
+                            spaceTotal += Int(category4)!
+                            qualityTotal += Int(category5)!
+                            
                             self.reviews.append(review)
                         }
                     }
                     
+                    let reviewCount = self.reviews.count
+                    
+                    if(reviewCount != 0) {
+                        self.avgResponseScore.text = String(round(10 * (Double(reponseTotal) / Double(reviewCount))) / 10)
+                        self.avgLocationScore.text = String(round(10 * (Double(locationTotal) / Double(reviewCount))) / 10)
+                        self.avgValueScore.text = String(round(10 * (Double(valueTotal) / Double(reviewCount))) / 10)
+                        self.avgSpaceScore.text = String(round(10 * (Double(spaceTotal) / Double(reviewCount))) / 10)
+                        self.avgQualityScore.text = String(round(10 * (Double(qualityTotal) / Double(reviewCount))) / 10)
+                        
+                    }
                     DispatchQueue.main.async(execute: {
                         self.propertyReviews.reloadData()
                     })

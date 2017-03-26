@@ -34,6 +34,20 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
     var image : UIImage = UIImage(named: "default")!
     var favoritePropIDs = [Int]()
     
+    @IBOutlet var avgResponseScore: UILabel!
+    @IBOutlet var avgLocationScore: UILabel!
+    @IBOutlet var avgSpaceScore: UILabel!
+    @IBOutlet var avgValueScore: UILabel!
+    @IBOutlet var avgQualityScore: UILabel!
+    
+    @IBOutlet var responseLabel: UILabel!
+    @IBOutlet var locationLabel: UILabel!
+    @IBOutlet var valueLabel: UILabel!
+    @IBOutlet var spaceLabel: UILabel!
+    @IBOutlet var qualityLabel: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         reviews.removeAll()
@@ -43,6 +57,10 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
         propertyReviews.delegate = self
         propertyReviews.dataSource = self
         propertyReviews.reloadData()
+        
+        responseLabel.adjustsFontSizeToFitWidth = true
+        locationLabel.font = locationLabel.font.withSize(responseLabel.font.pointSize)
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -118,6 +136,13 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
     
     
     func loadReviews(){
+        
+        var reponseTotal = 0
+        var locationTotal = 0
+        var valueTotal = 0
+        var spaceTotal = 0
+        var qualityTotal = 0
+        
         //create NSURL
         let getRequestURL = NSURL(string: getReviews)
         //creating NSMutableURLRequest
@@ -159,13 +184,27 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
                         let cat5Value = propReviews[i] as? NSDictionary
                         let category5 = cat5Value?["category_5"] as! String
                       
-                        print(self.propertyID)
-                        print(propID)
                         if (self.propertyID == propID) {
                             let review = Review(propertyID: propID, reviewNum: reviewID, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
                             
+                            reponseTotal += Int(category1)!
+                            locationTotal += Int(category2)!
+                            valueTotal += Int(category3)!
+                            spaceTotal += Int(category4)!
+                            qualityTotal += Int(category5)!
+                            
                             self.reviews.append(review)
                         }
+                    }
+                    let reviewCount = self.reviews.count
+                    
+                    if(reviewCount != 0) {
+                        self.avgResponseScore.text = String(round(10 * (Double(reponseTotal) / Double(reviewCount))) / 10)
+                        self.avgLocationScore.text = String(round(10 * (Double(locationTotal) / Double(reviewCount))) / 10)
+                        self.avgValueScore.text = String(round(10 * (Double(valueTotal) / Double(reviewCount))) / 10)
+                        self.avgSpaceScore.text = String(round(10 * (Double(spaceTotal) / Double(reviewCount))) / 10)
+                        self.avgQualityScore.text = String(round(10 * (Double(qualityTotal) / Double(reviewCount))) / 10)
+                        
                     }
                     
                     DispatchQueue.main.async(execute: {
