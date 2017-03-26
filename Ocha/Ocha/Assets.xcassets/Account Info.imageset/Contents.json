@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "head_icon_account_gray.png",
+      "filename" : "accountInfo.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "account2.png",
+      "filename" : "accountInfo-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "account3.png",
+      "filename" : "accountInfo-2.png",
       "scale" : "3x"
     }
   ],
