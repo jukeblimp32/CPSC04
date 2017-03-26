@@ -18,10 +18,14 @@ class ManageUsers: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl = UIRefreshControl()
         userList.removeAll()
         tempUsers.removeAll()
         fetchUsers()
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(ManageUsers.handleRefresh(_:)), for: .valueChanged)
         self.tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.addSubview(refreshControl!)
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -45,6 +49,13 @@ class ManageUsers: UITableViewController {
             }
         }, withCancel: nil)
         
+    }
+    
+    func handleRefresh(_ sender : UIRefreshControl) {
+        userList.removeAll()
+        tempUsers.removeAll()
+        fetchUsers()
+        refreshControl?.endRefreshing()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

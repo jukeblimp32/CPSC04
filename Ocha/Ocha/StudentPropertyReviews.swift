@@ -46,7 +46,7 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet var spaceLabel: UILabel!
     @IBOutlet var qualityLabel: UILabel!
     
-    
+    var refreshControl : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,9 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
         propertyReviews.delegate = self
         propertyReviews.dataSource = self
         propertyReviews.reloadData()
-        
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(StudentPropertyReviews.handleRefresh(_:)), for: .valueChanged)
+        propertyReviews.addSubview(refreshControl)
         responseLabel.adjustsFontSizeToFitWidth = true
         locationLabel.font = locationLabel.font.withSize(responseLabel.font.pointSize)
         
@@ -132,6 +134,12 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
         cell.qualityScore.text = review.quality
         
         return cell
+    }
+    
+    func handleRefresh(_ sender : UIRefreshControl) {
+        reviews.removeAll()
+        loadReviews()
+        refreshControl.endRefreshing()
     }
     
     
