@@ -60,71 +60,23 @@ class CreateAccount: UITableViewController, UITextFieldDelegate{
                 self.present(alert, animated: true){}
                 
             }
-            // Create user in Firebase
-            FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user:FIRUser?, error) in
-                if error != nil{
-                    print(error)
-                    if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
-                        // Create alerts for each Firebase error
-                        switch errCode {
-                            
-                        // Invalid email
-                        case .errorCodeInvalidEmail:
-                            let alert = UIAlertController(title: "Failure to Submit", message:"Email is invalid. Please try again.", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "Okay", style: .default))
-                            self.present(alert, animated: true){}
-                            
-                        // Email is already used
-                        case .errorCodeEmailAlreadyInUse:
-                            let alert = UIAlertController(title: "Failure to Submit", message:"Email is already in use. Please try again.", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "Okay", style: .default))
-                            self.present(alert, animated: true){}
-                            
-                        // Too short of password
-                        case .errorCodeWeakPassword:
-                            let alert = UIAlertController(title: "Failure to Submit", message:"Password must be at least 6 characters. Please try again.", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "Okay", style: .default))
-                            self.present(alert, animated: true){}
-                            
-                        // Miscellaneous errors
-                        default:
-                            let alert = UIAlertController(title: "Failure to Submit", message:"Make sure all fields are filled out properly", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "Okay", style: .default))
-                            self.present(alert, animated: true){}
-                        }
-                    }
-                    return
-                }
-                
-                guard let uid = user?.uid else {
-                    return
-                }
-                
-                // Send verification email
-                self.sendEmailVer()
-                
-                // Store created user in the database
-                let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
-                let usersReference = dataRef.child("users").child(uid)
-                var fullname = name + " " + self.lastName.text!
-                var type = ""
-                if self.usertype.selectedSegmentIndex == 0 {
-                    type = "Student"
-                }
-                else {
-                    type = "Landlord"
-                }
-                let values = ["name": fullname, "email": email, "type" : type]
-                usersReference.updateChildValues(values, withCompletionBlock: { (err, dataRef) in
-                    if err != nil{
-                        print(err)
-                        return
-                    }
-                    print("Saved user successfully")
-                })
-                return
-            })
+            // Create alert
+            let alertConfirm = UIAlertController(title: "Confirmation", message: "Are you sure you would like to register an account with Ocha?", preferredStyle: .alert)
             
+            // Do nothing if we cancel
+            let alertCancel = UIAlertAction(title: "Cancel", style: .default) {
+                (_) in
+                return
+            }
+            // If yes, delete the listing from the database
+            let alertYes = UIAlertAction(title: "Yes", style: .default){
+                (_) in
+                self.registerUser(email: email, password: password, name: name)
+            }
+            alertConfirm.addAction(alertCancel)
+            alertConfirm.addAction(alertYes)
+            self.present(alertConfirm, animated: true, completion: nil)
+
         }
         else{
             let alertVC = UIAlertController(title: "Field Mismatch", message: "Check that your email and password were typed correctly", preferredStyle: .alert)
@@ -136,6 +88,73 @@ class CreateAccount: UITableViewController, UITextFieldDelegate{
         }
     }
     
+    func registerUser(email: String, password: String, name: String){
+        // Create user in Firebase
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user:FIRUser?, error) in
+            if error != nil{
+                print(error)
+                if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                    // Create alerts for each Firebase error
+                    switch errCode {
+                        
+                    // Invalid email
+                    case .errorCodeInvalidEmail:
+                        let alert = UIAlertController(title: "Failure to Submit", message:"Email is invalid. Please try again.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                        self.present(alert, animated: true){}
+                        
+                    // Email is already used
+                    case .errorCodeEmailAlreadyInUse:
+                        let alert = UIAlertController(title: "Failure to Submit", message:"Email is already in use. Please try again.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                        self.present(alert, animated: true){}
+                        
+                    // Too short of password
+                    case .errorCodeWeakPassword:
+                        let alert = UIAlertController(title: "Failure to Submit", message:"Password must be at least 6 characters. Please try again.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                        self.present(alert, animated: true){}
+                        
+                    // Miscellaneous errors
+                    default:
+                        let alert = UIAlertController(title: "Failure to Submit", message:"Make sure all fields are filled out properly", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                        self.present(alert, animated: true){}
+                    }
+                }
+                return
+            }
+            
+            guard let uid = user?.uid else {
+                return
+            }
+            
+            // Send verification email
+            self.sendEmailVer()
+            
+            // Store created user in the database
+            let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+            let usersReference = dataRef.child("users").child(uid)
+            let fullname = name + " " + self.lastName.text!
+            var type = ""
+            if self.usertype.selectedSegmentIndex == 0 {
+                type = "Student"
+            }
+            else {
+                type = "Landlord"
+            }
+            let values = ["name": fullname, "email": email, "type" : type]
+            usersReference.updateChildValues(values, withCompletionBlock: { (err, dataRef) in
+                if err != nil{
+                    print(err)
+                    return
+                }
+                print("Saved user successfully")
+            })
+            return
+        })
+        
+    }
     
     func transitionToLogin(){
         let viewController = self.storyboard!.instantiateViewController(withIdentifier: "Login") as UIViewController
@@ -149,7 +168,7 @@ class CreateAccount: UITableViewController, UITextFieldDelegate{
             if !user.isEmailVerified{
                 user.sendEmailVerification(completion: nil)
                 // Setup alert
-                let alertVC = UIAlertController(title: "Email Sent", message: "Check your email to verify your account and then login. If using zagmail, check your spam folder", preferredStyle: .alert)
+                let alertVC = UIAlertController(title: "Email Sent", message: "Check your email to verify your account and then login. IF USING ZAGMAIL, CHECK YOUR SPAM FOLDER", preferredStyle: .alert)
                 
                 // Send email twice, just in case
                 let alertActionResend = UIAlertAction(title: "Resend", style: .default) {

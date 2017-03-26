@@ -107,7 +107,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         emailTextField.borderStyle = UITextBorderStyle.roundedRect
         emailTextField.backgroundColor = UIColor.white
         // Add these lines to dismiss the keyboard by clicking done
-        emailTextField.font = UIFont.systemFont(ofSize: 20 * screenScale)
+        emailTextField.font = UIFont.systemFont(ofSize: 18 * screenScale)
         emailTextField.returnKeyType = UIReturnKeyType.done
         emailTextField.adjustsFontSizeToFitWidth = true
         self.emailTextField.delegate = self
@@ -118,7 +118,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         passwordTextField.borderStyle = UITextBorderStyle.roundedRect
         passwordTextField.backgroundColor = UIColor.white
         passwordTextField.isSecureTextEntry = true
-        passwordTextField.font = UIFont.systemFont(ofSize: 20 * screenScale)
+        passwordTextField.font = UIFont.systemFont(ofSize: 18 * screenScale)
         passwordTextField.returnKeyType = UIReturnKeyType.done
         self.passwordTextField.delegate = self
         
