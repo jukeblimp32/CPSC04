@@ -39,6 +39,21 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     var phoneNumber : String = ""
     var imageURL : String = ""
     
+    var editAddress : String = ""
+    var editRent : String = ""
+    var editDeposit : String = ""
+    var editBedroom : String = ""
+    var editBathroom : String = ""
+    var editPet : String = ""
+    var editStatus : String = ""
+    var editDescription : String = ""
+    var editDate : String = ""
+    var editLease : String = ""
+    var editPhoneNumber : String = ""
+    var editImageUrl : String = ""
+    var editMilesToGu : String = ""
+
+    
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var rentTextField: UITextField!
     @IBOutlet weak var depositTextField: UITextField!
@@ -190,22 +205,45 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
             let destination = segue.destination as? LandlordListingPage
             //Gets the selected cell index
         {
-            //Setting the variables in the listing class to the cell info
-            destination.address = address
-            destination.rent = rent
-            destination.rooms = bedroomNum
-            destination.distance = distance
-            destination.email = email
-            destination.imageUrl = imageURL
-            destination.propertyID = propertyID
-            destination.leaseLength = leaseTerms
-            destination.dateAvailable = dateAvailable
-            destination.bathroomNumber = bathroomNum
-            destination.deposit = deposit
-            destination.pets = pets
-            destination.availability = availability
-            destination.propDescription = propDescription
-            destination.phoneNumber = phoneNumber
+            if editAddress == ""
+            {
+                //Setting the variables in the listing class to the cell info
+                destination.address = address
+                destination.rent = rent
+                destination.rooms = bedroomNum
+                destination.distance = distance
+                destination.email = email
+                destination.imageUrl = imageURL
+                destination.propertyID = propertyID
+                destination.leaseLength = leaseTerms
+                destination.dateAvailable = dateAvailable
+                destination.bathroomNumber = bathroomNum
+                destination.deposit = deposit
+                destination.pets = pets
+                destination.availability = availability
+                destination.propDescription = propDescription
+                destination.phoneNumber = phoneNumber
+            }
+            else
+            {
+                //Setting the variables in the listing class to the cell info
+                destination.address = editAddress
+                destination.rent = editRent
+                destination.rooms = editBedroom
+                destination.distance = editMilesToGu
+                destination.email = email
+                destination.imageUrl = editImageUrl
+                destination.propertyID = propertyID
+                destination.leaseLength = editLease
+                destination.dateAvailable = editDate
+                destination.bathroomNumber = editBathroom
+                destination.deposit = editDeposit
+                destination.pets = editPet
+                destination.availability = editStatus
+                destination.propDescription = editDescription
+                destination.phoneNumber = editPhoneNumber
+            }
+            
         }
     }
     
@@ -283,35 +321,37 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         
         var dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
+ 
+        
         
         
         //getting values from fields
-        let editAddress = addressTextField.text
-        let editRent = rentTextField.text
-        let editDeposit = depositTextField.text
-        let editBedroom = bedroomTextField.text
-        let editBathroom = bathroomLabel.text
-        let editPet = petPolicy.titleForSegment(at:petPolicy.selectedSegmentIndex)
-        let editStatus = propertyStatus.titleForSegment(at: propertyStatus.selectedSegmentIndex)
-        let editDescription = descriptionText.text
-        let editDate = dateFormatter.string(from: datePicker.date)
-        let editLease = leaseSegment.titleForSegment(at: leaseSegment.selectedSegmentIndex)
-        let editPhoneNumber = phoneNumberTextField.text
+        editAddress = addressTextField.text!
+        editRent = rentTextField.text!
+        editDeposit = depositTextField.text!
+        editBedroom = bedroomTextField.text!
+        editBathroom = bathroomLabel.text!
+        editPet = petPolicy.titleForSegment(at:petPolicy.selectedSegmentIndex)!
+        editStatus = propertyStatus.titleForSegment(at: propertyStatus.selectedSegmentIndex)!
+        editDescription = descriptionText.text
+        editDate = dateFormatter.string(from: datePicker.date)
+        editLease = leaseSegment.titleForSegment(at: leaseSegment.selectedSegmentIndex)!
+        editPhoneNumber = phoneNumberTextField.text!
         
         
         
-        let stringAddress = String(editAddress!)
+        let stringAddress = String(editAddress)
         
         let location = stringAddress! + ", Spokane, WA, USA"
         print ("LOOKHERE")
         print(location)
-        let editMilesToGu = getLatLngForZip(address: location)
+        editMilesToGu = getLatLngForZip(address: location)
         print("EDITMILES")
         print(editMilesToGu)
         
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability="+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email="+email+"&status=Editing"+"&miles_to_gu="+editMilesToGu;
+        let postParameters="address="+editAddress+"&rent_per_month="+editRent+"&number_of_rooms="+editBedroom+"&property_id="+currentProperty+"&deposit="+editDeposit+"&number_of_bathrooms="+editBathroom+"&pets="+editPet+"&availability="+editStatus+"&description="+editDescription+"&date_available="+editDate+"&lease_length="+editLease+"&phone_number="+editPhoneNumber+"&email="+email+"&status=Editing"+"&miles_to_gu="+editMilesToGu;
         
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
@@ -340,6 +380,8 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         }
         saveTask.resume()
         
+        self.backLandlordListing.sendActions(for: .touchUpInside)
+        
         let alert = UIAlertController(title: "Property Edited!", message: "Property will be sent for review before being published", preferredStyle: .alert)
         let alertActionOkay = UIAlertAction(title: "Okay", style: .default)
         alert.addAction(alertActionOkay)
@@ -363,7 +405,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
                 // Set values
                 if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
                     let values = ["address": self.address, "image1": uploadImageUrl]
-                    
+                    self.editImageUrl = uploadImageUrl
                     // After uploading image to storage, add to property photos database
                     let fireData = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
                     /**********************************************************
