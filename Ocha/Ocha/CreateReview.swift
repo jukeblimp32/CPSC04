@@ -44,6 +44,8 @@ class CreateReview: UIViewController {
     @IBOutlet var spaceSlider: UISlider!
     @IBOutlet var qualitySlider: UISlider!
     
+    @IBOutlet weak var backToReviews: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +100,26 @@ class CreateReview: UIViewController {
     }
    
     @IBAction func submitReview(_ sender: Any) {
+        // Create alert
+        let alertConfirm = UIAlertController(title: "Confirmation", message: "Are you sure you would like to submit your review?", preferredStyle: .alert)
+        
+        // Do nothing if we cancel
+        let alertCancel = UIAlertAction(title: "Cancel", style: .default) {
+            (_) in
+            return
+        }
+        // If yes, delete the listing from the database
+        let alertYes = UIAlertAction(title: "Yes", style: .default){
+            (_) in
+            self.registerReview()
+        }
+        alertConfirm.addAction(alertCancel)
+        alertConfirm.addAction(alertYes)
+        self.present(alertConfirm, animated: true, completion: nil)
+
+    }
+    
+    func registerReview(){
         //created NSURL
         let saveRequestURL = NSURL(string: URL_SAVE_REVIEW)
         
@@ -110,7 +132,7 @@ class CreateReview: UIViewController {
         //getting values from text fields
         
         //let propId = propertyID
- 
+        
         let propId = String(propertyID)
         let landlordResponse = responseScore.text
         let location = locationScore.text
@@ -135,7 +157,7 @@ class CreateReview: UIViewController {
                 let alert = UIAlertController(title: "Review Added!", message:"Review added", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: .default))
                 self.present(alert, animated: true){}
-                    
+                
                 //Here is the problem child
                 let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                 if let parseJSON = myJSON{
@@ -148,6 +170,7 @@ class CreateReview: UIViewController {
             }
         }
         saveTask.resume()
+        self.backToReviews.sendActions(for: .touchUpInside)
 
     }
     
