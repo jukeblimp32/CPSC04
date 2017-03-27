@@ -20,6 +20,8 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     let apiKey = GMSServices.provideAPIKey("AIzaSyAZiputpqkl-sCQk6gk5uTBQLJQVSe0684")
     
     
+    
+    
     var address : String = ""
     var rent : String = ""
     var bedroomNum : String = ""
@@ -51,8 +53,9 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     @IBOutlet var phoneNumberTextField: UITextField!
     @IBOutlet weak var characterLabel: UILabel!
     @IBOutlet var leaseSegment: UISegmentedControl!
-    
     @IBOutlet weak var petPolicy: UISegmentedControl!
+    
+    @IBOutlet var backLandlordListing: UIButton!
 
     
     override func viewDidLoad() {

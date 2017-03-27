@@ -36,7 +36,7 @@ class UserType: UIViewController {
         studentButton.setTitleColor(UIColor.white, for: .normal)
         //Function associated with the student button
         studentButton.addTarget(self, action: #selector(UserType.choseStudentUser(_:)), for: UIControlEvents.touchUpInside)
-        studentButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
+        studentButton.backgroundColor = UIColor.init(red: 0.0/255, green: 177.0/255, blue: 176.0/255, alpha: 1)
         studentButton.layer.cornerRadius = 4
         view.addSubview(studentButton)
         self.view.addSubview(studentButton)
@@ -50,7 +50,7 @@ class UserType: UIViewController {
         landlordButton.addTarget(self, action:
         //Function associated with the landlord button
             #selector(UserType.choseLandlordUser(_:)), for: UIControlEvents.touchUpInside)
-        landlordButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
+        landlordButton.backgroundColor = UIColor.init(red: 0.0/255, green: 177.0/255, blue: 176.0/255, alpha: 1)
         landlordButton.layer.cornerRadius = 4
         view.addSubview(landlordButton)
         self.view.addSubview(landlordButton)

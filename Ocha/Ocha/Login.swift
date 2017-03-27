@@ -133,7 +133,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         loginButton.titleLabel?.lineBreakMode = NSLineBreakMode.byClipping;
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 20 * screenScale)
         loginButton.addTarget(self, action: #selector(ViewController.submitUserInfo(_:)), for: UIControlEvents.touchUpInside)
-        loginButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
+        loginButton.backgroundColor = UIColor.init(red: 0.0/255, green: 177.0/255, blue: 176.0/255, alpha: 1)
         loginButton.layer.cornerRadius = 4
         view.addSubview(loginButton)
         self.view.addSubview(loginButton)
@@ -149,7 +149,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         createAccountButton.titleLabel?.font = UIFont.systemFont(ofSize: 20 * screenScale)
         createAccountButton.setTitleColor(UIColor.white, for: .normal)
         createAccountButton.addTarget(self, action: #selector(ViewController.goToCreateAccount(_:)), for: UIControlEvents.touchUpInside)
-        createAccountButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
+        createAccountButton.backgroundColor = UIColor.init(red: 0.0/255, green: 177.0/255, blue: 176.0/255, alpha: 1)
         createAccountButton.layer.cornerRadius = 4
         view.addSubview(createAccountButton)
         self.view.addSubview(createAccountButton)

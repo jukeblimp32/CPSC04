@@ -23,7 +23,7 @@
                     <view key="view" contentMode="scaleToFill" id="7sW-JD-ZXk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.1176470588" green="0.20392156859999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHw-3Z-6tA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1372,7 +1372,7 @@
                     <view key="view" contentMode="scaleToFill" id="rOg-SX-QLo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.11764705882352941" green="0.20392156862745098" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="OCHA" id="T6N-Mv-y2i"/>
                     <connections>
@@ -1403,7 +1403,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOI-pz-0xP">
                                                     <rect key="frame" x="0.0" y="0.0" width="149" height="64"/>
-                                                    <color key="backgroundColor" red="0.052100770999999997" green="0.5631377233" blue="0.63247738279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.69411764705882351" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="149" id="ZGL-ME-UoL"/>
                                                     </constraints>
@@ -1415,7 +1415,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.1176470588" green="0.20392156859999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="tOI-pz-0xP" firstAttribute="top" secondItem="PP8-zd-CfL" secondAttribute="top" id="c24-cu-gqn"/>
                                                 <constraint firstAttribute="bottom" secondItem="tOI-pz-0xP" secondAttribute="bottom" id="eZq-gv-Uvo"/>
@@ -1574,7 +1574,7 @@
                                                         <segment title="Student"/>
                                                         <segment title="Landlord"/>
                                                     </segments>
-                                                    <color key="tintColor" red="0.052100770999999997" green="0.5631377233" blue="0.63247738279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="tintColor" red="0.0" green="0.69411764710000001" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </segmentedControl>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type of User:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q05-pB-ciP">
                                                     <rect key="frame" x="8" y="25" width="127" height="25"/>
@@ -1600,7 +1600,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJh-7G-Chq">
                                                     <rect key="frame" x="203" y="0.0" width="172" height="65"/>
-                                                    <color key="backgroundColor" red="0.052100770999999997" green="0.5631377233" blue="0.63247738279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.69411764710000001" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="172" id="J2F-oO-3SU"/>
                                                     </constraints>
@@ -1613,7 +1613,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0039215686269999999" green="0.3411764706" blue="0.60822291159999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.1176470588" green="0.20392156859999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="gJh-7G-Chq" secondAttribute="trailing" id="SnJ-uF-ZYU"/>
                                                 <constraint firstItem="gJh-7G-Chq" firstAttribute="top" secondItem="CPL-aP-Uy6" secondAttribute="top" id="jKp-2g-our"/>
@@ -2400,6 +2400,7 @@
                     <navigationItem key="navigationItem" id="eAF-yT-UBf"/>
                     <connections>
                         <outlet property="addressTextField" destination="sdM-i4-6gN" id="Vno-6u-apY"/>
+                        <outlet property="backLandlordListing" destination="xDk-wY-4GZ" id="44B-Zc-szU"/>
                         <outlet property="bathroomLabel" destination="lWh-Ar-ACu" id="rUa-rY-2iH"/>
                         <outlet property="bathroomStepper" destination="b7o-If-meZ" id="Yvi-hJ-rjM"/>
                         <outlet property="bedroomTextField" destination="JSQ-YV-Naa" id="hpJ-sd-H5p"/>
