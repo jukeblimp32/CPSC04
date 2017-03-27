@@ -33,7 +33,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         refreshControl.addTarget(self, action: #selector(LandlordHomePage.handleRefresh(_:)), for: .valueChanged)
         
         // Initialize our table
-        propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (90/100))
+        propertiesList.frame = CGRect(x: (view.frame.width) * (0/100), y: (view.frame.height) * (10/100), width: view.frame.width, height: (view.frame.height) * (90/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
         propertiesList.reloadData()

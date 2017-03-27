@@ -35,7 +35,7 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
         // Do any additional setup after loading the view, typically from a nib.
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         // Initialize our table
-        propertiesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (15/100), width: view.frame.width * (80/100), height: (view.frame.height) * (85/100))
+        propertiesList.frame = CGRect(x: (view.frame.width) * (0/100), y: (view.frame.height) * (15/100), width: view.frame.width, height: (view.frame.height) * (85/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
         propertiesList.reloadData()
