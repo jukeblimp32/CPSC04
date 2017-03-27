@@ -47,6 +47,8 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
     var image : UIImage = UIImage(named: "default")!
     var favoritePropIDs = [Int]()
     
+    var refreshControl : UIRefreshControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         reviews.removeAll()
@@ -56,6 +58,9 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
         propertyReviews.delegate = self
         propertyReviews.dataSource = self
         propertyReviews.reloadData()
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(AdminPropertyReviews.handleRefresh(_:)), for: .valueChanged)
+        propertyReviews.addSubview(refreshControl)
         // Do any additional setup after loading the view, typically from a nib.
         responseLabel.adjustsFontSizeToFitWidth = true
     }
@@ -108,6 +113,12 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
         cell.deleteReview.addTarget(self, action: #selector(self.deleteReview(_:)), for: UIControlEvents.touchUpInside)
         
         return cell
+    }
+    
+    func handleRefresh(_ sender : UIRefreshControl) {
+        reviews.removeAll()
+        loadReviews()
+        refreshControl.endRefreshing()
     }
     
     func deleteReview(_ sender: UIButton)

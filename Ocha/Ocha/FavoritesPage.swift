@@ -35,7 +35,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         favoritesMap.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (5/100), width: view.frame.width * (80/100), height: (view.frame.height) * (10/100))
         
-        favoritesList.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (15/100), width: view.frame.width * (80/100), height: (view.frame.height) * (85/100))
+        favoritesList.frame = CGRect(x: (view.frame.width) * (0/100), y: (view.frame.height) * (15/100), width: view.frame.width, height: (view.frame.height) * (85/100))
         self.favoritesList.register(ListingTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         favoritesList.delegate = self
