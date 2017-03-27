@@ -186,6 +186,28 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     
     
     @IBAction func submitListingInfo(_ sender: Any) {
+        // Create alert
+        let alertConfirm = UIAlertController(title: "Confirmation", message: "Are you sure you would like to post this listing? Doing so will make it visible to all student users.", preferredStyle: .alert)
+        
+        // Do nothing if we cancel
+        let alertCancel = UIAlertAction(title: "Cancel", style: .default) {
+            (_) in
+            return
+        }
+        // If yes, delete the listing from the database
+        let alertYes = UIAlertAction(title: "Yes", style: .default){
+            (_) in
+            self.registerListing()
+        }
+        alertConfirm.addAction(alertCancel)
+        alertConfirm.addAction(alertYes)
+        self.present(alertConfirm, animated: true, completion: nil)
+
+        
+        
+    }
+    
+    func registerListing(){
         //created NSURL
         let saveRequestURL = NSURL(string: URL_SAVE_PROPERTY)
         
@@ -196,7 +218,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         saveRequest.httpMethod = "POST"
         
         //getting values from text fields
-
+        
         //let landlordID = self.firstName
         let uid = FIRAuth.auth()?.currentUser?.uid
         let email = FIRAuth.auth()?.currentUser?.email
@@ -209,7 +231,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         let propertyDeposit = deposit.text
         let numberOfRooms = bedroomNumber.text
         let numberOfBathrooms = bathroomNumber.text
-
+        
         let availableDate = dateFormatter.string(from: datePicker.date)
         //let milesToGu = milesToGU
         let lease = leaseLength.titleForSegment(at: leaseLength.selectedSegmentIndex)
@@ -221,12 +243,12 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             description = propDescription.text!
         }
         //let phoneNumber =
-
+        
         
         let location = propertyAddress! + ", Spokane, WA, USA"
         let milesToGu = getLatLngForZip(address: location)
         
-       // getLatLngForZip(address: location)
+        // getLatLngForZip(address: location)
         //getmiles
         //miles = getmiles
         
@@ -290,8 +312,9 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             leaseLength.selectedSegmentIndex = 0
             propType.selectedSegmentIndex = 0
             propDescription.text = ""
-
+            
         }
+
     }
     
     private func uploadImage(address : String)

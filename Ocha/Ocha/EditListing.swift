@@ -248,6 +248,25 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     }
 
     @IBAction func saveEdits(_ sender: Any) {
+        // Create alert
+        let alertConfirm = UIAlertController(title: "Confirmation", message: "Are you sure you would like to save these edits? Your edits will not be made visible to students until they have been reviewed by Housing and Residence Life.", preferredStyle: .alert)
+        
+        // Do nothing if we cancel
+        let alertCancel = UIAlertAction(title: "Cancel", style: .default) {
+            (_) in
+            return
+        }
+        // If yes, delete the listing from the database
+        let alertYes = UIAlertAction(title: "Yes", style: .default){
+            (_) in
+            self.registerEdits()
+        }
+        alertConfirm.addAction(alertCancel)
+        alertConfirm.addAction(alertYes)
+        self.present(alertConfirm, animated: true, completion: nil)
+    }
+    
+    func registerEdits(){
         //created NSURL
         let saveRequestURL = NSURL(string: URL_EDIT_PROPERTY)
         
@@ -275,8 +294,8 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         let editDate = dateFormatter.string(from: datePicker.date)
         let editLease = leaseSegment.titleForSegment(at: leaseSegment.selectedSegmentIndex)
         let editPhoneNumber = phoneNumberTextField.text
- 
-
+        
+        
         
         let stringAddress = String(editAddress!)
         
@@ -290,7 +309,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         //post parameter
         //concatenating keys and values from text field
         let postParameters="address="+editAddress!+"&rent_per_month="+editRent!+"&number_of_rooms="+editBedroom!+"&property_id="+currentProperty+"&deposit="+editDeposit!+"&number_of_bathrooms="+editBathroom!+"&pets="+editPet!+"&availability="+editStatus!+"&description="+editDescription!+"&date_available="+editDate+"&lease_length="+editLease!+"&phone_number="+editPhoneNumber!+"&email="+email+"&status=Editing"+"&miles_to_gu="+editMilesToGu;
-
+        
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
         
@@ -306,7 +325,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
             do{
                 //converting response to NSDictioanry
                 let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-           
+                
                 if let parseJSON = myJSON{
                     var msg:String!
                     msg = parseJSON["message"]as! String?
