@@ -212,8 +212,17 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
                         self.avgValueScore.text = String(round(10 * (Double(valueTotal) / Double(reviewCount))) / 10)
                         self.avgSpaceScore.text = String(round(10 * (Double(spaceTotal) / Double(reviewCount))) / 10)
                         self.avgQualityScore.text = String(round(10 * (Double(qualityTotal) / Double(reviewCount))) / 10)
-                        
                     }
+                        
+                    else {
+                        self.avgResponseScore.text = "N/A"
+                        self.avgLocationScore.text = "N/A"
+                        self.avgValueScore.text = "N/A"
+                        self.avgSpaceScore.text = "N/A"
+                        self.avgQualityScore.text = "N/A"
+                    }
+                    
+                    
                     
                     DispatchQueue.main.async(execute: {
                         self.propertyReviews.reloadData()
