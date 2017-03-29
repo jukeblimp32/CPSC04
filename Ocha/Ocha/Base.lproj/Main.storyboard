@@ -1291,7 +1291,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="yJj-YM-8H8" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="auD-aB-qIY"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jXg-kH-W6Q">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jXg-kH-W6Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1328,7 +1328,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="6Y5-qP-uwG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" selectedImage="Hompage" id="2oW-k8-QXp"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZNO-dB-cfU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZNO-dB-cfU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1735,7 +1735,7 @@
                 <navigationController navigationBarHidden="YES" id="9U8-jT-oXb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="lY8-gG-zhb"/>
                     <navigationItem key="navigationItem" id="3Xi-pU-xsL"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MTk-qs-JsG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MTk-qs-JsG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1753,7 +1753,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="bCL-hc-hQe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account Info" image="Account Info" id="i4J-ew-EKB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iYM-9U-RUU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYM-9U-RUU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1945,7 +1945,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Pcc-rx-e2J" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Listings" image="Hompage" id="fYD-0k-Szd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o73-Pz-GaW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o73-Pz-GaW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4173,7 +4173,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="kXK-vq-jzA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="New Listings" selectedImage="second" id="GCZ-7v-Bg1"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="g3x-Ck-1oX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="g3x-Ck-1oX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4528,7 +4528,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNP-Tw-VEx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="178" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="178" height="46"/>
                                                     <color key="backgroundColor" red="0.70027121110000001" green="0.1272581247" blue="0.172559871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="178" id="aB4-WK-Win"/>
@@ -4542,7 +4542,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgJ-kF-Rz4">
                                                     <rect key="frame" x="176" y="0.0" width="199" height="46"/>
-                                                    <color key="backgroundColor" red="0.052100770999999997" green="0.5631377233" blue="0.63247738279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.69411764710000001" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Suggest Edits">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -4557,7 +4557,7 @@
                                                 <constraint firstItem="iNP-Tw-VEx" firstAttribute="top" secondItem="jSs-3O-1az" secondAttribute="top" id="dlp-UJ-Yyd"/>
                                                 <constraint firstAttribute="trailing" secondItem="HgJ-kF-Rz4" secondAttribute="trailing" id="eCa-xS-WBO"/>
                                                 <constraint firstItem="iNP-Tw-VEx" firstAttribute="leading" secondItem="jSs-3O-1az" secondAttribute="leading" id="oRa-UO-PPF"/>
-                                                <constraint firstAttribute="bottom" secondItem="iNP-Tw-VEx" secondAttribute="bottom" id="toV-kn-lxo"/>
+                                                <constraint firstAttribute="bottom" secondItem="iNP-Tw-VEx" secondAttribute="bottom" constant="-3" id="toV-kn-lxo"/>
                                                 <constraint firstItem="iNP-Tw-VEx" firstAttribute="top" secondItem="HgJ-kF-Rz4" secondAttribute="top" id="wQr-jT-tct"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -4698,7 +4698,7 @@
             <objects>
                 <navigationController id="tEl-hV-fVk" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Manage Users" id="Tmr-Y8-2mt"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1dJ-7i-0pQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1dJ-7i-0pQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4715,7 +4715,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="9RR-NA-bSI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Pending Edits" image="first" id="Abz-gh-OG0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="RGc-bW-MKx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RGc-bW-MKx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -5070,8 +5070,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcJ-94-Llc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="184" height="43"/>
-                                                    <color key="backgroundColor" red="0.70027121110000001" green="0.1272581247" blue="0.172559871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <rect key="frame" x="191" y="0.0" width="184" height="47"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.69411764710000001" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="184" id="uB1-ZK-7vG"/>
                                                     </constraints>
@@ -5082,8 +5082,34 @@
                                                         <action selector="discardEdits:" destination="ykg-tu-2YD" eventType="touchUpInside" id="hZj-Qx-zcC"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="665-iM-r1f">
-                                                    <rect key="frame" x="176" y="0.0" width="199" height="46"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajn-61-NpS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="192" height="45"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.70027121110000001" green="0.1272581247" blue="0.172559871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Delete Listing">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteListing:" destination="ykg-tu-2YD" eventType="touchUpInside" id="2sv-2a-4DX"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="tcJ-94-Llc" firstAttribute="top" secondItem="Dg7-XV-wQj" secondAttribute="top" id="PnB-AN-1wo"/>
+                                                <constraint firstItem="tcJ-94-Llc" firstAttribute="leading" secondItem="Dg7-XV-wQj" secondAttribute="leading" constant="191" id="Xbj-hM-jME"/>
+                                                <constraint firstAttribute="bottom" secondItem="tcJ-94-Llc" secondAttribute="bottom" constant="-4" id="xbe-h6-pey"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qqx-VF-Ejl">
+                                        <rect key="frame" x="0.0" y="868" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qqx-VF-Ejl" id="KNj-X9-PmK">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="665-iM-r1f">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
                                                     <color key="backgroundColor" red="0.040982640670000001" green="0.58122166450000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Approve Edits">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5094,13 +5120,12 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="665-iM-r1f" secondAttribute="trailing" id="No4-Pr-by7"/>
-                                                <constraint firstItem="tcJ-94-Llc" firstAttribute="top" secondItem="Dg7-XV-wQj" secondAttribute="top" id="PnB-AN-1wo"/>
-                                                <constraint firstItem="tcJ-94-Llc" firstAttribute="leading" secondItem="Dg7-XV-wQj" secondAttribute="leading" id="Xbj-hM-jME"/>
-                                                <constraint firstItem="665-iM-r1f" firstAttribute="leading" secondItem="tcJ-94-Llc" secondAttribute="trailing" constant="-8" id="dDa-hY-Hr3"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="665-iM-r1f" secondAttribute="bottom" constant="-11" id="dMf-QH-DFZ"/>
-                                                <constraint firstItem="tcJ-94-Llc" firstAttribute="top" secondItem="665-iM-r1f" secondAttribute="top" id="li4-fG-ndP"/>
-                                                <constraint firstAttribute="bottom" secondItem="tcJ-94-Llc" secondAttribute="bottom" id="xbe-h6-pey"/>
+                                                <constraint firstAttribute="trailing" secondItem="665-iM-r1f" secondAttribute="trailing" id="3Ja-5w-VXv"/>
+                                                <constraint firstItem="665-iM-r1f" firstAttribute="leading" secondItem="KNj-X9-PmK" secondAttribute="leading" id="9Xg-Qb-5BA"/>
+                                                <constraint firstAttribute="bottom" secondItem="665-iM-r1f" secondAttribute="bottom" constant="-3" id="AyT-0u-5dT"/>
+                                                <constraint firstItem="665-iM-r1f" firstAttribute="top" secondItem="KNj-X9-PmK" secondAttribute="top" id="MRy-Lr-2tm"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="665-iM-r1f" secondAttribute="bottom" constant="-11" id="ah1-Kf-CxZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="665-iM-r1f" secondAttribute="trailing" constant="176" id="wb7-Og-X2J"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -5726,8 +5751,8 @@
         <image name="CreateListing" width="30" height="30"/>
         <image name="Hompage" width="30" height="30"/>
         <image name="default" width="169" height="169"/>
-        <image name="emptyStar" width="242" height="244"/>
-        <image name="filledStar" width="242" height="244"/>
+        <image name="emptyStar" width="29" height="29"/>
+        <image name="filledStar" width="29" height="29"/>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>

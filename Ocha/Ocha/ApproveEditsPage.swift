@@ -259,6 +259,10 @@ class ApproveEditsPage: UITableViewController {
         
     }
     
+    
+    
+    
+    
     /* This function saves edits to the database and changes the status of a property */
     func saveEdits(){
         let saveRequestURL = NSURL(string: URL_APPROVE_EDIT)
@@ -342,7 +346,7 @@ class ApproveEditsPage: UITableViewController {
 
     @IBAction func discardEdits(_ sender: Any) {
         // Make pop up
-        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to disapprove these edits? If a listing has not been previously approved, doing this action will delete the listing.", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to disapprove these edits? All edits will be lost.", preferredStyle: .alert)
         
         // If cancel, do nothing
         let alertActionCancel = UIAlertAction(title: "Cancel", style: .default) {
@@ -362,6 +366,71 @@ class ApproveEditsPage: UITableViewController {
         self.present(alertVC, animated: true, completion: nil)
 
     }
+    
+    @IBAction func deleteListing(_ sender: Any) {
+        // Create alert
+        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete this listing?", preferredStyle: .alert)
+        
+        // Do nothing if we cancel
+        let alertActionResend = UIAlertAction(title: "Cancel", style: .default) {
+            (_) in
+            return
+        }
+        // If yes, delete the listing from the database
+        let alertActionOkay = UIAlertAction(title: "Yes", style: .default){
+            (_) in
+            //created NSURL
+            let saveRequestURL = NSURL(string: self.deleteProperty)
+            
+            //creating NSMutableURLRequest
+            let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+            
+            //setting method to POST
+            saveRequest.httpMethod = "POST"
+            
+            //getting values from text fields
+            
+            //let landlordID = self.firstName
+            let postParameters="property_id="+String(self.propertyID);
+            
+            
+            //adding parameters to request body
+            saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+            //task to send to post request
+            let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+                data,response, error in
+                if error != nil{
+                    print("error is \(error)")
+                    return;
+                }
+                do{
+                    //converting response to NSDictioanry
+                    
+                    let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    if let parseJSON = myJSON{
+                        var msg:String!
+                        msg = parseJSON["message"]as! String?
+                        print(msg)
+                    }
+                }catch{
+                    print(error)
+                }
+            }
+            saveTask.resume()
+            // Go back to homepage
+            self.toHomePageButton.sendActions(for: .touchUpInside)
+            
+        }
+        alertVC.addAction(alertActionResend)
+        alertVC.addAction(alertActionOkay)
+        self.present(alertVC, animated: true, completion: nil)
+        
+        
+        
+    }
+    
+    
+    
     func rejectEdit()
     {
         //getPropertyStatus()
