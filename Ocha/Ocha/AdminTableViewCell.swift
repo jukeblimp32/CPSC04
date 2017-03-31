@@ -28,7 +28,6 @@ class AdminTableViewCell: UITableViewCell {
         propertyRooms.adjustsFontSizeToFitWidth = true
     }
 
-    
 }
 
 

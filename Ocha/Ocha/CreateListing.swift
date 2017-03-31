@@ -34,6 +34,8 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     var maxID = 0
     var milesToGU : String = "0.5"
     var userType = ""
+    var imageViewSelected = 1
+    
     
     let URL_SAVE_PROPERTY = "http://147.222.165.203/MyWebService/api/landlordCreateProperty.php"
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
@@ -45,6 +47,13 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     
     
     @IBOutlet weak var uploadImageView: UIImageView!
+    @IBOutlet var uploadImageView2: UIImageView!
+    @IBOutlet var uploadImageView3: UIImageView!
+    @IBOutlet var uploadImageView4: UIImageView!
+    @IBOutlet var uploadImageView5: UIImageView!
+    
+    
+    
     
     override func viewDidLoad() {
         
@@ -79,6 +88,28 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         uploadImageView.contentMode = .scaleAspectFill
         uploadImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         uploadImageView.isUserInteractionEnabled = true
+        
+        uploadImageView2.image = UIImage(named: "default")
+        uploadImageView2.contentMode = .scaleAspectFill
+        uploadImageView2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage2)))
+        uploadImageView2.isUserInteractionEnabled = true
+        
+        uploadImageView3.image = UIImage(named: "default")
+        uploadImageView3.contentMode = .scaleAspectFill
+        uploadImageView3.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage3)))
+        uploadImageView3.isUserInteractionEnabled = true
+        
+        uploadImageView4.image = UIImage(named: "default")
+        uploadImageView4.contentMode = .scaleAspectFill
+        uploadImageView4.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage4)))
+        uploadImageView4.isUserInteractionEnabled = true
+        
+        uploadImageView5.image = UIImage(named: "default")
+        uploadImageView5.contentMode = .scaleAspectFill
+        uploadImageView5.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage5)))
+        uploadImageView5.isUserInteractionEnabled = true
+        
+        
         characterLabel.adjustsFontSizeToFitWidth = true
         address.delegate = self
         phoneNumberTextField.delegate = self
@@ -323,8 +354,16 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         // Firebase images. First create a unique id number.
         let imageName = NSUUID().uuidString
         let storageRef = FIRStorage.storage().reference().child("Listing Images").child("\(imageName).png")
+        
+        let fireData = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+        let listingsReference = fireData.child("listings").child(String(propertyMaxID))
+        listingsReference.child("address").setValue(address)
+        
+        
+        //Loading each image into firebase
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView.image!)
         {
+            print(uploadData)
             storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
@@ -333,22 +372,43 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
                 print(metadata)
                 // Set values
                 if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
-                    let values = ["address": address, "image1": uploadImageUrl]
-                    
-                    // After uploading image to storage, add to property photos database
-                    let fireData = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
-                    /**********************************************************
-                     * Need to swap out with property id
-                     ***********************************************************/
-                    let listingsReference = fireData.child("listings").child(String(propertyMaxID))
-                    listingsReference.updateChildValues(values, withCompletionBlock: {
-                        (err, ref) in
-                        if err != nil {
-                            print(err)
-                            return
-                        }
-                        
-                    })
+                    listingsReference.child("image1").setValue(uploadImageUrl)
+                }
+                
+                
+            })
+            
+        }
+        if let uploadData = UIImagePNGRepresentation(self.uploadImageView2.image!)
+        {
+            print(uploadData)
+            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                print(metadata)
+                // Set values
+                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                    listingsReference.child("image2").setValue(uploadImageUrl)
+                }
+                
+                
+            })
+            
+        }
+        if let uploadData = UIImagePNGRepresentation(self.uploadImageView3.image!)
+        {
+                        print(uploadData)
+            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                print(metadata)
+                // Set values
+                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                    listingsReference.child("image3").setValue(uploadImageUrl)
                     
                 }
                 
@@ -356,16 +416,88 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             })
             
         }
-
+        if let uploadData = UIImagePNGRepresentation(self.uploadImageView4.image!)
+        {
+                        print(uploadData)
+            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                print(metadata)
+                // Set values
+                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                    listingsReference.child("image4").setValue(uploadImageUrl)
+                    
+                }
+  
+            })
+            
+        }
+        if let uploadData = UIImagePNGRepresentation(self.uploadImageView5.image!)
+        {
+                        print(uploadData)
+            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                print(metadata)
+                // Set values
+                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                    listingsReference.child("image5").setValue(uploadImageUrl)
+                    
+                }
+            })
+        }
     }
     
-    func handleSelectListingImage()
+    func handleSelectListingImage(/*_ sender: UIImageView*/)
     {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
         present(picker, animated: true, completion: nil)
+        imageViewSelected = 0
     }
+    
+    func handleSelectListingImage2(/*_ sender: UIImageView*/)
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+        imageViewSelected = 1
+    }
+    
+    func handleSelectListingImage3(/*_ sender: UIImageView*/)
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+        imageViewSelected = 2
+    }
+    
+    func handleSelectListingImage4(/*_ sender: UIImageView*/)
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+        imageViewSelected = 3
+    }
+    
+    func handleSelectListingImage5(/*_ sender: UIImageView*/)
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+        imageViewSelected = 4
+    }
+    
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
@@ -379,7 +511,21 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         }
         
         if let selectedImage = selectedImageFromPicker{
-            uploadImageView.image = selectedImage
+            if imageViewSelected == 0 {
+                uploadImageView.image = selectedImage
+            }
+            if imageViewSelected == 1 {
+                uploadImageView2.image = selectedImage
+            }
+            if imageViewSelected == 2 {
+                uploadImageView3.image = selectedImage
+            }
+            if imageViewSelected == 3 {
+                uploadImageView4.image = selectedImage
+            }
+            if imageViewSelected == 4 {
+                uploadImageView5.image = selectedImage
+            }
         }
         dismiss(animated:true, completion:nil)
     }
