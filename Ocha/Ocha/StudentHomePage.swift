@@ -22,6 +22,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     var favoriteListings = [Listing]()
     var seeClosed = UISwitch()
     var closedFlag = false
+    var closedLabel = UILabel()
     
     
     var valueTopass : String!
@@ -30,19 +31,24 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     var filterLabels = [UIButton]()
     var positionInLabels = 0
     var refreshControl : UIRefreshControl!
+    var screenScale = 1.0 as CGFloat
     
     override func viewDidLoad() {
         super.viewDidLoad()
         logOutDeletedUser()
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(StudentHomePage.handleRefresh(_:)), for: .valueChanged)
+        screenScale = view.frame.height / 736.0
         
         self.propertiesList.register(ListingTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
+        
+        var shift = 0 as CGFloat
+        
         // Initialize our table
-        propertiesList.frame = CGRect(x: (view.frame.width) * (0/100), y: (view.frame.height) * (15/100), width: view.frame.width, height: (view.frame.height) * (85/100))
+        propertiesList.frame = CGRect(x: (view.frame.width) * (0/100), y: (view.frame.height) * ((7 + shift)/100), width: view.frame.width, height: (view.frame.height) * (90/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
         propertiesList.reloadData()
@@ -50,16 +56,15 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         let viewTitle = UILabel()
         
         seeClosed.isOn = false
-        seeClosed.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (20/100), height: (view.frame.height) * (2/100))
+        seeClosed.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * ((3 + shift)/100), width: view.frame.width * (20/100), height: (view.frame.height) * (2/100))
         seeClosed.addTarget(self, action: #selector(StudentHomePage.switchIsChanged(_:)), for: UIControlEvents.valueChanged)
-        seeClosed.transform = CGAffineTransform(scaleX: 0.85, y: 0.80)
+        seeClosed.transform = CGAffineTransform(scaleX: 0.85 * screenScale, y: 0.80 * screenScale)
         
-        var closedLabel = UILabel()
         closedLabel.text = "Show Closed Listings?"
         closedLabel.font = UIFont(name: closedLabel.font.fontName, size: 17)
         closedLabel.adjustsFontSizeToFitWidth = true
         closedLabel.textColor = UIColor.white
-        closedLabel.frame = CGRect(x: (view.frame.width) * (25/100), y: (view.frame.height) * (10/100), width: view.frame.width * (30/100), height: (view.frame.height) * (4/100))
+        closedLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * ((3 + shift)/100), width: view.frame.width * (30/100), height: (view.frame.height) * (4/100))
         view.addSubview(closedLabel)
 
         view.addSubview(seeClosed)
@@ -83,6 +88,23 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         getFavoritedProperties()
         loadListingViews()
         propertiesList.reloadData()
+        setPositions()
+
+    }
+    
+    func setPositions(){
+        var shift = 0 as CGFloat
+        if(areFiltersDefault())
+        {
+            shift = 0
+        }
+        else
+        {
+            shift = 8
+        }
+        propertiesList.frame = CGRect(x: (view.frame.width) * (0/100), y: (view.frame.height) * ((7 + shift)/100), width: view.frame.width, height: (view.frame.height) * (90/100))
+        seeClosed.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * ((3 + shift)/100), width: view.frame.width * (20/100), height: (view.frame.height) * (2/100))
+        closedLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * ((3 + shift)/100), width: view.frame.width * (30/100), height: (view.frame.height) * (4/100))
 
     }
     
@@ -135,13 +157,11 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             else if(index == 2 && self.filters[2] != "Any"){
                 let bedFilter = "x  Rooms: " + self.filters[2]
                 filterLabels[positionInLabels].setTitle(bedFilter, for: UIControlState.normal)
+                //filterLabels[positionInLabels].contentHorizontalAlignment = .left
                 filterLabels[positionInLabels].backgroundColor = UIColor.init(red: 214/255.0, green: 71/255.0, blue: 71/255.0, alpha: 1)
                 positionInLabels += 1
             }
             // Check that the bed distance is not at maximum
-            /*************************************************
-            * This value will likely need to change from  10
-            *************************************************/
             else if(index == 3 && self.filters[3] != "30.0"){
                 let distFilter = "x  Miles to GU: " + self.filters[3]
                 filterLabels[positionInLabels].setTitle(distFilter, for: UIControlState.normal)
@@ -179,19 +199,19 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             // Set positions
             switch index{
             case 0:
-                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (4/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (4/100), width: view.frame.width * (27/100), height: (view.frame.height) * (2.5/100))
             case 1:
-                newLabel.frame = CGRect(x: (view.frame.width) * (36/100), y: (view.frame.height) * (4/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (35/100), y: (view.frame.height) * (4/100), width: view.frame.width * (27/100), height: (view.frame.height) * (2.5/100))
             case 2:
-                newLabel.frame = CGRect(x: (view.frame.width) * (62/100), y: (view.frame.height) * (4/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (65/100), y: (view.frame.height) * (4/100), width: view.frame.width * (27/100), height: (view.frame.height) * (2.5/100))
             case 3:
-                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (7/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (8/100), width: view.frame.width * (27/100), height: (view.frame.height) * (2.5/100))
             case 4:
-                newLabel.frame = CGRect(x: (view.frame.width) * (36/100), y: (view.frame.height) * (7/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (35/100), y: (view.frame.height) * (8/100), width: view.frame.width * (27/100), height: (view.frame.height) * (2.5/100))
             case 5:
-                newLabel.frame = CGRect(x: (view.frame.width) * (62/100), y: (view.frame.height) * (7/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (65/100), y: (view.frame.height) * (8/100), width: view.frame.width * (27/100), height: (view.frame.height) * (2.5/100))
             default:
-                newLabel.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (7/100), width: view.frame.width * (23/100), height: (view.frame.height) * (2.5/100))
+                newLabel.frame = CGRect(x: (view.frame.width) * (5/100), y: (view.frame.height) * (8/100), width: view.frame.width * (27/100), height: (view.frame.height) * (2.5/100))
             }
             filterLabels.append(newLabel)
             view.addSubview(newLabel)
@@ -225,6 +245,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             // Reload filters and refresh
             loadFilters()
             handleRefresh(refreshControl)
+            setPositions()
         }
         
         return
