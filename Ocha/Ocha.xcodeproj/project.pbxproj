@@ -25,6 +25,8 @@
 		15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E571DCC0E0B003F7812 /* StudentHomePage.swift */; };
 		15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E591DCC0F1E003F7812 /* AdminHomePage.swift */; };
 		15635E5C1DCC0F2C003F7812 /* LandlordHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */; };
+		159DE10B1E8C745000693F40 /* FavoritePropertyReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DE10A1E8C745000693F40 /* FavoritePropertyReviews.swift */; };
+		159DE10D1E8C748900693F40 /* FavoriteCreateReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DE10C1E8C748900693F40 /* FavoriteCreateReview.swift */; };
 		15A0392E1DECDD9900FD2101 /* CreateListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A0392D1DECDD9900FD2101 /* CreateListing.swift */; };
 		15A039361DECEBCE00FD2101 /* OchaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A039351DECEBCE00FD2101 /* OchaTests.swift */; };
 		15A039411DECEEA400FD2101 /* LoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A039401DECEEA400FD2101 /* LoginTest.swift */; };
@@ -103,6 +105,8 @@
 		15635E571DCC0E0B003F7812 /* StudentHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHomePage.swift; sourceTree = "<group>"; };
 		15635E591DCC0F1E003F7812 /* AdminHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomePage.swift; sourceTree = "<group>"; };
 		15635E5B1DCC0F2C003F7812 /* LandlordHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordHomePage.swift; sourceTree = "<group>"; };
+		159DE10A1E8C745000693F40 /* FavoritePropertyReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritePropertyReviews.swift; sourceTree = "<group>"; };
+		159DE10C1E8C748900693F40 /* FavoriteCreateReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteCreateReview.swift; sourceTree = "<group>"; };
 		15A0392D1DECDD9900FD2101 /* CreateListing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateListing.swift; sourceTree = "<group>"; };
 		15A039331DECEBCD00FD2101 /* OchaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OchaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15A039351DECEBCE00FD2101 /* OchaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OchaTests.swift; sourceTree = "<group>"; };
@@ -271,7 +275,9 @@
 				15BFB8071E7F45F3003A6849 /* ApproveNewListTableViewCell.swift */,
 				15C308B31E7335C2002A8BAC /* UserTableViewCell.swift */,
 				15D2DF9C1E833D1700404D48 /* StudentPropertyReviews.swift */,
+				159DE10A1E8C745000693F40 /* FavoritePropertyReviews.swift */,
 				15D2DF9E1E833D5000404D48 /* CreateReview.swift */,
+				159DE10C1E8C748900693F40 /* FavoriteCreateReview.swift */,
 				15D2DFA21E833DCA00404D48 /* Review.swift */,
 				15D2DFA01E833D7200404D48 /* ReviewTableViewCell.swift */,
 				15CC3C801E85EEB300CDAA4C /* AdminPropertyReviews.swift */,
@@ -547,6 +553,7 @@
 				15D2DFA11E833D7200404D48 /* ReviewTableViewCell.swift in Sources */,
 				150359291DCFF719005AD597 /* AccountInfo.swift in Sources */,
 				1503592D1DD03518005AD597 /* UserType.swift in Sources */,
+				159DE10D1E8C748900693F40 /* FavoriteCreateReview.swift in Sources */,
 				153FBDC11E690311008E4B41 /* ApproveNewListingPage.swift in Sources */,
 				154C50B31DE23C1400F39D67 /* Listing.swift in Sources */,
 				15A5EEC51DD67A2F00F1D8A1 /* AdminTabController.swift in Sources */,
@@ -561,6 +568,7 @@
 				15B25DB91E6A4B6400503C03 /* ApproveEditsPage.swift in Sources */,
 				15A0392E1DECDD9900FD2101 /* CreateListing.swift in Sources */,
 				7C99E85A1DDFCEF000C7CE03 /* ListingTableViewCell.swift in Sources */,
+				159DE10B1E8C745000693F40 /* FavoritePropertyReviews.swift in Sources */,
 				7C20DED11E7230D000E1A082 /* FireUser.swift in Sources */,
 				15D2DFA31E833DCA00404D48 /* Review.swift in Sources */,
 				7C854E511DC400AD00E02883 /* CreateAccount.swift in Sources */,
