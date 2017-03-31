@@ -48,7 +48,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         headerLabel.font = UIFont(name: headerLabel.font.fontName, size: 24)
         headerLabel.adjustsFontSizeToFitWidth = true
         headerLabel.textColor = UIColor.white
-        headerLabel.frame = CGRect(x: (view.frame.width) * (35/100), y: (view.frame.height) * (2/100), width: view.frame.width * (30/100), height: (view.frame.height) * (10/100))
+        headerLabel.frame = CGRect(x: (view.frame.width) * (35/100), y: (view.frame.height) * (1/100), width: view.frame.width * (30/100), height: (view.frame.height) * (10/100))
         view.addSubview(headerLabel)
 
         

@@ -20,7 +20,6 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     var listings = [Listing]()
     
-    
     var valueTopass : String!
     var downloadURL = ""
     var refreshControl : UIRefreshControl!
@@ -35,24 +34,14 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         // Do any additional setup after loading the view, typically from a nib.
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         // Initialize our table
-        propertiesList.frame = CGRect(x: (view.frame.width) * (0/100), y: (view.frame.height) * (15/100), width: view.frame.width, height: (view.frame.height) * (85/100))
+        propertiesList.frame = CGRect(x: (view.frame.width) * (0/100), y: (view.frame.height) * (7/100), width: view.frame.width, height: (view.frame.height) * (85/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
         propertiesList.reloadData()
         propertiesList.addSubview(refreshControl)
         
         let viewTitle = UILabel()
-        
-        let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (4/100), width: view.frame.width * (25/100) , height: 20)
-        toHomePageButton.setTitle("Logout", for: UIControlState.normal)
-        toHomePageButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        toHomePageButton.titleLabel?.textColor = UIColor.white
-        toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
-        toHomePageButton.layer.cornerRadius = 4
-        toHomePageButton.addTarget(self, action: #selector(StudentHomePage.logout(_:)), for: UIControlEvents.touchUpInside)
-        
-        view.addSubview(toHomePageButton)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
