@@ -11,6 +11,10 @@ import UIKit
 class AdminListingPage: UITableViewController {
     
     var imageUrl = ""
+    var imageUrl2 = ""
+    var imageUrl3 = ""
+    var imageUrl4 = ""
+    var imageUrl5 = ""
     var address : String = ""
     var distance : String = ""
     var rooms : String = ""
@@ -142,6 +146,10 @@ class AdminListingPage: UITableViewController {
             destination.bedroomNum = rooms
             destination.distance = distance
             destination.imageURL = imageUrl
+            destination.imageURL2 = imageUrl2
+            destination.imageURL3 = imageUrl3
+            destination.imageURL4 = imageUrl4
+            destination.imageURL5 = imageUrl5
             destination.propertyID = propertyID
             destination.leaseTerms = leaseLength
             destination.dateAvailable = dateAvailable
@@ -165,6 +173,10 @@ class AdminListingPage: UITableViewController {
             destination.rooms = rooms
             destination.distance = distance
             destination.imageUrl = imageUrl
+            destination.imageUrl2 = imageUrl2
+            destination.imageUrl3 = imageUrl3
+            destination.imageUrl4 = imageUrl4
+            destination.imageUrl5 = imageUrl5
             destination.propertyID = propertyID
             destination.leaseLength = leaseLength
             destination.dateAvailable = dateAvailable
@@ -175,7 +187,6 @@ class AdminListingPage: UITableViewController {
             destination.availability = availability
             destination.propDescription = propDescription
             destination.phoneNumber = phoneNumber
-            
             
         }
         

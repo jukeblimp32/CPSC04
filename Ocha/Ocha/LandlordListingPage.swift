@@ -13,6 +13,10 @@ class LandlordListingPage: UITableViewController {
     var listingStatus = ""
     
     var imageUrl = ""
+    var imageUrl2 = ""
+    var imageUrl3 = ""
+    var imageUrl4 = ""
+    var imageUrl5 = ""
     var address : String = ""
     var distance : String = ""
     var rooms : String = ""
@@ -153,6 +157,10 @@ class LandlordListingPage: UITableViewController {
             destination.bedroomNum = rooms
             destination.distance = distance
             destination.imageURL = imageUrl
+            destination.imageURL2 = imageUrl2
+            destination.imageURL3 = imageUrl3
+            destination.imageURL4 = imageUrl4
+            destination.imageURL5 = imageUrl5
             destination.propertyID = propertyID
             destination.leaseTerms = leaseLength
             destination.dateAvailable = dateAvailable

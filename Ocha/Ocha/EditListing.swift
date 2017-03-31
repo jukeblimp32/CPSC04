@@ -19,9 +19,6 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     
     let apiKey = GMSServices.provideAPIKey("AIzaSyAZiputpqkl-sCQk6gk5uTBQLJQVSe0684")
     
-    
-    
-    
     var address : String = ""
     var rent : String = ""
     var bedroomNum : String = ""
@@ -38,6 +35,11 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     var email : String = ""
     var phoneNumber : String = ""
     var imageURL : String = ""
+    var imageURL2 : String = ""
+    var imageURL3 : String = ""
+    var imageURL4 : String = ""
+    var imageURL5 : String = ""
+    
     
     var editAddress : String = ""
     var editRent : String = ""
@@ -51,9 +53,12 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     var editLease : String = ""
     var editPhoneNumber : String = ""
     var editImageUrl : String = ""
+    var editImageUrl2 : String = ""
+    var editImageUrl3 : String = ""
+    var editImageUrl4 : String = ""
+    var editImageUrl5 : String = ""
     var editMilesToGu : String = ""
 
-    
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var rentTextField: UITextField!
     @IBOutlet weak var depositTextField: UITextField!
@@ -62,6 +67,10 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var bathroomStepper: UIStepper!
     @IBOutlet weak var propertyImage: UIImageView!
+    @IBOutlet var propertyImage2: UIImageView!
+    @IBOutlet var propertyImage3: UIImageView!
+    @IBOutlet var propertyImage4: UIImageView!
+    @IBOutlet var propertyImage5: UIImageView!
     @IBOutlet weak var propertyStatus: UISegmentedControl!
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var descriptionText: UITextView!
@@ -94,6 +103,10 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         phoneNumberTextField.text = phoneNumber
         phoneNumberTextField.delegate = self
         propertyImage.loadCachedImages(url: imageURL)
+        propertyImage2.loadCachedImages(url: imageURL2)
+        propertyImage3.loadCachedImages(url: imageURL3)
+        propertyImage4.loadCachedImages(url: imageURL4)
+        propertyImage5.loadCachedImages(url: imageURL5)
         descriptionText!.layer.borderWidth = 1
         descriptionText!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
 

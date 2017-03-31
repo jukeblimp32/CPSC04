@@ -18,6 +18,10 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     var listings = [Listing]()
     var status = [String]()
     var downloadURL = ""
+    var downloadURL2 = ""
+    var downloadURL3 = ""
+    var downloadURL4 = ""
+    var downloadURL5 = ""
     var refreshControl : UIRefreshControl!
     
 
@@ -65,6 +69,10 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             destination.distance = listings[blogIndex].milesToGU
             destination.rooms = listings[blogIndex].numberOfRooms
             destination.imageUrl = listings[blogIndex].imageUrl
+            destination.imageUrl2 = listings[blogIndex].imageUrl2
+            destination.imageUrl3 = listings[blogIndex].imageUrl3
+            destination.imageUrl4 = listings[blogIndex].imageUrl4
+            destination.imageUrl5 = listings[blogIndex].imageUrl5
             destination.email = listings[blogIndex].email
             destination.propertyID = listings[blogIndex].propertyID
             destination.dateAvailable = listings[blogIndex].dateAvailable
@@ -336,12 +344,26 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             if(snapshot == nil)
             {
                 self.downloadURL = ""
+                self.downloadURL2 = ""
+                self.downloadURL3 = ""
+                self.downloadURL4 = ""
+                self.downloadURL5 = ""
+                
             }
             else
             {
                 // Set the download URL and download the image
                 self.downloadURL = snapshot?["image1"] as! String
                 listing.imageUrl = self.downloadURL
+                self.downloadURL2 = snapshot?["image2"] as! String
+                listing.imageUrl2 = self.downloadURL2
+                self.downloadURL3 = snapshot?["image3"] as! String
+                listing.imageUrl3 = self.downloadURL3
+                self.downloadURL4 = snapshot?["image4"] as! String
+                listing.imageUrl4 = self.downloadURL4
+                self.downloadURL5 = snapshot?["image5"] as! String
+                listing.imageUrl5 = self.downloadURL5
+                
                 cell.propertyImage.loadCachedImages(url: self.downloadURL)
                 listing.houseImage = cell.propertyImage.image
             }

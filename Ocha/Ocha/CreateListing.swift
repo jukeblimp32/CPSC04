@@ -343,7 +343,6 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             leaseLength.selectedSegmentIndex = 0
             propType.selectedSegmentIndex = 0
             propDescription.text = ""
-            
         }
 
     }
@@ -353,7 +352,17 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         let propertyMaxID = maxID + 1
         // Firebase images. First create a unique id number.
         let imageName = NSUUID().uuidString
+        let imageName2 = NSUUID().uuidString
+        let imageName3 = NSUUID().uuidString
+        let imageName4 = NSUUID().uuidString
+        let imageName5 = NSUUID().uuidString
+        
         let storageRef = FIRStorage.storage().reference().child("Listing Images").child("\(imageName).png")
+        let storageRef2 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName2).png")
+        let storageRef3 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName3).png")
+        let storageRef4 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName4).png")
+        let storageRef5 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName5).png")
+
         
         let fireData = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
         let listingsReference = fireData.child("listings").child(String(propertyMaxID))
@@ -363,7 +372,6 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         //Loading each image into firebase
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView.image!)
         {
-            print(uploadData)
             storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
@@ -381,8 +389,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         }
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView2.image!)
         {
-            print(uploadData)
-            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+            storageRef2.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
                     return
@@ -399,8 +406,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         }
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView3.image!)
         {
-                        print(uploadData)
-            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+            storageRef3.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
                     return
@@ -412,14 +418,12 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
                     
                 }
                 
-                
             })
             
         }
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView4.image!)
         {
-                        print(uploadData)
-            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+            storageRef4.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
                     return
@@ -436,8 +440,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         }
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView5.image!)
         {
-                        print(uploadData)
-            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+            storageRef5.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
                     return
@@ -450,6 +453,8 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
                 }
             })
         }
+        sleep(10)
+        
     }
     
     func handleSelectListingImage(/*_ sender: UIImageView*/)

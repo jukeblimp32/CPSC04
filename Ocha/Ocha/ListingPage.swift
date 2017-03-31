@@ -16,6 +16,10 @@ class ListingPage: UITableViewController {
     
     
     var imageUrl = ""
+    var imageUrl2 = ""
+    var imageUrl3 = ""
+    var imageUrl4 = ""
+    var imageUrl5 = ""
     var address : String = ""
     var distance : String = ""
     var rooms : String = ""
@@ -91,6 +95,10 @@ class ListingPage: UITableViewController {
             destination.rooms = rooms
             destination.distance = distance
             destination.imageUrl = imageUrl
+            destination.imageUrl2 = imageUrl2
+            destination.imageUrl3 = imageUrl3
+            destination.imageUrl4 = imageUrl4
+            destination.imageUrl5 = imageUrl5
             destination.propertyID = propertyID
             destination.leaseLength = leaseLength
             destination.dateAvailable = dateAvailable

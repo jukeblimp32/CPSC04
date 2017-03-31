@@ -35,6 +35,10 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
     var email : String = ""
     var phoneNumber : String = ""
     var imageURL : String = ""
+    var imageURL2 : String = ""
+    var imageURL3 : String = ""
+    var imageURL4 : String = ""
+    var imageURL5 : String = ""
     
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var rentTextField: UITextField!
@@ -75,6 +79,10 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         phoneNumberTextField.text = phoneNumber
         phoneNumberTextField.delegate = self
         propertyImage.loadCachedImages(url: imageURL)
+        //propertyImage2.loadCachedImages(url: imageURL2)
+        //propertyImage3.loadCachedImages(url: imageURL3)
+        //propertyImage4.loadCachedImages(url: imageURL4)
+        //propertyImage5.loadCachedImages(url: imageURL5)
         descriptionText!.layer.borderWidth = 1
         descriptionText!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
         
