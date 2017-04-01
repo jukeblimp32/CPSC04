@@ -16,6 +16,10 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
     var propStat : String = ""
     
     var imageUrl = ""
+    var imageUrl2 = ""
+    var imageUrl3 = ""
+    var imageUrl4 = ""
+    var imageUrl5 = ""
     var address : String = ""
     var distance : String = ""
     var rooms : String = ""

@@ -359,9 +359,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         
         var dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
- 
-        
-        
+     
         
         //getting values from fields
         editAddress = addressTextField.text!
@@ -375,7 +373,6 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         editDate = dateFormatter.string(from: datePicker.date)
         editLease = leaseSegment.titleForSegment(at: leaseSegment.selectedSegmentIndex)!
         editPhoneNumber = phoneNumberTextField.text!
-        
         
         
         let stringAddress = String(editAddress)
@@ -610,6 +607,7 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         }
         dismiss(animated:true, completion:nil)
     }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print("Cancelled picker")
         dismiss(animated: true, completion:nil)

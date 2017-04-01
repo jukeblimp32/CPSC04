@@ -297,16 +297,29 @@ class ApproveNewListings: UIViewController, UITableViewDelegate, UITableViewData
             if(snapshot == nil)
             {
                 self.downloadURL = ""
+                self.downloadURL2 = ""
+                self.downloadURL3 = ""
+                self.downloadURL4 = ""
+                self.downloadURL5 = ""
             }
             else
             {
                 // Set the download URL and download the image
                 self.downloadURL = snapshot?["image1"] as! String
                 listing.imageUrl = self.downloadURL
+                self.downloadURL = snapshot?["image2"] as! String
+                listing.imageUrl2 = self.downloadURL2
+                self.downloadURL = snapshot?["image3"] as! String
+                listing.imageUrl3 = self.downloadURL3
+                self.downloadURL = snapshot?["image4"] as! String
+                listing.imageUrl4 = self.downloadURL4
+                self.downloadURL = snapshot?["image5"] as! String
+                listing.imageUrl5 = self.downloadURL5
+                
+                
                 cell.propertyImage.loadCachedImages(url: self.downloadURL)
                 listing.houseImage = cell.propertyImage.image
-                
-                
+          
             }
             
         })

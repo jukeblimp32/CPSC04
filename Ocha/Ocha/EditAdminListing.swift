@@ -48,6 +48,11 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var bathroomStepper: UIStepper!
     @IBOutlet weak var propertyImage: UIImageView!
+    @IBOutlet var propertyImage2: UIImageView!
+    @IBOutlet var propertyImage3: UIImageView!
+    @IBOutlet var propertyImage4: UIImageView!
+    @IBOutlet var propertyImage5: UIImageView!
+ 
     @IBOutlet weak var propertyStatus: UISegmentedControl!
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var descriptionText: UITextView!
@@ -57,6 +62,7 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
     
     @IBOutlet weak var petPolicy: UISegmentedControl!
     
+    var imageViewSelected = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,19 +85,37 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         phoneNumberTextField.text = phoneNumber
         phoneNumberTextField.delegate = self
         propertyImage.loadCachedImages(url: imageURL)
-        //propertyImage2.loadCachedImages(url: imageURL2)
-        //propertyImage3.loadCachedImages(url: imageURL3)
-        //propertyImage4.loadCachedImages(url: imageURL4)
-        //propertyImage5.loadCachedImages(url: imageURL5)
+        propertyImage2.loadCachedImages(url: imageURL2)
+        propertyImage3.loadCachedImages(url: imageURL3)
+        propertyImage4.loadCachedImages(url: imageURL4)
+        propertyImage5.loadCachedImages(url: imageURL5)
         descriptionText!.layer.borderWidth = 1
         descriptionText!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor
         
         let initialChars = propDescription.characters.count
         characterLabel.text = "Description: (" + String(900 - initialChars) + " characters remaining)"
         characterLabel.adjustsFontSizeToFitWidth = true
+        
+        
         propertyImage.contentMode = .scaleAspectFill
         propertyImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         propertyImage.isUserInteractionEnabled = true
+        
+        propertyImage2.contentMode = .scaleAspectFill
+        propertyImage2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage2)))
+        propertyImage2.isUserInteractionEnabled = true
+        
+        propertyImage3.contentMode = .scaleAspectFill
+        propertyImage3.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage3)))
+        propertyImage3.isUserInteractionEnabled = true
+        
+        propertyImage4.contentMode = .scaleAspectFill
+        propertyImage4.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage4)))
+        propertyImage4.isUserInteractionEnabled = true
+        
+        propertyImage5.contentMode = .scaleAspectFill
+        propertyImage5.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage5)))
+        propertyImage5.isUserInteractionEnabled = true
         
         if (Double(bedroomNum) == nil) {
             stepper.value = 1
@@ -200,6 +224,10 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
             destination.distance = distance
             destination.email = email
             destination.imageUrl = imageURL
+            destination.imageUrl2 = imageURL2
+            destination.imageUrl3 = imageURL3
+            destination.imageUrl4 = imageURL4
+            destination.imageUrl5 = imageURL5
             destination.propertyID = propertyID
             destination.leaseLength = leaseTerms
             destination.dateAvailable = dateAvailable
@@ -298,7 +326,7 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
         
-        self.uploadImage()
+        self.uploadImage(address: editAddress!)
         
         //task to send to post request
         let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
@@ -329,11 +357,27 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         
     }
     
-    private func uploadImage()
-    {
+    private func uploadImage(address : String){
+        
         // Firebase images. First create a unique id number.
         let imageName = NSUUID().uuidString
+        let imageName2 = NSUUID().uuidString
+        let imageName3 = NSUUID().uuidString
+        let imageName4 = NSUUID().uuidString
+        let imageName5 = NSUUID().uuidString
+        
         let storageRef = FIRStorage.storage().reference().child("Listing Images").child("\(imageName).png")
+        let storageRef2 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName2).png")
+        let storageRef3 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName3).png")
+        let storageRef4 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName4).png")
+        let storageRef5 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName5).png")
+        
+        
+        let fireData = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+        let listingsReference = fireData.child("listings").child(String(self.propertyID))
+        listingsReference.child("address").setValue(address)
+        
+        //Loading each image into firebase
         if let uploadData = UIImagePNGRepresentation(self.propertyImage.image!)
         {
             storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
@@ -344,30 +388,82 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
                 print(metadata)
                 // Set values
                 if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
-                    let values = ["address": self.address, "image1": uploadImageUrl]
-                    
-                    // After uploading image to storage, add to property photos database
-                    let fireData = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
-                    /**********************************************************
-                     * Need to swap out with property id
-                     ***********************************************************/
-                    let listingsReference = fireData.child("listings").child(String(self.propertyID))
-                    listingsReference.updateChildValues(values, withCompletionBlock: {
-                        (err, ref) in
-                        if err != nil {
-                            print(err)
-                            return
-                        }
-                        
-                    })
-                    
+                    listingsReference.child("image1").setValue(uploadImageUrl)
                 }
                 
                 
             })
             
         }
+        if let uploadData = UIImagePNGRepresentation(self.propertyImage2.image!)
+        {
+            storageRef2.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                print(metadata)
+                // Set values
+                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                    listingsReference.child("image2").setValue(uploadImageUrl)
+                }
+                
+                
+            })
+            
+        }
+        if let uploadData = UIImagePNGRepresentation(self.propertyImage3.image!)
+        {
+            storageRef3.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                print(metadata)
+                // Set values
+                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                    listingsReference.child("image3").setValue(uploadImageUrl)
+                    
+                }
+                
+            })
+            
+        }
+        if let uploadData = UIImagePNGRepresentation(self.propertyImage4.image!)
+        {
+            storageRef4.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                print(metadata)
+                // Set values
+                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                    listingsReference.child("image4").setValue(uploadImageUrl)
+                    
+                }
+                
+            })
+            
+        }
+        if let uploadData = UIImagePNGRepresentation(self.propertyImage5.image!)
+        {
+            storageRef5.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                print(metadata)
+                // Set values
+                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                    listingsReference.child("image5").setValue(uploadImageUrl)
+                    
+                }
+            })
+        }
+        
     }
+    
     
     func handleSelectListingImage()
     {
@@ -377,6 +473,42 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         present(picker, animated: true, completion: nil)
     }
     
+    func handleSelectListingImage2(/*_ sender: UIImageView*/)
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+        imageViewSelected = 1
+    }
+    
+    func handleSelectListingImage3(/*_ sender: UIImageView*/)
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+        imageViewSelected = 2
+    }
+    
+    func handleSelectListingImage4(/*_ sender: UIImageView*/)
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+        imageViewSelected = 3
+    }
+    
+    func handleSelectListingImage5(/*_ sender: UIImageView*/)
+    {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+        imageViewSelected = 4
+    }
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         var selectedImageFromPicker: UIImage?
@@ -389,7 +521,21 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         }
         
         if let selectedImage = selectedImageFromPicker{
-            propertyImage.image = selectedImage
+            if imageViewSelected == 0 {
+                propertyImage.image = selectedImage
+            }
+            if imageViewSelected == 1 {
+                propertyImage2.image = selectedImage
+            }
+            if imageViewSelected == 2 {
+                propertyImage3.image = selectedImage
+            }
+            if imageViewSelected == 3 {
+                propertyImage4.image = selectedImage
+            }
+            if imageViewSelected == 4 {
+                propertyImage5.image = selectedImage
+            }
         }
         dismiss(animated:true, completion:nil)
     }
