@@ -370,7 +370,6 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             
         })
 
-
         return cell
     }
     

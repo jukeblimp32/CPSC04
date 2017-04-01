@@ -14,8 +14,6 @@ import CoreLocation
 
 class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
-    
-    
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var bedroomNumber: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -47,10 +45,10 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     
     
     @IBOutlet weak var uploadImageView: UIImageView!
-    @IBOutlet var uploadImageView2: UIImageView!
-    @IBOutlet var uploadImageView3: UIImageView!
-    @IBOutlet var uploadImageView4: UIImageView!
-    @IBOutlet var uploadImageView5: UIImageView!
+    @IBOutlet weak var uploadImageView2: UIImageView!
+    @IBOutlet weak var uploadImageView3: UIImageView!
+    @IBOutlet weak var uploadImageView4: UIImageView!
+    @IBOutlet weak var uploadImageView5: UIImageView!
     
     
     
@@ -367,11 +365,18 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         let fireData = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
         let listingsReference = fireData.child("listings").child(String(propertyMaxID))
         listingsReference.child("address").setValue(address)
+        let defaultUrl = "https://firebasestorage.googleapis.com/v0/b/osha-6c505.appspot.com/o/Listing%20Images%2F03790F04-93BB-4E00-BB9C-E050777D770C.png?alt=media&token=49378472-2b44-4593-8429-9dae19621c07"
+        listingsReference.child("image1").setValue(defaultUrl)
+        listingsReference.child("image2").setValue(defaultUrl)
+        listingsReference.child("image3").setValue(defaultUrl)
+        listingsReference.child("image4").setValue(defaultUrl)
+        listingsReference.child("image5").setValue(defaultUrl)
         
         
         //Loading each image into firebase
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView.image!)
         {
+            print(uploadImageView.image!)
             storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
@@ -453,7 +458,6 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
                 }
             })
         }
-        sleep(10)
         
     }
     

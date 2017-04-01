@@ -20,6 +20,10 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var favoriteListings = [Listing]()
     var valueTopass : String!
     var downloadURL = ""
+    var download2URL = ""
+    var download3URL = ""
+    var download4URL = ""
+    var download5URL = ""
     var refreshControl : UIRefreshControl!
     
     override func viewDidLoad() {
@@ -175,6 +179,10 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             destination.rooms = favoriteListings[cellIndex].numberOfRooms
             // Pass the imageUrl just to ensure that the image loads
             destination.imageUrl = favoriteListings[cellIndex].imageUrl
+            destination.imageUrl2 = favoriteListings[cellIndex].imageUrl2
+            destination.imageUrl3 = favoriteListings[cellIndex].imageUrl3
+            destination.imageUrl4 = favoriteListings[cellIndex].imageUrl4
+            destination.imageUrl5 = favoriteListings[cellIndex].imageUrl5
             destination.email = favoriteListings[cellIndex].email
             destination.dateAvailable = favoriteListings[cellIndex].dateAvailable
             destination.leaseLength = favoriteListings[cellIndex].leaseLength

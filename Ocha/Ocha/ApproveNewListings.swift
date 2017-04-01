@@ -23,6 +23,10 @@ class ApproveNewListings: UIViewController, UITableViewDelegate, UITableViewData
     
     var valueTopass : String!
     var downloadURL = ""
+    var downloadURL2 = ""
+    var downloadURL3 = ""
+    var downloadURL4 = ""
+    var downloadURL5 = ""
     var refreshControl : UIRefreshControl!
     
     override func viewDidLoad() {
@@ -81,6 +85,10 @@ class ApproveNewListings: UIViewController, UITableViewDelegate, UITableViewData
             destination.distance = listings[cellIndex].milesToGU
             destination.rooms = listings[cellIndex].numberOfRooms
             destination.imageUrl = listings[cellIndex].imageUrl
+            destination.imageUrl2 = listings[cellIndex].imageUrl2
+            destination.imageUrl3 = listings[cellIndex].imageUrl3
+            destination.imageUrl4 = listings[cellIndex].imageUrl4
+            destination.imageUrl5 = listings[cellIndex].imageUrl5
             destination.leaseLength = listings[cellIndex].leaseLength
             destination.dateAvailable = listings[cellIndex].dateAvailable
             destination.bathroomNumber = listings[cellIndex].bathroomNumber

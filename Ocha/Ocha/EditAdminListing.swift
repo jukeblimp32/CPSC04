@@ -114,7 +114,6 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         bathroomStepper.minimumValue = 1
         bathroomStepper.maximumValue = 10
         self.addReturnButtonOnNumpad()
-        
     }
     
     func determineAvailability() {
