@@ -128,11 +128,14 @@ class ListingPage: UITableViewController {
         let imageHeight : CGFloat = size
         var xPosition : CGFloat = offset
         var scrollViewSize : CGFloat = 0
-
+        //self.pictureCell.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: size + 500)
+        pictureScrollView.frame = CGRect(x:0, y: 0, width : view.frame.width, height: size)
+        
         for image in myImages {
             let myImageView : UIImageView = UIImageView()
+            myImageView.contentMode = .scaleAspectFit
+            myImageView.clipsToBounds = true
             myImageView.loadCachedImages(url: image)
-            
             myImageView.frame.size.width = imageWidth
             myImageView.frame.size.height = imageHeight
             myImageView.frame.origin.x = xPosition

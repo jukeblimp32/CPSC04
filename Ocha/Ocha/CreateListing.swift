@@ -83,29 +83,38 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         bedroomStepper.maximumValue = 10
         
         uploadImageView.image = UIImage(named: "default")
-        uploadImageView.contentMode = .scaleAspectFill
         uploadImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         uploadImageView.isUserInteractionEnabled = true
+        uploadImageView.clipsToBounds = true
+        uploadImageView.contentMode = .scaleAspectFit
         
         uploadImageView2.image = UIImage(named: "default")
-        uploadImageView2.contentMode = .scaleAspectFill
+        //uploadImageView2.contentMode = .scaleAspectFill
         uploadImageView2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage2)))
         uploadImageView2.isUserInteractionEnabled = true
+        uploadImageView2.clipsToBounds = true
+        uploadImageView2.contentMode = .scaleAspectFit
         
         uploadImageView3.image = UIImage(named: "default")
-        uploadImageView3.contentMode = .scaleAspectFill
+        //uploadImageView3.contentMode = .scaleAspectFill
         uploadImageView3.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage3)))
         uploadImageView3.isUserInteractionEnabled = true
+        uploadImageView3.clipsToBounds = true
+        uploadImageView3.contentMode = .scaleAspectFit
         
         uploadImageView4.image = UIImage(named: "default")
-        uploadImageView4.contentMode = .scaleAspectFill
+        //uploadImageView4.contentMode = .scaleAspectFill
         uploadImageView4.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage4)))
         uploadImageView4.isUserInteractionEnabled = true
+        uploadImageView4.clipsToBounds = true
+        uploadImageView4.contentMode = .scaleAspectFit
         
         uploadImageView5.image = UIImage(named: "default")
-        uploadImageView5.contentMode = .scaleAspectFill
+        //uploadImageView5.contentMode = .scaleAspectFill
         uploadImageView5.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage5)))
         uploadImageView5.isUserInteractionEnabled = true
+        uploadImageView5.clipsToBounds = true
+        uploadImageView5.contentMode = .scaleAspectFit
         
         
         characterLabel.adjustsFontSizeToFitWidth = true
@@ -522,18 +531,23 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         
         if let selectedImage = selectedImageFromPicker{
             if imageViewSelected == 0 {
+                uploadImageView.contentMode = .scaleAspectFill
                 uploadImageView.image = selectedImage
             }
             if imageViewSelected == 1 {
+                uploadImageView2.contentMode = .scaleAspectFill
                 uploadImageView2.image = selectedImage
             }
             if imageViewSelected == 2 {
+                uploadImageView3.contentMode = .scaleAspectFill
                 uploadImageView3.image = selectedImage
             }
             if imageViewSelected == 3 {
+                uploadImageView4.contentMode = .scaleAspectFill
                 uploadImageView4.image = selectedImage
             }
             if imageViewSelected == 4 {
+                uploadImageView5.contentMode = .scaleAspectFill
                 uploadImageView5.image = selectedImage
             }
         }

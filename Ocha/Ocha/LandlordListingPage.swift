@@ -103,7 +103,7 @@ class LandlordListingPage: UITableViewController {
             myImageView.frame.size.height = imageHeight
             myImageView.frame.origin.x = xPosition
             myImageView.frame.origin.y = 0
-            
+           
             pictureScrollView.addSubview(myImageView)
             xPosition += imageWidth + offset
             scrollViewSize += imageWidth + offset
@@ -113,8 +113,6 @@ class LandlordListingPage: UITableViewController {
         
         pictureScrollView.contentSize = CGSize(width: scrollViewSize, height: imageHeight)
     }
-    
-    
     
     /* Deletes current property from database */
     @IBAction func deleteListing(_ sender: Any) {

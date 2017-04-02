@@ -479,8 +479,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         getTask.resume()
     }
     
-
-    
     //Fucntion to load in all favorited properties into  favoriteListing
     //favoriteListings is used in favoritedProperties
     func getFavoritedProperties() {
