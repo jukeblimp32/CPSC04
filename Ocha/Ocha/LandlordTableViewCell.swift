@@ -44,55 +44,56 @@ class LandlordTableViewCell: UITableViewCell {
         propertyRent.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyRent.textColor = UIColor.black
         propertyRent.adjustsFontSizeToFitWidth = true
-        propertyRent.frame = CGRect(x: (screenSize.width) * (68/100), y: (self.frame.height) * (30/100), width: self.frame.width * (18/100), height: 20)
+        propertyRent.frame = CGRect(x: (screenSize.width) * (80/100), y: (self.frame.height) * (20/100), width: self.frame.width * (18/100), height: 20)
         self.addSubview(propertyRent)
         
         propertyRooms.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyRooms.textColor = UIColor.black
         propertyRooms.adjustsFontSizeToFitWidth = true
-        propertyRooms.frame = CGRect(x: (screenSize.width) * (68/100), y: (self.frame.height) * (50/100), width: self.frame.width * (18/100), height: 15)
+        propertyRooms.frame = CGRect(x: (screenSize.width) * (80/100), y: (self.frame.height) * (35/100), width: self.frame.width * (18/100), height: 15)
         self.addSubview(propertyRooms)
         
         propertyDistance.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyDistance.textColor = UIColor.black
         propertyDistance.adjustsFontSizeToFitWidth = true
-        propertyDistance.frame = CGRect(x: (screenSize.width) * (68/100), y: (self.frame.height) * (70/100), width: self.frame.width * (18/100), height: 15)
+        propertyDistance.frame = CGRect(x: (screenSize.width) * (80/100), y: (self.frame.height) * (50/100), width: self.frame.width * (18/100), height: 15)
         self.addSubview(propertyDistance)
         
+        
         propertyStatus.font = UIFont(name: propertyStatus.font.fontName, size: 15)
-        propertyStatus.textColor = UIColor.white
+        propertyStatus.textColor = UIColor.darkGray
         propertyStatus.adjustsFontSizeToFitWidth = true
-        propertyStatus.frame = CGRect(x: (screenSize.width) * (36/100), y: (self.frame.height) * (90/100), width: self.frame.width * (18/100), height: 15)
+        propertyStatus.frame = CGRect(x: (screenSize.width) * (80/100), y: (self.frame.height) * (75/100), width: self.frame.width * (18/100), height: 15)
         self.addSubview(propertyStatus)
+        
         
         rentLabel.text = "Rent per Month:"
         rentLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
         rentLabel.textColor = UIColor.black
         rentLabel.adjustsFontSizeToFitWidth = true
-        rentLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (30/100), width: screenSize.width * (30/100), height: 15)
+        rentLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (20/100), width: screenSize.width * (42/100), height: 15)
         self.addSubview(rentLabel)
         
         roomLabel.text = "Bedrooms:"
         roomLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
         roomLabel.textColor = UIColor.black
         roomLabel.adjustsFontSizeToFitWidth = true
-        roomLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (50/100), width: screenSize.width * (30/100), height: 15)
+        roomLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (35/100), width: screenSize.width * (42/100), height: 15)
         self.addSubview(roomLabel)
         
         distanceLabel.text = "Miles to GU:"
         distanceLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyAddress.adjustsFontSizeToFitWidth = true
         distanceLabel.textColor = UIColor.black
-        distanceLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (70/100) , width: screenSize.width * (30/100), height: 15)
+        distanceLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (50/100) , width: screenSize.width * (42/100), height: 15)
         self.addSubview(distanceLabel)
         
         statusLabel.text = "STATUS:"
-        statusLabel.font = UIFont(name: statusLabel.font.fontName, size: 15)
+        statusLabel.font = UIFont(name: statusLabel.font.fontName, size: 12)
         statusLabel.adjustsFontSizeToFitWidth = true
-        statusLabel.textColor = UIColor.white
-        statusLabel.frame = CGRect(x: (screenSize.width) * (6/100), y: (self.frame.height) * (90/100) , width: screenSize.width * (30/100), height: 15)
+        statusLabel.textColor = UIColor.darkGray
+        statusLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (75/100) , width: screenSize.width * (42/100), height: 15)
         self.addSubview(statusLabel)
-
     }
     
     

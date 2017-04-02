@@ -288,9 +288,15 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.propertyRent.text = String(listing.monthRent)
         cell.propertyRooms.text = String(listing.numberOfRooms)
         cell.propertyImage.image = listing.houseImage
-        cell.propertyStatus.text = listingStatus
+        //cell.propertyStatus.text = listingStatus
+        cell.statusLabel.text = "STATUS: " + listingStatus
         cell.favoriteButton.isHidden = true
 
+        if listingStatus == "Approved" || listingStatus ==  " Approved" {
+            cell.propertyStatus.isHidden = true
+            cell.statusLabel.isHidden = true
+        }
+        
         print(indexPath.row)
         print (listingStatus)
         
