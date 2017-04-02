@@ -527,18 +527,23 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         
         if let selectedImage = selectedImageFromPicker{
             if imageViewSelected == 0 {
+                propertyImage.contentMode = .scaleAspectFill
                 propertyImage.image = selectedImage
             }
             if imageViewSelected == 1 {
+                propertyImage2.contentMode = .scaleAspectFill
                 propertyImage2.image = selectedImage
             }
             if imageViewSelected == 2 {
+                propertyImage3.contentMode = .scaleAspectFill
                 propertyImage3.image = selectedImage
             }
             if imageViewSelected == 3 {
+                propertyImage4.contentMode = .scaleAspectFill
                 propertyImage4.image = selectedImage
             }
             if imageViewSelected == 4 {
+                propertyImage5.contentMode = .scaleAspectFill
                 propertyImage5.image = selectedImage
             }
         }

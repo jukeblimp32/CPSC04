@@ -66,6 +66,7 @@ class FavoriteListingPage: UITableViewController {
         bedroomLabel.text = "Bedrooms: " + rooms + "          Bathrooms: " + bathroomNumber
         rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
         emailLabel.text = "Email: " + email
+        addressLabel.adjustsFontSizeToFitWidth = true
         emailLabel.adjustsFontSizeToFitWidth = true
         typeLabel.adjustsFontSizeToFitWidth = true
         dateAvailableLabel.adjustsFontSizeToFitWidth = true
@@ -140,6 +141,8 @@ class FavoriteListingPage: UITableViewController {
         
         for image in myImages {
             let myImageView : UIImageView = UIImageView()
+            myImageView.contentMode = .scaleAspectFit
+            myImageView.clipsToBounds = true
             myImageView.loadCachedImages(url: image)
             
             myImageView.frame.size.width = imageWidth

@@ -63,6 +63,7 @@ class AdminListingPage: UITableViewController {
         dateAvailableLabel.text = "Date Available: " + dateAvailable + "          Availability: " + availability
         bedroomLabel.text = "Bedrooms: " + rooms + "          Bathrooms: " + bathroomNumber
         rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
+        addressLabel.adjustsFontSizeToFitWidth = true
         dateAvailableLabel.adjustsFontSizeToFitWidth = true
         typeLabel.adjustsFontSizeToFitWidth = true
         bedroomLabel.adjustsFontSizeToFitWidth = true
@@ -89,6 +90,8 @@ class AdminListingPage: UITableViewController {
         
         for image in myImages {
             let myImageView : UIImageView = UIImageView()
+            myImageView.contentMode = .scaleAspectFit
+            myImageView.clipsToBounds = true
             myImageView.loadCachedImages(url: image)
             
             myImageView.frame.size.width = imageWidth

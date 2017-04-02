@@ -68,6 +68,7 @@ class ListingPage: UITableViewController {
         rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
         typeLabel.text = "Property Type: " + propertyType
         emailLabel.text = "Email: " + email
+        addressLabel.adjustsFontSizeToFitWidth = true
         typeLabel.adjustsFontSizeToFitWidth = true
         emailLabel.adjustsFontSizeToFitWidth = true
         dateAvailableLabel.adjustsFontSizeToFitWidth = true

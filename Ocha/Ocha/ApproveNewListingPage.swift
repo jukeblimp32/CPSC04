@@ -70,6 +70,7 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
         dateAvailableLabel.text = "Date Available: " + dateAvailable + "          Availability: " + availability
         bedroomLabel.text = "Bedrooms: " + rooms + "          Bathrooms: " + bathroomNumber
         rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
+        addressLabel.adjustsFontSizeToFitWidth = true
         dateAvailableLabel.adjustsFontSizeToFitWidth = true
         bedroomLabel.adjustsFontSizeToFitWidth = true
         rentLabel.adjustsFontSizeToFitWidth = true
@@ -95,6 +96,8 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
         
         for image in myImages {
             let myImageView : UIImageView = UIImageView()
+            myImageView.contentMode = .scaleAspectFit
+            myImageView.clipsToBounds = true
             myImageView.loadCachedImages(url: image)
             
             myImageView.frame.size.width = imageWidth
