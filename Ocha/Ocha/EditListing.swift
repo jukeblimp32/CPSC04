@@ -117,22 +117,27 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         propertyImage.contentMode = .scaleAspectFill
         propertyImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         propertyImage.isUserInteractionEnabled = true
+        propertyImage.clipsToBounds = true
         
         propertyImage2.contentMode = .scaleAspectFill
         propertyImage2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage2)))
         propertyImage2.isUserInteractionEnabled = true
+        propertyImage2.clipsToBounds = true
         
         propertyImage3.contentMode = .scaleAspectFill
         propertyImage3.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage3)))
         propertyImage3.isUserInteractionEnabled = true
+        propertyImage3.clipsToBounds = true
         
         propertyImage4.contentMode = .scaleAspectFill
         propertyImage4.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage4)))
         propertyImage4.isUserInteractionEnabled = true
+        propertyImage4.clipsToBounds = true
         
         propertyImage5.contentMode = .scaleAspectFill
         propertyImage5.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage5)))
         propertyImage5.isUserInteractionEnabled = true
+        propertyImage5.clipsToBounds = true
         
         if (Double(bedroomNum) == nil) {
             stepper.value = 1
@@ -590,18 +595,23 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         
         if let selectedImage = selectedImageFromPicker{
             if imageViewSelected == 0 {
+                propertyImage.contentMode = .scaleAspectFill
                 propertyImage.image = selectedImage
             }
             if imageViewSelected == 1 {
+                propertyImage2.contentMode = .scaleAspectFill
                 propertyImage2.image = selectedImage
             }
             if imageViewSelected == 2 {
+                propertyImage3.contentMode = .scaleAspectFill
                 propertyImage3.image = selectedImage
             }
             if imageViewSelected == 3 {
+                propertyImage4.contentMode = .scaleAspectFill
                 propertyImage4.image = selectedImage
             }
             if imageViewSelected == 4 {
+                propertyImage5.contentMode = .scaleAspectFill
                 propertyImage5.image = selectedImage
             }
         }

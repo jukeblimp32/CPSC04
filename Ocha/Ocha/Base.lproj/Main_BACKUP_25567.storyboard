@@ -700,7 +700,11 @@
                                         <rect key="frame" x="0.0" y="93" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bpN-U9-EMh" id="GQ1-vx-Jfr">
+<<<<<<< HEAD
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+=======
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
+>>>>>>> 22226c052a92e53f07971056a825b0a92d5fdcda
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5D1-gQ-Z0I">
@@ -2580,7 +2584,11 @@
                                         <rect key="frame" x="0.0" y="93" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kFx-PQ-jPo" id="MBE-15-hBc">
+<<<<<<< HEAD
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+=======
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
+>>>>>>> 22226c052a92e53f07971056a825b0a92d5fdcda
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ic6-g5-LgH">
@@ -3117,7 +3125,11 @@
                                         <rect key="frame" x="0.0" y="93" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ODo-0u-B9U" id="ZVU-BK-WgO">
+<<<<<<< HEAD
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+=======
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
+>>>>>>> 22226c052a92e53f07971056a825b0a92d5fdcda
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zEu-UY-RAH">
@@ -3541,7 +3553,11 @@
                                         <rect key="frame" x="0.0" y="93" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gtR-iW-ogT" id="oNc-sW-d97">
+<<<<<<< HEAD
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+=======
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
+>>>>>>> 22226c052a92e53f07971056a825b0a92d5fdcda
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8LA-Ne-Lnx">
@@ -4478,7 +4494,11 @@
                                         <rect key="frame" x="0.0" y="93" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xs7-Sv-Ouc" id="nYb-2p-vHh">
+<<<<<<< HEAD
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+=======
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
+>>>>>>> 22226c052a92e53f07971056a825b0a92d5fdcda
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jy2-HE-Kes">
@@ -5046,7 +5066,11 @@
                                         <rect key="frame" x="0.0" y="93" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mk7-L9-yaq" id="CqA-fv-laB">
+<<<<<<< HEAD
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+=======
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
+>>>>>>> 22226c052a92e53f07971056a825b0a92d5fdcda
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ei4-yA-ZCm">
@@ -6448,6 +6472,22 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
+        <segue reference="Wmk-0C-mcc"/>
+        <segue reference="t4x-hr-brC"/>
+        <segue reference="Pib-hs-18K"/>
+        <segue reference="Wgi-Vy-FKQ"/>
+        <segue reference="h93-ZZ-6l2"/>
+        <segue reference="FH7-a1-EOm"/>
+        <segue reference="Xs4-MO-dxu"/>
+        <segue reference="R2m-C0-Dkv"/>
+        <segue reference="n3e-hw-rhr"/>
+        <segue reference="rkf-Y2-nw4"/>
+        <segue reference="mmq-Ki-Or5"/>
+        <segue reference="XgJ-yG-aBr"/>
+        <segue reference="bdE-u0-nId"/>
+        <segue reference="zjl-A3-T5k"/>
+=======
         <segue reference="bdE-u0-nId"/>
         <segue reference="XgJ-yG-aBr"/>
         <segue reference="zjl-A3-T5k"/>
@@ -6462,5 +6502,6 @@
         <segue reference="y2L-dC-8lB"/>
         <segue reference="Pib-hs-18K"/>
         <segue reference="ZLl-OI-v7r"/>
+>>>>>>> 22226c052a92e53f07971056a825b0a92d5fdcda
     </inferredMetricsTieBreakers>
 </document>

@@ -479,8 +479,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         getTask.resume()
     }
     
-
-    
     //Fucntion to load in all favorited properties into  favoriteListing
     //favoriteListings is used in favoritedProperties
     func getFavoritedProperties() {
@@ -810,7 +808,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         cell.propertyDistance.text = String(listing.milesToGU)
         cell.propertyRent.text = String(listing.monthRent)
         cell.propertyRooms.text = String(listing.numberOfRooms)
-        cell.propertyStatus.isHidden = true
         cell.propertyImage.image = listing.houseImage
         //cell.propertyImage.contentMode = .scaleAspectFill
         

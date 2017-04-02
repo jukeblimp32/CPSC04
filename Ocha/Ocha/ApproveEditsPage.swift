@@ -46,6 +46,7 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
     @IBOutlet var bedroomLabel: UILabel!
     @IBOutlet var descriptionField: UITextView!
     
+    @IBOutlet var pictureScrollView: UIScrollView!
     @IBOutlet var typeLabel: UILabel!
     @IBOutlet var petsLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
@@ -78,6 +79,7 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
         dateAvailableLabel.text = "Date Available: " + dateAvailable + "          Availability: " + availability
         bedroomLabel.text = "Bedrooms: " + rooms + "          Bathrooms: " + bathroomNumber
         rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
+        addressLabel.adjustsFontSizeToFitWidth = true
         dateAvailableLabel.adjustsFontSizeToFitWidth = true
         typeLabel.adjustsFontSizeToFitWidth = true
         bedroomLabel.adjustsFontSizeToFitWidth = true
@@ -87,7 +89,6 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
         phoneLabel.adjustsFontSizeToFitWidth = true
         petsLabel.adjustsFontSizeToFitWidth = true
         leaseLabel.adjustsFontSizeToFitWidth = true
-        propertyImage.loadCachedImages(url: imageUrl)
     
       /*  print("LOOK")
         getPropertyStatus{
@@ -106,6 +107,37 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
     
     }
     
+    
+    func loadPictures() {
+        let myImages = [self.imageUrl, self.imageUrl2, self.imageUrl3, self.imageUrl4, self.imageUrl5]
+        
+        let offset = view.frame.width * (20/100)
+        let size = view.frame.width * (60/100)
+        let imageWidth : CGFloat = size
+        let imageHeight : CGFloat = size
+        var xPosition : CGFloat = offset
+        var scrollViewSize : CGFloat = 0
+        
+        for image in myImages {
+            let myImageView : UIImageView = UIImageView()
+            myImageView.contentMode = .scaleAspectFit
+            myImageView.clipsToBounds = true
+            myImageView.loadCachedImages(url: image)
+            
+            myImageView.frame.size.width = imageWidth
+            myImageView.frame.size.height = imageHeight
+            myImageView.frame.origin.x = xPosition
+            myImageView.frame.origin.y = 0
+            
+            pictureScrollView.addSubview(myImageView)
+            xPosition += imageWidth + offset
+            scrollViewSize += imageWidth + offset
+            
+        }
+        scrollViewSize += offset
+        
+        pictureScrollView.contentSize = CGSize(width: scrollViewSize, height: imageHeight)
+    }
 
     func getPropertyStatus(callback:@escaping (String) -> ()){
         //var propertyStatus = ""

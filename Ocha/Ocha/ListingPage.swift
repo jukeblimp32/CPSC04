@@ -40,7 +40,7 @@ class ListingPage: UITableViewController {
     
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var dateAvailableLabel: UILabel!
-
+    @IBOutlet var pictureScrollView: UIScrollView!
     @IBOutlet var typeLabel: UILabel!
     @IBOutlet var bedroomLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
@@ -52,7 +52,7 @@ class ListingPage: UITableViewController {
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var propertyImage: UIImageView!
     @IBOutlet var favoriteButton: UIButton!
-    
+    @IBOutlet var pictureCell: UITableViewCell!
     @IBOutlet weak var toHomePageButton: UIButton!
 
     override func viewDidLoad() {
@@ -68,6 +68,7 @@ class ListingPage: UITableViewController {
         rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
         typeLabel.text = "Property Type: " + propertyType
         emailLabel.text = "Email: " + email
+        addressLabel.adjustsFontSizeToFitWidth = true
         typeLabel.adjustsFontSizeToFitWidth = true
         emailLabel.adjustsFontSizeToFitWidth = true
         dateAvailableLabel.adjustsFontSizeToFitWidth = true
@@ -77,7 +78,7 @@ class ListingPage: UITableViewController {
         phoneLabel.adjustsFontSizeToFitWidth = true
         petsLabel.adjustsFontSizeToFitWidth = true
         leaseLabel.adjustsFontSizeToFitWidth = true
-        propertyImage.loadCachedImages(url: imageUrl)
+        loadPictures()
         favoriteButton.backgroundColor = UIColor.white
 
         if favoritePropIDs.contains(propertyID) {
@@ -86,6 +87,8 @@ class ListingPage: UITableViewController {
         else {
             favoriteButton.setImage(UIImage(named: "emptyStar"), for: UIControlState.normal)
         }
+        
+        
     }
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -115,6 +118,38 @@ class ListingPage: UITableViewController {
             destination.phoneNumber = phoneNumber
             
         }
+    }
+    
+    func loadPictures() {
+        let myImages = [self.imageUrl, self.imageUrl2, self.imageUrl3, self.imageUrl4, self.imageUrl5]
+        
+        let offset = view.frame.width * (20/100)
+        let size = view.frame.width * (60/100)
+        let imageWidth : CGFloat = size
+        let imageHeight : CGFloat = size
+        var xPosition : CGFloat = offset
+        var scrollViewSize : CGFloat = 0
+        //self.pictureCell.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: size + 500)
+        pictureScrollView.frame = CGRect(x:0, y: 0, width : view.frame.width, height: size)
+        
+        for image in myImages {
+            let myImageView : UIImageView = UIImageView()
+            myImageView.contentMode = .scaleAspectFit
+            myImageView.clipsToBounds = true
+            myImageView.loadCachedImages(url: image)
+            myImageView.frame.size.width = imageWidth
+            myImageView.frame.size.height = imageHeight
+            myImageView.frame.origin.x = xPosition
+            myImageView.frame.origin.y = 0
+            
+            pictureScrollView.addSubview(myImageView)
+            xPosition += imageWidth + offset
+            scrollViewSize += imageWidth + offset
+            
+        }
+        scrollViewSize += offset
+        
+        pictureScrollView.contentSize = CGSize(width: scrollViewSize, height: imageHeight)
     }
     
     @IBAction func starPressed(_ sender: UIButton) {
