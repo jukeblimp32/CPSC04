@@ -20,9 +20,12 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     var listings = [Listing]()
     
-    
     var valueTopass : String!
     var downloadURL = ""
+    var downloadURL2 = ""
+    var downloadURL3 = ""
+    var downloadURL4 = ""
+    var downloadURL5 = ""
     var refreshControl : UIRefreshControl!
     
     override func viewDidLoad() {
@@ -35,24 +38,14 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         // Do any additional setup after loading the view, typically from a nib.
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         // Initialize our table
-        propertiesList.frame = CGRect(x: (view.frame.width) * (0/100), y: (view.frame.height) * (15/100), width: view.frame.width, height: (view.frame.height) * (85/100))
+        propertiesList.frame = CGRect(x: (view.frame.width) * (0/100), y: (view.frame.height) * (7/100), width: view.frame.width, height: (view.frame.height) * (85/100))
         propertiesList.delegate = self
         propertiesList.dataSource = self
         propertiesList.reloadData()
         propertiesList.addSubview(refreshControl)
         
         let viewTitle = UILabel()
-        
-        let toHomePageButton = UIButton()
-        toHomePageButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (4/100), width: view.frame.width * (25/100) , height: 20)
-        toHomePageButton.setTitle("Logout", for: UIControlState.normal)
-        toHomePageButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        toHomePageButton.titleLabel?.textColor = UIColor.white
-        toHomePageButton.backgroundColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1)
-        toHomePageButton.layer.cornerRadius = 4
-        toHomePageButton.addTarget(self, action: #selector(StudentHomePage.logout(_:)), for: UIControlEvents.touchUpInside)
-        
-        view.addSubview(toHomePageButton)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +84,10 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             destination.distance = listings[cellIndex].milesToGU
             destination.rooms = listings[cellIndex].numberOfRooms
             destination.imageUrl = listings[cellIndex].imageUrl
+            destination.imageUrl2 = listings[cellIndex].imageUrl2
+            destination.imageUrl3 = listings[cellIndex].imageUrl3
+            destination.imageUrl4 = listings[cellIndex].imageUrl4
+            destination.imageUrl5 = listings[cellIndex].imageUrl5
             destination.leaseLength = listings[cellIndex].leaseLength
             destination.dateAvailable = listings[cellIndex].dateAvailable
             destination.bathroomNumber = listings[cellIndex].bathroomNumber
@@ -291,12 +288,26 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             if(snapshot == nil)
             {
                 self.downloadURL = ""
+                self.downloadURL2 = ""
+                self.downloadURL3 = ""
+                self.downloadURL4 = ""
+                self.downloadURL5 = ""
+
+
             }
             else
             {
                 // Set the download URL and download the image
                 self.downloadURL = snapshot?["image1"] as! String
                 listing.imageUrl = self.downloadURL
+                self.downloadURL2 = snapshot?["image2"] as! String
+                listing.imageUrl2 = self.downloadURL2
+                self.downloadURL3 = snapshot?["image3"] as! String
+                listing.imageUrl3 = self.downloadURL3
+                self.downloadURL4 = snapshot?["image4"] as! String
+                listing.imageUrl4 = self.downloadURL4
+                self.downloadURL5 = snapshot?["image5"] as! String
+                listing.imageUrl5 = self.downloadURL5
                 cell.propertyImage.loadCachedImages(url: self.downloadURL)
                 listing.houseImage = cell.propertyImage.image
                 

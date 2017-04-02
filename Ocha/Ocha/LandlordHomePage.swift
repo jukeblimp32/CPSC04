@@ -14,10 +14,15 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBOutlet weak var propertiesList: UITableView!
     
+    @IBOutlet weak var propertiesMsg: UILabel!
     let getProperties = "http://147.222.165.203/MyWebService/api/editDisplayProperties.php"
     var listings = [Listing]()
     var status = [String]()
     var downloadURL = ""
+    var downloadURL2 = ""
+    var downloadURL3 = ""
+    var downloadURL4 = ""
+    var downloadURL5 = ""
     var refreshControl : UIRefreshControl!
     
 
@@ -48,7 +53,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         headerLabel.font = UIFont(name: headerLabel.font.fontName, size: 24)
         headerLabel.adjustsFontSizeToFitWidth = true
         headerLabel.textColor = UIColor.white
-        headerLabel.frame = CGRect(x: (view.frame.width) * (35/100), y: (view.frame.height) * (2/100), width: view.frame.width * (30/100), height: (view.frame.height) * (10/100))
+        headerLabel.frame = CGRect(x: (view.frame.width) * (35/100), y: (view.frame.height) * (1/100), width: view.frame.width * (30/100), height: (view.frame.height) * (10/100))
         view.addSubview(headerLabel)
 
         
@@ -65,6 +70,10 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             destination.distance = listings[blogIndex].milesToGU
             destination.rooms = listings[blogIndex].numberOfRooms
             destination.imageUrl = listings[blogIndex].imageUrl
+            destination.imageUrl2 = listings[blogIndex].imageUrl2
+            destination.imageUrl3 = listings[blogIndex].imageUrl3
+            destination.imageUrl4 = listings[blogIndex].imageUrl4
+            destination.imageUrl5 = listings[blogIndex].imageUrl5
             destination.email = listings[blogIndex].email
             destination.propertyID = listings[blogIndex].propertyID
             destination.dateAvailable = listings[blogIndex].dateAvailable
@@ -119,6 +128,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 let uid = FIRAuth.auth()?.currentUser?.uid
                 
+                
                 //looping through all the json objects in the array properties
                 DispatchQueue.main.async(execute: {
                     for i in 0 ..< properties.count{
@@ -159,12 +169,19 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let status = statusValue?["status"] as! String
                         
                         if landlordID == uid {
-                        
                             let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email,  userID: "")
                             self.listings.append(listing)
                             self.status.append(status)
                         }
                         
+                        if(self.listings.count != 0){
+                            self.propertiesList.isHidden = false
+                            self.propertiesMsg.isHidden = true
+                        }
+                        else{
+                            self.propertiesList.isHidden = true 
+                            self.propertiesMsg.isHidden = false
+                        }
                         // Update our table
                         DispatchQueue.main.async(execute: {
                             self.propertiesList.reloadData()
@@ -258,8 +275,8 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "ListingTableViewCell"
-        let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ListingTableViewCell
+        let cellIdentifier = "LandlordTableViewCell"
+        let cell = self.propertiesList.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! LandlordTableViewCell
         
         
         let listing = listings[indexPath.row]
@@ -336,18 +353,31 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
             if(snapshot == nil)
             {
                 self.downloadURL = ""
+                self.downloadURL2 = ""
+                self.downloadURL3 = ""
+                self.downloadURL4 = ""
+                self.downloadURL5 = ""
+                
             }
             else
             {
                 // Set the download URL and download the image
                 self.downloadURL = snapshot?["image1"] as! String
                 listing.imageUrl = self.downloadURL
+                self.downloadURL2 = snapshot?["image2"] as! String
+                listing.imageUrl2 = self.downloadURL2
+                self.downloadURL3 = snapshot?["image3"] as! String
+                listing.imageUrl3 = self.downloadURL3
+                self.downloadURL4 = snapshot?["image4"] as! String
+                listing.imageUrl4 = self.downloadURL4
+                self.downloadURL5 = snapshot?["image5"] as! String
+                listing.imageUrl5 = self.downloadURL5
+                
                 cell.propertyImage.loadCachedImages(url: self.downloadURL)
                 listing.houseImage = cell.propertyImage.image
             }
             
         })
-
 
         return cell
     }

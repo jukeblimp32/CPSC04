@@ -16,6 +16,10 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
     let statusChange = "http://147.222.165.203/MyWebService/api/statusChange.php"
     
     var imageUrl = ""
+    var imageUrl2 = ""
+    var imageUrl3 = ""
+    var imageUrl4 = ""
+    var imageUrl5 = ""
     var address : String = ""
     var distance : String = ""
     var rooms : String = ""
@@ -42,6 +46,7 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
     @IBOutlet var bedroomLabel: UILabel!
     @IBOutlet var descriptionField: UITextView!
     
+    @IBOutlet var typeLabel: UILabel!
     @IBOutlet weak var toHomePageButton: UIButton!
     
     @IBOutlet var petsLabel: UILabel!
@@ -53,6 +58,7 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         addressLabel.text = address
+        typeLabel.text = "Property Type: " + propertyType
         distanceLabel.text = "Distance from Gonzaga: " + distance + " mile(s)"
         phoneLabel.text = "Phone Number: " + phoneNumber
         petsLabel.text = "Pets allowed: " + pets

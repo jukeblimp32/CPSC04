@@ -101,6 +101,7 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         self.filters.append(bedroomFilter!)
         self.filters.append(distanceFilter)
         self.filters.append(propertyFilter!)
+        self.filters.append(petFilter!)
         sleep(2)
 
         tabBarController?.selectedIndex = 0

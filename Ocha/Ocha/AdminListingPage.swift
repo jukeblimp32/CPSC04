@@ -11,6 +11,10 @@ import UIKit
 class AdminListingPage: UITableViewController {
     
     var imageUrl = ""
+    var imageUrl2 = ""
+    var imageUrl3 = ""
+    var imageUrl4 = ""
+    var imageUrl5 = ""
     var address : String = ""
     var distance : String = ""
     var rooms : String = ""
@@ -35,6 +39,7 @@ class AdminListingPage: UITableViewController {
     @IBOutlet var rentLabel: UILabel!
     @IBOutlet var bedroomLabel: UILabel!
     @IBOutlet var descriptionField: UITextView!
+    @IBOutlet var typeLabel: UILabel!
     
     @IBOutlet var petsLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
@@ -46,6 +51,7 @@ class AdminListingPage: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addressLabel.text = address
+        typeLabel.text = "Property Type: " + propertyType
         distanceLabel.text = "Distance from Gonzaga: " + distance + " mile(s)"
         phoneLabel.text = "Phone Number: " + phoneNumber
         petsLabel.text = "Pets allowed: " + pets
@@ -57,6 +63,7 @@ class AdminListingPage: UITableViewController {
         bedroomLabel.text = "Bedrooms: " + rooms + "          Bathrooms: " + bathroomNumber
         rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
         dateAvailableLabel.adjustsFontSizeToFitWidth = true
+        typeLabel.adjustsFontSizeToFitWidth = true
         bedroomLabel.adjustsFontSizeToFitWidth = true
         rentLabel.adjustsFontSizeToFitWidth = true
         emailLabel.adjustsFontSizeToFitWidth = true
@@ -142,6 +149,10 @@ class AdminListingPage: UITableViewController {
             destination.bedroomNum = rooms
             destination.distance = distance
             destination.imageURL = imageUrl
+            destination.imageURL2 = imageUrl2
+            destination.imageURL3 = imageUrl3
+            destination.imageURL4 = imageUrl4
+            destination.imageURL5 = imageUrl5
             destination.propertyID = propertyID
             destination.leaseTerms = leaseLength
             destination.dateAvailable = dateAvailable
@@ -165,6 +176,10 @@ class AdminListingPage: UITableViewController {
             destination.rooms = rooms
             destination.distance = distance
             destination.imageUrl = imageUrl
+            destination.imageUrl2 = imageUrl2
+            destination.imageUrl3 = imageUrl3
+            destination.imageUrl4 = imageUrl4
+            destination.imageUrl5 = imageUrl5
             destination.propertyID = propertyID
             destination.leaseLength = leaseLength
             destination.dateAvailable = dateAvailable
@@ -175,7 +190,6 @@ class AdminListingPage: UITableViewController {
             destination.availability = availability
             destination.propDescription = propDescription
             destination.phoneNumber = phoneNumber
-            
             
         }
         

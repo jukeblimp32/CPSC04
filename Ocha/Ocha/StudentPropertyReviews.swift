@@ -16,6 +16,10 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
     var reviews = [Review]()
     
     var imageUrl = ""
+    var imageUrl2 = ""
+    var imageUrl3 = ""
+    var imageUrl4 = ""
+    var imageUrl5 = ""
     var address : String = ""
     var distance : String = ""
     var rooms : String = ""
@@ -46,13 +50,13 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet var spaceLabel: UILabel!
     @IBOutlet var qualityLabel: UILabel!
     
+    @IBOutlet weak var reviewMsg: UILabel!
     var refreshControl : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         reviews.removeAll()
         loadReviews()
-        print(reviews.count)
         self.propertyReviews.register(ReviewTableViewCell.self, forCellReuseIdentifier: "cell")
         propertyReviews.delegate = self
         propertyReviews.dataSource = self
@@ -77,6 +81,10 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
             destination.rooms = rooms
             destination.distance = distance
             destination.imageUrl = imageUrl
+            destination.imageUrl2 = imageUrl2
+            destination.imageUrl3 = imageUrl3
+            destination.imageUrl4 = imageUrl4
+            destination.imageUrl5 = imageUrl5
             destination.propertyID = propertyID
             destination.leaseLength = leaseLength
             destination.dateAvailable = dateAvailable
@@ -99,6 +107,10 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
             destination.rooms = rooms
             destination.distance = distance
             destination.imageUrl = imageUrl
+            destination.imageUrl2 = imageUrl2
+            destination.imageUrl3 = imageUrl3
+            destination.imageUrl4 = imageUrl4
+            destination.imageUrl5 = imageUrl5
             destination.propertyID = propertyID
             destination.leaseLength = leaseLength
             destination.dateAvailable = dateAvailable
@@ -115,7 +127,7 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reviews.count
+       return reviews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -123,6 +135,7 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
         let cellIdentifier = "ReviewTableViewCell"
         let cell = self.propertyReviews.dequeueReusableCell(withIdentifier: cellIdentifier, for : indexPath) as! ReviewTableViewCell
         
+
         let review = reviews[indexPath.row]
         
         cell.propertyID = review.propertyID
@@ -144,7 +157,6 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
     
     
     func loadReviews(){
-        
         var reponseTotal = 0
         var locationTotal = 0
         var valueTotal = 0
@@ -212,6 +224,8 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
                         self.avgValueScore.text = String(round(10 * (Double(valueTotal) / Double(reviewCount))) / 10)
                         self.avgSpaceScore.text = String(round(10 * (Double(spaceTotal) / Double(reviewCount))) / 10)
                         self.avgQualityScore.text = String(round(10 * (Double(qualityTotal) / Double(reviewCount))) / 10)
+                        self.propertyReviews.isHidden = false
+                        self.reviewMsg.isHidden = true
                     }
                         
                     else {
@@ -220,6 +234,8 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
                         self.avgValueScore.text = "N/A"
                         self.avgSpaceScore.text = "N/A"
                         self.avgQualityScore.text = "N/A"
+                        self.propertyReviews.isHidden = true
+                        self.reviewMsg.isHidden = false
                     }
                     
                     
