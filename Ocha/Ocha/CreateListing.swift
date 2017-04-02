@@ -120,6 +120,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             }
             catch {
                 print(error)
+                
             }
         }
         getTask.resume()

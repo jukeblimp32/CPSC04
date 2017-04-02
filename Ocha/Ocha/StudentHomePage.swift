@@ -806,9 +806,14 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         // Get reference to database.
         let databaseRef = FIRDatabase.database().reference()
         
+        /* Keep this until multiple photos is totally working
+         databaseRef.child("listings").child(String(listing.propertyID)).child("image2").setValue("https://firebasestorage.googleapis.com/v0/b/osha-6c505.appspot.com/o/Listing%20Images%2F03790F04-93BB-4E00-BB9C-E050777D770C.png?alt=media&token=49378472-2b44-4593-8429-9dae19621c07")
+        databaseRef.child("listings").child(String(listing.propertyID)).child("image3").setValue("https://firebasestorage.googleapis.com/v0/b/osha-6c505.appspot.com/o/Listing%20Images%2F03790F04-93BB-4E00-BB9C-E050777D770C.png?alt=media&token=49378472-2b44-4593-8429-9dae19621c07")
+        databaseRef.child("listings").child(String(listing.propertyID)).child("image4").setValue("https://firebasestorage.googleapis.com/v0/b/osha-6c505.appspot.com/o/Listing%20Images%2F03790F04-93BB-4E00-BB9C-E050777D770C.png?alt=media&token=49378472-2b44-4593-8429-9dae19621c07")
+        databaseRef.child("listings").child(String(listing.propertyID)).child("image5").setValue("https://firebasestorage.googleapis.com/v0/b/osha-6c505.appspot.com/o/Listing%20Images%2F03790F04-93BB-4E00-BB9C-E050777D770C.png?alt=media&token=49378472-2b44-4593-8429-9dae19621c07") */
+        
         databaseRef.child("listings").child(String(listing.propertyID)).observeSingleEvent(of: .value, with: {(snapshot) in
             let snapshot = snapshot.value as? NSDictionary
-            
             // Use default image if there is no image listing
             if(snapshot == nil)
             {
