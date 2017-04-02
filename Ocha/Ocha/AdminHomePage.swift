@@ -17,6 +17,7 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet var propertiesList: UITableView!
     //propertiesList
     
+    @IBOutlet weak var propertiesMsg: UILabel!
     let getProperties = "http://147.222.165.203/MyWebService/api/DisplayProperties.php"
     var listings = [Listing]()
     
@@ -177,6 +178,16 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
 
                             self.listings.append(listing)
                         }
+                        
+                        if(self.listings.count != 0){
+                            self.propertiesMsg.isHidden = true
+                            self.propertiesList.isHidden = false
+                        }
+                        else{
+                            self.propertiesMsg.isHidden = false
+                            self.propertiesList.isHidden = true
+                        }
+                        
                         
                         //Update the tableview in student homepage to show the listing cells
                         DispatchQueue.main.async(execute: {

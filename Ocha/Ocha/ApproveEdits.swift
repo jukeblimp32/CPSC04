@@ -17,6 +17,7 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet var propertiesList: UITableView!
     //propertiesList
     
+    @IBOutlet weak var propertiesMsg: UILabel!
     let getProperties = "http://147.222.165.203/MyWebService/api/editDisplayProperties.php"
     var listings = [Listing]()
     
@@ -178,6 +179,18 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
                             
                             self.listings.append(listing)
                         }
+                        
+                        
+                        if(self.listings.count != 0){
+                            self.propertiesList.isHidden = false
+                            self.propertiesMsg.isHidden = true
+                        }
+                        else{
+                            self.propertiesList.isHidden = true
+                            self.propertiesMsg.isHidden = false
+                        }
+                        
+                        
                         
                         //Update the tableview in student homepage to show the listing cells
                         DispatchQueue.main.async(execute: {
