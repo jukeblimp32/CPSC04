@@ -42,7 +42,7 @@ class StudentTableViewCell: UITableViewCell {
         
         //let image = UIImage(named: "emptyStar") as UIImage?
         favoriteButton.backgroundColor = UIColor.white
-        favoriteButton.frame = CGRect(x: (screenSize.width) * (68/100), y: (self.frame.height) * (4/100), width: self.frame.width * (10/100), height: 30)
+        favoriteButton.frame = CGRect(x: (screenSize.width) * (80/100), y: (self.frame.height) * (4/100), width: self.frame.width * (10/100), height: 30)
         //favoriteButton.setImage(image, for: .normal)
         favoriteButton.addTarget(self, action: #selector(ListingTableViewCell.starPressed(_:)), for:UIControlEvents.touchUpInside)
         self.addSubview(favoriteButton)
@@ -50,7 +50,7 @@ class StudentTableViewCell: UITableViewCell {
         propertyRent.font = UIFont(name: propertyRent.font.fontName, size: 15)
         propertyRent.textColor = UIColor.black
         propertyRent.adjustsFontSizeToFitWidth = true
-        propertyRent.frame = CGRect(x: (screenSize.width) * (68/100), y: (self.frame.height) * (30/100), width: self.frame.width * (18/100), height: 15)
+        propertyRent.frame = CGRect(x: (screenSize.width) * (80/100), y: (self.frame.height) * (30/100), width: self.frame.width * (18/100), height: 15)
         self.addSubview(propertyRent)
         
         propertyRooms.font = UIFont(name: propertyRent.font.fontName, size: 15)
@@ -69,7 +69,7 @@ class StudentTableViewCell: UITableViewCell {
         rentLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
         rentLabel.textColor = UIColor.black
         rentLabel.adjustsFontSizeToFitWidth = true
-        rentLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (30/100), width: screenSize.width * (30/100), height: 15)
+        rentLabel.frame = CGRect(x: (screenSize.width) * (80/100), y: (self.frame.height) * (30/100), width: screenSize.width * (42/100), height: 15)
         self.addSubview(rentLabel)
         
         roomLabel.text = "Bedrooms:"
