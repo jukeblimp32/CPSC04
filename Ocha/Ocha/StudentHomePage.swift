@@ -566,11 +566,13 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             counter += self.checkBedrooms(listing : listing)
             counter += self.checkPropType(listing : listing)
             counter += self.checkDistance(listing : listing)
+            counter += self.checkPets(listing : listing)
             return counter
         }
 
     }
 
+    
     
     func checkDefaults() -> Bool {
         if (self.filters == []) {
@@ -579,10 +581,11 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         return false
     }
     
+    
     func checkPriceRange(listing : Listing) -> Int {
         //Both prices are Any (no preference)
         if ((self.filters[0] == "Any") && (self.filters[1] == "Any")) {
-            return 0
+            return 1
         }
         
         //Listing has no proper rent value
@@ -664,6 +667,19 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
             return 0
         }
+    }
+    
+    func checkPets(listing : Listing) -> Int {
+        if (self.filters[5] == "No Preference") {
+            return 1
+        }
+        let listingPets = listing.pets
+        let filterPets = self.filters[5]
+        if filterPets == listingPets {
+            return 1
+        }
+        return 0
+        
     }
     
     func checkDistance(listing : Listing) -> Int{

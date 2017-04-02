@@ -40,6 +40,8 @@ class ListingPage: UITableViewController {
     
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var dateAvailableLabel: UILabel!
+
+    @IBOutlet var typeLabel: UILabel!
     @IBOutlet var bedroomLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var phoneLabel: UILabel!
@@ -64,7 +66,9 @@ class ListingPage: UITableViewController {
         dateAvailableLabel.text = "Date Available: " + dateAvailable + "          Availability: " + availability
         bedroomLabel.text = "Bedrooms: " + rooms + "          Bathrooms: " + bathroomNumber
         rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
+        typeLabel.text = "Property Type: " + propertyType
         emailLabel.text = "Email: " + email
+        typeLabel.adjustsFontSizeToFitWidth = true
         emailLabel.adjustsFontSizeToFitWidth = true
         dateAvailableLabel.adjustsFontSizeToFitWidth = true
         bedroomLabel.adjustsFontSizeToFitWidth = true

@@ -38,7 +38,7 @@ class FavoriteListingPage: UITableViewController {
     var image : UIImage = UIImage(named: "default")!
     
     @IBOutlet var propertyImage: UIImageView!
-    
+    @IBOutlet var typeLabel: UILabel!
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var rentLabel: UILabel!
     @IBOutlet var descriptionField: UITextView!
@@ -54,6 +54,7 @@ class FavoriteListingPage: UITableViewController {
     
     override func viewDidLoad() {
         addressLabel.text = address
+        typeLabel.text = "Property Type: " + propertyType
         distanceLabel.text = "Distance from Gonzaga: " + distance + " mile(s)"
         phoneLabel.text = "Phone Number: " + phoneNumber
         petsLabel.text = "Pets allowed: " + pets
@@ -64,6 +65,7 @@ class FavoriteListingPage: UITableViewController {
         rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
         emailLabel.text = "Email: " + email
         emailLabel.adjustsFontSizeToFitWidth = true
+        typeLabel.adjustsFontSizeToFitWidth = true
         dateAvailableLabel.adjustsFontSizeToFitWidth = true
         bedroomLabel.adjustsFontSizeToFitWidth = true
         rentLabel.adjustsFontSizeToFitWidth = true

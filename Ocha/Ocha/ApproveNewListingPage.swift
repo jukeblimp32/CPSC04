@@ -46,6 +46,7 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
     @IBOutlet var bedroomLabel: UILabel!
     @IBOutlet var descriptionField: UITextView!
     
+    @IBOutlet var typeLabel: UILabel!
     @IBOutlet weak var toHomePageButton: UIButton!
     
     @IBOutlet var petsLabel: UILabel!
@@ -57,6 +58,7 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         addressLabel.text = address
+        typeLabel.text = "Property Type: " + propertyType
         distanceLabel.text = "Distance from Gonzaga: " + distance + " mile(s)"
         phoneLabel.text = "Phone Number: " + phoneNumber
         petsLabel.text = "Pets allowed: " + pets

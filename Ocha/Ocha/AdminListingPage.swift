@@ -39,6 +39,7 @@ class AdminListingPage: UITableViewController {
     @IBOutlet var rentLabel: UILabel!
     @IBOutlet var bedroomLabel: UILabel!
     @IBOutlet var descriptionField: UITextView!
+    @IBOutlet var typeLabel: UILabel!
     
     @IBOutlet var petsLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
@@ -50,6 +51,7 @@ class AdminListingPage: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addressLabel.text = address
+        typeLabel.text = "Property Type: " + propertyType
         distanceLabel.text = "Distance from Gonzaga: " + distance + " mile(s)"
         phoneLabel.text = "Phone Number: " + phoneNumber
         petsLabel.text = "Pets allowed: " + pets
@@ -61,6 +63,7 @@ class AdminListingPage: UITableViewController {
         bedroomLabel.text = "Bedrooms: " + rooms + "          Bathrooms: " + bathroomNumber
         rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
         dateAvailableLabel.adjustsFontSizeToFitWidth = true
+        typeLabel.adjustsFontSizeToFitWidth = true
         bedroomLabel.adjustsFontSizeToFitWidth = true
         rentLabel.adjustsFontSizeToFitWidth = true
         emailLabel.adjustsFontSizeToFitWidth = true
