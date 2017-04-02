@@ -19,6 +19,11 @@ class Listing {
     var milesToGU: String
     var houseImage: UIImage?
     var imageUrl: String
+    var imageUrl2: String
+    var imageUrl3: String
+    var imageUrl4: String
+    var imageUrl5: String
+    
     var propertyType: String
     var pets : String
     var email : String
@@ -43,6 +48,10 @@ class Listing {
         self.landlordID = landlordID
         self.propertyType = propertyType
         self.imageUrl = ""
+        self.imageUrl2 = ""
+        self.imageUrl3 = ""
+        self.imageUrl4 = ""
+        self.imageUrl5 = ""
         self.pets = pets
         self.email = email
         self.userID = userID

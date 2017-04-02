@@ -14,8 +14,6 @@ import CoreLocation
 
 class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
-    
-    
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var bedroomNumber: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -47,10 +45,10 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     
     
     @IBOutlet weak var uploadImageView: UIImageView!
-    @IBOutlet var uploadImageView2: UIImageView!
-    @IBOutlet var uploadImageView3: UIImageView!
-    @IBOutlet var uploadImageView4: UIImageView!
-    @IBOutlet var uploadImageView5: UIImageView!
+    @IBOutlet weak var uploadImageView2: UIImageView!
+    @IBOutlet weak var uploadImageView3: UIImageView!
+    @IBOutlet weak var uploadImageView4: UIImageView!
+    @IBOutlet weak var uploadImageView5: UIImageView!
     
     
     
@@ -343,7 +341,6 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             leaseLength.selectedSegmentIndex = 0
             propType.selectedSegmentIndex = 0
             propDescription.text = ""
-            
         }
 
     }
@@ -353,17 +350,33 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         let propertyMaxID = maxID + 1
         // Firebase images. First create a unique id number.
         let imageName = NSUUID().uuidString
+        let imageName2 = NSUUID().uuidString
+        let imageName3 = NSUUID().uuidString
+        let imageName4 = NSUUID().uuidString
+        let imageName5 = NSUUID().uuidString
+        
         let storageRef = FIRStorage.storage().reference().child("Listing Images").child("\(imageName).png")
+        let storageRef2 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName2).png")
+        let storageRef3 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName3).png")
+        let storageRef4 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName4).png")
+        let storageRef5 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName5).png")
+
         
         let fireData = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
         let listingsReference = fireData.child("listings").child(String(propertyMaxID))
         listingsReference.child("address").setValue(address)
+        let defaultUrl = "https://firebasestorage.googleapis.com/v0/b/osha-6c505.appspot.com/o/Listing%20Images%2F03790F04-93BB-4E00-BB9C-E050777D770C.png?alt=media&token=49378472-2b44-4593-8429-9dae19621c07"
+        listingsReference.child("image1").setValue(defaultUrl)
+        listingsReference.child("image2").setValue(defaultUrl)
+        listingsReference.child("image3").setValue(defaultUrl)
+        listingsReference.child("image4").setValue(defaultUrl)
+        listingsReference.child("image5").setValue(defaultUrl)
         
         
         //Loading each image into firebase
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView.image!)
         {
-            print(uploadData)
+            print(uploadImageView.image!)
             storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
@@ -381,8 +394,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         }
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView2.image!)
         {
-            print(uploadData)
-            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+            storageRef2.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
                     return
@@ -399,8 +411,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         }
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView3.image!)
         {
-                        print(uploadData)
-            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+            storageRef3.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
                     return
@@ -412,14 +423,12 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
                     
                 }
                 
-                
             })
             
         }
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView4.image!)
         {
-                        print(uploadData)
-            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+            storageRef4.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
                     return
@@ -436,8 +445,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         }
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView5.image!)
         {
-                        print(uploadData)
-            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+            storageRef5.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
                     return
@@ -450,6 +458,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
                 }
             })
         }
+        
     }
     
     func handleSelectListingImage(/*_ sender: UIImageView*/)

@@ -16,6 +16,10 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
     var propStat : String = ""
     
     var imageUrl = ""
+    var imageUrl2 = ""
+    var imageUrl3 = ""
+    var imageUrl4 = ""
+    var imageUrl5 = ""
     var address : String = ""
     var distance : String = ""
     var rooms : String = ""
@@ -42,6 +46,7 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
     @IBOutlet var bedroomLabel: UILabel!
     @IBOutlet var descriptionField: UITextView!
     
+    @IBOutlet var typeLabel: UILabel!
     @IBOutlet var petsLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var phoneLabel: UILabel!
@@ -62,6 +67,7 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
         super.viewDidLoad()
         findOriginalListing()
         addressLabel.text = address
+        typeLabel.text = "Property Type: " + propertyType
         distanceLabel.text = "Distance from Gonzaga: " + distance + " mile(s)"
         phoneLabel.text = "Phone Number: " + phoneNumber
         petsLabel.text = "Pets allowed: " + pets
@@ -73,6 +79,7 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
         bedroomLabel.text = "Bedrooms: " + rooms + "          Bathrooms: " + bathroomNumber
         rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
         dateAvailableLabel.adjustsFontSizeToFitWidth = true
+        typeLabel.adjustsFontSizeToFitWidth = true
         bedroomLabel.adjustsFontSizeToFitWidth = true
         rentLabel.adjustsFontSizeToFitWidth = true
         emailLabel.adjustsFontSizeToFitWidth = true

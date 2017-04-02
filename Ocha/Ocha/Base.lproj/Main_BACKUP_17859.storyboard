@@ -203,7 +203,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qto-Bf-Rpr">
+<<<<<<< HEAD
+                                                    <rect key="frame" x="-2" y="29" width="354" height="89"/>
+=======
                                                     <rect key="frame" x="1" y="29" width="353" height="89"/>
+>>>>>>> 71878ec66af8fa7940e6fdc9292ef05a4b64ce15
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="507251801.70504302">
                                                         <!--2017-01-27 23:16:41 +0000-->
@@ -4015,7 +4019,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="AZb-1U-AYy">
+<<<<<<< HEAD
+                                                    <rect key="frame" x="5" y="31" width="329" height="90"/>
+=======
                                                     <rect key="frame" x="7" y="31" width="329" height="90"/>
+>>>>>>> 71878ec66af8fa7940e6fdc9292ef05a4b64ce15
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="508559640.85728002">
                                                         <!--2017-02-12 02:34:00 +0000-->
@@ -6491,13 +6499,27 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
+        <segue reference="rkf-Y2-nw4"/>
+        <segue reference="dOb-qY-2Pf"/>
+        <segue reference="R2m-C0-Dkv"/>
+        <segue reference="n3e-hw-rhr"/>
+        <segue reference="m06-09-obF"/>
+        <segue reference="Pib-hs-18K"/>
+        <segue reference="y2L-dC-8lB"/>
+        <segue reference="ZLl-OI-v7r"/>
+        <segue reference="TcA-uI-b7v"/>
+        <segue reference="qGG-sL-QR7"/>
+        <segue reference="XgJ-yG-aBr"/>
+        <segue reference="bdE-u0-nId"/>
+        <segue reference="zjl-A3-T5k"/>
+        <segue reference="kU6-iC-jJV"/>
+=======
         <segue reference="zjl-A3-T5k"/>
         <segue reference="XgJ-yG-aBr"/>
         <segue reference="bdE-u0-nId"/>
         <segue reference="9BA-JH-gVZ"/>
         <segue reference="dOb-qY-2Pf"/>
-        <segue reference="R2m-C0-Dkv"/>
-        <segue reference="n3e-hw-rhr"/>
         <segue reference="m06-09-obF"/>
         <segue reference="h93-ZZ-6l2"/>
         <segue reference="Wgi-Vy-FKQ"/>
@@ -6507,5 +6529,6 @@
         <segue reference="Wmk-0C-mcc"/>
         <segue reference="Pib-hs-18K"/>
         <segue reference="ZLl-OI-v7r"/>
+>>>>>>> 71878ec66af8fa7940e6fdc9292ef05a4b64ce15
     </inferredMetricsTieBreakers>
 </document>

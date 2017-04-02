@@ -27,6 +27,10 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     var valueTopass : String!
     var downloadURL = ""
+    var downloadURL2 = ""
+    var downloadURL3 = ""
+    var downloadURL4 = ""
+    var downloadURL5 = ""
     var filters = [String]()
     var filterLabels = [UIButton]()
     var positionInLabels = 0
@@ -309,6 +313,10 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             destination.distance = listings[cellIndex].milesToGU
             destination.rooms = listings[cellIndex].numberOfRooms
             destination.imageUrl = listings[cellIndex].imageUrl
+            destination.imageUrl2 = listings[cellIndex].imageUrl2
+            destination.imageUrl3 = listings[cellIndex].imageUrl3
+            destination.imageUrl4 = listings[cellIndex].imageUrl4
+            destination.imageUrl5 = listings[cellIndex].imageUrl5
             destination.leaseLength = listings[cellIndex].leaseLength
             destination.dateAvailable = listings[cellIndex].dateAvailable
             destination.bathroomNumber = listings[cellIndex].bathroomNumber
@@ -570,11 +578,13 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             counter += self.checkBedrooms(listing : listing)
             counter += self.checkPropType(listing : listing)
             counter += self.checkDistance(listing : listing)
+            counter += self.checkPets(listing : listing)
             return counter
         }
 
     }
 
+    
     
     func checkDefaults() -> Bool {
         if (self.filters == []) {
@@ -583,10 +593,11 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         return false
     }
     
+    
     func checkPriceRange(listing : Listing) -> Int {
         //Both prices are Any (no preference)
         if ((self.filters[0] == "Any") && (self.filters[1] == "Any")) {
-            return 0
+            return 1
         }
         
         //Listing has no proper rent value
@@ -668,6 +679,19 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
             return 0
         }
+    }
+    
+    func checkPets(listing : Listing) -> Int {
+        if (self.filters[5] == "No Preference") {
+            return 1
+        }
+        let listingPets = listing.pets
+        let filterPets = self.filters[5]
+        if filterPets == listingPets {
+            return 1
+        }
+        return 0
+        
     }
     
     func checkDistance(listing : Listing) -> Int{
@@ -825,12 +849,24 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             if(snapshot == nil)
             {
                 self.downloadURL = ""
+                self.downloadURL2 = ""
+                self.downloadURL3 = ""
+                self.downloadURL4 = ""
+                self.downloadURL5 = ""
             }
             else
             {
                 // Set the download URL and download the image
                 self.downloadURL = snapshot?["image1"] as! String
+                self.downloadURL2 = snapshot?["image2"] as! String
+                self.downloadURL3 = snapshot?["image3"] as! String
+                self.downloadURL4 = snapshot?["image4"] as! String
+                self.downloadURL5 = snapshot?["image5"] as! String
                 listing.imageUrl = self.downloadURL
+                listing.imageUrl2 = self.downloadURL2
+                listing.imageUrl3 = self.downloadURL3
+                listing.imageUrl4 = self.downloadURL4
+                listing.imageUrl5 = self.downloadURL5
                 cell.propertyImage.loadCachedImages(url: self.downloadURL)
                 listing.houseImage = cell.propertyImage.image
                 

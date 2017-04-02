@@ -13,6 +13,10 @@ class LandlordListingPage: UITableViewController {
     var listingStatus = ""
     
     var imageUrl = ""
+    var imageUrl2 = ""
+    var imageUrl3 = ""
+    var imageUrl4 = ""
+    var imageUrl5 = ""
     var address : String = ""
     var distance : String = ""
     var rooms : String = ""
@@ -38,6 +42,7 @@ class LandlordListingPage: UITableViewController {
     @IBOutlet var rentLabel: UILabel!
     @IBOutlet var bedroomLabel: UILabel!
     @IBOutlet var descriptionField: UITextView!
+    @IBOutlet var typeLabel: UILabel!
 
     @IBOutlet var petsLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
@@ -49,6 +54,7 @@ class LandlordListingPage: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        typeLabel.text = "Property Type: " + propertyType
         addressLabel.text = address
         distanceLabel.text = "Distance from Gonzaga: " + distance + " mile(s)"
         phoneLabel.text = "Phone Number: " + phoneNumber
@@ -60,6 +66,7 @@ class LandlordListingPage: UITableViewController {
         dateAvailableLabel.text = "Date Available: " + dateAvailable + "          Availability: " + availability
         bedroomLabel.text = "Bedrooms: " + rooms + "          Bathrooms: " + bathroomNumber
         rentLabel.text = "Rent: " + rent + "          Deposit: " + deposit
+        typeLabel.adjustsFontSizeToFitWidth = true
         dateAvailableLabel.adjustsFontSizeToFitWidth = true
         bedroomLabel.adjustsFontSizeToFitWidth = true
         rentLabel.adjustsFontSizeToFitWidth = true
@@ -153,6 +160,10 @@ class LandlordListingPage: UITableViewController {
             destination.bedroomNum = rooms
             destination.distance = distance
             destination.imageURL = imageUrl
+            destination.imageURL2 = imageUrl2
+            destination.imageURL3 = imageUrl3
+            destination.imageURL4 = imageUrl4
+            destination.imageURL5 = imageUrl5
             destination.propertyID = propertyID
             destination.leaseTerms = leaseLength
             destination.dateAvailable = dateAvailable
