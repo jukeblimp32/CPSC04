@@ -14,6 +14,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBOutlet weak var propertiesList: UITableView!
     
+    @IBOutlet weak var propertiesMsg: UILabel!
     let getProperties = "http://147.222.165.203/MyWebService/api/editDisplayProperties.php"
     var listings = [Listing]()
     var status = [String]()
@@ -119,6 +120,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 let uid = FIRAuth.auth()?.currentUser?.uid
                 
+                
                 //looping through all the json objects in the array properties
                 DispatchQueue.main.async(execute: {
                     for i in 0 ..< properties.count{
@@ -159,12 +161,19 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         let status = statusValue?["status"] as! String
                         
                         if landlordID == uid {
-                        
                             let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email,  userID: "")
                             self.listings.append(listing)
                             self.status.append(status)
                         }
                         
+                        if(self.listings.count != 0){
+                            self.propertiesList.isHidden = false
+                            self.propertiesMsg.isHidden = true
+                        }
+                        else{
+                            self.propertiesList.isHidden = true 
+                            self.propertiesMsg.isHidden = false
+                        }
                         // Update our table
                         DispatchQueue.main.async(execute: {
                             self.propertiesList.reloadData()

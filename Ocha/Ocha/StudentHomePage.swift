@@ -33,6 +33,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     var refreshControl : UIRefreshControl!
     var screenScale = 1.0 as CGFloat
     
+    @IBOutlet weak var propertiesMsg: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         logOutDeletedUser()
@@ -352,6 +353,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                 //Getting the properties in an array
                 let properties: NSArray = propertyJSON["properties"] as! NSArray
                 
+                
                 //looping through all the objects in the array
                 DispatchQueue.main.async(execute: {
                     for i in 0 ..< properties.count{
@@ -412,6 +414,16 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                                 }
                             }
                         }
+                        
+                        if(tempListings.count != 0 || (self.listings.count != 0)){
+                            self.propertiesList.isHidden = false
+                            self.propertiesMsg.isHidden = true
+                        }
+                        else{
+                            self.propertiesList.isHidden = true
+                            self.propertiesMsg.isHidden = false
+                        }
+                        
                         
                         // Only shuffle if there are no filters applied
                         if (self.areFiltersDefault()){

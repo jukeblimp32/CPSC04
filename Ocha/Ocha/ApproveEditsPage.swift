@@ -412,14 +412,6 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
             }
             saveTask.resume()
             
-            // let saveRequestURL2 = NSURL(string: self.statusChange)
-            
-            //creating NSMutableURLRequest
-            //let saveRequest2 = NSMutableURLRequest(url:saveRequestURL2! as URL)
-            
-            //setting method to POST
-            //saveRequest2.httpMethod = "POST"
-            
             self.getPropertyStatus{
                 propertyStat in
                 print(propertyStat)
@@ -468,112 +460,7 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
 
     }
     
-   /* func rejectEdit()
-    {
-        //getPropertyStatus()
-        let saveRequestURL = NSURL(string: URL_REJECT_EDIT)
-        
-        //creating NSMutableURLRequest
-        let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
-        
-        //setting method to POST
-        saveRequest.httpMethod = "POST"
-        
-        let currentProperty = String(propertyID)
-        
-        let origaddress = listing.address
-        let origrent = listing.monthRent
-        let origrooms = listing.numberOfRooms
-        let origdeposit = listing.deposit
-        let origbathroomNumber = listing.bathroomNumber
-        let origpets = listing.pets
-        let origpropDescription = listing.description
-        let origavailability = listing.availability
-        let origdateAvailable = listing.dateAvailable
-        let origleaseLength = listing.leaseLength
-        let origphoneNumber = listing.phoneNumber
-        let origemail = listing.email
-        let origdistance = listing.milesToGU
-        
-        
-        //concatenating keys and values from text field
-        let postParameters="address="+origaddress+"&rent_per_month="+origrent+"&number_of_rooms="+origrooms+"&property_id="+currentProperty+"&deposit="+origdeposit+"&number_of_bathrooms="+origbathroomNumber+"&pets="+origpets+"&availability="+origavailability+"&description="+origpropDescription+"&date_available="+origdateAvailable+"&lease_length="+origleaseLength+"&phone_number="+origphoneNumber+"&email="+origemail+"&status=Approved"+"&miles_to_gu="+origdistance;
-        
-        //adding parameters to request body
-        saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
-        
-        //task to send to post request
-        let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
-            data,response, error in
-            if error != nil{
-                print("error is \(error)")
-                return;
-            }
-            do{
-                //converting response to NSDictioanry
-                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-                
-                if let parseJSON = myJSON{
-                    var msg:String!
-                    msg = parseJSON["message"]as! String?
-                    print(msg)
-                }
-            }catch{
-                print(error)
-            }
-        }
-        saveTask.resume()
-        
-       // let saveRequestURL2 = NSURL(string: self.statusChange)
-        
-        //creating NSMutableURLRequest
-        //let saveRequest2 = NSMutableURLRequest(url:saveRequestURL2! as URL)
-        
-        //setting method to POST
-        //saveRequest2.httpMethod = "POST"
-        
-        self.getPropertyStatus{
-            propertyStat in
-            print(propertyStat)
-            self.propertyStatus = propertyStat
-            if (self.propertyStatus == "Approved"){
-                let saveRequestURL2 = NSURL(string: self.statusChange)
-                
-                //creating NSMutableURLRequest
-                let saveRequest2 = NSMutableURLRequest(url:saveRequestURL2! as URL)
-                
-                //setting method to POST
-                saveRequest2.httpMethod = "POST"
-                
-                let postParameters2="status=Editing"+"&property_id="+String(self.propertyID);
-                saveRequest2.httpBody=postParameters2.data(using: String.Encoding.utf8)
-                //task to send to post request
-                let saveTask2=URLSession.shared.dataTask(with: saveRequest2 as URLRequest){
-                    data,response, error in
-                    if error != nil{
-                        print("error is \(error)")
-                        return;
-                    }
-                    do{
-                        //converting response to NSDictioanry
-                        
-                        let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-                        if let parseJSON = myJSON{
-                            var msg:String!
-                            msg = parseJSON["message"]as! String?
-                            print(msg)
-                        }
-                    }catch{
-                        print(error)
-                    }
-                }
-                saveTask2.resume()
-                self.sendEditEmail()
-            }
-        }
-    }
-    */
-    
+
     func sendEditEmail()
     {
         // Can only send email if the device has mail set up
