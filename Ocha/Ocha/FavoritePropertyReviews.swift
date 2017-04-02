@@ -52,17 +52,22 @@ class FavoritePropertyReviews: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var valueLabel: UILabel!
     @IBOutlet var qualityLabel: UILabel!
     
+    @IBOutlet weak var reviewMsg: UILabel!
     var refreshControl : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //reviews.removeAll()
         //loadReviews()
-        print(reviews.count)
         self.propertyReviews.register(ReviewTableViewCell.self, forCellReuseIdentifier: "cell")
+        print("favoritecount2: " + String(reviews.count))
+        /*if((reviews.count) == 0){
+            propertyReviews.isHidden = true
+        }*/
         propertyReviews.delegate = self
         propertyReviews.dataSource = self
         propertyReviews.reloadData()
+       
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(StudentPropertyReviews.handleRefresh(_:)), for: .valueChanged)
         propertyReviews.addSubview(refreshControl)
@@ -230,6 +235,8 @@ class FavoritePropertyReviews: UIViewController, UITableViewDelegate, UITableVie
                         self.avgValueScore.text = String(round(10 * (Double(valueTotal) / Double(reviewCount))) / 10)
                         self.avgSpaceScore.text = String(round(10 * (Double(spaceTotal) / Double(reviewCount))) / 10)
                         self.avgQualityScore.text = String(round(10 * (Double(qualityTotal) / Double(reviewCount))) / 10)
+                        self.propertyReviews.isHidden = false
+                        self.reviewMsg.isHidden = true
                     }
                         
                     else {
@@ -238,6 +245,8 @@ class FavoritePropertyReviews: UIViewController, UITableViewDelegate, UITableVie
                         self.avgValueScore.text = "N/A"
                         self.avgSpaceScore.text = "N/A"
                         self.avgQualityScore.text = "N/A"
+                        self.propertyReviews.isHidden = true
+                        self.reviewMsg.isHidden = false 
                     }
                     
                     
@@ -245,6 +254,7 @@ class FavoritePropertyReviews: UIViewController, UITableViewDelegate, UITableVie
                     DispatchQueue.main.async(execute: {
                         self.propertyReviews.reloadData()
                     })
+                    
                     
                 })
             }

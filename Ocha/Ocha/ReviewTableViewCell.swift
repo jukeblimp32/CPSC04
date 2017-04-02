@@ -19,7 +19,7 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet var spaceScore: UILabel!
     @IBOutlet var valueScore: UILabel!
     @IBOutlet var locationScore: UILabel!
-
+    @IBOutlet weak var noReviews: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

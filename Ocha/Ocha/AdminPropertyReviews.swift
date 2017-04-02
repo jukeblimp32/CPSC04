@@ -25,6 +25,7 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var spaceLabel: UILabel!
     @IBOutlet var qualityLabel: UILabel!
     
+    @IBOutlet weak var reviewMsg: UILabel!
     
     var reviews = [Review]()
     
@@ -259,6 +260,8 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
                         self.avgValueScore.text = String(round(10 * (Double(valueTotal) / Double(reviewCount))) / 10)
                         self.avgSpaceScore.text = String(round(10 * (Double(spaceTotal) / Double(reviewCount))) / 10)
                         self.avgQualityScore.text = String(round(10 * (Double(qualityTotal) / Double(reviewCount))) / 10)
+                        self.propertyReviews.isHidden = false
+                        self.reviewMsg.isHidden = true
                         
                     }
                         
@@ -268,6 +271,8 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
                         self.avgValueScore.text = "N/A"
                         self.avgSpaceScore.text = "N/A"
                         self.avgQualityScore.text = "N/A"
+                        self.propertyReviews.isHidden = true
+                        self.reviewMsg.isHidden = false 
                     }
                     
                     DispatchQueue.main.async(execute: {
