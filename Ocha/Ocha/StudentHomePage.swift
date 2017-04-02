@@ -183,6 +183,16 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
 
                 positionInLabels += 1
             }
+            // Check pet filter
+            else if(index == 5 && self.filters[5] != "No Preference")
+            {
+                let propFilter = "x  Pets: " + self.filters[5]
+                filterLabels[positionInLabels].setTitle(propFilter, for: UIControlState.normal)
+                filterLabels[positionInLabels].backgroundColor = UIColor.init(red: 214/255.0, green: 71/255.0, blue: 71/255.0, alpha: 1)
+                
+                positionInLabels += 1
+            }
+
             
         }
     }
@@ -280,6 +290,11 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             filters[4] = "Any"
             svc.filters[4] = "Any"
         }
+        else if(filterTitle.contains("x  Pets:")){
+            filters[5] = "No Preference"
+            svc.filters[5] = "No Preference"
+        }
+
     }
     
     /* Checks if the filters are all set to Any, or 30.0 in the case of distance */
@@ -288,7 +303,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         {
             return true
         }
-        return (filters[0] == "Any" && filters[1] == "Any"  && filters[2] == "Any" && filters[3] == "30.0" && filters[4] == "Any")
+        return (filters[0] == "Any" && filters[1] == "Any"  && filters[2] == "Any" && filters[3] == "30.0" && filters[4] == "Any" && filters[5] == "No Preference")
     }
     
 
