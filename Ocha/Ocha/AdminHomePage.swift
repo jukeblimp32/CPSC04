@@ -263,7 +263,6 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         cell.propertyRent.text = String(listing.monthRent)
         cell.propertyRooms.text = String(listing.numberOfRooms)
         cell.propertyImage.image = listing.houseImage
-        cell.propertyStatus.isHidden = true
         cell.favoriteButton.isHidden = true
         //cell.propertyImage.contentMode = .scaleAspectFill
 

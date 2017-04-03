@@ -25,6 +25,11 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var spaceLabel: UILabel!
     @IBOutlet var qualityLabel: UILabel!
     
+    @IBOutlet var qualityBar: UIProgressView!
+    @IBOutlet var spaceBar: UIProgressView!
+    @IBOutlet var priceBar: UIProgressView!
+    @IBOutlet var locationBar: UIProgressView!
+    @IBOutlet var responseBar: UIProgressView!
     @IBOutlet weak var reviewMsg: UILabel!
     
     var reviews = [Review]()
@@ -255,10 +260,15 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
                     let reviewCount = self.reviews.count
                     
                     if(reviewCount != 0) {
+                        self.responseBar.progress = Float((round(10 * (Double(reponseTotal) / Double(reviewCount))) / 10)/5)
                         self.avgResponseScore.text = String(round(10 * (Double(reponseTotal) / Double(reviewCount))) / 10)
+                        self.locationBar.progress = Float((round(10 * (Double(locationTotal) / Double(reviewCount))) / 10)/5)
                         self.avgLocationScore.text = String(round(10 * (Double(locationTotal) / Double(reviewCount))) / 10)
+                        self.priceBar.progress = Float((round(10 * (Double(valueTotal) / Double(reviewCount))) / 10)/5)
                         self.avgValueScore.text = String(round(10 * (Double(valueTotal) / Double(reviewCount))) / 10)
+                        self.spaceBar.progress = Float((round(10 * (Double(spaceTotal) / Double(reviewCount))) / 10)/5)
                         self.avgSpaceScore.text = String(round(10 * (Double(spaceTotal) / Double(reviewCount))) / 10)
+                        self.qualityBar.progress = Float((round(10 * (Double(qualityTotal) / Double(reviewCount))) / 10)/5)
                         self.avgQualityScore.text = String(round(10 * (Double(qualityTotal) / Double(reviewCount))) / 10)
                         self.propertyReviews.isHidden = false
                         self.reviewMsg.isHidden = true
@@ -266,13 +276,18 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                         
                     else {
+                        self.responseBar.progress = 0
                         self.avgResponseScore.text = "N/A"
+                        self.locationBar.progress = 0
                         self.avgLocationScore.text = "N/A"
+                        self.priceBar.progress = 0
                         self.avgValueScore.text = "N/A"
+                        self.spaceBar.progress = 0
                         self.avgSpaceScore.text = "N/A"
+                        self.qualityBar.progress = 0
                         self.avgQualityScore.text = "N/A"
                         self.propertyReviews.isHidden = true
-                        self.reviewMsg.isHidden = false 
+                        self.reviewMsg.isHidden = false
                     }
                     
                     DispatchQueue.main.async(execute: {
