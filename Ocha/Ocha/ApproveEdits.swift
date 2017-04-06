@@ -102,6 +102,7 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
             destination.propertyType = listings[cellIndex].propertyType
             destination.phoneNumber = listings[cellIndex].phoneNumber
             destination.propertyID = listings[cellIndex].propertyID
+            destination.landlordID = listings[cellIndex].landlordID
         }
     }
     
@@ -266,7 +267,6 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
         cell.propertyRent.text = String(listing.monthRent)
         cell.propertyRooms.text = String(listing.numberOfRooms)
         cell.favoriteButton.isHidden = true
-        cell.propertyStatus.isHidden = true
         cell.propertyImage.image = listing.houseImage
         //cell.propertyImage.contentMode = .scaleAspectFill
         

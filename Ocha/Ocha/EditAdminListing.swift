@@ -34,11 +34,15 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
     var propertyID : Int = 0
     var email : String = ""
     var phoneNumber : String = ""
+    var propertyType : String = ""
+    var landlordID : String = ""
     var imageURL : String = ""
     var imageURL2 : String = ""
     var imageURL3 : String = ""
     var imageURL4 : String = ""
     var imageURL5 : String = ""
+    
+    var landlordName : String = ""
     
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var rentTextField: UITextField!
@@ -242,6 +246,8 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
             destination.availability = availability
             destination.propDescription = propDescription
             destination.phoneNumber = phoneNumber
+            destination.propertyType = propertyType
+            destination.landlordID = landlordID
         }
     }
     
@@ -361,6 +367,7 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
         self.present(alert, animated: true, completion: nil)
         
     }
+
     
     private func uploadImage(address : String){
         

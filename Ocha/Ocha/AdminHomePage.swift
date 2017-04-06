@@ -100,6 +100,7 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             destination.propertyType = listings[cellIndex].propertyType
             destination.phoneNumber = listings[cellIndex].phoneNumber
             destination.propertyID = listings[cellIndex].propertyID
+            destination.landlordID = listings[cellIndex].landlordID
         }
     }
     
@@ -263,7 +264,6 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
         cell.propertyRent.text = String(listing.monthRent)
         cell.propertyRooms.text = String(listing.numberOfRooms)
         cell.propertyImage.image = listing.houseImage
-        cell.propertyStatus.isHidden = true
         cell.favoriteButton.isHidden = true
         //cell.propertyImage.contentMode = .scaleAspectFill
 
