@@ -70,6 +70,15 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         imageView.frame = CGRect(x: (view.frame.width) * (15/100), y: (view.frame.height) * (2/100), width: view.frame.width * (70/100), height: (view.frame.height) * (20/100))
         view.addSubview(imageView)
         
+        // forgot password?
+        let recoverLabel = UILabel()
+        recoverLabel.text = "Forgot password?"
+        recoverLabel.font = UIFont.systemFont(ofSize: 15 * screenScale)
+        recoverLabel.textColor = UIColor.white
+        recoverLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (32/100), width: view.frame.width / 6, height: 15 * screenScale)
+        view.addSubview(recoverLabel)
+
+        
         //add email label
         let emailLabel = UILabel()
         emailLabel.text = "Email:"
