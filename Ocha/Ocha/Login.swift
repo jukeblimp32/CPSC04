@@ -72,10 +72,14 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         
         // forgot password?
         let recoverLabel = UILabel()
-        recoverLabel.text = "Forgot password?"
-        recoverLabel.font = UIFont.systemFont(ofSize: 15 * screenScale)
-        recoverLabel.textColor = UIColor.white
-        recoverLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (32/100), width: view.frame.width / 6, height: 15 * screenScale)
+        recoverLabel.attributedText = NSAttributedString(string: "Forgot password?", attributes:
+            [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue])
+        recoverLabel.font = UIFont.systemFont(ofSize: 14 * screenScale)
+        recoverLabel.textColor = UIColor.init(red: 0.0/255, green: 177.0/255, blue: 176.0/255, alpha: 1)
+        recoverLabel.frame = CGRect(x: (view.frame.width) * (32/100), y: (view.frame.height) * (54/100), width: view.frame.width / 2, height: 14 * screenScale)
+        recoverLabel.sizeToFit()
+        recoverLabel.isUserInteractionEnabled = true
+        recoverLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ViewController.resetPassword)))
         view.addSubview(recoverLabel)
 
         
@@ -85,7 +89,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         //emailLabel.font = UIFont(name: emailLabel.font.fontName, size: 17)
         emailLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
         emailLabel.textColor = UIColor.white
-        emailLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (27/100), width: view.frame.width / 6, height: 20 * screenScale)
+        emailLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (23/100), width: view.frame.width / 6, height: 20 * screenScale)
         view.addSubview(emailLabel)
         
         //add password label
@@ -93,7 +97,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         passwordLabel.text = "Password:"
         passwordLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
         passwordLabel.textColor = UIColor.white
-        passwordLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (37/100), width: view.frame.width / 3, height: 20 * screenScale)
+        passwordLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (33/100), width: view.frame.width / 3, height: 20 * screenScale)
         view.addSubview(passwordLabel)
         
         //add OR label
@@ -111,7 +115,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         
         
         //add email textfield
-        emailTextField.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (30/100), width: view.frame.width * (60/100), height: (view.frame.height) * (5/100))
+        emailTextField.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (26/100), width: view.frame.width * (60/100), height: (view.frame.height) * (5/100))
         view.addSubview(emailTextField)
         emailTextField.borderStyle = UITextBorderStyle.roundedRect
         emailTextField.backgroundColor = UIColor.white
@@ -122,7 +126,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         self.emailTextField.delegate = self
         
         //add password textfield
-        passwordTextField.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (40/100), width: view.frame.width * (60/100), height: (view.frame.height) * (5/100))
+        passwordTextField.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (36/100), width: view.frame.width * (60/100), height: (view.frame.height) * (5/100))
         view.addSubview(passwordTextField)
         passwordTextField.borderStyle = UITextBorderStyle.roundedRect
         passwordTextField.backgroundColor = UIColor.white
@@ -133,7 +137,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         
         //add login button
         let loginButton = UIButton()
-        loginButton.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (50/100), width: view.frame.width * (60/100), height: (view.frame.height) * (6/100))
+        loginButton.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * (45/100), width: view.frame.width * (60/100), height: (view.frame.height) * (6/100))
         loginButton.setTitle("Login", for: UIControlState.normal)
         loginButton.setTitleColor(UIColor.white, for: .normal)
         //loginButton.titleLabel?.minimumScaleFactor = 0.01;
@@ -188,6 +192,14 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         
         
         fbLogin()
+    }
+    
+    func resetPassword(sender: UITapGestureRecognizer)
+    {
+       // let viewController = self.storyboard!.instantiateViewController(withIdentifier: "PasswordResetPage") as UIViewController
+        let resetController:PasswordResetPage = PasswordResetPage()
+        self.dismiss(animated: true, completion: nil)
+        self.present(resetController, animated: true, completion: nil)
     }
     
     func fbLogin(){
@@ -382,18 +394,4 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     
     
     
-}
-
-
-extension UIViewController {
-    
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
 }

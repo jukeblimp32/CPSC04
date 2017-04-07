@@ -62,6 +62,7 @@
 		7C89D4E91DC993C200326666 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C89D4E81DC993C200326666 /* GoogleService-Info.plist */; };
 		7C99E85A1DDFCEF000C7CE03 /* ListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */; };
 		7CF00CD41E74C30A00598169 /* LandlordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF00CD31E74C30A00598169 /* LandlordTableViewCell.swift */; };
+		7CF6D6D31E97397500F10AB2 /* PasswordResetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6D6D21E97397500F10AB2 /* PasswordResetPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,7 @@
 		7C89D4E81DC993C200326666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C99E8591DDFCEF000C7CE03 /* ListingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingTableViewCell.swift; sourceTree = "<group>"; };
 		7CF00CD31E74C30A00598169 /* LandlordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandlordTableViewCell.swift; sourceTree = "<group>"; };
+		7CF6D6D21E97397500F10AB2 /* PasswordResetPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordResetPage.swift; sourceTree = "<group>"; };
 		9E0779C18BEFFFDCBE19F451 /* Pods-Ocha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ocha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ocha/Pods-Ocha.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -274,6 +276,7 @@
 				7C89D4E81DC993C200326666 /* GoogleService-Info.plist */,
 				7C89D4E51DC97F8B00326666 /* Ocha-Bridging-Header.h */,
 				7C20DED01E7230D000E1A082 /* FireUser.swift */,
+				7CF6D6D21E97397500F10AB2 /* PasswordResetPage.swift */,
 			);
 			path = Ocha;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				155C36B81DC4205A00154B12 /* Login.swift in Sources */,
 				1516D1521E36BDFF009FBCB3 /* EditListing.swift in Sources */,
 				151930381DE25D1900858B8A /* ListingPage.swift in Sources */,
+				7CF6D6D31E97397500F10AB2 /* PasswordResetPage.swift in Sources */,
 				15A5EED11DD6855A00F1D8A1 /* SearchAndFilter.swift in Sources */,
 				15D2DFA11E833D7200404D48 /* ReviewTableViewCell.swift in Sources */,
 				150359291DCFF719005AD597 /* AccountInfo.swift in Sources */,
