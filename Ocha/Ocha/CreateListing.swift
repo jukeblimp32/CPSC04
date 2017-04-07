@@ -30,6 +30,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet var phoneNumberTextField: UITextField!
     var propertyIDs = [Int]()
     var maxID = 0
+    private var currentMaxPropId : Int = 0
     var milesToGU : String = "0.5"
     var userType = ""
     var imageViewSelected = 1
@@ -125,14 +126,28 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         propDescription.delegate = self
         self.addReturnButtonOnNumpad()
         
+        self.getCurrentMaxID{
+            curMaxId in
+            print("CURRMAX")
+            print(curMaxId)
+            self.currentMaxPropId = curMaxId
+            print(self.currentMaxPropId)
+        }
+
+        
+        
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    func getCurrentMaxID(callback:@escaping (Int) -> ()){
         //create NSURL
-        let getRequestURL = NSURL(string: getProperties)
+        let getRequestURL1 = NSURL(string: getProperties)
         //creating NSMutableURLRequest
-        let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
+        let getRequest1 = NSMutableURLRequest(url:getRequestURL1! as URL)
         //setting the method to GET
-        getRequest.httpMethod = "GET"
+        getRequest1.httpMethod = "GET"
         //task to be sent to the GET request
-        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest) {
+        let getTask1 = URLSession.shared.dataTask(with: getRequest1 as URLRequest) {
             data, response,error in
             //If there is an error in connecting with the database, print error
             if error != nil {
@@ -141,11 +156,11 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             }
             do {
                 //converting response to dictionary
-                var propertyJSON : NSDictionary!
-                propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                var propertyJSON1 : NSDictionary!
+                propertyJSON1 =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                 
                 //Getting the properties in an array
-                let properties: NSArray = propertyJSON["properties"] as! NSArray
+                let properties: NSArray = propertyJSON1["properties"] as! NSArray
                 
                 //looping through all the objects in the array
                 for i in 0 ..< properties.count{
@@ -154,17 +169,20 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
                     let propertyID = propIdValue?["property_id"] as! Int
                     self.propertyIDs.append(propertyID)
                 }
-                self.maxID = Int(self.propertyIDs.max()!)
+                let maxID = Int(self.propertyIDs.max()!)
+                callback(Int(maxID))
+                //self.maxID = Int(self.propertyIDs.max()!)
             }
             catch {
                 print(error)
                 
             }
         }
-        getTask.resume()
+        getTask1.resume()
+
         
-        self.hideKeyboardWhenTappedAround()
     }
+    
     
     @IBAction func changedBedroomNum(_ sender: UIStepper) {
         self.bedroomNumber.text = Int(sender.value).description
@@ -247,228 +265,242 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     }
     
     func registerListing(){
-        //created NSURL
-        let saveRequestURL = NSURL(string: URL_SAVE_PROPERTY)
+        self.getCurrentMaxID{
+            curMaxId in
+            print("CURRMAX")
+            print(curMaxId)
+            self.currentMaxPropId = curMaxId
+            print(self.currentMaxPropId)
+
+            //created NSURL
+            let saveRequestURL = NSURL(string: self.URL_SAVE_PROPERTY)
         
-        //creating NSMutableURLRequest
-        let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+            //creating NSMutableURLRequest
+            let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
         
-        //setting method to POST
-        saveRequest.httpMethod = "POST"
+            //setting method to POST
+            saveRequest.httpMethod = "POST"
         
-        //getting values from text fields
+            //getting values from text fields
+    
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            let email = FIRAuth.auth()?.currentUser?.email
+            var dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy"
         
-        //let landlordID = self.firstName
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        let email = FIRAuth.auth()?.currentUser?.email
-        var dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
+            //let propID = String(maxID + 1)
+            let propID = String(self.currentMaxPropId + 1)
+            print("PROPID")
+            print(propID)
+            let landlordID = uid
+            let propertyAddress = self.address.text
+            let monthlyRent = self.rent.text
+            let propertyDeposit = self.deposit.text
+            let numberOfRooms = self.bedroomNumber.text
+            let numberOfBathrooms = self.bathroomNumber.text
         
-        let landlordID = uid
-        let propertyAddress = address.text
-        let monthlyRent = rent.text
-        let propertyDeposit = deposit.text
-        let numberOfRooms = bedroomNumber.text
-        let numberOfBathrooms = bathroomNumber.text
+            let availableDate = dateFormatter.string(from: self.datePicker.date)
+            let lease = self.leaseLength.titleForSegment(at: self.leaseLength.selectedSegmentIndex)
+            let propertyType = self.propType.titleForSegment(at:self.propType.selectedSegmentIndex)
+            let petChoice = self.petPolicy.titleForSegment(at:self.petPolicy.selectedSegmentIndex)
+            var description = " "
+            let phoneNumber = self.phoneNumberTextField.text
+            if (self.propDescription.text != nil){
+            description = self.propDescription.text!
+            }
+ 
+            let location = propertyAddress! + ", Spokane, WA, USA"
+            let milesToGu = self.getLatLngForZip(address: location)
+
         
-        let availableDate = dateFormatter.string(from: datePicker.date)
-        //let milesToGu = milesToGU
-        let lease = leaseLength.titleForSegment(at: leaseLength.selectedSegmentIndex)
-        let propertyType = propType.titleForSegment(at:propType.selectedSegmentIndex)
-        let petChoice = petPolicy.titleForSegment(at:petPolicy.selectedSegmentIndex)
-        var description = " "
-        let phoneNumber = phoneNumberTextField.text
-        if (propDescription.text != nil){
-            description = propDescription.text!
-        }
-        //let phoneNumber =
-        
-        
-        let location = propertyAddress! + ", Spokane, WA, USA"
-        let milesToGu = getLatLngForZip(address: location)
-        
-        // getLatLngForZip(address: location)
-        //getmiles
-        //miles = getmiles
-        
-        if propertyAddress == "" || monthlyRent == "" || propertyDeposit == "" || phoneNumber == ""
-        {
-            let alert = UIAlertController(title: "Empty Fields", message:"Make sure you have entered information for all fields", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .default))
-            self.present(alert, animated: true){}
+            if propertyAddress == "" || monthlyRent == "" || propertyDeposit == "" || phoneNumber == ""
+            {
+                let alert = UIAlertController(title: "Empty Fields", message:"Make sure you have entered information for all fields", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                self.present(alert, animated: true){}
             
-        }
-        else {
-            var postParameters = ""
-            //post parameter
-            //concatenating keys and values from text field
-            
-            if (userType == "Admin") {
-                postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!+"&email="+email!+"&status=Approved";
             }
             else {
-                postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!+"&email="+email!+"&status=Pending";
-            }
+                var postParameters = ""
+                //post parameter
+                //concatenating keys and values from text field
             
-            // Upload Image
-            self.uploadImage(address: propertyAddress!)
-            //adding parameters to request body
-            saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
-            //task to send to post request
-            let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
-                data,response, error in
-                if error != nil{
-                    print("error is \(error)")
-                    return;
+                if (self.userType == "Admin") {
+                    postParameters="property_id="+propID+"&landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!+"&email="+email!+"&status=Approved";
                 }
-                do{
-                    //converting response to NSDictioanry
-                    
-                    let alert = UIAlertController(title: "Property Added!", message:"Property will be sent for review before being published", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Okay", style: .default))
-                    self.present(alert, animated: true){}
-                    
-                    //Here is the problem child
-                    let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-                    if let parseJSON = myJSON{
-                        var msg:String!
-                        msg = parseJSON["message"]as! String?
-                        print(msg)
+                else {
+                    postParameters="property_id="+propID+"&landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!+"&email="+email!+"&status=Pending";
+                    print("OVERHERE")
+                    print(postParameters)
+                }
+            
+                // Upload Image
+                self.uploadImage(address: propertyAddress!)
+                //adding parameters to request body
+                saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+                //task to send to post request
+                let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+                    data,response, error in
+                    if error != nil{
+                        print("error is \(error)")
+                        return;
                     }
-                }catch{
-                    print(error)
+                    do{
+                        //converting response to NSDictioanry
+                    
+                        let alert = UIAlertController(title: "Property Added!", message:"Property will be sent for review before being published", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                        self.present(alert, animated: true){}
+                    
+                        //Here is the problem child
+                        let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                        if let parseJSON = myJSON{
+                            var msg:String!
+                            msg = parseJSON["message"]as! String?
+                            print(msg)
+                        }
+                    }catch{
+                        print(error)
+                    }
                 }
+                saveTask.resume()
+                sleep(2)
+                self.tabBarController?.selectedIndex = 0
+                self.address.text = ""
+                self.rent.text = ""
+                self.deposit.text = ""
+                self.phoneNumberTextField.text = ""
+                self.bedroomNumber.text = "1"
+                self.bathroomNumber.text = "1"
+                self.leaseLength.selectedSegmentIndex = 0
+                self.propType.selectedSegmentIndex = 0
+                self.propDescription.text = ""
             }
-            saveTask.resume()
-            sleep(2)
-            tabBarController?.selectedIndex = 0
-            address.text = ""
-            rent.text = ""
-            deposit.text = ""
-            phoneNumberTextField.text = ""
-            bedroomNumber.text = "1"
-            bathroomNumber.text = "1"
-            leaseLength.selectedSegmentIndex = 0
-            propType.selectedSegmentIndex = 0
-            propDescription.text = ""
         }
-
     }
     
     private func uploadImage(address : String)
     {
-        let propertyMaxID = maxID + 1
-        // Firebase images. First create a unique id number.
-        let imageName = NSUUID().uuidString
-        let imageName2 = NSUUID().uuidString
-        let imageName3 = NSUUID().uuidString
-        let imageName4 = NSUUID().uuidString
-        let imageName5 = NSUUID().uuidString
+        self.getCurrentMaxID{
+            curMaxId in
+            print("CURRMAX")
+            print(curMaxId)
+            self.currentMaxPropId = curMaxId
+            print(self.currentMaxPropId)
+
+            //let propertyMaxID = maxID + 1
+            let propertyMaxID = self.currentMaxPropId + 1
+            // Firebase images. First create a unique id number.
+            let imageName = NSUUID().uuidString
+            let imageName2 = NSUUID().uuidString
+            let imageName3 = NSUUID().uuidString
+            let imageName4 = NSUUID().uuidString
+            let imageName5 = NSUUID().uuidString
         
-        let storageRef = FIRStorage.storage().reference().child("Listing Images").child("\(imageName).png")
-        let storageRef2 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName2).png")
-        let storageRef3 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName3).png")
-        let storageRef4 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName4).png")
-        let storageRef5 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName5).png")
+            let storageRef = FIRStorage.storage().reference().child("Listing Images").child("\(imageName).png")
+            let storageRef2 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName2).png")
+            let storageRef3 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName3).png")
+            let storageRef4 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName4).png")
+            let storageRef5 = FIRStorage.storage().reference().child("Listing Images").child("\(imageName5).png")
 
         
-        let fireData = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
-        let listingsReference = fireData.child("listings").child(String(propertyMaxID))
-        listingsReference.child("address").setValue(address)
-        let defaultUrl = "https://firebasestorage.googleapis.com/v0/b/osha-6c505.appspot.com/o/Listing%20Images%2F03790F04-93BB-4E00-BB9C-E050777D770C.png?alt=media&token=49378472-2b44-4593-8429-9dae19621c07"
-        listingsReference.child("image1").setValue(defaultUrl)
-        listingsReference.child("image2").setValue(defaultUrl)
-        listingsReference.child("image3").setValue(defaultUrl)
-        listingsReference.child("image4").setValue(defaultUrl)
-        listingsReference.child("image5").setValue(defaultUrl)
+            let fireData = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+            let listingsReference = fireData.child("listings").child(String(propertyMaxID))
+            listingsReference.child("address").setValue(address)
+            let defaultUrl = "https://firebasestorage.googleapis.com/v0/b/osha-6c505.appspot.com/o/Listing%20Images%2F03790F04-93BB-4E00-BB9C-E050777D770C.png?alt=media&token=49378472-2b44-4593-8429-9dae19621c07"
+            listingsReference.child("image1").setValue(defaultUrl)
+            listingsReference.child("image2").setValue(defaultUrl)
+            listingsReference.child("image3").setValue(defaultUrl)
+            listingsReference.child("image4").setValue(defaultUrl)
+            listingsReference.child("image5").setValue(defaultUrl)
         
         
-        //Loading each image into firebase
-        if let uploadData = UIImagePNGRepresentation(self.uploadImageView.image!)
-        {
-            print(uploadImageView.image!)
-            storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
-                if error != nil {
-                    print(error)
-                    return
-                }
-                print(metadata)
-                // Set values
-                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
-                    listingsReference.child("image1").setValue(uploadImageUrl)
-                }
+            //Loading each image into firebase
+            if let uploadData = UIImagePNGRepresentation(self.uploadImageView.image!)
+            {
+                print(self.uploadImageView.image!)
+                storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                    if error != nil {
+                        print(error)
+                        return
+                    }
+                    print(metadata)
+                    // Set values
+                    if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                        listingsReference.child("image1").setValue(uploadImageUrl)
+                    }
                 
                 
-            })
+                })
             
-        }
-        if let uploadData = UIImagePNGRepresentation(self.uploadImageView2.image!)
-        {
-            storageRef2.put(uploadData, metadata: nil, completion: {(metadata, error) in
-                if error != nil {
-                    print(error)
-                    return
-                }
-                print(metadata)
-                // Set values
-                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
-                    listingsReference.child("image2").setValue(uploadImageUrl)
-                }
+            }
+            if let uploadData = UIImagePNGRepresentation(self.uploadImageView2.image!)
+            {
+                storageRef2.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                    if error != nil {
+                        print(error)
+                        return
+                    }
+                    print(metadata)
+                    // Set values
+                    if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                        listingsReference.child("image2").setValue(uploadImageUrl)
+                    }
                 
                 
-            })
+                })
             
-        }
-        if let uploadData = UIImagePNGRepresentation(self.uploadImageView3.image!)
-        {
-            storageRef3.put(uploadData, metadata: nil, completion: {(metadata, error) in
-                if error != nil {
-                    print(error)
-                    return
-                }
-                print(metadata)
-                // Set values
-                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
-                    listingsReference.child("image3").setValue(uploadImageUrl)
+            }
+            if let uploadData = UIImagePNGRepresentation(self.uploadImageView3.image!)
+            {
+                storageRef3.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                    if error != nil {
+                        print(error)
+                        return
+                    }
+                    print(metadata)
+                    // Set values
+                    if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                        listingsReference.child("image3").setValue(uploadImageUrl)
                     
-                }
+                    }
                 
-            })
+                })
             
-        }
-        if let uploadData = UIImagePNGRepresentation(self.uploadImageView4.image!)
-        {
-            storageRef4.put(uploadData, metadata: nil, completion: {(metadata, error) in
-                if error != nil {
-                    print(error)
-                    return
-                }
-                print(metadata)
-                // Set values
-                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
-                    listingsReference.child("image4").setValue(uploadImageUrl)
+            }
+            if let uploadData = UIImagePNGRepresentation(self.uploadImageView4.image!)
+            {
+                storageRef4.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                    if error != nil {
+                        print(error)
+                        return
+                    }
+                    print(metadata)
+                    // Set values
+                    if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                        listingsReference.child("image4").setValue(uploadImageUrl)
                     
-                }
+                    }
   
-            })
+                })
             
-        }
-        if let uploadData = UIImagePNGRepresentation(self.uploadImageView5.image!)
-        {
-            storageRef5.put(uploadData, metadata: nil, completion: {(metadata, error) in
-                if error != nil {
-                    print(error)
-                    return
-                }
-                print(metadata)
-                // Set values
-                if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
-                    listingsReference.child("image5").setValue(uploadImageUrl)
+            }
+            if let uploadData = UIImagePNGRepresentation(self.uploadImageView5.image!)
+            {
+                storageRef5.put(uploadData, metadata: nil, completion: {(metadata, error) in
+                    if error != nil {
+                        print(error)
+                        return
+                    }
+                    print(metadata)
+                    // Set values
+                    if let uploadImageUrl = metadata?.downloadURL()?.absoluteString{
+                        listingsReference.child("image5").setValue(uploadImageUrl)
                     
-                }
-            })
+                    }
+                })
+            }
         }
-        
     }
     
     func handleSelectListingImage(/*_ sender: UIImageView*/)
@@ -624,7 +656,5 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     {
         self.deposit.resignFirstResponder()
     }
-
-    
-    
 }
+
