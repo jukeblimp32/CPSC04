@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import Firebase
 
 class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelegate {
     
@@ -35,6 +36,8 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
     var propDescription : String = ""
     var email : String = ""
     var propertyID : Int = 0
+    var landlordID : String = ""
+    var landlordName : String = ""
     var image : UIImage = UIImage(named: "default")!
     
     var listing = Listing(propertyID: 0, landlordID: "", address: "", dateAvailable: "", milesToGU: "", numberOfRooms: "", bathroomNumber: "", leaseLength: "", monthRent: "", deposit: "", houseImage: nil, propertyType: "", pets: "", availability: "", description: "", phoneNumber: "", email : "", userID : "")
@@ -89,6 +92,8 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
         phoneLabel.adjustsFontSizeToFitWidth = true
         petsLabel.adjustsFontSizeToFitWidth = true
         leaseLabel.adjustsFontSizeToFitWidth = true
+        getLandlordName()
+        loadPictures()
     
       /*  print("LOOK")
         getPropertyStatus{
@@ -278,7 +283,7 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
     
     @IBAction func approveEdits(_ sender: Any) {
         // Make pop up
-        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to approve these edits and make them visible?", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Confirmation", message: "Are you sure you want to approve these edits and make them visible? After confirming, an email will open up. Send the email to the administrator.", preferredStyle: .alert)
         
         // If cancel, do nothing
         let alertActionCancel = UIAlertAction(title: "Cancel", style: .default) {
@@ -289,6 +294,7 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
         let alertActionYes = UIAlertAction(title: "Yes", style: .default){
             (_) in
             self.saveEdits()
+            self.sendListingEmail()
             // Go back to previous page
             self.toHomePageButton1.sendActions(for: .touchUpInside)
             
@@ -383,6 +389,79 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
         saveTask2.resume()
 
     }
+    
+    func sendListingEmail()
+    {
+        let listingEmail = configureEmail()
+        // Can only send email if the device has mail set up
+        if(MFMailComposeViewController.canSendMail())
+        {
+            self.present(listingEmail, animated: true, completion: nil)
+        }
+        else
+        {
+            print("Not enabled")
+        }
+    }
+    
+    func configureEmail() -> MFMailComposeViewController
+    {
+        let emailComposerVC = MFMailComposeViewController()
+        emailComposerVC.mailComposeDelegate = self
+        
+        // Set info for sending
+        let adminEmail = FIRAuth.auth()?.currentUser?.email
+        /********************************************************************************************************
+         * Still need to retrieve landlord name
+         *******************************************************************************************************/
+        let nameField = "Name: \(landlordName) \n\n"
+        let emailField = "Email: \(email) \n\n"
+        let phoneField = "Phone Number: \(phoneNumber) \n\n"
+        let dateField = "Date Available: \(dateAvailable) \n\n"
+        let houseField = "Housing Type: \(propertyType) \n\n"
+        let bedBathField = "Number of Bedrooms & Bathrooms: \(rooms) Bedroom, \(bathroomNumber) Bathroom \n\n"
+        let rentDepositField = "Rent & Deposit Amount: $\(rent) Rent, $\(deposit) Deposit \n\n"
+        let leaseField = "Lease Terms: \(leaseLength) \n\n"
+        let descriptionField = "About the Property (address, laundry, pets allowed, amenities, miles to GU, utilities included in rent, etc.): \(address) \n \(propDescription) Pets are a \(pets). \(distance) miles from GU \n"
+        
+        // Put all fields together
+        let completeEmail = nameField + emailField + phoneField + dateField + houseField + bedBathField + rentDepositField + leaseField + descriptionField
+        
+        // Address email
+        emailComposerVC.setToRecipients([adminEmail!])
+        emailComposerVC.setSubject("Edit for listing at: \(address)")
+        emailComposerVC.setMessageBody(completeEmail, isHTML: false)
+        
+        return emailComposerVC
+    }
+    
+    func getLandlordName()
+    {
+        let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+        let usersReference = dataRef.child("users").child(landlordID)
+        
+        // See if an instance of the user already exists
+        usersReference.observeSingleEvent(of: .value, with: {(snapshot) in
+            let snapshot = snapshot.value as? NSDictionary
+            // If there is no snapshot, there is no landlord. May need to look into this case more
+            if(snapshot == nil)
+            {
+                self.landlordName = "Unknown"
+            }
+                // Otherwise, return the landlord name
+            else
+            {
+                self.landlordName = (snapshot?["name"] as! String)
+            }
+        })
+    }
+    
+    // May need alert to stop from cancelling
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+
 
     @IBAction func discardEdits(_ sender: Any) {
         // Make pop up

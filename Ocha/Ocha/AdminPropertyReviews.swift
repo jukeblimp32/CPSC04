@@ -39,6 +39,8 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
     var imageUrl3 = ""
     var imageUrl4 = ""
     var imageUrl5 = ""
+    var landlordID : String = ""
+    var propertyType : String = ""
     var address : String = ""
     var distance : String = ""
     var rooms : String = ""
@@ -48,7 +50,6 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
     var deposit : String = ""
     var bathroomNumber : String = ""
     var leaseLength : String = ""
-    var propertyType: String = ""
     var pets : String = ""
     var availability: String = ""
     var propDescription : String = ""
@@ -100,6 +101,8 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
             destination.availability = availability
             destination.propDescription = propDescription
             destination.phoneNumber = phoneNumber
+            destination.propertyType = propertyType
+            destination.landlordID = landlordID
             
         }
         

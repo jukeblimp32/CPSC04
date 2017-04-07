@@ -28,6 +28,7 @@ class AdminListingPage: UITableViewController {
     var pets : String = ""
     var availability: String = ""
     var propDescription : String = ""
+    var landlordID : String = ""
     var email : String = ""
     var propertyID : Int = 0
     var image : UIImage = UIImage(named: "default")!
@@ -198,6 +199,8 @@ class AdminListingPage: UITableViewController {
             destination.availability = availability
             destination.propDescription = propDescription
             destination.phoneNumber = phoneNumber
+            destination.propertyType = propertyType
+            destination.landlordID = landlordID
             
         }
         if segue.identifier == "toAdminReviews",
@@ -225,6 +228,8 @@ class AdminListingPage: UITableViewController {
             destination.availability = availability
             destination.propDescription = propDescription
             destination.phoneNumber = phoneNumber
+            destination.propertyType = propertyType
+            destination.landlordID = landlordID
             
         }
         

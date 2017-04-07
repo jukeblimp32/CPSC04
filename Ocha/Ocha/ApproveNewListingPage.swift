@@ -80,6 +80,7 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
         petsLabel.adjustsFontSizeToFitWidth = true
         leaseLabel.adjustsFontSizeToFitWidth = true
         getLandlordName()
+        loadPictures()
     }
     
     
@@ -351,17 +352,17 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
         let phoneField = "Phone Number: \(phoneNumber) \n\n"
         let dateField = "Date Available: \(dateAvailable) \n\n"
         let houseField = "Housing Type: \(propertyType) \n\n"
-        let bedBathField = "Number of Bedrooms & Bathrooms: \(rooms) bed \(bathroomNumber) bath \n\n"
-        let rentDepositField = "Rent & Deposit Amount: \(rent) rent \(deposit) deposit \n\n"
+        let bedBathField = "Number of Bedrooms & Bathrooms: \(rooms) Bedroom, \(bathroomNumber) Bathroom \n\n"
+        let rentDepositField = "Rent & Deposit Amount: $\(rent) Rent, $\(deposit) Deposit \n\n"
         let leaseField = "Lease Terms: \(leaseLength) \n\n"
-        let descriptionField = "About the Property (address, laundry, pets allowed, amenities, miles to GU, utilities included in rent, etc.): \(propDescription)Pets are a \(pets). \(distance) miles from GU \n"
+        let descriptionField = "About the Property (address, laundry, pets allowed, amenities, miles to GU, utilities included in rent, etc.): \(address) \n \(propDescription) Pets are a \(pets). \(distance) miles from GU \n"
         
         // Put all fields together
         let completeEmail = nameField + emailField + phoneField + dateField + houseField + bedBathField + rentDepositField + leaseField + descriptionField
         
         // Address email
         emailComposerVC.setToRecipients([adminEmail!])
-        emailComposerVC.setSubject("New Listing")
+        emailComposerVC.setSubject("New listing for: \(address)")
         emailComposerVC.setMessageBody(completeEmail, isHTML: false)
         
         return emailComposerVC
@@ -388,6 +389,7 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
         })
     }
     
+    // May need alert to stop from cancelling
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }

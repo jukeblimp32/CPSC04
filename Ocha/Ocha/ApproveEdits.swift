@@ -102,6 +102,7 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
             destination.propertyType = listings[cellIndex].propertyType
             destination.phoneNumber = listings[cellIndex].phoneNumber
             destination.propertyID = listings[cellIndex].propertyID
+            destination.landlordID = listings[cellIndex].landlordID
         }
     }
     
