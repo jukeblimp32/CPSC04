@@ -116,6 +116,7 @@ class ListingPage: UITableViewController {
             destination.availability = availability
             destination.propDescription = propDescription
             destination.phoneNumber = phoneNumber
+            destination.favoritePropIDs = favoritePropIDs
             
         }
     }

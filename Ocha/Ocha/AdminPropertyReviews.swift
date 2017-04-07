@@ -126,6 +126,7 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
         cell.valueScore.text = review.priceValue
         cell.spaceScore.text = review.space
         cell.qualityScore.text = review.quality
+        cell.emailLabel.text = "User: " + review.email
         cell.deleteReview.tag = indexPath.row
         cell.deleteReview.addTarget(self, action: #selector(self.deleteReview(_:)), for: UIControlEvents.touchUpInside)
         
@@ -234,6 +235,8 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
                         let reviewID = reviewIdValue?["review_id"] as! Int
                         let propIdValue = propReviews[i] as? NSDictionary
                         let propID = propIdValue?["property_id"] as! Int
+                        let emailValue = propReviews[i] as? NSDictionary
+                        let email = emailValue?["email"] as! String
                         let cat1Value = propReviews[i] as? NSDictionary
                         let category1 = cat1Value?["category_1"] as! String
                         let cat2Value = propReviews[i] as? NSDictionary
@@ -248,7 +251,7 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
                         print(self.propertyID)
                         print(propID)
                         if (self.propertyID == propID) {
-                            let review = Review(propertyID: propID, reviewNum: reviewID, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
+                            let review = Review(propertyID: propID, reviewNum: reviewID, email: email, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
                             
                             reponseTotal += Int(category1)!
                             locationTotal += Int(category2)!

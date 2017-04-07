@@ -37,6 +37,7 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
     var propertyID : Int = 0
     var image : UIImage = UIImage(named: "default")!
     var favoritePropIDs = [Int]()
+    var userEmails = [String]()
     
     @IBOutlet var avgResponseScore: UILabel!
     @IBOutlet var avgLocationScore: UILabel!
@@ -109,6 +110,7 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
             destination.availability = availability
             destination.propDescription = propDescription
             destination.phoneNumber = phoneNumber
+            destination.favoritePropIDs = favoritePropIDs
             
         }
         
@@ -135,7 +137,8 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
             destination.availability = availability
             destination.propDescription = propDescription
             destination.phoneNumber = phoneNumber
-            
+            destination.userEmails = self.userEmails
+            destination.favoritePropIDs = favoritePropIDs
         }
         
     }
@@ -207,6 +210,8 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
                         let reviewID = reviewIdValue?["review_id"] as! Int
                         let propIdValue = propReviews[i] as? NSDictionary
                         let propID = propIdValue?["property_id"] as! Int
+                        let emailValue = propReviews[i] as? NSDictionary
+                        let email = emailValue?["email"] as! String
                         let cat1Value = propReviews[i] as? NSDictionary
                         let category1 = cat1Value?["category_1"] as! String
                         let cat2Value = propReviews[i] as? NSDictionary
@@ -219,7 +224,7 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
                         let category5 = cat5Value?["category_5"] as! String
                       
                         if (self.propertyID == propID) {
-                            let review = Review(propertyID: propID, reviewNum: reviewID, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
+                            let review = Review(propertyID: propID, reviewNum: reviewID, email: email, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
                             
                             reponseTotal += Int(category1)!
                             locationTotal += Int(category2)!
@@ -228,6 +233,7 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
                             qualityTotal += Int(category5)!
                             
                             self.reviews.append(review)
+                            self.userEmails.append(email)
                         }
                     }
                     let reviewCount = self.reviews.count

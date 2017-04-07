@@ -20,9 +20,11 @@ class AdminReviewTableViewCell: UITableViewCell {
     @IBOutlet var valueScore: UILabel!
     @IBOutlet var spaceScore: UILabel!
     @IBOutlet var qualityScore: UILabel!
+    @IBOutlet var emailLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        emailLabel.adjustsFontSizeToFitWidth = true
     }
     
     
