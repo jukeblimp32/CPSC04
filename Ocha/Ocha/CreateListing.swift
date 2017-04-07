@@ -30,6 +30,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet var phoneNumberTextField: UITextField!
     var propertyIDs = [Int]()
     var maxID = 0
+    private var currentMaxPropId : Int = 0
     var milesToGU : String = "0.5"
     var userType = ""
     var imageViewSelected = 1
@@ -124,15 +125,18 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         deposit.delegate = self
         propDescription.delegate = self
         self.addReturnButtonOnNumpad()
-        
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    func getCurrentMaxID(callback:@escaping (Int) -> ()){
         //create NSURL
-        let getRequestURL = NSURL(string: getProperties)
+        let getRequestURL1 = NSURL(string: getProperties)
         //creating NSMutableURLRequest
-        let getRequest = NSMutableURLRequest(url:getRequestURL! as URL)
+        let getRequest1 = NSMutableURLRequest(url:getRequestURL1! as URL)
         //setting the method to GET
-        getRequest.httpMethod = "GET"
+        getRequest1.httpMethod = "GET"
         //task to be sent to the GET request
-        let getTask = URLSession.shared.dataTask(with: getRequest as URLRequest) {
+        let getTask1 = URLSession.shared.dataTask(with: getRequest1 as URLRequest) {
             data, response,error in
             //If there is an error in connecting with the database, print error
             if error != nil {
@@ -141,11 +145,11 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             }
             do {
                 //converting response to dictionary
-                var propertyJSON : NSDictionary!
-                propertyJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                var propertyJSON1 : NSDictionary!
+                propertyJSON1 =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                 
                 //Getting the properties in an array
-                let properties: NSArray = propertyJSON["properties"] as! NSArray
+                let properties: NSArray = propertyJSON1["properties"] as! NSArray
                 
                 //looping through all the objects in the array
                 for i in 0 ..< properties.count{
@@ -154,17 +158,20 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
                     let propertyID = propIdValue?["property_id"] as! Int
                     self.propertyIDs.append(propertyID)
                 }
-                self.maxID = Int(self.propertyIDs.max()!)
+                let maxID = Int(self.propertyIDs.max()!)
+                callback(Int(maxID))
+                //self.maxID = Int(self.propertyIDs.max()!)
             }
             catch {
                 print(error)
                 
             }
         }
-        getTask.resume()
+        getTask1.resume()
+
         
-        self.hideKeyboardWhenTappedAround()
     }
+    
     
     @IBAction func changedBedroomNum(_ sender: UIStepper) {
         self.bedroomNumber.text = Int(sender.value).description
@@ -184,7 +191,6 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     }
     
     func getLatLngForZip(address: String) -> String {
-       // var coordinateAddress!
         let key = "AIzaSyCoeK0AFvWvqHTIHOrlzvOKK2YeaoGa7Gk"
         var distanceInMiles = ""
         let url : NSString = "\(baseUrl)address=\(address)&key=\(key)" as NSString
@@ -225,28 +231,34 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     
     
     @IBAction func submitListingInfo(_ sender: Any) {
-        // Create alert
-        let alertConfirm = UIAlertController(title: "Confirmation", message: "Are you sure you would like to post this listing? Doing so will make it visible to all student users.", preferredStyle: .alert)
+        self.getCurrentMaxID{
+            curMaxId in
+            print("CURRMAX")
+            print(curMaxId)
+            self.currentMaxPropId = curMaxId
+            print(self.currentMaxPropId)
+            // Create alert
+            let alertConfirm = UIAlertController(title: "Confirmation", message: "Are you sure you would like to post this listing? Doing so will make it visible to all student users.", preferredStyle: .alert)
         
-        // Do nothing if we cancel
-        let alertCancel = UIAlertAction(title: "Cancel", style: .default) {
-            (_) in
-            return
+            // Do nothing if we cancel
+            let alertCancel = UIAlertAction(title: "Cancel", style: .default) {
+                (_) in
+                return
+            }
+            // If yes, delete the listing from the database
+            let alertYes = UIAlertAction(title: "Yes", style: .default){
+                (_) in
+                self.registerListing()
+            }
+            alertConfirm.addAction(alertCancel)
+            alertConfirm.addAction(alertYes)
+            self.present(alertConfirm, animated: true, completion: nil)
         }
-        // If yes, delete the listing from the database
-        let alertYes = UIAlertAction(title: "Yes", style: .default){
-            (_) in
-            self.registerListing()
-        }
-        alertConfirm.addAction(alertCancel)
-        alertConfirm.addAction(alertYes)
-        self.present(alertConfirm, animated: true, completion: nil)
-
-        
         
     }
     
     func registerListing(){
+
         //created NSURL
         let saveRequestURL = NSURL(string: URL_SAVE_PROPERTY)
         
@@ -257,13 +269,16 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         saveRequest.httpMethod = "POST"
         
         //getting values from text fields
-        
-        //let landlordID = self.firstName
+    
         let uid = FIRAuth.auth()?.currentUser?.uid
         let email = FIRAuth.auth()?.currentUser?.email
         var dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
+        //let propID = String(maxID + 1)
+        let propID = String(currentMaxPropId + 1)
+        print("PROPID")
+        print(propID)
         let landlordID = uid
         let propertyAddress = address.text
         let monthlyRent = rent.text
@@ -272,30 +287,24 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         let numberOfBathrooms = bathroomNumber.text
         
         let availableDate = dateFormatter.string(from: datePicker.date)
-        //let milesToGu = milesToGU
         let lease = leaseLength.titleForSegment(at: leaseLength.selectedSegmentIndex)
         let propertyType = propType.titleForSegment(at:propType.selectedSegmentIndex)
         let petChoice = petPolicy.titleForSegment(at:petPolicy.selectedSegmentIndex)
         var description = " "
         let phoneNumber = phoneNumberTextField.text
         if (propDescription.text != nil){
-            description = propDescription.text!
+        description = propDescription.text!
         }
-        //let phoneNumber =
-        
-        
+ 
         let location = propertyAddress! + ", Spokane, WA, USA"
-        let milesToGu = getLatLngForZip(address: location)
-        
-        // getLatLngForZip(address: location)
-        //getmiles
-        //miles = getmiles
+        let milesToGu = self.getLatLngForZip(address: location)
+
         
         if propertyAddress == "" || monthlyRent == "" || propertyDeposit == "" || phoneNumber == ""
         {
             let alert = UIAlertController(title: "Empty Fields", message:"Make sure you have entered information for all fields", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .default))
-            self.present(alert, animated: true){}
+                alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                self.present(alert, animated: true){}
             
         }
         else {
@@ -304,14 +313,14 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             //concatenating keys and values from text field
             
             if (userType == "Admin") {
-                postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!+"&email="+email!+"&status=Approved";
+                postParameters="property_id="+propID+"&landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!+"&email="+email!+"&status=Approved";
             }
             else {
-                postParameters="landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!+"&email="+email!+"&status=Pending";
+                postParameters="property_id="+propID+"&landlord_id="+landlordID!+"&address="+propertyAddress!+"&rent_per_month="+monthlyRent!+"&deposit="+propertyDeposit!+"&number_of_rooms="+numberOfRooms!+"&number_of_bathrooms="+numberOfBathrooms!+"&date_available="+availableDate+"&miles_to_gu="+milesToGu+"&lease_length="+lease!+"&property_type="+propertyType!+"&pets="+petChoice!+"&description="+description+"&availability=Open"+"&phone_number="+phoneNumber!+"&email="+email!+"&status=Pending";
             }
             
             // Upload Image
-            self.uploadImage(address: propertyAddress!)
+            self.uploadImage(address: propertyAddress!, currMaxID: currentMaxPropId)
             //adding parameters to request body
             saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
             //task to send to post request
@@ -352,12 +361,13 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             propType.selectedSegmentIndex = 0
             propDescription.text = ""
         }
-
     }
     
-    private func uploadImage(address : String)
+    private func uploadImage(address : String, currMaxID : Int)
     {
-        let propertyMaxID = maxID + 1
+        let propertyMaxID = currentMaxPropId + 1
+        print("OVERHERE")
+        print(propertyMaxID)
         // Firebase images. First create a unique id number.
         let imageName = NSUUID().uuidString
         let imageName2 = NSUUID().uuidString
@@ -386,7 +396,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         //Loading each image into firebase
         if let uploadData = UIImagePNGRepresentation(self.uploadImageView.image!)
         {
-            print(uploadImageView.image!)
+            print(self.uploadImageView.image!)
             storageRef.put(uploadData, metadata: nil, completion: {(metadata, error) in
                 if error != nil {
                     print(error)
@@ -468,7 +478,6 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
                 }
             })
         }
-        
     }
     
     func handleSelectListingImage(/*_ sender: UIImageView*/)
@@ -624,7 +633,5 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
     {
         self.deposit.resignFirstResponder()
     }
-
-    
-    
 }
+

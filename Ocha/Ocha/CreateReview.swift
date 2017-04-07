@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateReview: UIViewController {
     
@@ -34,6 +35,7 @@ class CreateReview: UIViewController {
     var propertyID : Int = 0
     var image : UIImage = UIImage(named: "default")!
     var favoritePropIDs = [Int]()
+    var userEmails = [String]()
     
     @IBOutlet var responseScore: UILabel!
     @IBOutlet var spaceScore: UILabel!
@@ -81,6 +83,7 @@ class CreateReview: UIViewController {
             destination.availability = availability
             destination.propDescription = propDescription
             destination.phoneNumber = phoneNumber
+            destination.favoritePropIDs = favoritePropIDs
             
         }
     }
@@ -109,21 +112,30 @@ class CreateReview: UIViewController {
    
     @IBAction func submitReview(_ sender: Any) {
         // Create alert
-        let alertConfirm = UIAlertController(title: "Confirmation", message: "Are you sure you would like to submit your review?", preferredStyle: .alert)
+        let email = FIRAuth.auth()?.currentUser?.email
+        print(userEmails)
+        if userEmails.contains(email!) {
+            let alert = UIAlertController(title: "Multiple Reviews", message:"You may only leave one review per property", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .default))
+            self.present(alert, animated: true){}
+        }
+        else {
+            let alertConfirm = UIAlertController(title: "Confirmation", message: "Are you sure you would like to submit your review?", preferredStyle: .alert)
         
-        // Do nothing if we cancel
-        let alertCancel = UIAlertAction(title: "Cancel", style: .default) {
-            (_) in
-            return
+            // Do nothing if we cancel
+            let alertCancel = UIAlertAction(title: "Cancel", style: .default) {
+                (_) in
+                return
+            }
+            // If yes, delete the listing from the database
+            let alertYes = UIAlertAction(title: "Yes", style: .default){
+                (_) in
+                self.registerReview()
+            }
+            alertConfirm.addAction(alertCancel)
+            alertConfirm.addAction(alertYes)
+            self.present(alertConfirm, animated: true, completion: nil)
         }
-        // If yes, delete the listing from the database
-        let alertYes = UIAlertAction(title: "Yes", style: .default){
-            (_) in
-            self.registerReview()
-        }
-        alertConfirm.addAction(alertCancel)
-        alertConfirm.addAction(alertYes)
-        self.present(alertConfirm, animated: true, completion: nil)
 
     }
     
@@ -141,6 +153,8 @@ class CreateReview: UIViewController {
         
         //let propId = propertyID
         
+        let email = FIRAuth.auth()?.currentUser?.email
+        print(email)
         let propId = String(propertyID)
         let landlordResponse = responseScore.text
         let location = locationScore.text
@@ -148,7 +162,7 @@ class CreateReview: UIViewController {
         let spacePerson = spaceScore.text
         let overallQuality = qualityScore.text
         
-        let postParameters = "property_id="+propId+"&category_1="+landlordResponse!+"&category_2="+location!+"&category_3="+priceValue!+"&category_4="+spacePerson!+"&category_5="+overallQuality!;
+        let postParameters = "property_id="+propId+"&email="+email!+"&category_1="+landlordResponse!+"&category_2="+location!+"&category_3="+priceValue!+"&category_4="+spacePerson!+"&category_5="+overallQuality!;
         
         
         //adding parameters to request body
