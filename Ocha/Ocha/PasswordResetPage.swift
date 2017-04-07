@@ -11,7 +11,7 @@ import Firebase
 
 
 
-class PasswordResetPage: UITableViewController, UITextFieldDelegate{
+class PasswordResetPage: UIViewController, UITextFieldDelegate{
     // Email textfield
     let emailTextField = UITextField()
     var emailList = [String]()
@@ -20,8 +20,6 @@ class PasswordResetPage: UITableViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        self.view.backgroundColor = UIColor.blue
-        
         let screenScale = view.frame.height / 568.0
 
         //add email textfield

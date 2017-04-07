@@ -197,9 +197,9 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     func resetPassword(sender: UITapGestureRecognizer)
     {
        // let viewController = self.storyboard!.instantiateViewController(withIdentifier: "PasswordResetPage") as UIViewController
-        let resetController:PasswordResetPage = PasswordResetPage()
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "ResetPassword") as UIViewController
         self.dismiss(animated: true, completion: nil)
-        self.present(resetController, animated: true, completion: nil)
+        self.present(viewController, animated: true, completion: nil)
     }
     
     func fbLogin(){

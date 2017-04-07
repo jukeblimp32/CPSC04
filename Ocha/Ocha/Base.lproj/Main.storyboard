@@ -12,6 +12,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--ResetPassword-->
+        <scene sceneID="ZwR-tJ-xOa">
+            <objects>
+                <viewController restorationIdentifier="ResetPassword" storyboardIdentifier="ResetPassword" title="ResetPassword" id="7BX-7x-aYB" customClass="PasswordResetPage" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WG6-Ob-05G"/>
+                        <viewControllerLayoutGuide type="bottom" id="N9S-8Y-8R8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="ResetPassword" id="6sm-Os-7Xz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqh-6K-bec">
+                                <rect key="frame" x="16" y="20" width="70" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.69411764710000001" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="fcs-9k-Ynp" kind="show" id="Coj-J2-CLX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1176470588" green="0.20392156859999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reset Password" id="iCb-Rd-XFB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QQb-gt-2Bl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="173.59999999999999" y="1345.2773613193403"/>
+        </scene>
         <!--Welcome-->
         <scene sceneID="0UZ-Eb-eM1">
             <objects>
@@ -25,6 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1176470588" green="0.20392156859999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Select User Type" id="fEo-QA-Sop"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHw-3Z-6tA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -204,7 +237,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qto-Bf-Rpr">
-                                                    <rect key="frame" x="-2" y="29" width="351" height="89"/>
+                                                    <rect key="frame" x="-3" y="29" width="352" height="89"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="507251801.70504302">
                                                         <!--2017-01-27 23:16:41 +0000-->
@@ -1342,7 +1375,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="yJj-YM-8H8" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="auD-aB-qIY"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jXg-kH-W6Q">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jXg-kH-W6Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1380,7 +1413,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="6Y5-qP-uwG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" selectedImage="Hompage" id="2oW-k8-QXp"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZNO-dB-cfU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZNO-dB-cfU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1789,7 +1822,7 @@
                 <navigationController navigationBarHidden="YES" id="9U8-jT-oXb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="lY8-gG-zhb"/>
                     <navigationItem key="navigationItem" id="3Xi-pU-xsL"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MTk-qs-JsG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MTk-qs-JsG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1807,7 +1840,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="bCL-hc-hQe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account Info" image="Account Info" id="i4J-ew-EKB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYM-9U-RUU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iYM-9U-RUU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1818,7 +1851,39 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQO-NV-auc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-703" y="-2261"/>
+            <point key="canvasLocation" x="-1482" y="-2261"/>
+        </scene>
+        <!--Update Password-->
+        <scene sceneID="tGX-2N-Uof">
+            <objects>
+                <viewController id="rZX-bo-Tri" customClass="UpdatePassword" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ny5-Lm-Kjf"/>
+                        <viewControllerLayoutGuide type="bottom" id="ij9-C1-jpu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="17N-Ta-vMS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2e-SG-J1s">
+                                <rect key="frame" x="16" y="20" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.69411764710000001" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Jod-Y6-Jgc" kind="push" id="1BP-gC-qaM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1176470588" green="0.20392156859999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Uvc-PC-Sk0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cv9-v2-gef" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="174" y="-2261"/>
         </scene>
         <!--Account Info-->
         <scene sceneID="HIt-tx-XAD">
@@ -1934,14 +1999,42 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="205" id="84S-1j-5QY">
-                                        <rect key="frame" x="0.0" y="400" width="375" height="205"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="78" id="hgZ-gJ-zpC">
+                                        <rect key="frame" x="0.0" y="400" width="375" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="84S-1j-5QY" id="ykw-wl-xNU">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hgZ-gJ-zpC" id="NhG-E6-LS6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDy-PQ-6WP">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8Y-A6-Kwu">
+                                                    <rect key="frame" x="15" y="10" width="345" height="59"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" title="Reset Password">
+                                                        <color key="titleColor" red="0.0" green="0.69411764710000001" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="logout:" destination="Jod-Y6-Jgc" eventType="touchUpInside" id="M9v-V3-Dzm"/>
+                                                        <segue destination="rZX-bo-Tri" kind="push" id="0ko-TJ-LBv"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Y8Y-A6-Kwu" firstAttribute="top" secondItem="NhG-E6-LS6" secondAttribute="topMargin" constant="2" id="5sN-6K-9gH"/>
+                                                <constraint firstItem="Y8Y-A6-Kwu" firstAttribute="leading" secondItem="NhG-E6-LS6" secondAttribute="leadingMargin" constant="7" id="Vy6-4A-jc0"/>
+                                                <constraint firstItem="Y8Y-A6-Kwu" firstAttribute="centerX" secondItem="NhG-E6-LS6" secondAttribute="centerX" id="ZXM-OO-uRS"/>
+                                                <constraint firstItem="Y8Y-A6-Kwu" firstAttribute="bottom" secondItem="NhG-E6-LS6" secondAttribute="bottomMargin" id="bVr-Ee-Rv9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="114" id="84S-1j-5QY">
+                                        <rect key="frame" x="0.0" y="478" width="375" height="114"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="84S-1j-5QY" id="ykw-wl-xNU">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDy-PQ-6WP">
                                                     <rect key="frame" x="15" y="32" width="345" height="59"/>
                                                     <color key="backgroundColor" red="0.0" green="0.69411764710000001" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Logout">
@@ -1991,7 +2084,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tXy-MT-eqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="21.600000000000001" y="-2261.0194902548728"/>
+            <point key="canvasLocation" x="-569" y="-2261"/>
         </scene>
         <!--Listings-->
         <scene sceneID="pJ7-Js-2zR">
@@ -1999,7 +2092,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Pcc-rx-e2J" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Listings" image="Hompage" id="fYD-0k-Szd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o73-Pz-GaW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o73-Pz-GaW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2160,7 +2253,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="2Nh-QB-Wxh">
-                                                    <rect key="frame" x="5" y="31" width="334" height="90"/>
+                                                    <rect key="frame" x="4" y="31" width="334" height="90"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="508559640.85728002">
                                                         <!--2017-02-12 02:34:00 +0000-->
@@ -4007,7 +4100,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="AZb-1U-AYy">
-                                                    <rect key="frame" x="6" y="31" width="325" height="90"/>
+                                                    <rect key="frame" x="5" y="31" width="326" height="90"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="508559640.85728002">
                                                         <!--2017-02-12 02:34:00 +0000-->
@@ -4352,7 +4445,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="kXK-vq-jzA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="New Listings" selectedImage="second" id="GCZ-7v-Bg1"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="g3x-Ck-1oX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="g3x-Ck-1oX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4904,7 +4997,7 @@
             <objects>
                 <navigationController id="tEl-hV-fVk" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Manage Users" id="Tmr-Y8-2mt"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1dJ-7i-0pQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1dJ-7i-0pQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4921,7 +5014,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="9RR-NA-bSI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Pending Edits" image="first" id="Abz-gh-OG0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RGc-bW-MKx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="RGc-bW-MKx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -6473,19 +6566,21 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZLl-OI-v7r"/>
-        <segue reference="Stp-Lh-4v1"/>
-        <segue reference="R2m-C0-Dkv"/>
-        <segue reference="ciy-bW-OGB"/>
-        <segue reference="m06-09-obF"/>
-        <segue reference="lAF-GW-bOw"/>
-        <segue reference="bdE-u0-nId"/>
-        <segue reference="XgJ-yG-aBr"/>
         <segue reference="zjl-A3-T5k"/>
+        <segue reference="XgJ-yG-aBr"/>
+        <segue reference="bdE-u0-nId"/>
+        <segue reference="1BP-gC-qaM"/>
         <segue reference="o8C-fQ-f2N"/>
-        <segue reference="qGG-sL-QR7"/>
+        <segue reference="h93-ZZ-6l2"/>
+        <segue reference="Wgi-Vy-FKQ"/>
+        <segue reference="lAF-GW-bOw"/>
+        <segue reference="ZLl-OI-v7r"/>
+        <segue reference="m06-09-obF"/>
+        <segue reference="ciy-bW-OGB"/>
+        <segue reference="R2m-C0-Dkv"/>
         <segue reference="ML4-Ww-1sF"/>
         <segue reference="V1X-d4-iu0"/>
         <segue reference="Pib-hs-18K"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.0" green="0.69411764710000001" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
