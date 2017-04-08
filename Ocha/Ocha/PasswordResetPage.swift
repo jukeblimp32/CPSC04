@@ -15,12 +15,14 @@ class PasswordResetPage: UIViewController, UITextFieldDelegate{
     // Email textfield
     let emailTextField = UITextField()
     var emailList = [String]()
+    @IBOutlet weak var backToLogin: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         let screenScale = view.frame.height / 568.0
+        
 
         //add email textfield
         emailTextField.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (20/100), width: view.frame.width * (80/100), height: (view.frame.height) * (5/100))
@@ -34,9 +36,31 @@ class PasswordResetPage: UIViewController, UITextFieldDelegate{
         self.emailTextField.delegate = self
         view.addSubview(emailTextField)
         
+        backToLogin.frame = CGRect(x: 0, y: (view.frame.width) * (5/100), width: view.frame.width * (18/100), height: (view.frame.height) * (5/100))
+        view.addSubview(backToLogin)
+        
+        //header
+        let headerLabel = UILabel()
+        headerLabel.frame =  CGRect(x: 0, y: (view.frame.width) * (4/100), width: view.frame.width , height: (view.frame.height) * (5/100))
+        headerLabel.font = UIFont.systemFont(ofSize: 24 * screenScale)
+        headerLabel.text = "Reset Password"
+        headerLabel.textAlignment = .center
+        headerLabel.textColor = UIColor.white
+        view.addSubview(headerLabel)
+        
+        let instLabel = UILabel()
+        instLabel.frame =  CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (10/100), width: view.frame.width * (80/100), height: (view.frame.height) * (10/100))
+        instLabel.font = UIFont.systemFont(ofSize: 14 * screenScale)
+        instLabel.text = "Please enter the email address that you registered with Ocha."
+        instLabel.textColor = UIColor.white
+        instLabel.lineBreakMode = .byWordWrapping
+        instLabel.numberOfLines = 2
+        view.addSubview(instLabel)
+
+        
         //add login button
         let submitButton = UIButton()
-        submitButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (45/100), width: view.frame.width * (80/100), height: (view.frame.height) * (6/100))
+        submitButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (30/100), width: view.frame.width * (80/100), height: (view.frame.height) * (6/100))
         submitButton.setTitle("Submit", for: UIControlState.normal)
         submitButton.setTitleColor(UIColor.white, for: .normal)
         //loginButton.titleLabel?.minimumScaleFactor = 0.01;
@@ -48,17 +72,25 @@ class PasswordResetPage: UIViewController, UITextFieldDelegate{
         submitButton.backgroundColor = UIColor.init(red: 0.0/255, green: 177.0/255, blue: 176.0/255, alpha: 1)
         submitButton.layer.cornerRadius = 4
         view.addSubview(submitButton)
+        loadEmails()
 
     }
     
-    /*func loadEmails(){
+    func loadEmails(){
         FIRDatabase.database().reference().child("users").observe(.childAdded, with: {(snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
-     
-                self.emailList.append(dictionary["email"] as! String?)
+                let fbUser = FireUser()
+                fbUser.name = dictionary["name"] as! String?
+                fbUser.email = dictionary["email"] as! String?
+                fbUser.type = dictionary["type"] as! String?
+                fbUser.fbId = snapshot.key
+                self.emailList.append(fbUser.fbId!)
+                
             }
         }, withCancel: nil)
-    } */
+
+
+    }
     
     func submitEmail(_ sender: UIButton){
         print("Here we go")
@@ -67,13 +99,43 @@ class PasswordResetPage: UIViewController, UITextFieldDelegate{
             print("Please enter valid email address")
             return
         }
-
-        FIRAuth.auth()?.sendPasswordReset(withEmail: email) { (error) in
-            if error != nil{
-                print(error)
+        loadEmails()
+        print(emailList)
+        
+        if (emailList.contains(email))
+        {
+            // Create alert
+            let alertConfirm = UIAlertController(title: "Confirmation", message: "Are you sure you would like to send a reset email to \(email)", preferredStyle: .alert)
+            
+            // Do nothing if we cancel
+            let alertCancel = UIAlertAction(title: "Cancel", style: .default) {
+                (_) in
                 return
             }
+            // If yes, delete the listing from the database
+            let alertYes = UIAlertAction(title: "Yes", style: .default){
+                (_) in
+                FIRAuth.auth()?.sendPasswordReset(withEmail: email) { (error) in
+                    if error != nil{
+                        print(error)
+                        return
+                    }
+                }
+                self.backToLogin.sendActions(for: .touchUpInside)
+
+            }
+            alertConfirm.addAction(alertCancel)
+            alertConfirm.addAction(alertYes)
+            self.present(alertConfirm, animated: true, completion: nil)
         }
+        else
+        {
+            let alert = UIAlertController(title: "Email Not Found", message:"The email you entered is not registered with Ocha. Please enter a registered email.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .default))
+            self.present(alert, animated: true){}
+
+        }
+
     }
     
     // Called when 'return' key is pressed

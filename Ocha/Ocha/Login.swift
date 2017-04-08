@@ -23,7 +23,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         UITabBar.appearance().tintColor = UIColor.init(red: 1.0/255, green: 87.0/255, blue: 155.0/255, alpha: 1)
         // Get a scale based on iPhone 5
         let screenScale = view.frame.height / 568.0
-        
+
         // Do any additional setup after loading the view, typically from a nib.
         GIDSignIn.sharedInstance().uiDelegate = self
         
@@ -76,7 +76,9 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
             [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue])
         recoverLabel.font = UIFont.systemFont(ofSize: 14 * screenScale)
         recoverLabel.textColor = UIColor.init(red: 0.0/255, green: 177.0/255, blue: 176.0/255, alpha: 1)
-        recoverLabel.frame = CGRect(x: (view.frame.width) * (32/100), y: (view.frame.height) * (54/100), width: view.frame.width / 2, height: 14 * screenScale)
+        let width = recoverLabel.intrinsicContentSize.width
+        recoverLabel.frame = CGRect(x: (view.frame.width) / 2 - (width / 2), y: (view.frame.height) * (54/100), width: view.frame.width / 2, height: 14 * screenScale)
+        //recoverLabel.textAlignment = .center
         recoverLabel.sizeToFit()
         recoverLabel.isUserInteractionEnabled = true
         recoverLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ViewController.resetPassword)))
