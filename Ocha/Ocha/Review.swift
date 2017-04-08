@@ -17,9 +17,10 @@ class Review {
     var quality: String
     var reviewNum: Int
     var email: String
+    var date: String
 
     
-    init(propertyID: Int, reviewNum: Int, email: String, landlordResponse : String, location : String, priceValue : String, space : String, quality : String) {
+    init(propertyID: Int, reviewNum: Int, email: String, date: String, landlordResponse : String, location : String, priceValue : String, space : String, quality : String) {
         self.reviewNum = reviewNum
         self.propertyID = propertyID
         self.landlordResponse = landlordResponse
@@ -28,5 +29,6 @@ class Review {
         self.priceValue = priceValue
         self.quality = quality
         self.email = email
+        self.date = date
     }
 }

@@ -150,6 +150,11 @@ class FavoriteCreateReview: UIViewController {
         
         //let propId = propertyID
         
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        let result = formatter.string(from: date)
+        
         let email = FIRAuth.auth()?.currentUser?.email
         let propId = String(propertyID)
         let landlordResponse = responseScore.text
@@ -158,7 +163,7 @@ class FavoriteCreateReview: UIViewController {
         let spacePerson = spaceScore.text
         let overallQuality = qualityScore.text
         
-        let postParameters = "property_id="+propId+"&email="+email!+"&category_1="+landlordResponse!+"&category_2="+location!+"&category_3="+priceValue!+"&category_4="+spacePerson!+"&category_5="+overallQuality!;
+        let postParameters = "property_id="+propId+"&email="+email!+"&date="+result+"&category_1="+landlordResponse!+"&category_2="+location!+"&category_3="+priceValue!+"&category_4="+spacePerson!+"&category_5="+overallQuality!;
         
         
         //adding parameters to request body

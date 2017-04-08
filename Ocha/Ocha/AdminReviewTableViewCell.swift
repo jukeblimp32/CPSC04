@@ -14,6 +14,7 @@ class AdminReviewTableViewCell: UITableViewCell {
     var propertyID : Int = 0
     var reviewNum: Int = 0
     
+    @IBOutlet var dateLabel: UILabel!
     @IBOutlet var deleteReview: UIButton!
     @IBOutlet var responseScore: UILabel!
     @IBOutlet var locationScore: UILabel!
