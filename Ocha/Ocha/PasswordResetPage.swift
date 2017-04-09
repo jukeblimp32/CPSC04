@@ -102,10 +102,10 @@ class PasswordResetPage: UIViewController, UITextFieldDelegate{
         loadEmails()
         print(emailList)
         
-        if (emailList.contains(email))
-        {
+        //if (emailList.contains(email))
+        //{
             // Create alert
-            let alertConfirm = UIAlertController(title: "Confirmation", message: "Are you sure you would like to send a reset email to \(email)", preferredStyle: .alert)
+            let alertConfirm = UIAlertController(title: "Confirmation", message: "Are you sure you would like to send a reset email to \(email)?", preferredStyle: .alert)
             
             // Do nothing if we cancel
             let alertCancel = UIAlertAction(title: "Cancel", style: .default) {
@@ -118,23 +118,54 @@ class PasswordResetPage: UIViewController, UITextFieldDelegate{
                 FIRAuth.auth()?.sendPasswordReset(withEmail: email) { (error) in
                     if error != nil{
                         print(error)
+                        if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
+                            // Create alerts for each Firebase error
+                            switch errCode {
+                            // Operation not allowed
+                            case .errorCodeInvalidEmail:
+                                let alert = UIAlertController(title: "Failure to Submit", message:"The email you entered is badly formatted. Cannot reset password.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                                self.present(alert, animated: true){}
+                            // Too short of password
+                            case .errorCodeUserNotFound:
+                                let alert = UIAlertController(title: "Failure to Submit", message:"The email entered does not match any registered with Ocha. Please enter a valid email.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                                self.present(alert, animated: true){}
+                                
+                            // Miscellaneous errors
+                            default:
+                                let alert = UIAlertController(title: "Failure to Submit", message:"Make sure the email you entered is valid", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                                self.present(alert, animated: true){}
+                            }
+                        }
                         return
                     }
+                    else if ((email != "") && (email != " ")){
+                        let alertVC = UIAlertController(title: "Email Sent", message: "Check your email to reset your password. IF USING ZAGMAIL, CHECK YOUR SPAM FOLDER", preferredStyle: .alert)
+                        
+                        let alertActionOkay = UIAlertAction(title: "Okay", style: .default){
+                            (_) in
+                            // Go back to login
+                            self.backToLogin.sendActions(for: .touchUpInside)
+                        }
+                        alertVC.addAction(alertActionOkay)
+                        self.present(alertVC, animated: true, completion: nil)
+                    }
                 }
-                self.backToLogin.sendActions(for: .touchUpInside)
 
             }
             alertConfirm.addAction(alertCancel)
             alertConfirm.addAction(alertYes)
             self.present(alertConfirm, animated: true, completion: nil)
-        }
+        /*}
         else
         {
             let alert = UIAlertController(title: "Email Not Found", message:"The email you entered is not registered with Ocha. Please enter a registered email.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: .default))
             self.present(alert, animated: true){}
 
-        }
+        } */
 
     }
     
