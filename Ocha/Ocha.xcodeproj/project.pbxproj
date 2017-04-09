@@ -15,12 +15,12 @@
 		150E9DC31DF2498A00915C2C /* SearchAndFilterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150E9DC21DF2498A00915C2C /* SearchAndFilterTest.swift */; };
 		1516D1521E36BDFF009FBCB3 /* EditListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516D1511E36BDFF009FBCB3 /* EditListing.swift */; };
 		151930381DE25D1900858B8A /* ListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151930371DE25D1900858B8A /* ListingPage.swift */; };
+		1523E3871E9AF03F00303F39 /* UpdatePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1523E3861E9AF03F00303F39 /* UpdatePassword.swift */; };
 		153E3FF41E4FD9D600E4EF33 /* FavoriteListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E3FF31E4FD9D600E4EF33 /* FavoriteListingPage.swift */; };
 		153FBDBB1E68F83A008E4B41 /* ApproveNewListings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FBDBA1E68F83A008E4B41 /* ApproveNewListings.swift */; };
 		153FBDBD1E68FA13008E4B41 /* AdminListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FBDBC1E68FA13008E4B41 /* AdminListingPage.swift */; };
 		153FBDBF1E68FA69008E4B41 /* EditAdminListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FBDBE1E68FA69008E4B41 /* EditAdminListing.swift */; };
 		153FBDC11E690311008E4B41 /* ApproveNewListingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FBDC01E690311008E4B41 /* ApproveNewListingPage.swift */; };
-		15490BD81E984FBA009452FC /* UpdatePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15490BD71E984FBA009452FC /* UpdatePassword.swift */; };
 		154C50B31DE23C1400F39D67 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154C50B21DE23C1400F39D67 /* Listing.swift */; };
 		155C36B81DC4205A00154B12 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155C36B71DC4205A00154B12 /* Login.swift */; };
 		15635E581DCC0E0B003F7812 /* StudentHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15635E571DCC0E0B003F7812 /* StudentHomePage.swift */; };
@@ -92,12 +92,12 @@
 		150E9DC21DF2498A00915C2C /* SearchAndFilterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAndFilterTest.swift; sourceTree = "<group>"; };
 		1516D1511E36BDFF009FBCB3 /* EditListing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListing.swift; sourceTree = "<group>"; };
 		151930371DE25D1900858B8A /* ListingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingPage.swift; sourceTree = "<group>"; };
+		1523E3861E9AF03F00303F39 /* UpdatePassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePassword.swift; sourceTree = "<group>"; };
 		153E3FF31E4FD9D600E4EF33 /* FavoriteListingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteListingPage.swift; sourceTree = "<group>"; };
 		153FBDBA1E68F83A008E4B41 /* ApproveNewListings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveNewListings.swift; sourceTree = "<group>"; };
 		153FBDBC1E68FA13008E4B41 /* AdminListingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminListingPage.swift; sourceTree = "<group>"; };
 		153FBDBE1E68FA69008E4B41 /* EditAdminListing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAdminListing.swift; sourceTree = "<group>"; };
 		153FBDC01E690311008E4B41 /* ApproveNewListingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveNewListingPage.swift; sourceTree = "<group>"; };
-		15490BD71E984FBA009452FC /* UpdatePassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePassword.swift; sourceTree = "<group>"; };
 		154C50B21DE23C1400F39D67 /* Listing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		155C36B71DC4205A00154B12 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		15635E571DCC0E0B003F7812 /* StudentHomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHomePage.swift; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 				7C89D4E81DC993C200326666 /* GoogleService-Info.plist */,
 				7C89D4E51DC97F8B00326666 /* Ocha-Bridging-Header.h */,
 				7C20DED01E7230D000E1A082 /* FireUser.swift */,
-				15490BD71E984FBA009452FC /* UpdatePassword.swift */,
+				1523E3861E9AF03F00303F39 /* UpdatePassword.swift */,
 				7CF6D6D21E97397500F10AB2 /* PasswordResetPage.swift */,
 			);
 			path = Ocha;
@@ -561,7 +561,7 @@
 				7C854E511DC400AD00E02883 /* CreateAccount.swift in Sources */,
 				15635E5A1DCC0F1E003F7812 /* AdminHomePage.swift in Sources */,
 				153E3FF41E4FD9D600E4EF33 /* FavoriteListingPage.swift in Sources */,
-				15490BD81E984FBA009452FC /* UpdatePassword.swift in Sources */,
+				1523E3871E9AF03F00303F39 /* UpdatePassword.swift in Sources */,
 				153FBDBD1E68FA13008E4B41 /* AdminListingPage.swift in Sources */,
 				15B25DB71E6A4ACB00503C03 /* ApproveEdits.swift in Sources */,
 			);

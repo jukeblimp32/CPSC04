@@ -11,8 +11,12 @@ import Firebase
 
 class UpdatePassword: UIViewController, UITextFieldDelegate {
     // Email textfield
+    
+    
+    @IBOutlet var backToAccount: UIButton!
     let passwordTextField = UITextField()
     let confirmTextField = UITextField()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +45,7 @@ class UpdatePassword: UIViewController, UITextFieldDelegate {
         confirmTextField.placeholder = "Confirm New Password"
         confirmTextField.adjustsFontSizeToFitWidth = true
         self.confirmTextField.delegate = self
-
+        
         
         //header
         let headerLabel = UILabel()
@@ -130,7 +134,7 @@ class UpdatePassword: UIViewController, UITextFieldDelegate {
             alertConfirm.addAction(alertCancel)
             alertConfirm.addAction(alertYes)
             self.present(alertConfirm, animated: true, completion: nil)
-
+            
         }
         else
         {
@@ -148,7 +152,7 @@ class UpdatePassword: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

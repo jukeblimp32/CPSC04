@@ -1873,7 +1873,7 @@
         <!--Update Password-->
         <scene sceneID="tGX-2N-Uof">
             <objects>
-                <viewController id="rZX-bo-Tri" customClass="UpdatePassword" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UpdatePassword" id="rZX-bo-Tri" customClass="UpdatePassword" customModule="Ocha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ny5-Lm-Kjf"/>
                         <viewControllerLayoutGuide type="bottom" id="ij9-C1-jpu"/>
@@ -1897,10 +1897,13 @@
                         <color key="backgroundColor" red="0.1176470588" green="0.20392156859999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Uvc-PC-Sk0"/>
+                    <connections>
+                        <outlet property="backToAccount" destination="F2e-SG-J1s" id="cq4-ty-QrQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cv9-v2-gef" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="174" y="-2261"/>
+            <point key="canvasLocation" x="57" y="-2261"/>
         </scene>
         <!--Account Info-->
         <scene sceneID="HIt-tx-XAD">
@@ -2681,11 +2684,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ic6-g5-LgH">
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ic6-g5-LgH">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </scrollView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ic6-g5-LgH" firstAttribute="leading" secondItem="MBE-15-hBc" secondAttribute="leading" id="FmP-Rc-CEH"/>
+                                                <constraint firstItem="Ic6-g5-LgH" firstAttribute="top" secondItem="MBE-15-hBc" secondAttribute="top" id="NlA-by-OVa"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ic6-g5-LgH" secondAttribute="bottom" id="Str-r7-FOy"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ic6-g5-LgH" secondAttribute="trailing" id="zsa-RG-OK7"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="42" id="NMo-OJ-ugm">
@@ -6565,21 +6573,21 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wgi-Vy-FKQ"/>
-        <segue reference="h93-ZZ-6l2"/>
-        <segue reference="1BP-gC-qaM"/>
-        <segue reference="zjl-A3-T5k"/>
         <segue reference="XgJ-yG-aBr"/>
         <segue reference="rCE-9W-4vV"/>
-        <segue reference="Pib-hs-18K"/>
-        <segue reference="y2L-dC-8lB"/>
+        <segue reference="zjl-A3-T5k"/>
         <segue reference="ciy-bW-OGB"/>
-        <segue reference="dOb-qY-2Pf"/>
-        <segue reference="9BA-JH-gVZ"/>
-        <segue reference="GFc-HJ-P9D"/>
-        <segue reference="ZLl-OI-v7r"/>
-        <segue reference="bXr-Dw-d0i"/>
         <segue reference="m06-09-obF"/>
+        <segue reference="1BP-gC-qaM"/>
+        <segue reference="9BA-JH-gVZ"/>
+        <segue reference="dOb-qY-2Pf"/>
+        <segue reference="GFc-HJ-P9D"/>
+        <segue reference="Wgi-Vy-FKQ"/>
+        <segue reference="h93-ZZ-6l2"/>
+        <segue reference="y2L-dC-8lB"/>
+        <segue reference="Pib-hs-18K"/>
+        <segue reference="V1X-d4-iu0"/>
+        <segue reference="ZLl-OI-v7r"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.69411764710000001" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
