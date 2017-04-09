@@ -69,7 +69,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
         
-        imageView.frame = CGRect(x: (view.frame.width) * (15/100), y: (view.frame.height) * (2/100), width: view.frame.width * (70/100), height: (view.frame.height) * (20/100))
+        imageView.frame = CGRect(x: (view.frame.width) * (15/100), y: (view.frame.height) * (3/100), width: view.frame.width * (70/100), height: (view.frame.height) * (20/100))
         view.addSubview(imageView)
         
         // forgot password?
