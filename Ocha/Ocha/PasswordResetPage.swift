@@ -57,8 +57,6 @@ class PasswordResetPage: UIViewController, UITextFieldDelegate{
         instLabel.numberOfLines = 2
         view.addSubview(instLabel)
 
-        
-        //add login button
         let submitButton = UIButton()
         submitButton.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (30/100), width: view.frame.width * (80/100), height: (view.frame.height) * (6/100))
         submitButton.setTitle("Submit", for: UIControlState.normal)
@@ -76,6 +74,13 @@ class PasswordResetPage: UIViewController, UITextFieldDelegate{
 
     }
     
+    @IBAction func backToLogin(_ sender: Any) {
+        let initialViewController = UIStoryboard(name: "Main", bundle:nil).instantiateInitialViewController()! as UIViewController
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        appDelegate.window?.rootViewController = initialViewController
+    }
+
+
     func loadEmails(){
         FIRDatabase.database().reference().child("users").observe(.childAdded, with: {(snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
