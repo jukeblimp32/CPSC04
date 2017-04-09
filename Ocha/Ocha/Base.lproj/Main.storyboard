@@ -2031,7 +2031,6 @@
                                                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="logout:" destination="Jod-Y6-Jgc" eventType="touchUpInside" id="M9v-V3-Dzm"/>
                                                         <segue destination="rZX-bo-Tri" kind="push" id="0ko-TJ-LBv"/>
                                                     </connections>
                                                 </button>
@@ -2089,7 +2088,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tXy-MT-eqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-569" y="-2261"/>
+            <point key="canvasLocation" x="-649" y="-2261"/>
         </scene>
         <!--Listings-->
         <scene sceneID="pJ7-Js-2zR">
