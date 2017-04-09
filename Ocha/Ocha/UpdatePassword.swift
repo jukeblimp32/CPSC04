@@ -29,17 +29,19 @@ class UpdatePassword: UIViewController, UITextFieldDelegate {
         passwordTextField.returnKeyType = UIReturnKeyType.done
         passwordTextField.placeholder = "New Password"
         passwordTextField.adjustsFontSizeToFitWidth = true
+        passwordTextField.isSecureTextEntry = true
         self.passwordTextField.delegate = self
         
         //add password confirmation textfield
         confirmTextField.frame = CGRect(x: (view.frame.width) * (10/100), y: (view.frame.height) * (30/100), width: view.frame.width * (80/100), height: (view.frame.height) * (5/100))
-        view.addSubview(passwordTextField)
+        view.addSubview(confirmTextField)
         confirmTextField.borderStyle = UITextBorderStyle.roundedRect
         confirmTextField.backgroundColor = UIColor.white
         confirmTextField.font = UIFont.systemFont(ofSize: 18 * screenScale)
         confirmTextField.returnKeyType = UIReturnKeyType.done
         confirmTextField.placeholder = "Confirm New Password"
         confirmTextField.adjustsFontSizeToFitWidth = true
+        confirmTextField.isSecureTextEntry = true
         self.confirmTextField.delegate = self
 
         
@@ -123,9 +125,19 @@ class UpdatePassword: UIViewController, UITextFieldDelegate {
                         }
                         return
                     }
+                    else {
+                        let alertVC = UIAlertController(title: "Password Changed", message: "Your password has been successfully updated!", preferredStyle: .alert)
+                        
+                        let alertActionOkay = UIAlertAction(title: "Okay", style: .default){
+                            (_) in
+                            // Go back to login
+                           // self.backToLogin.sendActions(for: .touchUpInside)
+                        }
+                        alertVC.addAction(alertActionOkay)
+                        self.present(alertVC, animated: true, completion: nil)
+                    }
+
                 }
-                //self.backToLogin.sendActions(for: .touchUpInside)
-                
             }
             alertConfirm.addAction(alertCancel)
             alertConfirm.addAction(alertYes)
