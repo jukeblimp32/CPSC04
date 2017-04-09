@@ -135,7 +135,7 @@ class UpdatePassword: UIViewController, UITextFieldDelegate {
                         let alertActionOkay = UIAlertAction(title: "Okay", style: .default){
                             (_) in
                             // Go back to login
-                           // self.backToLogin.sendActions(for: .touchUpInside)
+                            self.backToAccount.sendActions(for: .touchUpInside)
                         }
                         alertVC.addAction(alertActionOkay)
                         self.present(alertVC, animated: true, completion: nil)
@@ -161,7 +161,14 @@ class UpdatePassword: UIViewController, UITextFieldDelegate {
     // Called when 'return' key is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed.
     {
-        textField.resignFirstResponder()
+        // Set so that hitting return key advances to next field
+        if textField == self.passwordTextField {
+            self.confirmTextField.becomeFirstResponder()
+        }
+        else{
+            textField.resignFirstResponder()
+        }
+
         return true
     }
     
