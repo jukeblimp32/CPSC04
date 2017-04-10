@@ -94,6 +94,8 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
         leaseLabel.adjustsFontSizeToFitWidth = true
         getLandlordName()
         loadPictures()
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
     
       /*  print("LOOK")
         getPropertyStatus{
@@ -144,6 +146,21 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
         pictureScrollView.contentSize = CGSize(width: scrollViewSize, height: imageHeight)
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        let section = indexPath.section
+        let row = indexPath.row
+        if section == 0 && row == 2{
+            return view.frame.width * (65/100)
+        }
+        if section == 2 && row == 0 {
+            return view.frame.height * (30/100)
+        }
+        return UITableViewAutomaticDimension
+    }
+    
+
+    
     func getPropertyStatus(callback:@escaping (String) -> ()){
         //var propertyStatus = ""
         //create NSURL

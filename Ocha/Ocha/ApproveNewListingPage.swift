@@ -81,6 +81,9 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
         leaseLabel.adjustsFontSizeToFitWidth = true
         getLandlordName()
         loadPictures()
+        
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
     }
     
     
@@ -176,6 +179,18 @@ class ApproveNewListingPage: UITableViewController, MFMailComposeViewControllerD
         self.present(alertVC, animated: true, completion: nil)
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        let section = indexPath.section
+        let row = indexPath.row
+        if section == 0 && row == 2{
+            return view.frame.width * (65/100)
+        }
+        if section == 2 && row == 0 {
+            return view.frame.height * (30/100)
+        }
+        return UITableViewAutomaticDimension
+    }
     
     @IBAction func suggestEdits(_ sender: Any) {
         // Make pop up

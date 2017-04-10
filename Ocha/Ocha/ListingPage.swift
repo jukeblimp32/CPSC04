@@ -81,13 +81,14 @@ class ListingPage: UITableViewController {
         loadPictures()
         favoriteButton.backgroundColor = UIColor.white
 
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
         if favoritePropIDs.contains(propertyID) {
             favoriteButton.setImage(UIImage(named: "filledStar"), for: UIControlState.normal)
         }
         else {
             favoriteButton.setImage(UIImage(named: "emptyStar"), for: UIControlState.normal)
         }
-        
         
     }
   
@@ -131,7 +132,7 @@ class ListingPage: UITableViewController {
         var xPosition : CGFloat = offset
         var scrollViewSize : CGFloat = 0
         //self.pictureCell.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: size + 500)
-        pictureScrollView.frame = CGRect(x:0, y: 0, width : view.frame.width, height: size)
+        pictureScrollView.frame = CGRect(x:0, y: 0, width : view.frame.width, height: imageHeight)
         
         for image in myImages {
             let myImageView : UIImageView = UIImageView()
@@ -151,7 +152,22 @@ class ListingPage: UITableViewController {
         scrollViewSize += offset
         
         pictureScrollView.contentSize = CGSize(width: scrollViewSize, height: imageHeight)
+        
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        let section = indexPath.section
+        let row = indexPath.row
+        if section == 0 && row == 2{
+            return view.frame.width * (65/100)
+        }
+        if section == 2 && row == 0 {
+            return view.frame.height * (30/100)
+        }
+        return UITableViewAutomaticDimension
+    }
+
     
     @IBAction func starPressed(_ sender: UIButton) {
         if (sender.currentImage?.isEqual(UIImage(named: "filledStar")))!{

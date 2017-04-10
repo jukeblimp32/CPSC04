@@ -75,6 +75,8 @@ class AdminListingPage: UITableViewController {
         petsLabel.adjustsFontSizeToFitWidth = true
         leaseLabel.adjustsFontSizeToFitWidth = true
         loadPictures()
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
     }
     
     
@@ -171,6 +173,19 @@ class AdminListingPage: UITableViewController {
 
     }
     
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        let section = indexPath.section
+        let row = indexPath.row
+        if section == 0 && row == 2{
+            return view.frame.width * (65/100)
+        }
+        if section == 2 && row == 0 {
+            return view.frame.height * (30/100)
+        }
+        return UITableViewAutomaticDimension
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //If the segue from any table cell to listingPage is clicked
