@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 class UnseenReviewTableViewCell: UITableViewCell {
+    let updateReviews = "http://147.222.165.203/MyWebService/api/reviewUpdate.php"
     
     var propertyID : Int = 0
     var reviewNum: Int = 0
@@ -32,6 +33,47 @@ class UnseenReviewTableViewCell: UITableViewCell {
     
     @IBAction func unseenButton(_ sender: Any) {
         print("hi")
+        //created NSURL
+        let saveRequestURL = NSURL(string: updateReviews)
+        
+        //creating NSMutableURLRequest
+        let saveRequest = NSMutableURLRequest(url:saveRequestURL! as URL)
+        
+        //setting method to POST
+        saveRequest.httpMethod = "POST"
+        
+        let currentReview = String(reviewNum)
+        let reviewStatus = "SEEN"
+        
+        //post parameter
+        //concatenating keys and values from text field
+        let postParameters="status="+reviewStatus+"&review_id="+currentReview;
+        
+        //adding parameters to request body
+        saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
+        
+              
+        //task to send to post request
+        let saveTask=URLSession.shared.dataTask(with: saveRequest as URLRequest){
+            data,response, error in
+            if error != nil{
+                print("error is \(error)")
+                return;
+            }
+            do{
+                //converting response to NSDictioanry
+                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                if let parseJSON = myJSON{
+                    var msg:String!
+                    msg = parseJSON["message"]as! String?
+                    print(msg)
+                }
+            }catch{
+                print(error)
+            }
+        }
+        saveTask.resume()
     }
     
 }

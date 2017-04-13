@@ -86,6 +86,8 @@ class UnseenReviews: UITableViewController {
                         let propID = propIdValue?["property_id"] as! Int
                         let emailValue = propReviews[i] as? NSDictionary
                         let email = emailValue?["email"] as! String
+                        //let addressValue = propReviews[i] as? NSDictionary
+                        //let address = addressValue?["address"] as! String
                         let dateValue = propReviews[i] as? NSDictionary
                         let date = dateValue?["date"] as! String
                         let cat1Value = propReviews[i] as? NSDictionary
@@ -101,7 +103,7 @@ class UnseenReviews: UITableViewController {
 
                         //IF STATUS != SEEN
                         //if (self.propertyID == propID) {
-                            let review = Review(propertyID: propID, reviewNum: reviewID, email: email, date: date, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
+                            let review = Review(propertyID: propID, reviewNum: reviewID, email: email, /*address: address*/date: date, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
 
                             self.reviews.append(review)
                        // }
