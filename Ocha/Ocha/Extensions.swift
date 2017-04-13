@@ -78,3 +78,25 @@ extension UIViewController {
     }
 }
 
+// This extension allows us to find where in the label was clicked
+extension UILabel {
+    ///Find the index of character (in the attributedText) at point
+    func indexOfAttributedTextCharacterAtPoint(point: CGPoint) -> Int {
+        assert(self.attributedText != nil, "This method is developed for attributed string")
+        // Get storage of text
+        let textStorage = NSTextStorage(attributedString: self.attributedText!)
+        let layoutManager = NSLayoutManager()
+        textStorage.addLayoutManager(layoutManager)
+        
+        // Get container
+        let textContainer = NSTextContainer(size: self.frame.size)
+        textContainer.lineFragmentPadding = 0
+        textContainer.maximumNumberOfLines = self.numberOfLines
+        textContainer.lineBreakMode = self.lineBreakMode
+        layoutManager.addTextContainer(textContainer)
+        
+        // Returns index our point is at 
+        let index = layoutManager.characterIndex(for: point, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        return index
+    }
+}

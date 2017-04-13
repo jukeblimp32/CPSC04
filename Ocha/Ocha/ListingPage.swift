@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import MessageUI
 import Firebase
 
-class ListingPage: UITableViewController {
+class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
     
     let createFavorites = "http://147.222.165.203/MyWebService/api/CreateFavorite.php"
     let removeFavorites = "http://147.222.165.203/MyWebService/api/RemoveFavorites.php"
@@ -80,6 +81,18 @@ class ListingPage: UITableViewController {
         leaseLabel.adjustsFontSizeToFitWidth = true
         loadPictures()
         favoriteButton.backgroundColor = UIColor.white
+        
+        // Make attributed text to create link
+        let mutableText = NSMutableAttributedString(string: "Email: " + email, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 18)])
+        // Underline the email
+        mutableText.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: NSRange(location: 7, length: mutableText.length - 7))
+        // Color the email
+        mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.init(red: 30.0/255, green: 52.0/255, blue: 75.0/255, alpha: 1), range:  NSRange(location: 7, length: mutableText.length - 7))
+        // Add interaction
+        emailLabel.isUserInteractionEnabled = true
+        emailLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ListingPage.openUpEmail)))
+        emailLabel.attributedText = mutableText
+        //view.addSubview(emailLabel)
 
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
@@ -119,6 +132,35 @@ class ListingPage: UITableViewController {
             destination.phoneNumber = phoneNumber
             destination.favoritePropIDs = favoritePropIDs
             
+        }
+    }
+    
+    func openUpEmail(sender: UITapGestureRecognizer){
+        let emailsize = (emailLabel.attributedText?.length)! - 7
+        // Set the range of the email. Subtract one to avoid index problems
+        let emailRange = NSRange(location: 7, length: emailsize - 1)
+        let tapLocation = sender.location(in: emailLabel)
+        let tapindex = emailLabel.indexOfAttributedTextCharacterAtPoint(point: tapLocation)
+        
+        // Only open email if the email address was selected
+        if tapindex >= emailRange.location && tapindex < (emailRange.location + emailRange.length){
+            // Can only send email if the device has mail set up
+            if(MFMailComposeViewController.canSendMail())
+            {
+                // Address the email
+                let editComposerVC = MFMailComposeViewController()
+                editComposerVC.mailComposeDelegate = self
+                editComposerVC.setToRecipients([email])
+                editComposerVC.setSubject("Regarding Your Property at \(address)")
+                self.present(editComposerVC, animated: true, completion: nil)
+            }
+            else
+            {
+                let alert = UIAlertController(title: "Email Not Setup", message:"Please set up your email in order to contact landlords.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                self.present(alert, animated: true){}
+            }
+
         }
     }
     
@@ -276,6 +318,10 @@ class ListingPage: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    // May need alert to stop from cancelling
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
     
 }
