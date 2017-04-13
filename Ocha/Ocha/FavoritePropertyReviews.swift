@@ -218,6 +218,8 @@ class FavoritePropertyReviews: UIViewController, UITableViewDelegate, UITableVie
                         let propID = propIdValue?["property_id"] as! Int
                         let emailValue = propReviews[i] as? NSDictionary
                         let email = emailValue?["email"] as! String
+                        //let addressValue = propReviews[i] as? NSDictionary
+                        //let address = addressValue?["address"] as! String
                         let dateValue = propReviews[i] as? NSDictionary
                         let date = dateValue?["date"] as! String
                         let cat1Value = propReviews[i] as? NSDictionary
@@ -232,7 +234,7 @@ class FavoritePropertyReviews: UIViewController, UITableViewDelegate, UITableVie
                         let category5 = cat5Value?["category_5"] as! String
                         
                         if (self.propertyID == propID) {
-                            let review = Review(propertyID: propID, reviewNum: reviewID, email : email, date: date, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
+                            let review = Review(propertyID: propID, reviewNum: reviewID, email : email, /*address: address*/date: date, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
                             
                             reponseTotal += Int(category1)!
                             locationTotal += Int(category2)!
