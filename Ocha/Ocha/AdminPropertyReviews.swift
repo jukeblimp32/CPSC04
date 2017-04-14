@@ -238,6 +238,8 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
                         let propID = propIdValue?["property_id"] as! Int
                         let emailValue = propReviews[i] as? NSDictionary
                         let email = emailValue?["email"] as! String
+                        let addressValue = propReviews[i] as? NSDictionary
+                        let address = addressValue?["address"] as! String
                         let dateValue = propReviews[i] as? NSDictionary
                         let date = dateValue?["date"] as! String
                         let cat1Value = propReviews[i] as? NSDictionary
@@ -254,7 +256,7 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
                         print(self.propertyID)
                         print(propID)
                         if (self.propertyID == propID) {
-                            let review = Review(propertyID: propID, reviewNum: reviewID, email: email, date: date, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
+                            let review = Review(propertyID: propID, reviewNum: reviewID, email: email, date: date, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5, address : address)
                             
                             reponseTotal += Int(category1)!
                             locationTotal += Int(category2)!

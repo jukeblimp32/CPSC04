@@ -44,6 +44,8 @@ class UnseenReviews: UITableViewController {
         cell.qualityScore.text = review.quality
         cell.emailLabel.text = "User: " + review.email
         cell.dateLabel.text = review.date
+        cell.addressLabel.text = review.address
+        cell.seenButton.setTitle("Unseen", for: UIControlState.normal)
         return cell
     }
     
@@ -86,8 +88,10 @@ class UnseenReviews: UITableViewController {
                         let propID = propIdValue?["property_id"] as! Int
                         let emailValue = propReviews[i] as? NSDictionary
                         let email = emailValue?["email"] as! String
-                        //let addressValue = propReviews[i] as? NSDictionary
-                        //let address = addressValue?["address"] as! String
+                        let addressValue = propReviews[i] as? NSDictionary
+                        let address = addressValue?["address"] as! String
+                        let statusValue = propReviews[i] as? NSDictionary
+                        let status = statusValue?["status"] as! String
                         let dateValue = propReviews[i] as? NSDictionary
                         let date = dateValue?["date"] as! String
                         let cat1Value = propReviews[i] as? NSDictionary
@@ -101,12 +105,13 @@ class UnseenReviews: UITableViewController {
                         let cat5Value = propReviews[i] as? NSDictionary
                         let category5 = cat5Value?["category_5"] as! String
 
-                        //IF STATUS != SEEN
-                        //if (self.propertyID == propID) {
-                            let review = Review(propertyID: propID, reviewNum: reviewID, email: email, /*address: address*/date: date, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5)
+                        if(status != "SEEN"){
+                            //if (self.propertyID == propID) {
+                            let review = Review(propertyID: propID, reviewNum: reviewID, email: email, date: date, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5, address: address)
 
                             self.reviews.append(review)
-                       // }
+                            //}
+                        }
                     }
 
                     DispatchQueue.main.async(execute: {
