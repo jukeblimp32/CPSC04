@@ -15,6 +15,7 @@ class UnseenReviewTableViewCell: UITableViewCell {
     var propertyID : Int = 0
     var reviewNum: Int = 0
     
+    @IBOutlet weak var seenButton: UIButton!
     
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var responseScore: UILabel!
@@ -32,7 +33,7 @@ class UnseenReviewTableViewCell: UITableViewCell {
     }
     
     @IBAction func unseenButton(_ sender: Any) {
-        print("hi")
+        self.seenButton.setTitle("Seen", for: UIControlState.normal)
         //created NSURL
         let saveRequestURL = NSURL(string: updateReviews)
         
@@ -43,11 +44,11 @@ class UnseenReviewTableViewCell: UITableViewCell {
         saveRequest.httpMethod = "POST"
         
         let currentReview = String(reviewNum)
-        let reviewStatus = "SEEN"
-        
+        print("OVERHERE")
+        print(currentReview)
         //post parameter
         //concatenating keys and values from text field
-        let postParameters="status="+reviewStatus+"&review_id="+currentReview;
+        let postParameters="status=SEEN"+"&review_id="+currentReview;
         
         //adding parameters to request body
         saveRequest.httpBody=postParameters.data(using: String.Encoding.utf8)
