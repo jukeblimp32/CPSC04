@@ -30,59 +30,68 @@ class ListingTableViewCell: UITableViewCell {
         super.awakeFromNib()
         let screenSize = UIScreen.main.bounds
         
-        propertyAddress.font = UIFont(name: propertyRent.font.fontName, size: 15)
+        // Get a scale based on iPhone 5
+        let screenScale = screenSize.height / 568.0
+        let cellSize = (screenSize.height * (80.0/100))/4
+        
+        propertyAddress.font = UIFont.systemFont(ofSize: 15 * screenScale)
         propertyAddress.textColor = UIColor.black
-        propertyAddress.frame = CGRect(x: (screenSize.width) * (6/100) , y: (self.frame.height) * (5/100), width: self.frame.width * (60/100) , height: 20)
+        propertyAddress.frame = CGRect(x: (screenSize.width) * (6/100) , y: cellSize * (7/100), width: self.frame.width * (60/100) , height: 15 * screenScale)
         propertyAddress.adjustsFontSizeToFitWidth = true
         self.addSubview(propertyAddress)
         
-        propertyImage.frame = CGRect(x: (screenSize.width * (6/100)), y: (self.frame.height) * (20/100), width: self.frame.width * (25/100) , height: self.frame.height * (60/100))
+        propertyImage.frame = CGRect(x: (screenSize.width * (6/100)), y: cellSize * (30/100), width: screenSize.width * (30/100) , height: cellSize * (75/100))
+        propertyImage.clipsToBounds = true
+        propertyImage.contentMode = .scaleAspectFit
         self.addSubview(propertyImage)
         
         //let image = UIImage(named: "emptyStar") as UIImage?
         favoriteButton.backgroundColor = UIColor.white
-        favoriteButton.frame = CGRect(x: (screenSize.width) * (80/100), y: (self.frame.height) * (4/100), width: self.frame.width * (10/100), height: 30)
+        favoriteButton.frame = CGRect(x: (screenSize.width) * (80/100), y: cellSize * (4/100), width: self.frame.width * (10/100), height: 30)
         //favoriteButton.setImage(image, for: .normal)
         favoriteButton.addTarget(self, action: #selector(ListingTableViewCell.starPressed(_:)), for:UIControlEvents.touchUpInside)
         self.addSubview(favoriteButton)
         
-        propertyRent.font = UIFont(name: propertyRent.font.fontName, size: 15)
+        propertyRent.font = UIFont.systemFont(ofSize: 15 * screenScale)
         propertyRent.textColor = UIColor.black
         propertyRent.adjustsFontSizeToFitWidth = true
-        propertyRent.frame = CGRect(x: (screenSize.width) * (80/100), y: (self.frame.height) * (30/100), width: self.frame.width * (18/100), height: 15)
+        propertyRent.frame = CGRect(x: (screenSize.width) * (80/100), y: cellSize * (30/100), width: self.frame.width * (18/100), height: 15 * screenScale)
         self.addSubview(propertyRent)
         
-        propertyRooms.font = UIFont(name: propertyRent.font.fontName, size: 15)
+        propertyRooms.font = UIFont.systemFont(ofSize: 15 * screenScale)
         propertyRooms.textColor = UIColor.black
         propertyRooms.adjustsFontSizeToFitWidth = true
-        propertyRooms.frame = CGRect(x: (screenSize.width) * (80/100), y: (self.frame.height) * (50/100), width: self.frame.width * (18/100), height: 15)
+        propertyRooms.frame = CGRect(x: (screenSize.width) * (80/100), y: cellSize * (60/100), width: self.frame.width * (18/100), height: 15 * screenScale)
         self.addSubview(propertyRooms)
         
-        propertyDistance.font = UIFont(name: propertyRent.font.fontName, size: 15)
+        propertyDistance.font = UIFont.systemFont(ofSize: 15 * screenScale)
         propertyDistance.textColor = UIColor.black
         propertyDistance.adjustsFontSizeToFitWidth = true
-        propertyDistance.frame = CGRect(x: (screenSize.width) * (80/100), y: (self.frame.height) * (70/100), width: self.frame.width * (18/100), height: 15)
+        propertyDistance.frame = CGRect(x: (screenSize.width) * (80/100), y: cellSize * (90/100), width: self.frame.width * (18/100), height: 15 * screenScale)
         self.addSubview(propertyDistance)
         
         rentLabel.text = "Rent per Month:"
-        rentLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
+        rentLabel.font = UIFont.systemFont(ofSize: 15 * screenScale)
         rentLabel.textColor = UIColor.black
         rentLabel.adjustsFontSizeToFitWidth = true
-        rentLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (30/100), width: screenSize.width * (42/100), height: 15)
+        rentLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: cellSize * (30/100), width: screenSize.width * (42/100), height: 15)
+        rentLabel.sizeToFit()
         self.addSubview(rentLabel)
     
         roomLabel.text = "Bedrooms:"
-        roomLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
+        roomLabel.font = UIFont.systemFont(ofSize: 15 * screenScale)
         roomLabel.textColor = UIColor.black
         roomLabel.adjustsFontSizeToFitWidth = true
-        roomLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (50/100), width: screenSize.width * (42/100), height: 15)
+        roomLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: cellSize * (60/100), width: screenSize.width * (42/100), height: 15)
+        roomLabel.sizeToFit()
         self.addSubview(roomLabel)
         
         distanceLabel.text = "Miles to GU:"
-        distanceLabel.font = UIFont(name: propertyRent.font.fontName, size: 15)
+        distanceLabel.font = UIFont.systemFont(ofSize: 15 * screenScale)
         propertyAddress.adjustsFontSizeToFitWidth = true
         distanceLabel.textColor = UIColor.black
-        distanceLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: (self.frame.height) * (70/100) , width: screenSize.width * (42/100), height: 15)
+        distanceLabel.frame = CGRect(x: (screenSize.width) * (38/100), y: cellSize * (90/100) , width: screenSize.width * (42/100), height: 15)
+        distanceLabel.sizeToFit()
         self.addSubview(distanceLabel)
     }
 
