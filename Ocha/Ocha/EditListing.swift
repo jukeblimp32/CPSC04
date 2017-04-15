@@ -118,26 +118,46 @@ class EditListing: UITableViewController, UITextFieldDelegate, UIImagePickerCont
         propertyImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage)))
         propertyImage.isUserInteractionEnabled = true
         propertyImage.clipsToBounds = true
+        propertyImage.layer.shadowColor = UIColor.black.cgColor
+        propertyImage.layer.shadowOpacity = 0.5
+        propertyImage.layer.shadowOffset = CGSize.zero
+        propertyImage.layer.shadowRadius = 8
         
         propertyImage2.contentMode = .scaleAspectFill
         propertyImage2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage2)))
         propertyImage2.isUserInteractionEnabled = true
         propertyImage2.clipsToBounds = true
+        propertyImage2.layer.shadowColor = UIColor.black.cgColor
+        propertyImage2.layer.shadowOpacity = 0.5
+        propertyImage2.layer.shadowOffset = CGSize.zero
+        propertyImage2.layer.shadowRadius = 8
         
         propertyImage3.contentMode = .scaleAspectFill
         propertyImage3.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage3)))
         propertyImage3.isUserInteractionEnabled = true
         propertyImage3.clipsToBounds = true
+        propertyImage3.layer.shadowColor = UIColor.black.cgColor
+        propertyImage3.layer.shadowOpacity = 0.5
+        propertyImage3.layer.shadowOffset = CGSize.zero
+        propertyImage3.layer.shadowRadius = 8
         
         propertyImage4.contentMode = .scaleAspectFill
         propertyImage4.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage4)))
         propertyImage4.isUserInteractionEnabled = true
         propertyImage4.clipsToBounds = true
+        propertyImage4.layer.shadowColor = UIColor.black.cgColor
+        propertyImage4.layer.shadowOpacity = 0.5
+        propertyImage4.layer.shadowOffset = CGSize.zero
+        propertyImage4.layer.shadowRadius = 8
         
         propertyImage5.contentMode = .scaleAspectFill
         propertyImage5.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectListingImage5)))
         propertyImage5.isUserInteractionEnabled = true
         propertyImage5.clipsToBounds = true
+        propertyImage5.layer.shadowColor = UIColor.black.cgColor
+        propertyImage5.layer.shadowOpacity = 0.5
+        propertyImage5.layer.shadowOffset = CGSize.zero
+        propertyImage5.layer.shadowRadius = 8
         
         if (Double(bedroomNum) == nil) {
             stepper.value = 1

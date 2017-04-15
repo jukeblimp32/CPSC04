@@ -88,6 +88,12 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         uploadImageView.isUserInteractionEnabled = true
         uploadImageView.clipsToBounds = true
         uploadImageView.contentMode = .scaleAspectFit
+        uploadImageView.layer.shadowColor = UIColor.black.cgColor
+        uploadImageView.layer.shadowOpacity = 0.5
+        uploadImageView.layer.shadowOffset = CGSize.zero
+        uploadImageView.layer.shadowRadius = 8
+     
+        
         
         uploadImageView2.image = UIImage(named: "default")
         //uploadImageView2.contentMode = .scaleAspectFill
@@ -95,6 +101,12 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         uploadImageView2.isUserInteractionEnabled = true
         uploadImageView2.clipsToBounds = true
         uploadImageView2.contentMode = .scaleAspectFit
+        uploadImageView2.layer.shadowColor = UIColor.black.cgColor
+        uploadImageView2.layer.shadowOpacity = 0.5
+        uploadImageView2.layer.shadowOffset = CGSize.zero
+        uploadImageView2.layer.shadowRadius = 8
+        
+        
         
         uploadImageView3.image = UIImage(named: "default")
         //uploadImageView3.contentMode = .scaleAspectFill
@@ -102,6 +114,12 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         uploadImageView3.isUserInteractionEnabled = true
         uploadImageView3.clipsToBounds = true
         uploadImageView3.contentMode = .scaleAspectFit
+        uploadImageView3.layer.shadowColor = UIColor.black.cgColor
+        uploadImageView3.layer.shadowOpacity = 0.5
+        uploadImageView3.layer.shadowOffset = CGSize.zero
+        uploadImageView3.layer.shadowRadius = 8
+        
+        
         
         uploadImageView4.image = UIImage(named: "default")
         //uploadImageView4.contentMode = .scaleAspectFill
@@ -109,6 +127,12 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         uploadImageView4.isUserInteractionEnabled = true
         uploadImageView4.clipsToBounds = true
         uploadImageView4.contentMode = .scaleAspectFit
+        uploadImageView4.layer.shadowColor = UIColor.black.cgColor
+        uploadImageView4.layer.shadowOpacity = 0.5
+        uploadImageView4.layer.shadowOffset = CGSize.zero
+        uploadImageView4.layer.shadowRadius = 8
+        
+        
         
         uploadImageView5.image = UIImage(named: "default")
         //uploadImageView5.contentMode = .scaleAspectFill
@@ -116,6 +140,12 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
         uploadImageView5.isUserInteractionEnabled = true
         uploadImageView5.clipsToBounds = true
         uploadImageView5.contentMode = .scaleAspectFit
+        uploadImageView5.layer.shadowColor = UIColor.black.cgColor
+        uploadImageView5.layer.shadowOpacity = 0.5
+        uploadImageView5.layer.shadowOffset = CGSize.zero
+        uploadImageView5.layer.shadowRadius = 8
+        
+        
         
         
         characterLabel.adjustsFontSizeToFitWidth = true
