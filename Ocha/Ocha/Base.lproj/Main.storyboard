@@ -635,7 +635,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Listings Created " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="213-Zt-OI1">
-                                <rect key="frame" x="16" y="48" width="343" height="144"/>
+                                <rect key="frame" x="15" y="100" width="300" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -6740,7 +6740,7 @@
         <image name="Hompage" width="30" height="30"/>
         <image name="LeftChevron" width="16" height="30"/>
         <image name="ManageUsers" width="30" height="30"/>
-        <image name="NewListings" width="30" height="30"/>
+        <image name="NewListings" width="30" height="29"/>
         <image name="NewReviews" width="30" height="30"/>
         <image name="default" width="169" height="169"/>
         <image name="editIcon" width="45" height="45"/>
@@ -6749,21 +6749,21 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="h93-ZZ-6l2"/>
+        <segue reference="m06-09-obF"/>
+        <segue reference="1BP-gC-qaM"/>
         <segue reference="Wgi-Vy-FKQ"/>
-        <segue reference="Xs4-MO-dxu"/>
+        <segue reference="h93-ZZ-6l2"/>
         <segue reference="FH7-a1-EOm"/>
-        <segue reference="V1X-d4-iu0"/>
-        <segue reference="y2L-dC-8lB"/>
-        <segue reference="Pib-hs-18K"/>
-        <segue reference="zjl-A3-T5k"/>
-        <segue reference="XgJ-yG-aBr"/>
         <segue reference="bdE-u0-nId"/>
+        <segue reference="XgJ-yG-aBr"/>
+        <segue reference="zjl-A3-T5k"/>
         <segue reference="o8C-fQ-f2N"/>
         <segue reference="dOb-qY-2Pf"/>
-        <segue reference="1BP-gC-qaM"/>
-        <segue reference="ciy-bW-OGB"/>
+        <segue reference="Pib-hs-18K"/>
+        <segue reference="y2L-dC-8lB"/>
+        <segue reference="V1X-d4-iu0"/>
         <segue reference="R2m-C0-Dkv"/>
+        <segue reference="n3e-hw-rhr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.69411764710000001" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
