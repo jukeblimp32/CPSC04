@@ -66,7 +66,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         seeClosed.transform = CGAffineTransform(scaleX: 0.85 * screenScale, y: 0.80 * screenScale)
         
         closedLabel.text = "Show Closed Listings?"
-        closedLabel.font = UIFont(name: closedLabel.font.fontName, size: 17)
+        closedLabel.font = UIFont.systemFont(ofSize: 17 * screenScale)
         closedLabel.adjustsFontSizeToFitWidth = true
         closedLabel.textColor = UIColor.white
         closedLabel.frame = CGRect(x: (view.frame.width) * (20/100), y: (view.frame.height) * ((3 + shift)/100), width: view.frame.width * (30/100), height: (view.frame.height) * (4/100))

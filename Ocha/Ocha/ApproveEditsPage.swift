@@ -94,6 +94,7 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
         leaseLabel.adjustsFontSizeToFitWidth = true
         getLandlordName()
         loadPictures()
+        initializeLabels()
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
     
@@ -112,6 +113,43 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
         //print (returningPropStat)
         //getPropertyStatus{propertyStatus in print(propertyStatus)}
     
+    }
+    
+    func initializeLabels(){
+        let screenScale = view.frame.height / 568.0
+        addressLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        addressLabel.sizeToFit()
+        
+        distanceLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        distanceLabel.sizeToFit()
+        
+        phoneLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        phoneLabel.sizeToFit()
+        
+        petsLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        petsLabel.sizeToFit()
+        
+        leaseLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        leaseLabel.sizeToFit()
+        
+        descriptionField.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        descriptionField.sizeToFit()
+        
+        dateAvailableLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        dateAvailableLabel.sizeToFit()
+        
+        bedroomLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        bedroomLabel.sizeToFit()
+        
+        rentLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        rentLabel.sizeToFit()
+        
+        typeLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        typeLabel.sizeToFit()
+        
+        emailLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        emailLabel.sizeToFit()
+        
     }
     
     
@@ -153,8 +191,23 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
         if section == 0 && row == 2{
             return view.frame.width * (65/100)
         }
+        if section == 0 && row == 3{
+            return view.frame.height * (7/100)
+        }
+        if section == 0 && row == 4{
+            return view.frame.height * (7/100)
+        }
+        if section == 1{
+            return view.frame.height * (7/100)
+        }
         if section == 2 && row == 0 {
             return view.frame.height * (30/100)
+        }
+        if section == 3 {
+            return view.frame.height * (7/100)
+        }
+        if section == 4{
+            return view.frame.height * (7/100)
         }
         return UITableViewAutomaticDimension
     }

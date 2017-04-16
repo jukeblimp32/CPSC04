@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import MessageUI
 import Firebase
 
-class FavoriteListingPage: UITableViewController {
+class FavoriteListingPage: UITableViewController, MFMailComposeViewControllerDelegate {
     
     let createFavorites = "http://147.222.165.203/MyWebService/api/CreateFavorite.php"
     let removeFavorites = "http://147.222.165.203/MyWebService/api/RemoveFavorites.php"
@@ -77,6 +78,7 @@ class FavoriteListingPage: UITableViewController {
         petsLabel.adjustsFontSizeToFitWidth = true
         leaseLabel.adjustsFontSizeToFitWidth = true
         loadPictures()
+        initializeLabels()
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
         favoriteButton.isSelected = true
@@ -84,6 +86,80 @@ class FavoriteListingPage: UITableViewController {
         favoriteButton.setImage(UIImage(named: "filledStar"), for: UIControlState.selected)
         super.viewDidLoad()
         
+    }
+    
+    func initializeLabels(){
+        let screenScale = view.frame.height / 568.0
+        addressLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        addressLabel.sizeToFit()
+        
+        distanceLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        distanceLabel.sizeToFit()
+        
+        phoneLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        phoneLabel.sizeToFit()
+        
+        petsLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        petsLabel.sizeToFit()
+        
+        leaseLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        leaseLabel.sizeToFit()
+        
+        descriptionField.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        descriptionField.sizeToFit()
+        
+        dateAvailableLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        dateAvailableLabel.sizeToFit()
+        
+        bedroomLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        bedroomLabel.sizeToFit()
+        
+        rentLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        rentLabel.sizeToFit()
+        
+        typeLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        typeLabel.sizeToFit()
+        
+        // Make attributed text to create link
+        let mutableText = NSMutableAttributedString(string: "Email: " + email, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 18 * screenScale)])
+        // Underline the email
+        mutableText.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: NSRange(location: 7, length: mutableText.length - 7))
+        // Color the email
+        mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.init(red: 30.0/255, green: 52.0/255, blue: 75.0/255, alpha: 1), range:  NSRange(location: 7, length: mutableText.length - 7))
+        // Add interaction
+        emailLabel.isUserInteractionEnabled = true
+        emailLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FavoriteListingPage.openUpEmail)))
+        emailLabel.attributedText = mutableText
+        
+    }
+    
+    func openUpEmail(sender: UITapGestureRecognizer){
+        let emailsize = (emailLabel.attributedText?.length)! - 7
+        // Set the range of the email. Subtract one to avoid index problems
+        let emailRange = NSRange(location: 7, length: emailsize - 1)
+        let tapLocation = sender.location(in: emailLabel)
+        let tapindex = emailLabel.indexOfAttributedTextCharacterAtPoint(point: tapLocation)
+        
+        // Only open email if the email address was selected
+        if tapindex >= emailRange.location && tapindex < (emailRange.location + emailRange.length){
+            // Can only send email if the device has mail set up
+            if(MFMailComposeViewController.canSendMail())
+            {
+                // Address the email
+                let editComposerVC = MFMailComposeViewController()
+                editComposerVC.mailComposeDelegate = self
+                editComposerVC.setToRecipients([email])
+                editComposerVC.setSubject("Regarding Your Property at \(address)")
+                self.present(editComposerVC, animated: true, completion: nil)
+            }
+            else
+            {
+                let alert = UIAlertController(title: "Email Not Setup", message:"Please set up your email in order to contact landlords.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default))
+                self.present(alert, animated: true){}
+            }
+            
+        }
     }
     
     
@@ -106,8 +182,23 @@ class FavoriteListingPage: UITableViewController {
         if section == 0 && row == 2{
             return view.frame.width * (65/100)
         }
+        if section == 0 && row == 3{
+            return view.frame.height * (7/100)
+        }
+        if section == 0 && row == 4{
+            return view.frame.height * (7/100)
+        }
+        if section == 1{
+            return view.frame.height * (7/100)
+        }
         if section == 2 && row == 0 {
             return view.frame.height * (30/100)
+        }
+        if section == 3 {
+            return view.frame.height * (7/100)
+        }
+        if section == 4{
+            return view.frame.height * (7/100)
         }
         return UITableViewAutomaticDimension
     }
@@ -265,11 +356,15 @@ class FavoriteListingPage: UITableViewController {
         
     }
     
-  override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
+    // May need alert to stop from cancelling
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
     
 }

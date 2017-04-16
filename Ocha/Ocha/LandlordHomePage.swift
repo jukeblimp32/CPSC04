@@ -29,6 +29,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         logOutDeletedUser()
+        let screenScale = view.frame.height / 736.0
         self.propertiesList.register(LandlordTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tabBarController?.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view, typically from a nib.
@@ -50,7 +51,7 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         var headerLabel = UILabel()
         headerLabel.text = "My Listings"
-        headerLabel.font = UIFont(name: headerLabel.font.fontName, size: 24)
+        headerLabel.font = UIFont.systemFont(ofSize: 24 * screenScale)
         headerLabel.adjustsFontSizeToFitWidth = true
         headerLabel.textColor = UIColor.white
         headerLabel.frame = CGRect(x: (view.frame.width) * (35/100), y: (view.frame.height) * (1/100), width: view.frame.width * (30/100), height: (view.frame.height) * (10/100))

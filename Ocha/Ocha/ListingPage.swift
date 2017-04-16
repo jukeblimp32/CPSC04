@@ -58,6 +58,8 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let screenScale = view.frame.height / 568.0
+        
         addressLabel.text = address
         distanceLabel.text = "Distance from Gonzaga: " + distance + " mile(s)"
         phoneLabel.text = "Phone Number: " + phoneNumber
@@ -80,10 +82,11 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
         petsLabel.adjustsFontSizeToFitWidth = true
         leaseLabel.adjustsFontSizeToFitWidth = true
         loadPictures()
+        initializeLabels()
         favoriteButton.backgroundColor = UIColor.white
         
         // Make attributed text to create link
-        let mutableText = NSMutableAttributedString(string: "Email: " + email, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 18)])
+        let mutableText = NSMutableAttributedString(string: "Email: " + email, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 18 * screenScale)])
         // Underline the email
         mutableText.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: NSRange(location: 7, length: mutableText.length - 7))
         // Color the email
@@ -102,6 +105,40 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
         else {
             favoriteButton.setImage(UIImage(named: "emptyStar"), for: UIControlState.normal)
         }
+        
+    }
+    
+    func initializeLabels(){
+        let screenScale = view.frame.height / 568.0
+        addressLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        addressLabel.sizeToFit()
+        
+        distanceLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        distanceLabel.sizeToFit()
+        
+        phoneLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        phoneLabel.sizeToFit()
+        
+        petsLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        petsLabel.sizeToFit()
+        
+        leaseLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        leaseLabel.sizeToFit()
+        
+        descriptionField.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        descriptionField.sizeToFit()
+        
+        dateAvailableLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        dateAvailableLabel.sizeToFit()
+        
+        bedroomLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        bedroomLabel.sizeToFit()
+        
+        rentLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        rentLabel.sizeToFit()
+        
+        typeLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
+        typeLabel.sizeToFit()
         
     }
   
@@ -204,8 +241,23 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
         if section == 0 && row == 2{
             return view.frame.width * (65/100)
         }
+        if section == 0 && row == 3{
+            return view.frame.height * (7/100)
+        }
+        if section == 0 && row == 4{
+            return view.frame.height * (7/100)
+        }
+        if section == 1{
+            return view.frame.height * (7/100)
+        }
         if section == 2 && row == 0 {
             return view.frame.height * (30/100)
+        }
+        if section == 3 {
+            return view.frame.height * (7/100)
+        }
+        if section == 4{
+            return view.frame.height * (7/100)
         }
         return UITableViewAutomaticDimension
     }
