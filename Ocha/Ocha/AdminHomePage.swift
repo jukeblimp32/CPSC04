@@ -276,6 +276,9 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             cell.propertyDistance.alpha = 0.2
             cell.propertyRent.alpha = 0.2
             cell.propertyRooms.alpha = 0.2
+            cell.rentLabel.alpha = 0.2
+            cell.roomLabel.alpha = 0.2
+            cell.distanceLabel.alpha = 0.2
         }
             // Set to normal look if open
         else
@@ -286,6 +289,9 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
             cell.propertyDistance.alpha = 1.0
             cell.propertyRent.alpha = 1.0
             cell.propertyRooms.alpha = 1.0
+            cell.rentLabel.alpha = 1.0
+            cell.roomLabel.alpha = 1.0
+            cell.distanceLabel.alpha = 1.0
         }
         
         

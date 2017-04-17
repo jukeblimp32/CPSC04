@@ -2891,10 +2891,29 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Property Location" id="vHa-hs-fOF">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="300" id="3Jh-Ml-v4f">
+                                        <rect key="frame" x="0.0" y="850" width="375" height="300"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Jh-Ml-v4f" id="0zH-bw-GFM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="spE-wQ-ZLb" customClass="GMSMapView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Contact Information" id="nXq-bP-qv8">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="PX1-Fr-kLh">
-                                        <rect key="frame" x="0.0" y="850" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="1178" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PX1-Fr-kLh" id="gw4-HW-sNG">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -2915,7 +2934,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aZ7-Fe-98u">
-                                        <rect key="frame" x="0.0" y="894" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="1222" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aZ7-Fe-98u" id="SsU-4Z-7cv">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -2936,7 +2955,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ue8-nt-4XP">
-                                        <rect key="frame" x="0.0" y="938" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="1266" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ue8-nt-4XP" id="vAN-hR-E4F">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -2972,6 +2991,7 @@
                         <outlet property="emailLabel" destination="Ca3-lw-F3v" id="y5L-OR-Zjd"/>
                         <outlet property="favoriteButton" destination="qaf-RD-nj6" id="qKl-mJ-lPl"/>
                         <outlet property="leaseLabel" destination="z8n-34-x9s" id="jhX-75-QUk"/>
+                        <outlet property="mapView" destination="spE-wQ-ZLb" id="zIU-dB-N6q"/>
                         <outlet property="petsLabel" destination="esg-uB-lmZ" id="jTu-aT-3y4"/>
                         <outlet property="phoneLabel" destination="8lI-vM-zUT" id="YAr-BU-ddo"/>
                         <outlet property="pictureCell" destination="kFx-PQ-jPo" id="Iw8-35-lgD"/>
@@ -6464,7 +6484,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJW-uu-F6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3298.4000000000001" y="-124.58770614692655"/>
+            <point key="canvasLocation" x="-3322" y="-70"/>
         </scene>
         <!--Admin Property Reviews-->
         <scene sceneID="Fjn-Nd-dzi">
@@ -6801,10 +6821,10 @@
         <segue reference="Xs4-MO-dxu"/>
         <segue reference="bdE-u0-nId"/>
         <segue reference="XgJ-yG-aBr"/>
-        <segue reference="zjl-A3-T5k"/>
         <segue reference="V1X-d4-iu0"/>
-        <segue reference="y2L-dC-8lB"/>
+        <segue reference="ML4-Ww-1sF"/>
         <segue reference="Pib-hs-18K"/>
+        <segue reference="vYR-Ob-tDb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.69411764710000001" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
