@@ -17,6 +17,7 @@ class UnseenReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var seenButton: UIButton!
     
+    @IBOutlet var landlordLabel: UILabel!
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var responseScore: UILabel!
     @IBOutlet var locationScore: UILabel!
@@ -30,6 +31,7 @@ class UnseenReviewTableViewCell: UITableViewCell {
         super.awakeFromNib()
         emailLabel.adjustsFontSizeToFitWidth = true
         addressLabel.adjustsFontSizeToFitWidth = true
+        landlordLabel.adjustsFontSizeToFitWidth = true
     }
     
     @IBAction func unseenButton(_ sender: Any) {

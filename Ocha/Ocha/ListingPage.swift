@@ -96,6 +96,18 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
         emailLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ListingPage.openUpEmail)))
         emailLabel.attributedText = mutableText
         //view.addSubview(emailLabel)
+        
+        
+        let phoneMutableText = NSMutableAttributedString(string: "Phone Number: " + phoneNumber, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 18 * screenScale)])
+        // Underline the email
+        phoneMutableText.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: NSRange(location: 14, length: phoneMutableText.length - 14))
+        // Color the email
+        phoneMutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.init(red: 30.0/255, green: 52.0/255, blue: 75.0/255, alpha: 1), range:  NSRange(location: 14, length: phoneMutableText.length - 14))
+        // Add interaction
+        phoneLabel.isUserInteractionEnabled = true
+        phoneLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ListingPage.openPhone)))
+        phoneLabel.attributedText = phoneMutableText
+        
 
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
@@ -200,6 +212,43 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
 
         }
     }
+    
+    
+    func stripPhoneNumber(number : String) ->String {
+        var editedNumber : String = ""
+        for number in phoneNumber.characters {
+            let num = String(number)
+            if num == "1" || num == "2" || num == "3" || num == "4" || num == "5" || num == "6" || num == "7" || num == "8" || num == "9" || num == "0" {
+                editedNumber += num
+            }
+        }
+        print(editedNumber)
+        return editedNumber
+    }
+    
+    func openPhone(sender: UITapGestureRecognizer){
+        let phoneSize = (phoneLabel.attributedText?.length)! - 14
+        // Set the range of the email. Subtract one to avoid index problems
+        let phoneRange = NSRange(location: 14, length: phoneSize - 1)
+        let tapLocation = sender.location(in: phoneLabel)
+        let tapindex = phoneLabel.indexOfAttributedTextCharacterAtPoint(point: tapLocation)
+        
+        // Only open email if the email address was selected
+        if tapindex >= phoneRange.location && tapindex < (phoneRange.location + phoneRange.length){
+            
+            let editNumber = stripPhoneNumber(number: phoneNumber)
+            
+            
+            if let phoneCallURL = URL(string: "telprompt://\(editNumber)") {
+                
+                let application:UIApplication = UIApplication.shared
+                if (application.canOpenURL(phoneCallURL)) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                }
+            }
+        }
+    }
+    
     
     func loadPictures() {
         let myImages = [self.imageUrl, self.imageUrl2, self.imageUrl3, self.imageUrl4, self.imageUrl5]
