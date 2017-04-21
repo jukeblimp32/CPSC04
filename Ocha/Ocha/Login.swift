@@ -396,6 +396,26 @@ class ViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDel
     }
     
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        let currentUser = FIRAuth.auth()?.currentUser
+        if currentUser != nil
+        {
+            // Get a reference to the Firebase database
+            let dataRef = FIRDatabase.database().reference(fromURL: "https://osha-6c505.firebaseio.com/")
+            let usersReference = dataRef.child("users").child((currentUser?.uid)!)
+            
+            
+            // See if an instance of the user already exists
+            usersReference.observeSingleEvent(of: .value, with: {(snapshot) in
+                let snapshot = snapshot.value as? NSDictionary
+                // Only add user if this is first login
+                if(snapshot != nil)
+                {
+                    self.goToHomePage(snapshot: snapshot!)
+                }
+            })
+ 
+        }
+    }
     
 }

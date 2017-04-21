@@ -23,14 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         FIRApp.configure()
         
         // Logout of existing Firebase user to avoid conflicts
-        do {
+        /*do {
             try FIRAuth.auth()?.signOut()
             
             print("the user is logged out")
         } catch let error as NSError {
             print(error.localizedDescription)
             print("the current user id is \(FIRAuth.auth()?.currentUser?.uid)")
-        }
+        } */
 
         //Google Signin
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         //Facebook Signin
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         // Logout of existing user
-        FBSDKLoginManager().logOut()
+        //FBSDKLoginManager().logOut()
 
         return true
     }
