@@ -71,6 +71,8 @@ class EditAdminListing: UITableViewController, UITextFieldDelegate, UIImagePicke
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
         descriptionText.delegate = self
         determineAvailability()
         determineDate()
