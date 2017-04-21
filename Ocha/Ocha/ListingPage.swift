@@ -164,6 +164,7 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
     func fillMapView() {
 
         let propAddress = self.address
+        let propRent = self.rent
         let location = propAddress + ", Spokane, WA, USA"
         getLatLngForZip(address: location)
         let camera = GMSCameraPosition.camera(withLatitude: 47.667160, longitude: -117.402342, zoom: 14)
@@ -183,6 +184,7 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
             print(item.zoom)
             let marker = GMSMarker(position: item.location)
             marker.title = item.name
+            marker.snippet = ("Monthly Rent: $"+propRent)
             marker.map = map
         }
         self.tableView.reloadData()
@@ -211,7 +213,7 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
                     let latitude = Double(lat!)
                     let longitude = Double(lon!)
                     let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-                    let prop = Properties(name: address, location: coordinates, zoom: 14)
+                    let prop = Properties(name: address, location: coordinates, zoom: 14, rent: "none")
                     print("added prop")
                     print (prop)
                     self.property.append(prop)
