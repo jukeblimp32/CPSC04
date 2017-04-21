@@ -36,7 +36,8 @@ class FavoritesMap: UIViewController {
         for listing in favListings {
             let propAddress = listing.address
             let location = propAddress + ", Spokane, WA, USA"
-            getLatLngForZip(address: location)
+            let propRent = listing.monthRent
+            getLatLngForZip(address: location, rent: propRent)
         }
         let camera = GMSCameraPosition.camera(withLatitude: 47.667160, longitude: -117.402342, zoom: 14)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -56,12 +57,13 @@ class FavoritesMap: UIViewController {
             
             let marker = GMSMarker(position: item.location)
             marker.title = item.name
+            marker.snippet = ("Monthly Rent: $"+item.rent)
             marker.map = mapView
             
         }
     }
     
-    func getLatLngForZip(address: String){
+    func getLatLngForZip(address: String, rent: String){
         let key = "AIzaSyCoeK0AFvWvqHTIHOrlzvOKK2YeaoGa7Gk"
         
         let url : NSString = "\(baseUrl)address=\(address)&key=\(key)" as NSString
@@ -83,7 +85,7 @@ class FavoritesMap: UIViewController {
                     let latitude = Double(lat!)
                     let longitude = Double(lon!)
                     let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-                    let prop = Properties(name: address, location: coordinates, zoom: 14)
+                    let prop = Properties(name: address, location: coordinates, zoom: 14, rent: rent)
                     print("added prop")
                     print (prop)
                     self.property.append(prop)
