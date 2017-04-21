@@ -116,6 +116,8 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
         phoneLabel.attributedText = phoneMutableText
         
         fillMapView();
+        self.mapView = map
+        
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
         if favoritePropIDs.contains(propertyID) {
@@ -167,9 +169,8 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
         let location = propAddress + ", Spokane, WA, USA"
         getLatLngForZip(address: location)
         let camera = GMSCameraPosition.camera(withLatitude: 47.667160, longitude: -117.402342, zoom: 14)
-        let map = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        self.mapView = map
-        
+        let map = GMSMapView.map(withFrame: mapView.bounds, camera: camera)
+
         let currentProperty = CLLocationCoordinate2DMake(47.667160, -117.402342)
         // Creates a marker in the center of the map.
         let marker = GMSMarker(position: currentProperty)
@@ -321,13 +322,14 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
     func loadPictures() {
         let myImages = [self.imageUrl, self.imageUrl2, self.imageUrl3, self.imageUrl4, self.imageUrl5]
         
+        //Put an offset between each picture
         let offset = view.frame.width * (20/100)
         let size = view.frame.width * (60/100)
         let imageWidth : CGFloat = size
         let imageHeight : CGFloat = size
         var xPosition : CGFloat = offset
         var scrollViewSize : CGFloat = 0
-        //self.pictureCell.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: size + 500)
+
         pictureScrollView.frame = CGRect(x:0, y: 0, width : view.frame.width, height: imageHeight)
         
         for image in myImages {
