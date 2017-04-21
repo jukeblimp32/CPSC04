@@ -68,7 +68,7 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             }
         }, withCancel: nil)
         
-        
+        datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
         
         propDescription!.layer.borderWidth = 1
         propDescription!.layer.borderColor = UIColor.init(red: 13.0/255, green: 144.0/255, blue: 161.0/255, alpha: 1).cgColor

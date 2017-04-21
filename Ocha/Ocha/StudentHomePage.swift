@@ -353,7 +353,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
      cells are displayed in a scrollable view on the student homepage.
      */
     func loadListingViews(){
-        var tempListings = [(Int, Listing)]()
         //create NSURL
         let getRequestURL = NSURL(string: getProperties)
         //creating NSMutableURLRequest
@@ -419,26 +418,25 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         if (status == "Approved" || status == " Approved") {
                             let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
 
-                            let filterCounter = self.checkFilters(listing: listing)
-                        
-                            listing.counter = filterCounter
-                        
+                            let filterCheck = self.checkFilters(listing: listing)
+                            if (filterCheck) {
                             // If we want to see closed, add everything
-                            if(self.closedFlag)
-                            {
-                                tempListings.append((filterCounter, listing))
-                            }
-                                // Else only add non closed listings
-                            else
-                            {
-                                if(!(listing.availability == "Closed" || listing.availability == " Closed"))
+                                if(self.closedFlag)
                                 {
-                                    tempListings.append((filterCounter, listing))
+                                self.listings.append(listing)
                                 }
+                                // Else only add non closed listings
+                                else
+                                {
+                                    if(!(listing.availability == "Closed" || listing.availability == " Closed"))
+                                    {
+                                    self.listings.append(listing)
+                                    }
                             }
                         }
+                        }
                         
-                        if(tempListings.count != 0 || (self.listings.count != 0)){
+                        if(self.listings.count != 0){
                             self.propertiesList.isHidden = false
                             self.propertiesMsg.isHidden = true
                         }
@@ -451,7 +449,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                         // Only shuffle if there are no filters applied
                         if (self.areFiltersDefault()){
                             // Randomize the listings
-                            tempListings = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: tempListings) as! [(Int, Listing)]
+                            self.listings = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.listings) as! [Listing]
                         }
                         
                         //Update the tableview in student homepage to show the listing cells
@@ -459,10 +457,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                             self.propertiesList.reloadData()
                         })
                     }
-                    tempListings.sort{Int($0.0) > Int($1.0)}
-                    for item in tempListings{
-                        self.listings.append(item.1)
-                    }
+
                     /*DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         self.propertiesList.reloadData()
                     }) */
@@ -581,18 +576,30 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         return favListings
     }
     
-    func checkFilters(listing : Listing) -> Int{
+    func checkFilters(listing : Listing) -> Bool{
         if (checkDefaults()) {
-            return 0
+            return true
         }
         else{
-            var counter = 0
-            counter += self.checkPriceRange(listing : listing)
-            counter += self.checkBedrooms(listing : listing)
-            counter += self.checkPropType(listing : listing)
-            counter += self.checkDistance(listing : listing)
-            counter += self.checkPets(listing : listing)
-            return counter
+            if(!checkPriceRange(listing : listing)){
+                return false
+            }
+            if(!checkBedrooms(listing: listing)) {
+                return false
+            }
+            if(!checkBedrooms(listing : listing)) {
+                return false
+            }
+            if(!checkPropType(listing : listing)) {
+                return false
+            }
+            if(!self.checkDistance(listing : listing)) {
+                return false
+            }
+            if (!checkPets(listing : listing)) {
+                return false
+            }
+            return true
         }
 
     }
@@ -607,15 +614,15 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     
-    func checkPriceRange(listing : Listing) -> Int {
+    func checkPriceRange(listing : Listing) -> Bool {
         //Both prices are Any (no preference)
         if ((self.filters[0] == "Any") && (self.filters[1] == "Any")) {
-            return 1
+            return true
         }
         
         //Listing has no proper rent value
         if (Int(listing.monthRent) == nil) {
-            return 0
+            return false
         }
         
         let listingRent : Int = Int(listing.monthRent)!
@@ -624,10 +631,10 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         if (self.filters[0] == "Any") {
             let max : Int = Int(self.filters[1])!
             if(listingRent <= max) {
-                return 1
+                return true
             }
             else {
-                return 0
+                return false
             }
         }
         
@@ -635,10 +642,10 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         if (self.filters[1] == "Any") {
             let min : Int = Int(self.filters[0])!
             if (listingRent >= min) {
-                 return 1
+                 return true
             }
             else {
-                return 0
+                return false
             }
             
         }
@@ -648,81 +655,81 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         
         if ((listingRent <= max) && (listingRent >= min)) {
-             return 1
+             return true
         }
-        return 0
+        return false
     }
     
-    func checkBedrooms(listing : Listing) -> Int{
+    func checkBedrooms(listing : Listing) -> Bool{
         if(self.filters[2] == "Any") {
-             return 1
+             return true
         }
         
         if (Int(listing.numberOfRooms) == nil) {
-            return 0
+            return false
         }
         
         let listingBedroom : Int = Int(listing.numberOfRooms)!
         let filterBedroom : Int = Int(self.filters[2])!
         
         if(listingBedroom == filterBedroom) {
-             return 1
+             return true
         }
-        return 0
+        return false
     }
     
-    func checkPropType(listing : Listing) -> Int{
+    func checkPropType(listing : Listing) -> Bool{
         if(self.filters[4] == "Any") {
-             return 1
+             return true
         }
         let listingType = listing.propertyType
         let filterType = self.filters[4]
 
         if (filterType == "Other") {
             if ((listingType != "House") && (listingType != "Apt.") && (listingType != "Room")) {
-                 return 1
+                 return true
             }
             else {
-                return 0
+                return false
             }
         }
         else {
             if (listingType == filterType) {
-                 return 1
+                 return true
             }
-            return 0
+            return false
         }
     }
     
-    func checkPets(listing : Listing) -> Int {
+    func checkPets(listing : Listing) -> Bool {
         if (self.filters[5] == "No Preference") {
-            return 1
+            return true
         }
         let listingPets = listing.pets
         let filterPets = self.filters[5]
         if filterPets == listingPets {
-            return 1
+            return true
         }
-        return 0
+        return false
         
     }
     
-    func checkDistance(listing : Listing) -> Int{
+    func checkDistance(listing : Listing) -> Bool{
         if(self.filters[3] == "30.0") {
-             return 1
+             return true
         }
         
         if (Float(listing.milesToGU) == nil) {
-            return 0
+            return false
         }
         
         let listingDistance : Float = Float(listing.milesToGU)!
         let filterDistance : Float = Float(self.filters[3])!
         
         if (listingDistance <= filterDistance) {
-             return 1
+             return true
         }
-        return 0
+        return false
     }
     
     /*
