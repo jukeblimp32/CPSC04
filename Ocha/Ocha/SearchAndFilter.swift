@@ -69,6 +69,30 @@ class SearchAndFilter: UITableViewController, UIPickerViewDelegate, UIPickerView
         return pickerData.count
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 0 {
+            if((Int(pickerData[row]) != nil) && (Int(pickerData[pickerMax.selectedRow(inComponent: 0)])) != nil)  {
+                print("Tag is 1")
+                print(pickerData[row])
+                print(pickerData[pickerMax.selectedRow(inComponent: 0)])
+                if(Int(pickerData[row])! > Int(pickerData[pickerMax.selectedRow(inComponent: 0)])!) {
+                pickerMax.selectRow(row, inComponent: 0, animated: true)
+                }
+            }
+        }
+        else if pickerView.tag == 1 {
+            if((Int(pickerData[row]) != nil) && (Int(pickerData[pickerMin.selectedRow(inComponent: 0)])) != nil) {
+                print ("tag is 2")
+                print(pickerData[pickerMin.selectedRow(inComponent: 0)])
+                print(pickerData[row])
+                if(Int(pickerData[row])! < Int(pickerData[pickerMin.selectedRow(inComponent: 0)])!) {
+                    pickerView.selectRow(pickerMin.selectedRow(inComponent: 0), inComponent: 0, animated: true)
+                }
+            }
+           
+        }
+    }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
     }
