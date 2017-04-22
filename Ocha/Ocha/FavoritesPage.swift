@@ -16,6 +16,13 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     @IBOutlet var favoritesMap: UIButton!
     @IBOutlet weak var favoritesList: UITableView!
+    
+    
+  
+    @IBOutlet weak var favoritesMsg: UILabel!
+    
+    
+    
     let getFavorites = "http://147.222.165.203/MyWebService/api/DisplayFavorites.php"
     var favoriteListings = [Listing]()
     var valueTopass : String!
@@ -142,7 +149,14 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
                             let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber : phoneNumber, email: email, userID: userID)
                             self.favoriteListings.append(favoriteListing)
                         }
-                        
+                        if(self.favoriteListings.count != 0){
+                            self.favoritesList.isHidden = false
+                            self.favoritesMsg.isHidden = true
+                        }
+                        else{
+                            self.favoritesList.isHidden = true
+                            self.favoritesMsg.isHidden = false
+                        }
                         // Update our table
                         DispatchQueue.main.async(execute: {
                             self.favoritesList.reloadData()
