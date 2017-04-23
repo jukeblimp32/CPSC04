@@ -179,6 +179,8 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
                             
                             
                             self.listings.append(listing)
+                            print(listing.propertyID)
+                            print(listing.address)
                         }
                         
                         

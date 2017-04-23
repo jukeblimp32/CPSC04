@@ -390,6 +390,13 @@ class CreateListing: UITableViewController, UITextFieldDelegate, UIImagePickerCo
             leaseLength.selectedSegmentIndex = 0
             propType.selectedSegmentIndex = 0
             propDescription.text = ""
+            uploadImageView.image = UIImage(named: "default")
+            uploadImageView2.image = UIImage(named: "default")
+            uploadImageView3.image = UIImage(named: "default")
+            uploadImageView4.image = UIImage(named: "default")
+            uploadImageView5.image = UIImage(named: "default")
+            bathroomStepper.value = Double(1)
+            bedroomStepper.value = Double(1)
         }
     }
     

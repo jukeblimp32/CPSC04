@@ -305,6 +305,7 @@ class ApproveNewListings: UIViewController, UITableViewDelegate, UITableViewData
             // Use default image if there is no image listing
             if(snapshot == nil)
             {
+                print("I was nil")
                 self.downloadURL = ""
                 self.downloadURL2 = ""
                 self.downloadURL3 = ""
@@ -316,13 +317,13 @@ class ApproveNewListings: UIViewController, UITableViewDelegate, UITableViewData
                 // Set the download URL and download the image
                 self.downloadURL = snapshot?["image1"] as! String
                 listing.imageUrl = self.downloadURL
-                self.downloadURL = snapshot?["image2"] as! String
+                self.downloadURL2 = snapshot?["image2"] as! String
                 listing.imageUrl2 = self.downloadURL2
-                self.downloadURL = snapshot?["image3"] as! String
+                self.downloadURL3 = snapshot?["image3"] as! String
                 listing.imageUrl3 = self.downloadURL3
-                self.downloadURL = snapshot?["image4"] as! String
+                self.downloadURL4 = snapshot?["image4"] as! String
                 listing.imageUrl4 = self.downloadURL4
-                self.downloadURL = snapshot?["image5"] as! String
+                self.downloadURL5 = snapshot?["image5"] as! String
                 listing.imageUrl5 = self.downloadURL5
                 
                 
