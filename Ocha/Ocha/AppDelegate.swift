@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -22,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Override point for customization after application launch.
         FIRApp.configure()
         
+        let apiKey = GMSServices.provideAPIKey("AIzaSyAZiputpqkl-sCQk6gk5uTBQLJQVSe0684")
         // Logout of existing Firebase user to avoid conflicts
         /*do {
             try FIRAuth.auth()?.signOut()

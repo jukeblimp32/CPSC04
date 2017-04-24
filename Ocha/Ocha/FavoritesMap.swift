@@ -20,8 +20,7 @@ class FavoritesMap: UIViewController {
     var mapView: GMSMapView?
     
     let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
-    
-    let apiKey = GMSServices.provideAPIKey("AIzaSyAZiputpqkl-sCQk6gk5uTBQLJQVSe0684")
+
     var currentProperty: Properties?
     
     var property = [Properties]()

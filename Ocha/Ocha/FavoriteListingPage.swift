@@ -9,12 +9,15 @@
 import UIKit
 import MessageUI
 import Firebase
+import GoogleMaps
+import CoreLocation
 
 class FavoriteListingPage: UITableViewController, MFMailComposeViewControllerDelegate {
     
     let createFavorites = "http://147.222.165.203/MyWebService/api/CreateFavorite.php"
     let removeFavorites = "http://147.222.165.203/MyWebService/api/RemoveFavorites.php"
     
+    let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
     
     var imageUrl = ""
     var imageUrl2 = ""
@@ -37,6 +40,12 @@ class FavoriteListingPage: UITableViewController, MFMailComposeViewControllerDel
     var email : String = ""
     var propertyID : Int = 0
     var image : UIImage = UIImage(named: "default")!
+    var propLat : Double = 0
+    var propLong : Double = 0
+    
+    var property = [Properties]()
+    
+    @IBOutlet var myView: GMSMapView!
     
     @IBOutlet var propertyImage: UIImageView!
     @IBOutlet var typeLabel: UILabel!
@@ -56,6 +65,7 @@ class FavoriteListingPage: UITableViewController, MFMailComposeViewControllerDel
     @IBOutlet weak var toHomePageButton: UIButton!
     
     override func viewDidLoad() {
+        fillMapView()
         addressLabel.text = address
         typeLabel.text = "Property Type: " + propertyType
         distanceLabel.text = "Distance from Gonzaga: " + distance + " mile(s)"
@@ -91,6 +101,76 @@ class FavoriteListingPage: UITableViewController, MFMailComposeViewControllerDel
         super.viewDidLoad()
         
     }
+    
+    func fillMapView() {
+        let propAddress = self.address
+        let propRent = self.rent
+        let location = propAddress + ", Spokane, WA, USA"
+        getLatLngForZip(address: location, rent: propRent)
+        if(property.isEmpty) {
+            self.myView.camera = GMSCameraPosition.camera(withLatitude: 47.667160, longitude: -117.402342, zoom: 14)
+            
+        }
+        else {
+            self.myView.camera = GMSCameraPosition.camera(withLatitude: propLat, longitude: propLong, zoom: 14)
+        }
+        let currentProperty = CLLocationCoordinate2DMake(47.667160, -117.402342)
+        // Creates a marker in the center of the map.
+        let marker = GMSMarker(position: currentProperty)
+        marker.title = "Gonzaga University"
+        marker.snippet = "College Hall"
+        marker.map = myView
+        
+        for item in property{
+            print(item.name)
+            print(item.location)
+            print(item.zoom)
+            
+            let marker = GMSMarker(position: item.location)
+            marker.title = item.name
+            marker.snippet = ("Monthly Rent: $"+item.rent)
+            marker.map = myView
+        }
+        
+        self.tableView.reloadData()
+        
+    }
+    
+    func getLatLngForZip(address: String, rent : String){
+        let key = "AIzaSyCoeK0AFvWvqHTIHOrlzvOKK2YeaoGa7Gk"
+        
+        let url : NSString = "\(baseUrl)address=\(address)&key=\(key)" as NSString
+        let urlStr : NSString = url.addingPercentEscapes(using: String.Encoding.utf8.rawValue)! as NSString
+        let searchURL : NSURL = NSURL(string: urlStr as String)!
+        
+        let data = NSData(contentsOf: searchURL as URL)
+        let json = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
+        
+        if let results = json["results"] as? [[String: AnyObject]] {
+            if(results.count == 0) {
+                return
+            }
+            let result = results[0]
+            if let geometry = result["geometry"] as? [String:AnyObject] {
+                if let location = geometry["location"] as? [String:Double] {
+                    let lat = location["lat"]
+                    let lon = location["lng"]
+                    let latitude = Double(lat!)
+                    let longitude = Double(lon!)
+                    propLat = latitude
+                    propLong = longitude
+                    let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+                    let prop = Properties(name: address, location: coordinates, zoom: 14, rent: rent)
+                    print("added prop")
+                    print (prop)
+                    self.property.append(prop)
+                    print("OVERHERE")
+                    print("\n\(latitude), \(longitude)")
+                }
+            }
+        }
+    }
+
     
     func initializeLabels(){
         let screenScale = view.frame.height / 568.0
@@ -250,13 +330,14 @@ class FavoriteListingPage: UITableViewController, MFMailComposeViewControllerDel
         if section == 3 {
             return view.frame.height * (7/100)
         }
-        if section == 4{
+        if section == 4 {
+            return view.frame.height * 0.5
+        }
+        if section == 5{
             return view.frame.height * (7/100)
         }
         return UITableViewAutomaticDimension
     }
-    
-
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //If the segue from any table cell to listingPage is clicked

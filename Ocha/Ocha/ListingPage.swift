@@ -16,9 +16,8 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
     
     let createFavorites = "http://147.222.165.203/MyWebService/api/CreateFavorite.php"
     let removeFavorites = "http://147.222.165.203/MyWebService/api/RemoveFavorites.php"
-    let apiKey = GMSServices.provideAPIKey("AIzaSyAZiputpqkl-sCQk6gk5uTBQLJQVSe0684")
+
     let baseUrl = "https://maps.googleapis.com/maps/api/geocode/json?"
-    var map : GMSMapView?
     
     var imageUrl = ""
     var imageUrl2 = ""
@@ -42,11 +41,14 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
     var propertyID : Int = 0
     var image : UIImage = UIImage(named: "default")!
     var favoritePropIDs = [Int]()
+    var propLat : Double = 0
+    var propLong : Double = 0
     
     var property = [Properties]()
 
-    @IBOutlet var mapView: UIView!
-    
+ 
+    @IBOutlet var myView: GMSMapView!
+
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var dateAvailableLabel: UILabel!
     @IBOutlet var pictureScrollView: UIScrollView!
@@ -67,6 +69,7 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         let screenScale = view.frame.height / 568.0
+        fillMapView()
         addressLabel.text = address
         distanceLabel.text = "Distance from Gonzaga: " + distance + " mile(s)"
         phoneLabel.text = "Phone Number: " + phoneNumber
@@ -114,10 +117,7 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
         phoneLabel.isUserInteractionEnabled = true
         phoneLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ListingPage.openPhone)))
         phoneLabel.attributedText = phoneMutableText
-        
-        fillMapView();
-        self.mapView = map
-        
+
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
         if favoritePropIDs.contains(propertyID) {
@@ -127,6 +127,11 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
             favoriteButton.setImage(UIImage(named: "emptyStar"), for: UIControlState.normal)
         }
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
     }
     
     func initializeLabels(){
@@ -164,35 +169,40 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
     }
     
     func fillMapView() {
-
         let propAddress = self.address
         let propRent = self.rent
         let location = propAddress + ", Spokane, WA, USA"
-        getLatLngForZip(address: location)
-        let camera = GMSCameraPosition.camera(withLatitude: 47.667160, longitude: -117.402342, zoom: 14)
-        let map = GMSMapView.map(withFrame: mapView.bounds, camera: camera)
-
+        getLatLngForZip(address: location, rent: propRent)
+        if(property.isEmpty) {
+            self.myView.camera = GMSCameraPosition.camera(withLatitude: 47.667160, longitude: -117.402342, zoom: 14)
+ 
+        }
+        else {
+            self.myView.camera = GMSCameraPosition.camera(withLatitude: propLat, longitude: propLong, zoom: 14)
+        }
         let currentProperty = CLLocationCoordinate2DMake(47.667160, -117.402342)
         // Creates a marker in the center of the map.
         let marker = GMSMarker(position: currentProperty)
         marker.title = "Gonzaga University"
         marker.snippet = "College Hall"
-        marker.map = map
+        marker.map = myView
         
         for item in property{
             print(item.name)
             print(item.location)
             print(item.zoom)
+            
             let marker = GMSMarker(position: item.location)
             marker.title = item.name
-            marker.snippet = ("Monthly Rent: $"+propRent)
-            marker.map = map
+            marker.snippet = ("Monthly Rent: $"+item.rent)
+            marker.map = myView
         }
+
         self.tableView.reloadData()
         
     }
   
-    func getLatLngForZip(address: String){
+    func getLatLngForZip(address: String, rent : String){
         let key = "AIzaSyCoeK0AFvWvqHTIHOrlzvOKK2YeaoGa7Gk"
         
         let url : NSString = "\(baseUrl)address=\(address)&key=\(key)" as NSString
@@ -213,8 +223,10 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
                     let lon = location["lng"]
                     let latitude = Double(lat!)
                     let longitude = Double(lon!)
+                    propLat = latitude
+                    propLong = longitude
                     let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-                    let prop = Properties(name: address, location: coordinates, zoom: 14, rent: "none")
+                    let prop = Properties(name: address, location: coordinates, zoom: 14, rent: rent)
                     print("added prop")
                     print (prop)
                     self.property.append(prop)
@@ -378,7 +390,7 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
             return view.frame.height * (7/100)
         }
         if section == 4 {
-            return view.frame.height * 0.3
+            return view.frame.height * 0.5
         }
         if section == 5{
             return view.frame.height * (7/100)
