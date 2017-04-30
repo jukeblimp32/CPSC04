@@ -70,7 +70,6 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        reviews.removeAll()
         loadReviews()
         self.propertyReviews.register(ReviewTableViewCell.self, forCellReuseIdentifier: "cell")
         propertyReviews.delegate = self
@@ -167,7 +166,6 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
     }
     
     func handleRefresh(_ sender : UIRefreshControl) {
-        reviews.removeAll()
         loadReviews()
         refreshControl.endRefreshing()
     }
@@ -179,7 +177,8 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
         var valueTotal = 0
         var spaceTotal = 0
         var qualityTotal = 0
-        
+        var tempReviews : [Review] = []
+        userEmails.removeAll()
         //create NSURL
         let getRequestURL = NSURL(string: getReviews)
         //creating NSMutableURLRequest
@@ -236,10 +235,11 @@ class StudentPropertyReviews: UIViewController, UITableViewDelegate, UITableView
                             spaceTotal += Int(category4)!
                             qualityTotal += Int(category5)!
                             
-                            self.reviews.append(review)
+                            tempReviews.append(review)
                             self.userEmails.append(email)
                         }
                     }
+                    self.reviews = tempReviews
                     let reviewCount = self.reviews.count
                     
                     if(reviewCount != 0) {

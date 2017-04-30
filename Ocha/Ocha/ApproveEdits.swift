@@ -112,7 +112,7 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
      cells are displayed in a scrollable view on the student homepage.
      */
     func loadListingViews(){
-        var tempListings = [(Int, Listing)]()
+        var tempListings : [Listing] = []
         //create NSURL
         let getRequestURL = NSURL(string: getProperties)
         //creating NSMutableURLRequest
@@ -178,15 +178,14 @@ class ApproveEdits: UIViewController, UITableViewDelegate, UITableViewDataSource
                             let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
                             
                             
-                            self.listings.append(listing)
-                            print(listing.propertyID)
-                            print(listing.address)
+                            tempListings.append(listing)
                         }
                         
                         
-                        if(self.listings.count != 0){
+                        if(tempListings.count != 0){
                             self.propertiesList.isHidden = false
                             self.propertiesMsg.isHidden = true
+                            self.listings = tempListings
                         }
                         else{
                             self.propertiesList.isHidden = true

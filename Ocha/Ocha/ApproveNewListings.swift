@@ -52,15 +52,12 @@ class ApproveNewListings: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        listings.removeAll()
         loadListingViews()
         propertiesList.reloadData()
         
     }
     
     func handleRefresh(_ sender : UIRefreshControl) {
-        listings.removeAll()
         loadListingViews()
         refreshControl.endRefreshing()
     }
@@ -111,7 +108,7 @@ class ApproveNewListings: UIViewController, UITableViewDelegate, UITableViewData
      cells are displayed in a scrollable view on the student homepage.
      */
     func loadListingViews(){
-        var tempListings = [(Int, Listing)]()
+        var tempListings : [Listing] = []
         //create NSURL
         let getRequestURL = NSURL(string: getProperties)
         //creating NSMutableURLRequest
@@ -177,12 +174,13 @@ class ApproveNewListings: UIViewController, UITableViewDelegate, UITableViewData
                             let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable : date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength: lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email, userID : "")
                         
                         
-                            self.listings.append(listing)
+                            tempListings.append(listing)
                         }
                         
-                        if(self.listings.count != 0){
+                        if(tempListings.count != 0){
                             self.propertiesList.isHidden = false
                             self.propertiesMsg.isHidden = true
+                            self.listings = tempListings
                         }
                         else{
                             self.propertiesList.isHidden = true
@@ -198,9 +196,7 @@ class ApproveNewListings: UIViewController, UITableViewDelegate, UITableViewData
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         self.propertiesList.reloadData()
                     })
-                    
-                    
-                    
+
                 })
             }
             catch {

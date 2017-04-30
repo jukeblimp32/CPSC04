@@ -92,15 +92,15 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func handleRefresh(_ sender : UIRefreshControl) {
-        listings.removeAll()
         status.removeAll()
         loadListingViews()
-        propertiesList.reloadData()
         refreshControl.endRefreshing()
     }
     
     
     func loadListingViews(){
+        
+       var tempListings : [Listing] = []
         
         //create NSURL
         let getRequestURL = NSURL(string: getProperties)
@@ -171,11 +171,12 @@ class LandlordHomePage: UIViewController, UITableViewDelegate, UITableViewDataSo
                         
                         if landlordID == uid {
                             let listing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber: bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit : deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: availability, description: description, phoneNumber: phoneNumber, email : email,  userID: "")
-                            self.listings.append(listing)
+                            tempListings.append(listing)
                             self.status.append(status)
                         }
                         
-                        if(self.listings.count != 0){
+                        if(tempListings.count != 0){
+                            self.listings = tempListings
                             self.propertiesList.isHidden = false
                             self.propertiesMsg.isHidden = true
                         }

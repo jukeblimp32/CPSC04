@@ -95,6 +95,8 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
         initializeLabels()
         favoriteButton.backgroundColor = UIColor.white
         
+        myView.frame = CGRect(x:0, y: 0, width : view.frame.width, height: view.frame.height * 0.5)
+        
         // Make attributed text to create link
         let mutableText = NSMutableAttributedString(string: "Email: " + email, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 18 * screenScale)])
         // Underline the email

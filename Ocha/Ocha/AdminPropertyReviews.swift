@@ -135,7 +135,6 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func handleRefresh(_ sender : UIRefreshControl) {
-        reviews.removeAll()
         loadReviews()
         refreshControl.endRefreshing()
     }
@@ -205,6 +204,7 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
         var valueTotal = 0
         var spaceTotal = 0
         var qualityTotal = 0
+        var tempReviews : [Review] = []
 
         //create NSURL
         let getRequestURL = NSURL(string: getReviews)
@@ -253,8 +253,6 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
                         let cat5Value = propReviews[i] as? NSDictionary
                         let category5 = cat5Value?["category_5"] as! String
                         
-                        print(self.propertyID)
-                        print(propID)
                         if (self.propertyID == propID) {
                             let review = Review(propertyID: propID, reviewNum: reviewID, email: email, date: date, landlordResponse : category1, location : category2, priceValue : category3, space : category4, quality : category5, address : address)
                             
@@ -264,10 +262,10 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
                             spaceTotal += Int(category4)!
                             qualityTotal += Int(category5)!
                             
-                            self.reviews.append(review)
+                            tempReviews.append(review)
                         }
                     }
-                    
+                    self.reviews = tempReviews
                     let reviewCount = self.reviews.count
                     
                     if(reviewCount != 0) {

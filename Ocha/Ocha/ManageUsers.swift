@@ -14,13 +14,10 @@ import Firebase
 class ManageUsers: UITableViewController {
     
     var userList = [FireUser]()
-    var tempUsers = [(FireUser, String)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl = UIRefreshControl()
-        userList.removeAll()
-        tempUsers.removeAll()
         fetchUsers()
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(ManageUsers.handleRefresh(_:)), for: .valueChanged)
@@ -30,6 +27,7 @@ class ManageUsers: UITableViewController {
     }
     
     func fetchUsers(){
+        var tempUsers : [FireUser] = []
         FIRDatabase.database().reference().child("users").observe(.childAdded, with: {(snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let fbUser = FireUser()
@@ -39,8 +37,9 @@ class ManageUsers: UITableViewController {
                 fbUser.fbId = snapshot.key
                 
                 if (fbUser.type != "Admin" && fbUser.type != "Block") {
-                    self.userList.append(fbUser)
+                    tempUsers.append(fbUser)
                 }
+                self.userList = tempUsers
                 self.userList.sort {$0.email!.lowercased() < $1.email!.lowercased()}
                 //Update the tableview to show users
                 DispatchQueue.main.async(execute: {
@@ -52,8 +51,6 @@ class ManageUsers: UITableViewController {
     }
     
     func handleRefresh(_ sender : UIRefreshControl) {
-        userList.removeAll()
-        tempUsers.removeAll()
         fetchUsers()
         refreshControl?.endRefreshing()
     }

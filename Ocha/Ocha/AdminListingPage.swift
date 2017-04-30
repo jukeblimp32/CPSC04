@@ -61,6 +61,8 @@ class AdminListingPage: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        myView.frame = CGRect(x:0, y: 0, width : view.frame.width, height: view.frame.height * 0.5)
+        
         fillMapView()
         addressLabel.text = address
         typeLabel.text = "Property Type: " + propertyType

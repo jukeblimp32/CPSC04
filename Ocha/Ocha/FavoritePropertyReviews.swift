@@ -172,7 +172,6 @@ class FavoritePropertyReviews: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func handleRefresh(_ sender : UIRefreshControl) {
-        reviews.removeAll()
         loadReviews()
         refreshControl.endRefreshing()
     }
@@ -185,7 +184,8 @@ class FavoritePropertyReviews: UIViewController, UITableViewDelegate, UITableVie
         var valueTotal = 0
         var spaceTotal = 0
         var qualityTotal = 0
-        
+        var tempReviews : [Review] = []
+        userEmails.removeAll()
         //create NSURL
         let getRequestURL = NSURL(string: getReviews)
         //creating NSMutableURLRequest
@@ -242,10 +242,11 @@ class FavoritePropertyReviews: UIViewController, UITableViewDelegate, UITableVie
                             spaceTotal += Int(category4)!
                             qualityTotal += Int(category5)!
                             
-                            self.reviews.append(review)
+                            tempReviews.append(review)
                             self.userEmails.append(email)
                         }
                     }
+                    self.reviews = tempReviews
                     let reviewCount = self.reviews.count
                     
                     if(reviewCount != 0) {

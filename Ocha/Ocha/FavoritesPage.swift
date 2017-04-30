@@ -62,13 +62,10 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        favoriteListings.removeAll()
         loadListingViews()
-        favoritesList.reloadData()
     }
     
     func handleRefresh(_ sender : UIRefreshControl) {
-        favoriteListings.removeAll()
         loadListingViews()
         refreshControl.endRefreshing()
     }
@@ -81,6 +78,7 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }*/
     
     func loadListingViews(){
+        var tempListings : [Listing] = []
         //create NSURL
         let getRequestURL = NSURL(string: getFavorites)
         //creating NSMutableURLRequest
@@ -147,11 +145,12 @@ class FavoritesPage: UIViewController, UITableViewDelegate, UITableViewDataSourc
  
                         if userID == uid {
                             let favoriteListing = Listing(propertyID: propertyID, landlordID: landlordID, address: address, dateAvailable: date, milesToGU: milesToGu, numberOfRooms: roomNumber, bathroomNumber : bathroomNumber, leaseLength : lease, monthRent: rentPerMonth, deposit: deposit, houseImage: nil, propertyType: propertyType, pets: pets, availability: available, description : description, phoneNumber : phoneNumber, email: email, userID: userID)
-                            self.favoriteListings.append(favoriteListing)
+                            tempListings.append(favoriteListing)
                         }
-                        if(self.favoriteListings.count != 0){
+                        if(tempListings.count != 0){
                             self.favoritesList.isHidden = false
                             self.favoritesMsg.isHidden = true
+                            self.favoriteListings = tempListings
                         }
                         else{
                             self.favoritesList.isHidden = true
