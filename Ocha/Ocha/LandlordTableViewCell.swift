@@ -34,7 +34,7 @@ class LandlordTableViewCell: UITableViewCell {
         
         // Get a scale based on iPhone 5
         let screenScale = screenSize.height / 568.0
-        let cellSize = (screenSize.height * (80.0/100))/4
+        let cellSize = (screenSize.height * (70.0/100))/4
         
         propertyAddress.font = UIFont.systemFont(ofSize: 15 * screenScale)
         propertyAddress.textColor = UIColor.black
