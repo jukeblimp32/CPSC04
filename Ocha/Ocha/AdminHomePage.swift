@@ -195,7 +195,7 @@ class AdminHomePage: UIViewController, UITableViewDelegate, UITableViewDataSourc
                             self.propertiesList.reloadData()
                         })
                     }
-
+                    self.listings = self.listings.reversed()
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         self.propertiesList.reloadData()
                     })
