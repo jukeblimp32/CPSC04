@@ -86,8 +86,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.filters = svc.filters
         
         loadFilters()
-        
-        listings.removeAll()
+
         favoriteListings.removeAll()
         favoritePropIDs.removeAll()
         getFavoritedProperties()
@@ -119,7 +118,6 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func handleRefresh(_ sender : UIRefreshControl) {
-        listings.removeAll()
         favoriteListings.removeAll()
         favoritePropIDs.removeAll()
         getFavoritedProperties()
@@ -353,6 +351,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
      cells are displayed in a scrollable view on the student homepage.
      */
     func loadListingViews(){
+        var tempListings : [Listing] = []
         //create NSURL
         let getRequestURL = NSURL(string: getProperties)
         //creating NSMutableURLRequest
@@ -423,24 +422,26 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
                             // If we want to see closed, add everything
                                 if(self.closedFlag)
                                 {
-                                self.listings.append(listing)
+                                tempListings.append(listing)
                                 }
                                 // Else only add non closed listings
                                 else
                                 {
                                     if(!(listing.availability == "Closed" || listing.availability == " Closed"))
                                     {
-                                    self.listings.append(listing)
+                                    tempListings.append(listing)
                                     }
                             }
                         }
                         }
                         
-                        if(self.listings.count != 0){
+                        if(tempListings.count != 0){
                             self.propertiesList.isHidden = false
                             self.propertiesMsg.isHidden = true
+                            self.listings = tempListings
                         }
                         else{
+                            
                             self.propertiesList.isHidden = true
                             self.propertiesMsg.isHidden = false
                         }
@@ -472,6 +473,7 @@ class StudentHomePage: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
         }
         getTask.resume()
+        
     }
     
     //Fucntion to load in all favorited properties into  favoriteListing
