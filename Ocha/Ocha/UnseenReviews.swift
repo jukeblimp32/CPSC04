@@ -10,7 +10,7 @@ import UIKit
 
 class UnseenReviews: UITableViewController {
     let getReviews = "http://147.222.165.203/MyWebService/api/DisplayReviews.php"
-    
+    let deleteReviews = "http://147.222.165.203/MyWebService/api/deleteReview.php"
     var reviews = [Review]()
     
     
@@ -46,8 +46,11 @@ class UnseenReviews: UITableViewController {
         cell.dateLabel.text = review.date
         cell.addressLabel.text = review.address
         cell.seenButton.setTitle("Unseen", for: UIControlState.normal)
+        cell.deleteReview.setTitle("Delete", for: UIControlState.normal)
         return cell
     }
+    
+    
     
     func handleRefresh(_ sender : UIRefreshControl) {
         reviews.removeAll()

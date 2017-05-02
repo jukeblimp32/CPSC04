@@ -103,6 +103,11 @@ class FavoriteListingPage: UITableViewController, MFMailComposeViewControllerDel
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        descriptionField.setContentOffset(CGPoint.zero, animated: false)
+    }
+    
     func fillMapView() {
         let propAddress = self.address
         let propRent = self.rent

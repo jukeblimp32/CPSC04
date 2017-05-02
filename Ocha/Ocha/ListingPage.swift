@@ -131,6 +131,11 @@ class ListingPage: UITableViewController, MFMailComposeViewControllerDelegate{
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        descriptionField.setContentOffset(CGPoint.zero, animated: false)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tableView.reloadData()

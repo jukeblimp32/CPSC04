@@ -150,7 +150,7 @@ class AdminPropertyReviews: UIViewController, UITableViewDelegate, UITableViewDa
             (_) in
             return
         }
-        // If yes, open up the email app after switching to edit status
+
         let alertActionYes = UIAlertAction(title: "Yes", style: .default){
             (_) in
             let saveRequestURL = NSURL(string: self.deleteReviews)

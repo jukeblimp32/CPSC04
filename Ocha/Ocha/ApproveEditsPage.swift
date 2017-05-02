@@ -112,6 +112,11 @@ class ApproveEditsPage: UITableViewController, MFMailComposeViewControllerDelega
     
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        descriptionField.setContentOffset(CGPoint.zero, animated: false)
+    }
+    
     func initializeLabels(){
         let screenScale = view.frame.height / 568.0
         addressLabel.font = UIFont.systemFont(ofSize: 18 * screenScale)
